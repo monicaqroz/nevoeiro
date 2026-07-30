@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clima em Manaus — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .clima-content{
+    max-width: none;
+    padding: 0;
+  }
+
+  .clima-page{
+    position: relative;
+    --fundo: #f7f5f0;
+    --tinta: #16211d;
+    --tinta-fraca: #5d6b64;
+    --verde: #1f6f54;
+    --verde-forte: #144a38;
+    --verde-neblina: #e7f0ec;
+    --barro: #c96a3e;
+    --barro-fraco: #fbe9de;
+    --linha: #e5e1d6;
+    --branco: #ffffff;
+    --sombra: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.06);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .clima-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .clima-page a{ color: inherit; }
+
+  .clima-page .encontro{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 90% 50% at 88% -8%, var(--verde-neblina), transparent 60%),
+      radial-gradient(ellipse 70% 45% at -5% 105%, var(--barro-fraco), transparent 55%),
+      var(--fundo);
+  }
+
+  .clima-page header{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 72px 24px 40px;
+  }
+  .clima-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--verde);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .clima-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--verde);
+    box-shadow: 0 0 0 0 rgba(31,111,84,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(31,111,84,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(31,111,84,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(31,111,84,0); }
+  }
+
+  .clima-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 0.98;
+    margin: 18px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--verde-forte);
+  }
+  .clima-page h1 em{
+    font-style: italic;
+    font-weight: 620;
+    color: var(--barro);
+  }
+  .clima-page .sub{
+    max-width: 68ch;
+    color: var(--tinta-fraca);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+
+  .clima-page .clima-main{ max-width: 920px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* HERO NUMBER */
+  .clima-page .hero-clima{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 40px 44px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+  }
+  @media (max-width: 560px){
+    .clima-page .hero-clima{ grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; }
+  }
+  .clima-page .temp-grande{
+    font-family:'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(4.5rem, 16vw, 8.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--verde-forte);
+    position: relative;
+  }
+  .clima-page .temp-grande .grau{
+    font-size: 0.32em;
+    vertical-align: top;
+    color: var(--barro);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+  .clima-page .hero-meta .descricao{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--tinta);
+  }
+  .clima-page .hero-meta .sensacao{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+  }
+
+  .clima-page .grid-dados{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+  .clima-page .dado{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--sombra);
+  }
+  .clima-page .dado .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .clima-page .dado .valor{
+    font-family:'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--tinta);
+  }
+  .clima-page .dado .valor .unidade{
+    font-size: 14px;
+    color: var(--tinta-fraca);
+    font-family:'Space Grotesk', sans-serif;
+  }
+
+  .clima-page .rio-divisor{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    margin: 8px 0 20px;
+  }
+  .clima-page .rio-divisor .linha-svg{
+    flex:1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--verde), var(--linha));
+  }
+  .clima-page .rio-divisor span{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tinta-fraca);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .clima-page .previsao{
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 720px){
+    .clima-page .previsao{ grid-template-columns: repeat(4, 1fr); }
+  }
+  .clima-page .dia{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    padding: 18px 10px;
+    text-align:center;
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .clima-page .dia:hover{
+    border-color: var(--verde);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(20,30,25,0.06), 0 14px 28px rgba(20,30,25,0.09);
+  }
+  .clima-page .dia .nome-dia{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--verde);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .clima-page .dia .max{
+    font-family:'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--tinta);
+  }
+  .clima-page .dia .min{
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    margin-top: 2px;
+  }
+  .clima-page .dia .chuva{
+    font-size: 11px;
+    color: var(--barro);
+    margin-top: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-weight: 500;
+  }
+
+  .clima-page footer{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+
+  .clima-page .carregando, .clima-page .erro{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+    padding: 40px 0;
+  }
+  .clima-page .erro{ color: var(--barro); }
+
+  .clima-page button:focus-visible, .clima-page a:focus-visible{
+    outline: 2px solid var(--verde);
+    outline-offset: 3px;
+  }
+
+  .clima-page .atualizar{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    color: var(--tinta);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .clima-page .atualizar:hover{ border-color: var(--verde); transform: translateY(-1px); }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../artigos.html">Artigos</a>
+        <a href="../projetos.html" class="active">Projetos</a>
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content clima-content">
+      <div class="clima-page">
+        <div class="encontro"></div>
+
+        <header>
+          <div class="eyebrow">Manaus, Amazonas — 03°06'S 60°01'W</div>
+          <h1>Agora,<br><em>Encontro das Águas</em></h1>
+          <p class="sub">Onde a água do Rio Negro escurece e a barrenta do Rio Solimões seguem lado a lado sem se misturar por quilômetros — o clima da cidade que vive entre o rio e a mata.</p>
+        </header>
+
+        <section class="clima-main">
+          <div id="conteudo" class="carregando">Consultando a atmosfera sobre Manaus…</div>
+        </section>
+
+        <footer>
+          Dados via Open-Meteo, atualizados a cada visita. Coordenadas: −3.10, −60.02.
+          <br>
+          <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar agora</button>
+          <br>
+          <a class="back-link" href="../projetos.html">← Voltar para Projetos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const LAT = -3.10194;
+const LON = -60.025;
+
+const diasSemana = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+const descricoesTempo = {
+  0: 'Céu limpo', 1: 'Poucas nuvens', 2: 'Parcialmente nublado', 3: 'Encoberto',
+  45: 'Névoa', 48: 'Névoa gelada',
+  51: 'Garoa fraca', 53: 'Garoa moderada', 55: 'Garoa forte',
+  61: 'Chuva fraca', 63: 'Chuva moderada', 65: 'Chuva forte',
+  80: 'Pancadas fracas', 81: 'Pancadas moderadas', 82: 'Pancadas fortes',
+  95: 'Tempestade', 96: 'Tempestade com granizo', 99: 'Tempestade severa'
+};
+
+function descreverTempo(codigo){
+  return descricoesTempo[codigo] || 'Condição instável';
+}
+
+function iconeTempo(codigo){
+  if(codigo === 0) return '☀️';
+  if([1,2].includes(codigo)) return '🌤️';
+  if(codigo === 3) return '☁️';
+  if([45,48].includes(codigo)) return '🌫️';
+  if([51,53,55,61,63,65].includes(codigo)) return '🌧️';
+  if([80,81,82].includes(codigo)) return '🌦️';
+  if([95,96,99].includes(codigo)) return '⛈️';
+  return '🌡️';
+}
+
+async function carregarClima(){
+  const conteudo = document.getElementById('conteudo');
+  conteudo.className = 'carregando';
+  conteudo.textContent = 'Consultando a atmosfera sobre Manaus…';
+
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
+    `&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,uv_index` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max` +
+    `&timezone=America%2FManaus&forecast_days=7`;
+
+  try{
+    const resp = await fetch(url);
+    if(!resp.ok) throw new Error('Falha na resposta da API');
+    const dados = await resp.json();
+    renderizar(dados);
+  }catch(e){
+    conteudo.className = 'erro';
+    conteudo.textContent = 'Não foi possível carregar os dados agora. Tente atualizar em instantes.';
+    console.error(e);
+  }
+}
+
+function renderizar(dados){
+  const c = dados.current;
+  const d = dados.daily;
+  const conteudo = document.getElementById('conteudo');
+
+  const previsaoHTML = d.time.map((dataStr, i) => {
+    const data = new Date(dataStr + 'T12:00:00');
+    const nome = i === 0 ? 'Hoje' : diasSemana[data.getDay()];
+    return `
+      <div class="dia">
+        <div class="nome-dia">${nome}</div>
+        <div style="font-size:22px;margin-bottom:6px;">${iconeTempo(d.weather_code[i])}</div>
+        <div class="max">${Math.round(d.temperature_2m_max[i])}°</div>
+        <div class="min">${Math.round(d.temperature_2m_min[i])}°</div>
+        <div class="chuva">${d.precipitation_probability_max[i]}% chuva</div>
+      </div>
+    `;
+  }).join('');
+
+  conteudo.className = '';
+  conteudo.innerHTML = `
+    <div class="hero-clima">
+      <div class="temp-grande">${Math.round(c.temperature_2m)}<span class="grau">°C</span></div>
+      <div class="hero-meta">
+        <div class="descricao">${iconeTempo(c.weather_code)} ${descreverTempo(c.weather_code)}</div>
+        <div class="sensacao">sensação térmica ${Math.round(c.apparent_temperature)}°C</div>
+      </div>
+    </div>
+
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">Umidade</div>
+        <div class="valor">${c.relative_humidity_2m}<span class="unidade">%</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Vento</div>
+        <div class="valor">${Math.round(c.wind_speed_10m)}<span class="unidade">km/h</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Precipitação</div>
+        <div class="valor">${c.precipitation}<span class="unidade">mm</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Índice UV</div>
+        <div class="valor">${c.uv_index ?? '—'}</div>
+      </div>
+    </div>
+
+    <div class="rio-divisor">
+      <span>Sete dias de rio e céu</span>
+      <div class="linha-svg"></div>
+    </div>
+
+    <div class="previsao">
+      ${previsaoHTML}
+    </div>
+  `;
+}
+
+document.getElementById('btnAtualizar').addEventListener('click', carregarClima);
+carregarClima();
+</script>
+
+</body>
+</html>

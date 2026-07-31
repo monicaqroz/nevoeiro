@@ -18,8 +18,32 @@
       </a>
       <nav class="nav">
         <a href="index.html" class="active">Home</a>
-        <a href="artigos.html">Artigos</a>
-        <a href="projetos.html">Projetos</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="artigos.html">Artigos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="artigos/bem-vindo.html">Bem-vindo ao Nevoeiro</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="projetos/manaus-tempo.html">Clima em Manaus</a>
+            <a href="projetos/manaus-rio.html">Nível do Rio Negro</a>
+          </div>
+        </div>
+
         <a href="sobre.html">Sobre mim</a>
       </nav>
     </aside>
@@ -92,5 +116,6 @@
   </div>
 
   <script src="js/nevoeiro.js"></script>
+  <script src="js/nav.js"></script>
 </body>
 </html>

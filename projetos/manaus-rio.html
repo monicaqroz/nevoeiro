@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nível do Rio Negro — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .rio-content{ max-width: none; padding: 0; }
+
+  .rio-page{
+    position: relative;
+    --fundo: #f7f5f0;
+    --tinta: #16211d;
+    --tinta-fraca: #5d6b64;
+    --agua: #1f5f6f;
+    --agua-forte: #123c47;
+    --agua-neblina: #e6eef0;
+    --barro: #c96a3e;
+    --barro-forte: #9c4d29;
+    --barro-fraco: #fbe9de;
+    --linha: #e5e1d6;
+    --branco: #ffffff;
+    --sombra: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.06);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rio-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .rio-page a{ color: inherit; }
+
+  .rio-page .encontro{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 90% 50% at 88% -8%, var(--agua-neblina), transparent 60%),
+      radial-gradient(ellipse 70% 45% at -5% 105%, var(--barro-fraco), transparent 55%),
+      var(--fundo);
+  }
+
+  .rio-page header{ max-width: 920px; margin: 0 auto; padding: 72px 24px 40px; }
+  .rio-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--agua);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .rio-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--agua);
+    box-shadow: 0 0 0 0 rgba(31,95,111,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(31,95,111,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(31,95,111,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(31,95,111,0); }
+  }
+
+  .rio-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    line-height: 0.98;
+    margin: 18px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--agua-forte);
+  }
+  .rio-page h1 em{ font-style: italic; font-weight: 620; color: var(--barro); }
+  .rio-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 15px; line-height: 1.6; margin-top: 10px; }
+
+  .rio-page .rio-main{ max-width: 920px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .rio-page .hero-rio{
+    display:grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 40px 44px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+  }
+  @media (max-width: 560px){
+    .rio-page .hero-rio{ grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; }
+  }
+  .rio-page .cota-grande{
+    font-family:'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(4rem, 15vw, 7.5rem);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--agua-forte);
+    position: relative;
+  }
+  .rio-page .cota-grande .unidade-m{
+    font-size: 0.3em;
+    vertical-align: top;
+    color: var(--barro);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+  }
+  .rio-page .hero-meta .situacao{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--tinta);
+    display:flex; align-items:center; gap:10px;
+  }
+  .rio-page .hero-meta .situacao .seta{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 15px;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .rio-page .hero-meta .situacao .seta.vazando{ color: var(--barro-forte); background: var(--barro-fraco); }
+  .rio-page .hero-meta .situacao .seta.enchendo{ color: var(--agua-forte); background: var(--agua-neblina); }
+  .rio-page .hero-meta .data-leitura{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+  }
+
+  .rio-page .grid-dados{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+  .rio-page .dado{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--sombra);
+  }
+  .rio-page .dado .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--agua);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .rio-page .dado .valor{
+    font-family:'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--tinta);
+  }
+  .rio-page .dado .valor .unidade{
+    font-size: 14px;
+    color: var(--tinta-fraca);
+    font-family:'Space Grotesk', sans-serif;
+  }
+
+  .rio-page .rio-divisor{
+    display:flex;
+    align-items:center;
+    gap: 16px;
+    margin: 8px 0 20px;
+  }
+  .rio-page .rio-divisor .linha-svg{
+    flex:1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--agua), var(--linha));
+  }
+  .rio-page .rio-divisor span{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--tinta-fraca);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .rio-page .grafico-card{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 28px 28px 18px;
+    box-shadow: var(--sombra);
+  }
+  .rio-page .grafico-card svg{ width: 100%; height: auto; display:block; overflow: visible; }
+  .rio-page .grafico-legenda{
+    display:flex;
+    justify-content: space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--tinta-fraca);
+    margin-top: 6px;
+  }
+  .rio-page .eixo-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    fill: var(--tinta-fraca);
+  }
+  .rio-page .linha-cota{ fill:none; stroke: var(--agua); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  .rio-page .area-cota{ fill: url(#gradAgua); opacity: 0.5; }
+  .rio-page .grade{ stroke: var(--linha); stroke-width: 1; }
+  .rio-page .ponto-atual{ fill: var(--barro); }
+
+  .rio-page footer{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+
+  .rio-page .carregando, .rio-page .erro{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+    padding: 40px 0;
+  }
+  .rio-page .erro{ color: var(--barro); }
+
+  .rio-page button:focus-visible, .rio-page a:focus-visible{
+    outline: 2px solid var(--agua);
+    outline-offset: 3px;
+  }
+
+  .rio-page .atualizar{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    color: var(--tinta);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .rio-page .atualizar:hover{ border-color: var(--agua); transform: translateY(-1px); }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="../artigos.html">Artigos</a>
+        <a href="../projetos.html" class="active">Projetos</a>
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content rio-content">
+      <div class="rio-page">
+        <div class="encontro"></div>
+
+        <header>
+          <div class="eyebrow">Manaus, Amazonas — Porto de Manaus</div>
+          <h1>Nível do<br><em>Rio Negro</em></h1>
+          <p class="sub">Acompanhamento da cota do Rio Negro medida no Porto de Manaus, com o histórico do ano em um gráfico — pra ver a cheia e a vazante acontecendo dia após dia.</p>
+        </header>
+
+        <section class="rio-main">
+          <div id="conteudo" class="carregando">Consultando o nível do rio…</div>
+        </section>
+
+        <footer>
+          Dados coletados diariamente de <a href="https://portodemanaus.com.br/nivel-do-rio-negro/" target="_blank" rel="noopener">portodemanaus.com.br</a>.
+          <br>
+          <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar agora</button>
+          <br>
+          <a class="back-link" href="../projetos.html">← Voltar para Projetos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script id="dados-rio" type="application/json">
+{
+  "atualizadoEm": "2026-07-31T01:30:01Z",
+  "fonte": "https://portodemanaus.com.br/nivel-do-rio-negro/",
+  "atual": {
+    "data": "2026-07-30",
+    "cota": 27.49,
+    "situacao": "Vazando",
+    "variacaoDiaCm": -7,
+    "variacaoAcumuladaM": -1.02
+  },
+  "historico": [
+    { "data": "2026-02-01", "cota": 22.93, "variacaoCm": 9 },
+    { "data": "2026-02-02", "cota": 23.03, "variacaoCm": 10 },
+    { "data": "2026-02-03", "cota": 23.13, "variacaoCm": 10 },
+    { "data": "2026-02-04", "cota": 23.21, "variacaoCm": 8 },
+    { "data": "2026-02-05", "cota": 23.28, "variacaoCm": 7 },
+    { "data": "2026-02-06", "cota": 23.37, "variacaoCm": 9 },
+    { "data": "2026-02-07", "cota": 23.47, "variacaoCm": 10 },
+    { "data": "2026-02-08", "cota": 23.57, "variacaoCm": 10 },
+    { "data": "2026-02-09", "cota": 23.67, "variacaoCm": 10 },
+    { "data": "2026-02-10", "cota": 23.74, "variacaoCm": 7 },
+    { "data": "2026-02-11", "cota": 23.81, "variacaoCm": 7 },
+    { "data": "2026-02-12", "cota": 23.88, "variacaoCm": 7 },
+    { "data": "2026-02-13", "cota": 23.93, "variacaoCm": 5 },
+    { "data": "2026-02-14", "cota": 23.98, "variacaoCm": 5 },
+    { "data": "2026-02-15", "cota": 24.03, "variacaoCm": 5 },
+    { "data": "2026-02-16", "cota": 24.09, "variacaoCm": 6 },
+    { "data": "2026-02-17", "cota": 24.15, "variacaoCm": 6 },
+    { "data": "2026-02-18", "cota": 24.21, "variacaoCm": 6 },
+    { "data": "2026-02-19", "cota": 24.28, "variacaoCm": 7 },
+    { "data": "2026-02-20", "cota": 24.31, "variacaoCm": 3 },
+    { "data": "2026-02-21", "cota": 24.35, "variacaoCm": 4 },
+    { "data": "2026-02-22", "cota": 24.39, "variacaoCm": 4 },
+    { "data": "2026-02-23", "cota": 24.43, "variacaoCm": 4 },
+    { "data": "2026-02-24", "cota": 24.44, "variacaoCm": 1 },
+    { "data": "2026-02-25", "cota": 24.47, "variacaoCm": 3 },
+    { "data": "2026-02-26", "cota": 24.49, "variacaoCm": 2 },
+    { "data": "2026-02-27", "cota": 24.5, "variacaoCm": 1 },
+    { "data": "2026-02-28", "cota": 24.52, "variacaoCm": 2 },
+    { "data": "2026-03-01", "cota": 24.54, "variacaoCm": 2 },
+    { "data": "2026-03-02", "cota": 24.56, "variacaoCm": 2 },
+    { "data": "2026-03-03", "cota": 24.57, "variacaoCm": 1 },
+    { "data": "2026-03-04", "cota": 24.58, "variacaoCm": 1 },
+    { "data": "2026-03-05", "cota": 24.59, "variacaoCm": 1 },
+    { "data": "2026-03-06", "cota": 24.6, "variacaoCm": 1 },
+    { "data": "2026-03-07", "cota": 24.62, "variacaoCm": 2 },
+    { "data": "2026-03-08", "cota": 24.64, "variacaoCm": 2 },
+    { "data": "2026-03-09", "cota": 24.67, "variacaoCm": 3 },
+    { "data": "2026-03-10", "cota": 24.69, "variacaoCm": 2 },
+    { "data": "2026-03-11", "cota": 24.71, "variacaoCm": 2 },
+    { "data": "2026-03-12", "cota": 24.73, "variacaoCm": 2 },
+    { "data": "2026-03-13", "cota": 24.77, "variacaoCm": 4 },
+    { "data": "2026-03-14", "cota": 24.8, "variacaoCm": 3 },
+    { "data": "2026-03-15", "cota": 24.82, "variacaoCm": 2 },
+    { "data": "2026-03-16", "cota": 24.83, "variacaoCm": 1 },
+    { "data": "2026-03-17", "cota": 24.86, "variacaoCm": 3 },
+    { "data": "2026-03-18", "cota": 24.88, "variacaoCm": 2 },
+    { "data": "2026-03-19", "cota": 24.91, "variacaoCm": 3 },
+    { "data": "2026-03-20", "cota": 25.01, "variacaoCm": 10 },
+    { "data": "2026-03-21", "cota": 25.06, "variacaoCm": 5 },
+    { "data": "2026-03-22", "cota": 25.09, "variacaoCm": 3 },
+    { "data": "2026-03-23", "cota": 25.12, "variacaoCm": 3 },
+    { "data": "2026-03-24", "cota": 25.14, "variacaoCm": 2 },
+    { "data": "2026-03-25", "cota": 25.17, "variacaoCm": 3 },
+    { "data": "2026-03-26", "cota": 25.26, "variacaoCm": 9 },
+    { "data": "2026-03-27", "cota": 25.29, "variacaoCm": 3 },
+    { "data": "2026-03-28", "cota": 25.34, "variacaoCm": 5 },
+    { "data": "2026-03-29", "cota": 25.38, "variacaoCm": 4 },
+    { "data": "2026-03-30", "cota": 25.42, "variacaoCm": 4 },
+    { "data": "2026-03-31", "cota": 25.45, "variacaoCm": 3 },
+    { "data": "2026-04-01", "cota": 25.5, "variacaoCm": 5 },
+    { "data": "2026-04-02", "cota": 25.53, "variacaoCm": 3 },
+    { "data": "2026-04-03", "cota": 25.57, "variacaoCm": 4 },
+    { "data": "2026-04-04", "cota": 25.61, "variacaoCm": 4 },
+    { "data": "2026-04-05", "cota": 25.66, "variacaoCm": 5 },
+    { "data": "2026-04-06", "cota": 25.71, "variacaoCm": 5 },
+    { "data": "2026-04-07", "cota": 25.74, "variacaoCm": 3 },
+    { "data": "2026-04-08", "cota": 25.77, "variacaoCm": 3 },
+    { "data": "2026-04-09", "cota": 25.81, "variacaoCm": 4 },
+    { "data": "2026-04-10", "cota": 25.86, "variacaoCm": 5 },
+    { "data": "2026-04-11", "cota": 25.91, "variacaoCm": 5 },
+    { "data": "2026-04-12", "cota": 25.96, "variacaoCm": 5 },
+    { "data": "2026-04-13", "cota": 26.01, "variacaoCm": 5 },
+    { "data": "2026-04-14", "cota": 26.06, "variacaoCm": 5 },
+    { "data": "2026-04-15", "cota": 26.14, "variacaoCm": 8 },
+    { "data": "2026-04-16", "cota": 26.23, "variacaoCm": 9 },
+    { "data": "2026-04-17", "cota": 26.29, "variacaoCm": 6 },
+    { "data": "2026-04-18", "cota": 26.32, "variacaoCm": 3 },
+    { "data": "2026-04-19", "cota": 26.35, "variacaoCm": 3 },
+    { "data": "2026-04-20", "cota": 26.38, "variacaoCm": 3 },
+    { "data": "2026-04-21", "cota": 26.41, "variacaoCm": 3 },
+    { "data": "2026-04-22", "cota": 26.44, "variacaoCm": 3 },
+    { "data": "2026-04-23", "cota": 26.5, "variacaoCm": 6 },
+    { "data": "2026-04-24", "cota": 26.56, "variacaoCm": 6 },
+    { "data": "2026-04-25", "cota": 26.6, "variacaoCm": 4 },
+    { "data": "2026-04-26", "cota": 26.64, "variacaoCm": 4 },
+    { "data": "2026-04-27", "cota": 26.68, "variacaoCm": 4 },
+    { "data": "2026-04-28", "cota": 26.71, "variacaoCm": 3 },
+    { "data": "2026-04-29", "cota": 26.75, "variacaoCm": 4 },
+    { "data": "2026-04-30", "cota": 26.79, "variacaoCm": 4 },
+    { "data": "2026-05-01", "cota": 26.84, "variacaoCm": 5 },
+    { "data": "2026-05-02", "cota": 26.89, "variacaoCm": 5 },
+    { "data": "2026-05-03", "cota": 26.93, "variacaoCm": 4 },
+    { "data": "2026-05-04", "cota": 26.97, "variacaoCm": 4 },
+    { "data": "2026-05-05", "cota": 27.01, "variacaoCm": 4 },
+    { "data": "2026-05-06", "cota": 27.06, "variacaoCm": 5 },
+    { "data": "2026-05-07", "cota": 27.11, "variacaoCm": 5 },
+    { "data": "2026-05-08", "cota": 27.16, "variacaoCm": 5 },
+    { "data": "2026-05-09", "cota": 27.18, "variacaoCm": 2 },
+    { "data": "2026-05-10", "cota": 27.2, "variacaoCm": 2 },
+    { "data": "2026-05-11", "cota": 27.21, "variacaoCm": 1 },
+    { "data": "2026-05-12", "cota": 27.22, "variacaoCm": 1 },
+    { "data": "2026-05-13", "cota": 27.27, "variacaoCm": 5 },
+    { "data": "2026-05-14", "cota": 27.31, "variacaoCm": 4 },
+    { "data": "2026-05-15", "cota": 27.31, "variacaoCm": 0 },
+    { "data": "2026-05-16", "cota": 27.34, "variacaoCm": 3 },
+    { "data": "2026-05-17", "cota": 27.38, "variacaoCm": 4 },
+    { "data": "2026-05-18", "cota": 27.42, "variacaoCm": 4 },
+    { "data": "2026-05-19", "cota": 27.45, "variacaoCm": 3 },
+    { "data": "2026-05-20", "cota": 27.48, "variacaoCm": 3 },
+    { "data": "2026-05-21", "cota": 27.52, "variacaoCm": 4 },
+    { "data": "2026-05-22", "cota": 27.56, "variacaoCm": 4 },
+    { "data": "2026-05-23", "cota": 27.6, "variacaoCm": 4 },
+    { "data": "2026-05-24", "cota": 27.64, "variacaoCm": 4 },
+    { "data": "2026-05-25", "cota": 27.68, "variacaoCm": 4 },
+    { "data": "2026-05-26", "cota": 27.7, "variacaoCm": 2 },
+    { "data": "2026-05-27", "cota": 27.73, "variacaoCm": 3 },
+    { "data": "2026-05-28", "cota": 27.77, "variacaoCm": 4 },
+    { "data": "2026-05-29", "cota": 27.8, "variacaoCm": 3 },
+    { "data": "2026-05-30", "cota": 27.85, "variacaoCm": 5 },
+    { "data": "2026-05-31", "cota": 27.9, "variacaoCm": 5 },
+    { "data": "2026-06-01", "cota": 27.95, "variacaoCm": 5 },
+    { "data": "2026-06-02", "cota": 27.99, "variacaoCm": 4 },
+    { "data": "2026-06-03", "cota": 28.02, "variacaoCm": 3 },
+    { "data": "2026-06-04", "cota": 28.05, "variacaoCm": 3 },
+    { "data": "2026-06-05", "cota": 28.08, "variacaoCm": 3 },
+    { "data": "2026-06-06", "cota": 28.12, "variacaoCm": 4 },
+    { "data": "2026-06-07", "cota": 28.16, "variacaoCm": 4 },
+    { "data": "2026-06-08", "cota": 28.2, "variacaoCm": 4 },
+    { "data": "2026-06-09", "cota": 28.26, "variacaoCm": 6 },
+    { "data": "2026-06-10", "cota": 28.3, "variacaoCm": 4 },
+    { "data": "2026-06-11", "cota": 28.34, "variacaoCm": 4 },
+    { "data": "2026-06-12", "cota": 28.36, "variacaoCm": 2 },
+    { "data": "2026-06-13", "cota": 28.38, "variacaoCm": 2 },
+    { "data": "2026-06-14", "cota": 28.4, "variacaoCm": 2 },
+    { "data": "2026-06-15", "cota": 28.43, "variacaoCm": 3 },
+    { "data": "2026-06-16", "cota": 28.45, "variacaoCm": 2 },
+    { "data": "2026-06-17", "cota": 28.46, "variacaoCm": 1 },
+    { "data": "2026-06-18", "cota": 28.48, "variacaoCm": 2 },
+    { "data": "2026-06-19", "cota": 28.49, "variacaoCm": 1 },
+    { "data": "2026-06-20", "cota": 28.5, "variacaoCm": 1 },
+    { "data": "2026-06-21", "cota": 28.51, "variacaoCm": 1 },
+    { "data": "2026-06-22", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-23", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-24", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-25", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-26", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-27", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-28", "cota": 28.51, "variacaoCm": 0 },
+    { "data": "2026-06-29", "cota": 28.5, "variacaoCm": -1 },
+    { "data": "2026-06-30", "cota": 28.5, "variacaoCm": 0 },
+    { "data": "2026-07-01", "cota": 28.5, "variacaoCm": 0 },
+    { "data": "2026-07-02", "cota": 28.5, "variacaoCm": 0 },
+    { "data": "2026-07-03", "cota": 28.49, "variacaoCm": -1 },
+    { "data": "2026-07-04", "cota": 28.47, "variacaoCm": -2 },
+    { "data": "2026-07-05", "cota": 28.45, "variacaoCm": -2 },
+    { "data": "2026-07-06", "cota": 28.43, "variacaoCm": -2 },
+    { "data": "2026-07-07", "cota": 28.4, "variacaoCm": -3 },
+    { "data": "2026-07-08", "cota": 28.38, "variacaoCm": -2 },
+    { "data": "2026-07-09", "cota": 28.36, "variacaoCm": -2 },
+    { "data": "2026-07-10", "cota": 28.34, "variacaoCm": -2 },
+    { "data": "2026-07-11", "cota": 28.31, "variacaoCm": -3 },
+    { "data": "2026-07-12", "cota": 28.28, "variacaoCm": -3 },
+    { "data": "2026-07-13", "cota": 28.25, "variacaoCm": -3 },
+    { "data": "2026-07-14", "cota": 28.22, "variacaoCm": -3 },
+    { "data": "2026-07-15", "cota": 28.19, "variacaoCm": -3 },
+    { "data": "2026-07-16", "cota": 28.16, "variacaoCm": -3 },
+    { "data": "2026-07-17", "cota": 28.12, "variacaoCm": -4 },
+    { "data": "2026-07-18", "cota": 28.08, "variacaoCm": -4 },
+    { "data": "2026-07-19", "cota": 28.05, "variacaoCm": -3 },
+    { "data": "2026-07-20", "cota": 28.01, "variacaoCm": -4 },
+    { "data": "2026-07-21", "cota": 27.97, "variacaoCm": -4 },
+    { "data": "2026-07-22", "cota": 27.93, "variacaoCm": -4 },
+    { "data": "2026-07-23", "cota": 27.89, "variacaoCm": -4 },
+    { "data": "2026-07-24", "cota": 27.84, "variacaoCm": -5 },
+    { "data": "2026-07-25", "cota": 27.79, "variacaoCm": -5 },
+    { "data": "2026-07-26", "cota": 27.74, "variacaoCm": -5 },
+    { "data": "2026-07-27", "cota": 27.68, "variacaoCm": -6 },
+    { "data": "2026-07-28", "cota": 27.62, "variacaoCm": -6 },
+    { "data": "2026-07-29", "cota": 27.56, "variacaoCm": -6 },
+    { "data": "2026-07-30", "cota": 27.49, "variacaoCm": -7 }
+  ]
+}
+</script>
+<script>
+const URL_DADOS = '../data/nivel-rio-negro.json';
+
+function formatarData(dataStr){
+  const [ano, mes, dia] = dataStr.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
+
+function formatarNumero(n, casas = 2){
+  return n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+}
+
+function dadosEmbutidos(){
+  return JSON.parse(document.getElementById('dados-rio').textContent);
+}
+
+async function buscarDadosFrescos(){
+  const resp = await fetch(`${URL_DADOS}?t=${Date.now()}`);
+  if(!resp.ok) throw new Error('Falha ao buscar dados atualizados');
+  return resp.json();
+}
+
+async function iniciar(){
+  // Os dados embutidos no HTML garantem que a página funcione mesmo aberta
+  // direto do disco (file://), onde o navegador bloqueia fetch() de outro
+  // arquivo local. Quando servida via http(s), tentamos buscar uma versão
+  // mais recente por baixo dos panos.
+  renderizar(dadosEmbutidos());
+  if(location.protocol === 'file:') return;
+  try{
+    renderizar(await buscarDadosFrescos());
+  }catch(e){
+    console.error(e);
+  }
+}
+
+async function atualizarManualmente(){
+  const botao = document.getElementById('btnAtualizar');
+  const textoOriginal = botao.textContent;
+  botao.disabled = true;
+  botao.textContent = 'Atualizando…';
+  try{
+    renderizar(await buscarDadosFrescos());
+  }catch(e){
+    console.error(e);
+    alert('Não foi possível buscar uma atualização agora — os dados exibidos são os mais recentes disponíveis nesta página.');
+  }finally{
+    botao.disabled = false;
+    botao.textContent = textoOriginal;
+  }
+}
+
+function construirGrafico(historico){
+  const largura = 860, altura = 260, margemEsq = 44, margemDir = 12, margemTopo = 16, margemBaixo = 28;
+  const areaLargura = largura - margemEsq - margemDir;
+  const areaAltura = altura - margemTopo - margemBaixo;
+
+  const cotas = historico.map(h => h.cota);
+  const min = Math.min(...cotas);
+  const max = Math.max(...cotas);
+  const folga = (max - min) * 0.08 || 0.5;
+  const yMin = min - folga, yMax = max + folga;
+
+  const x = i => margemEsq + (i / (historico.length - 1)) * areaLargura;
+  const y = v => margemTopo + areaAltura - ((v - yMin) / (yMax - yMin)) * areaAltura;
+
+  const pontos = historico.map((h, i) => `${x(i)},${y(h.cota)}`).join(' ');
+  const areaPontos = `${x(0)},${y(yMin)} ${pontos} ${x(historico.length - 1)},${y(yMin)}`;
+
+  // linhas de grade + rótulos a cada início de mês
+  let marcasMes = '';
+  let mesAnterior = null;
+  historico.forEach((h, i) => {
+    const mes = h.data.slice(0, 7);
+    if(mes !== mesAnterior){
+      mesAnterior = mes;
+      const nomeMes = new Date(h.data + 'T12:00:00').toLocaleDateString('pt-BR', { month: 'short' });
+      marcasMes += `
+        <line class="grade" x1="${x(i)}" y1="${margemTopo}" x2="${x(i)}" y2="${margemTopo + areaAltura}" />
+        <text class="eixo-label" x="${x(i)}" y="${altura - 8}">${nomeMes}</text>
+      `;
+    }
+  });
+
+  const ultimo = historico[historico.length - 1];
+
+  return `
+    <svg viewBox="0 0 ${largura} ${altura}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gradAgua" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1f5f6f" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#1f5f6f" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <text class="eixo-label" x="4" y="${y(yMax) + 4}">${formatarNumero(yMax, 1)}m</text>
+      <text class="eixo-label" x="4" y="${y(yMin) + 4}">${formatarNumero(yMin, 1)}m</text>
+      ${marcasMes}
+      <polygon class="area-cota" points="${areaPontos}" />
+      <polyline class="linha-cota" points="${pontos}" />
+      <circle class="ponto-atual" cx="${x(historico.length - 1)}" cy="${y(ultimo.cota)}" r="4.5" />
+    </svg>
+  `;
+}
+
+function renderizar(dados){
+  const a = dados.atual;
+  const conteudo = document.getElementById('conteudo');
+  const vazando = a.situacao.toLowerCase().startsWith('vaz');
+  const setaClasse = vazando ? 'vazando' : 'enchendo';
+  const setaIcone = vazando ? '↓' : '↑';
+
+  const primeiro = dados.historico[0];
+  const ultimo = dados.historico[dados.historico.length - 1];
+
+  conteudo.className = '';
+  conteudo.innerHTML = `
+    <div class="hero-rio">
+      <div class="cota-grande">${formatarNumero(a.cota)}<span class="unidade-m">m</span></div>
+      <div class="hero-meta">
+        <div class="situacao">
+          ${a.situacao}
+          <span class="seta ${setaClasse}">${setaIcone} ${formatarNumero(Math.abs(a.variacaoDiaCm), 1)}cm hoje</span>
+        </div>
+        <div class="data-leitura">leitura de ${formatarData(a.data)}</div>
+      </div>
+    </div>
+
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">Variação hoje</div>
+        <div class="valor">${a.variacaoDiaCm > 0 ? '+' : ''}${formatarNumero(a.variacaoDiaCm, 1)}<span class="unidade">cm</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Acumulado no período</div>
+        <div class="valor">${a.variacaoAcumuladaM > 0 ? '+' : ''}${formatarNumero(a.variacaoAcumuladaM)}<span class="unidade">m</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Mínima registrada</div>
+        <div class="valor">${formatarNumero(Math.min(...dados.historico.map(h => h.cota)))}<span class="unidade">m</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Máxima registrada</div>
+        <div class="valor">${formatarNumero(Math.max(...dados.historico.map(h => h.cota)))}<span class="unidade">m</span></div>
+      </div>
+    </div>
+
+    <div class="rio-divisor">
+      <span>Acompanhamento — ${formatarData(primeiro.data)} a ${formatarData(ultimo.data)}</span>
+      <div class="linha-svg"></div>
+    </div>
+
+    <div class="grafico-card">
+      ${construirGrafico(dados.historico)}
+      <div class="grafico-legenda">
+        <span>${formatarData(primeiro.data)}</span>
+        <span>${formatarData(ultimo.data)}</span>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('btnAtualizar').addEventListener('click', atualizarManualmente);
+iniciar();
+</script>
+
+</body>
+</html>

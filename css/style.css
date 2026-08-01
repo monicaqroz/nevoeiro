@@ -5,7 +5,7 @@
   --text: #111111;
   --gray: #6b6b6b;
   --gray-light: #e3e3e3;
-  --green: #24f05d;
+  --link: #2563a8;
   --orange: #f05d23;
 
   --sidebar-bg: #1b1c1f;
@@ -30,7 +30,7 @@ html, body {
 }
 
 a {
-  color: var(--green);
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -201,6 +201,95 @@ a:hover {
   margin: 0 0 3rem;
 }
 
+.cv-destaque {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: rgba(240, 93, 35, 0.07);
+  border: 1px solid rgba(240, 93, 35, 0.35);
+  border-radius: 8px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.cv-secao-titulo {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin: 2.5rem 0 1rem;
+}
+
+.cv-formacao {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.cv-formacao li {
+  display: flex;
+  gap: 1.25rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--gray-light);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cv-formacao li:first-child {
+  padding-top: 0;
+}
+
+.cv-ano {
+  flex-shrink: 0;
+  width: 90px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--gray);
+  padding-top: 0.15rem;
+}
+
+.cv-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cv-stat {
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 1.1rem 1.2rem;
+}
+
+.cv-stat-valor {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.cv-stat-rotulo {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+.cv-fonte {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+@media (max-width: 480px) {
+  .cv-formacao li {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .cv-ano {
+    width: auto;
+  }
+}
+
 .eyebrow {
   font-family: var(--font-sans);
   font-size: 0.75rem;
@@ -230,7 +319,7 @@ a:hover {
 }
 
 .article-title a:hover {
-  color: var(--green);
+  color: var(--link);
 }
 
 .article-date {

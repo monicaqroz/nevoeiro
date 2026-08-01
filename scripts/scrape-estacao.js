@@ -8,7 +8,10 @@ const path = require('path');
 const ICAO = 'SBEG';
 const URL_FONTE = `https://aviationweather.gov/api/data/metar?ids=${ICAO}&format=json&hours=72`;
 const ARQUIVO_DADOS = path.join(__dirname, '..', 'data', 'estacao-manaus.json');
-const ARQUIVO_PAGINA = path.join(__dirname, '..', 'projetos', 'manaus-estacao.html');
+const PAGINAS_EMBUTIDAS = [
+  path.join(__dirname, '..', 'projetos', 'manaus-estacao.html'),
+  path.join(__dirname, '..', 'projetos', 'manaus-conforto.html'),
+];
 
 const COBERTURA = {
   SKC: 'Céu limpo', CLR: 'Céu limpo', CAVOK: 'Céu limpo',
@@ -59,19 +62,19 @@ function paraRegistro(obs) {
   };
 }
 
-function atualizarPaginaEmbutida(resultado) {
-  if (!fs.existsSync(ARQUIVO_PAGINA)) return;
-  const html = fs.readFileSync(ARQUIVO_PAGINA, 'utf8');
+function atualizarPaginaEmbutida(caminhoPagina, resultado) {
+  if (!fs.existsSync(caminhoPagina)) return;
+  const html = fs.readFileSync(caminhoPagina, 'utf8');
   const marcador = /(<script id="dados-estacao" type="application\/json">\n)([\s\S]*?)(\n<\/script>)/;
   if (!marcador.test(html)) {
-    console.warn(`Aviso: marcador "dados-estacao" não encontrado em ${ARQUIVO_PAGINA}, pulando.`);
+    console.warn(`Aviso: marcador "dados-estacao" não encontrado em ${caminhoPagina}, pulando.`);
     return;
   }
   const novoHtml = html.replace(marcador, (_, abre, _conteudo, fecha) => (
     abre + JSON.stringify(resultado, null, 2) + fecha
   ));
-  fs.writeFileSync(ARQUIVO_PAGINA, novoHtml, 'utf8');
-  console.log(`Atualizado: ${ARQUIVO_PAGINA}`);
+  fs.writeFileSync(caminhoPagina, novoHtml, 'utf8');
+  console.log(`Atualizado: ${caminhoPagina}`);
 }
 
 async function main() {
@@ -110,7 +113,7 @@ async function main() {
   fs.writeFileSync(ARQUIVO_DADOS, JSON.stringify(resultado, null, 2) + '\n', 'utf8');
   console.log(`Atualizado: ${ARQUIVO_DADOS} (${historico.length} registros, ${resultado.atual.tempC}°C em ${resultado.atual.hora})`);
 
-  atualizarPaginaEmbutida(resultado);
+  for (const pagina of PAGINAS_EMBUTIDAS) atualizarPaginaEmbutida(pagina, resultado);
 }
 
 main().catch((err) => {

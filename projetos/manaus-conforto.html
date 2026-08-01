@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clima em Manaus — Estação — Nevoeiro</title>
+<title>Conforto Térmico de Manaus — Nevoeiro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,21 +11,24 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-  .estacao-content{ max-width: none; padding: 0; }
+  .conforto-content{ max-width: none; padding: 0; }
 
-  .estacao-page{
+  .conforto-page{
     position: relative;
     --fundo: #f7f5f0;
     --tinta: #16211d;
     --tinta-fraca: #5d6b64;
-    --ceu: #2563a8;
-    --ceu-forte: #163f6b;
-    --ceu-neblina: #e6edf5;
+    --calor: #b8442f;
+    --calor-forte: #7d2c1c;
+    --calor-neblina: #f7e8e3;
     --ambar: #c98a1f;
-    --ambar-fraco: #faeed7;
     --linha: #e5e1d6;
     --branco: #ffffff;
     --sombra: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.06);
+    --nivel-0: #2f8f5b; --nivel-0-fraco: #e5f3ea;
+    --nivel-1: #c98a1f; --nivel-1-fraco: #faeed7;
+    --nivel-2: #c9631f; --nivel-2-fraco: #fbe6d7;
+    --nivel-3: #b8442f; --nivel-3-fraco: #f7e2dd;
     background: var(--fundo);
     color: var(--tinta);
     font-family: 'Space Grotesk', sans-serif;
@@ -33,216 +36,292 @@
   }
 
   @media (prefers-reduced-motion: reduce){
-    .estacao-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+    .conforto-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
 
-  .estacao-page a{ color: inherit; }
+  .conforto-page a{ color: inherit; }
 
-  .estacao-page .encontro{
+  .conforto-page .encontro{
     position: absolute;
     inset: 0;
     z-index: -1;
     background:
-      radial-gradient(ellipse 90% 50% at 88% -8%, var(--ceu-neblina), transparent 60%),
-      radial-gradient(ellipse 70% 45% at -5% 105%, var(--ambar-fraco), transparent 55%),
+      radial-gradient(ellipse 90% 50% at 88% -8%, var(--calor-neblina), transparent 60%),
+      radial-gradient(ellipse 70% 45% at -5% 105%, #faeed7, transparent 55%),
       var(--fundo);
   }
 
-  .estacao-page header{ max-width: 920px; margin: 0 auto; padding: 72px 24px 40px; }
-  .estacao-page .eyebrow{
+  .conforto-page header{ max-width: 920px; margin: 0 auto; padding: 72px 24px 40px; }
+  .conforto-page .eyebrow{
     font-family:'JetBrains Mono', monospace;
     font-size: 12px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--ceu);
+    color: var(--calor);
     display:flex; align-items:center; gap:10px;
     font-weight: 500;
     margin-bottom: 0;
   }
-  .estacao-page .eyebrow::before{
+  .conforto-page .eyebrow::before{
     content:'';
     width:7px; height:7px; border-radius:50%;
-    background: var(--ceu);
-    box-shadow: 0 0 0 0 rgba(37,99,168,0.5);
+    background: var(--calor);
+    box-shadow: 0 0 0 0 rgba(184,68,47,0.5);
     animation: pulso 2.4s ease-out infinite;
   }
   @keyframes pulso{
-    0%{ box-shadow: 0 0 0 0 rgba(37,99,168,0.45); }
-    70%{ box-shadow: 0 0 0 8px rgba(37,99,168,0); }
-    100%{ box-shadow: 0 0 0 0 rgba(37,99,168,0); }
+    0%{ box-shadow: 0 0 0 0 rgba(184,68,47,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(184,68,47,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(184,68,47,0); }
   }
 
-  .estacao-page h1{
+  .conforto-page h1{
     font-family:'Fraunces', serif;
     font-weight: 360;
     font-size: clamp(2.6rem, 7vw, 5rem);
     line-height: 0.98;
     margin: 18px 0 6px;
     letter-spacing: -0.01em;
-    color: var(--ceu-forte);
+    color: var(--calor-forte);
   }
-  .estacao-page h1 em{ font-style: italic; font-weight: 620; color: var(--ambar); }
-  .estacao-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 15px; line-height: 1.6; margin-top: 10px; }
+  .conforto-page h1 em{ font-style: italic; font-weight: 620; color: var(--ambar); }
+  .conforto-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 15px; line-height: 1.6; margin-top: 10px; }
 
-  .estacao-page .estacao-main{ max-width: 920px; margin: 0 auto; padding: 0 24px 100px; }
-
-  .estacao-page .hero-estacao{
-    display:grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: center;
-    background: var(--branco);
-    border: 1px solid var(--linha);
-    border-radius: 20px;
-    padding: 40px 44px;
-    margin-bottom: 20px;
-    box-shadow: var(--sombra);
-  }
-  @media (max-width: 560px){
-    .estacao-page .hero-estacao{ grid-template-columns: 1fr; padding: 32px 24px; gap: 16px; }
-  }
-  .estacao-page .temp-grande{
-    font-family:'Fraunces', serif;
-    font-weight: 300;
-    font-size: clamp(4.5rem, 16vw, 8.5rem);
-    line-height: 0.85;
-    letter-spacing: -0.03em;
-    color: var(--ceu-forte);
-    position: relative;
-  }
-  .estacao-page .temp-grande .grau{
-    font-size: 0.32em;
-    vertical-align: top;
-    color: var(--ambar);
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-  }
-  .estacao-page .hero-meta .descricao{
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--tinta);
-    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  }
-  .estacao-page .hero-meta .tag-voo{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 3px 9px;
-    border-radius: 999px;
-    color: var(--ceu-forte);
-    background: var(--ceu-neblina);
-  }
-  .estacao-page .hero-meta .hora-leitura{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--tinta-fraca);
-  }
-
-  .estacao-page .grid-dados{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .estacao-page .dado{
-    background: var(--branco);
-    border: 1px solid var(--linha);
-    border-radius: 14px;
-    padding: 20px 22px;
-    box-shadow: var(--sombra);
-  }
-  .estacao-page .dado .rotulo{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ceu);
-    margin-bottom: 10px;
-    font-weight: 500;
-  }
-  .estacao-page .dado .valor{
-    font-family:'Fraunces', serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: var(--tinta);
-  }
-  .estacao-page .dado .valor .unidade{
-    font-size: 14px;
-    color: var(--tinta-fraca);
-    font-family:'Space Grotesk', sans-serif;
-  }
-
-  .estacao-page .metar-raw{
-    font-family:'JetBrains Mono', monospace;
-    font-size: 12.5px;
-    color: var(--tinta-fraca);
-    background: var(--branco);
-    border: 1px solid var(--linha);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 52px;
-    overflow-x: auto;
-    white-space: pre;
-  }
-  .estacao-page .metar-raw .rotulo{
-    display:block;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ceu);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  .estacao-page .estacao-divisor{
+  .conforto-page .abas{
     display:flex;
-    align-items:center;
-    gap: 16px;
-    margin: 8px 0 20px;
+    gap: 8px;
+    margin-top: 28px;
   }
-  .estacao-page .estacao-divisor .linha-svg{
-    flex:1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--ceu), var(--linha));
+  .conforto-page .aba{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--branco);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
   }
-  .estacao-page .estacao-divisor span{
+  .conforto-page .aba:hover{ border-color: var(--calor); color: var(--tinta); }
+  .conforto-page .aba.ativa{ background: var(--calor-forte); border-color: var(--calor-forte); color: #fff; }
+
+  .conforto-page .conforto-main{ max-width: 920px; margin: 0 auto; padding: 32px 24px 100px; }
+  .conforto-page .painel-secao{ display: none; }
+  .conforto-page .painel-secao.ativa{ display: block; }
+
+  /* Banner de alerta */
+  .conforto-page .banner-alerta{
+    border-radius: 20px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--linha);
+  }
+  .conforto-page .banner-alerta .nivel-rotulo{
     font-family:'JetBrains Mono', monospace;
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--tinta-fraca);
-    white-space: nowrap;
-    font-weight: 500;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display:inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
   }
+  .conforto-page .banner-alerta h2{
+    font-family:'Fraunces', serif;
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .conforto-page .banner-alerta p{ margin:0; font-size: 14.5px; line-height:1.6; color: var(--tinta-fraca); }
 
-  .estacao-page .grafico-card{
+  /* Índices lado a lado */
+  .conforto-page .grid-indices{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .conforto-page .card-indice{
     background: var(--branco);
     border: 1px solid var(--linha);
-    border-radius: 20px;
-    padding: 28px 28px 18px;
+    border-radius: 18px;
+    padding: 26px 28px;
     box-shadow: var(--sombra);
   }
-  .estacao-page .grafico-card svg{ width: 100%; height: auto; display:block; overflow: visible; }
-  .estacao-page .grafico-legenda{
-    display:flex;
-    justify-content: space-between;
+  .conforto-page .card-indice .titulo-indice{
     font-family:'JetBrains Mono', monospace;
-    font-size: 10.5px;
-    color: var(--tinta-fraca);
-    margin-top: 6px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--calor);
+    font-weight: 500;
+    margin-bottom: 4px;
   }
-  .estacao-page .eixo-label{
+  .conforto-page .card-indice .subtitulo-indice{
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    margin-bottom: 14px;
+  }
+  .conforto-page .card-indice .valor-indice{
+    font-family:'Fraunces', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--tinta);
+    line-height: 1;
+  }
+  .conforto-page .card-indice .valor-indice .grau{ font-size: 0.4em; color: var(--tinta-fraca); font-family: 'Space Grotesk', sans-serif; }
+  .conforto-page .badge-nivel{
+    display:inline-block;
+    margin-top: 12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .conforto-page .grid-dados{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .conforto-page .dado{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--sombra);
+  }
+  .conforto-page .dado .rotulo{
     font-family:'JetBrains Mono', monospace;
     font-size: 10px;
-    fill: var(--tinta-fraca);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--calor);
+    margin-bottom: 8px;
+    font-weight: 500;
   }
-  .estacao-page .linha-temp{ fill:none; stroke: var(--ceu); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
-  .estacao-page .area-temp{ fill: url(#gradCeu); opacity: 0.5; }
-  .estacao-page .grade{ stroke: var(--linha); stroke-width: 1; }
-  .estacao-page .ponto-atual{ fill: var(--ambar); }
+  .conforto-page .dado .valor{
+    font-family:'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--tinta);
+  }
+  .conforto-page .dado .valor .unidade{ font-size: 13px; color: var(--tinta-fraca); font-family:'Space Grotesk', sans-serif; }
 
-  .estacao-page footer{
+  .conforto-page .secao-titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--calor-forte);
+    margin: 0 0 6px;
+  }
+  .conforto-page .secao-sub{ font-size: 13.5px; color: var(--tinta-fraca); margin: 0 0 18px; }
+
+  .conforto-page .grid-populacoes{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+  @media (max-width: 720px){
+    .conforto-page .grid-populacoes{ grid-template-columns: repeat(2, 1fr); }
+  }
+  .conforto-page .populacao{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: var(--sombra);
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    overflow-wrap: break-word;
+    min-width: 0;
+  }
+  .conforto-page .populacao .icone{ font-size: 22px; line-height:1; flex-shrink: 0; }
+  .conforto-page .populacao .nome{ min-width: 0; }
+  .conforto-page .populacao.destaque{ border-color: var(--calor); background: var(--calor-neblina); }
+
+  .conforto-page table.tabela-riscos{
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    margin-bottom: 44px;
+    font-size: 13.5px;
+  }
+  .conforto-page table.tabela-riscos th{
+    text-align:left;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--calor);
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--linha);
+    background: var(--calor-neblina);
+  }
+  .conforto-page table.tabela-riscos td{
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--linha);
+    vertical-align: top;
+  }
+  .conforto-page table.tabela-riscos tr:last-child td{ border-bottom: none; }
+  .conforto-page table.tabela-riscos td:first-child{ font-weight: 500; white-space: nowrap; }
+
+  .conforto-page .fonte-nota{ font-size: 11.5px; color: var(--tinta-fraca); margin: -28px 0 44px; }
+
+  /* Aba "Como calculamos?" */
+  .conforto-page .bloco-formula{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 28px 30px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+  }
+  .conforto-page .bloco-formula h3{
+    font-family:'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--calor-forte);
+    margin: 0 0 10px;
+  }
+  .conforto-page .bloco-formula p{ font-size: 14px; line-height: 1.7; color: var(--tinta); margin: 0 0 12px; }
+  .conforto-page .bloco-formula code{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    background: var(--fundo);
+    border: 1px solid var(--linha);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    overflow-x: auto;
+    color: var(--calor-forte);
+  }
+  .conforto-page .bloco-formula .meta-formula{
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+  }
+  .conforto-page .bloco-formula .meta-formula strong{ color: var(--tinta); }
+
+  .conforto-page footer{
     max-width: 920px;
     margin: 0 auto;
     padding: 30px 24px 60px;
@@ -251,20 +330,20 @@
     border-top: 1px solid var(--linha);
   }
 
-  .estacao-page .carregando, .estacao-page .erro{
+  .conforto-page .carregando, .conforto-page .erro{
     font-family:'JetBrains Mono', monospace;
     font-size: 13px;
     color: var(--tinta-fraca);
     padding: 40px 0;
   }
-  .estacao-page .erro{ color: var(--ambar); }
+  .conforto-page .erro{ color: var(--calor); }
 
-  .estacao-page button:focus-visible, .estacao-page a:focus-visible{
-    outline: 2px solid var(--ceu);
+  .conforto-page button:focus-visible, .conforto-page a:focus-visible{
+    outline: 2px solid var(--calor);
     outline-offset: 3px;
   }
 
-  .estacao-page .atualizar{
+  .conforto-page .atualizar{
     background: var(--branco);
     border: 1px solid var(--linha);
     color: var(--tinta);
@@ -279,7 +358,7 @@
     box-shadow: var(--sombra);
     transition: border-color 0.2s ease, transform 0.15s ease;
   }
-  .estacao-page .atualizar:hover{ border-color: var(--ceu); transform: translateY(-1px); }
+  .conforto-page .atualizar:hover{ border-color: var(--calor); transform: translateY(-1px); }
 </style>
 </head>
 <body>
@@ -313,8 +392,8 @@
           </div>
           <div class="nav-submenu">
             <a href="manaus-tempo.html">Clima em Manaus</a>
-            <a href="manaus-estacao.html" class="active">Clima em Manaus — Estação</a>
-            <a href="manaus-conforto.html">Conforto Térmico</a>
+            <a href="manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="manaus-conforto.html" class="active">Conforto Térmico</a>
             <a href="manaus-rio.html">Nível do Rio Negro</a>
           </div>
         </div>
@@ -323,22 +402,51 @@
       </nav>
     </aside>
 
-    <main class="content estacao-content">
-      <div class="estacao-page">
+    <main class="content conforto-content">
+      <div class="conforto-page">
         <div class="encontro"></div>
 
         <header>
           <div class="eyebrow">Manaus, Amazonas — Estação SBEG</div>
-          <h1>Clima em Manaus<br><em>Estação</em></h1>
-          <p class="sub">O dado bruto de quem mede o tempo de verdade.</p>
+          <h1>Conforto<br><em>Térmico</em></h1>
+          <p class="sub">Quanto o calor de Manaus pesa de verdade — Heat Index e Humidex calculados a partir da estação real, com um painel de quem precisa de mais cuidado hoje.</p>
+
+          <div class="abas">
+            <button class="aba ativa" data-aba="painel" type="button">Painel de hoje</button>
+            <button class="aba" data-aba="calculo" type="button">Como calculamos?</button>
+          </div>
         </header>
 
-        <section class="estacao-main">
-          <div id="conteudo" class="carregando">Consultando a estação…</div>
+        <section class="conforto-main">
+          <div id="conteudo" class="painel-secao ativa">
+            <div class="carregando">Calculando o conforto térmico…</div>
+          </div>
+
+          <div id="secao-calculo" class="painel-secao">
+            <div class="bloco-formula">
+              <h3>Heat Index (NOAA)</h3>
+              <p>Criado pelo National Weather Service dos Estados Unidos, estima a "sensação térmica" combinando temperatura do ar e umidade relativa — quanto mais úmido o ar, mais difícil o suor evaporar e resfriar o corpo.</p>
+              <p>É calculado pela regressão de Rothfusz, um ajuste estatístico feito sobre uma tabela original de sensação térmica. A fórmula usa temperatura em Fahrenheit e umidade relativa em %, com pequenos ajustes para umidade muito baixa ou muito alta:</p>
+              <code>HI = -42,379 + 2,049·T + 10,143·UR - 0,225·T·UR - 0,00683·T² - 0,0548·UR² + 0,00123·T²·UR + 0,00085·T·UR² - 0,00000199·T²·UR²</code>
+              <p class="meta-formula"><strong>Quando usar:</strong> só é válido para temperaturas a partir de ~27°C (80°F) — abaixo disso, a sensação térmica é praticamente igual à temperatura real, então usamos a própria temperatura. É o índice padrão dos boletins meteorológicos nos EUA e o mais usado no mundo todo em painéis de calor.</p>
+            </div>
+
+            <div class="bloco-formula">
+              <h3>Humidex (Canadá)</h3>
+              <p>Desenvolvido pelo Environment and Climate Change Canada, o Humidex usa a temperatura do ar e o ponto de orvalho (a temperatura em que o ar fica saturado de umidade) em vez da umidade relativa direta.</p>
+              <code>Humidex = T + 0,5555 · (6,11 · e^(5417,7530 · (1/273,16 - 1/(273,15+Td))) - 10)</code>
+              <p class="meta-formula"><strong>Quando usar:</strong> é a referência oficial dos avisos de calor no Canadá e tende a reagir de forma um pouco mais sensível a climas muito úmidos, como o de Manaus, porque parte direto do ponto de orvalho em vez de umidade relativa (que muda com a temperatura do dia).</p>
+            </div>
+
+            <div class="bloco-formula">
+              <h3>Por que os dois números às vezes diferem</h3>
+              <p>Heat Index e Humidex medem a mesma ideia — o quanto o calor "pesa" pro corpo — mas com escalas e calibrações diferentes; por isso o Humidex costuma aparecer alguns graus acima do Heat Index no mesmo dia. Nenhum dos dois considera vento forte ou sol direto (pra isso existe o índice WBGT, usado em ambientes de trabalho); aqui tratamos vento fraco como um agravante à parte, não embutido na conta.</p>
+            </div>
+          </div>
         </section>
 
         <footer>
-          Dados METAR oficiais via <a href="https://aviationweather.gov/data/metar" target="_blank" rel="noopener">aviationweather.gov</a>, estação SBEG (Aeroporto Eduardo Gomes, Manaus).
+          Índices calculados a partir dos dados METAR da estação SBEG (Aeroporto Eduardo Gomes, Manaus).
           <br>
           <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar agora</button>
           <br>
@@ -452,31 +560,85 @@
 <script>
 const URL_DADOS = '../data/estacao-manaus.json';
 
-const COBERTURA = {
-  SKC: 'Céu limpo', CLR: 'Céu limpo', CAVOK: 'Céu limpo',
-  FEW: 'Poucas nuvens', SCT: 'Parcialmente nublado',
-  BKN: 'Nublado', OVC: 'Encoberto', VV: 'Céu obstruído',
-};
-
-const VOO = {
-  VFR: 'Voo visual', MVFR: 'Voo visual marginal', IFR: 'Voo por instrumentos', LIFR: 'Instrumentos (baixa)',
-};
-
 function formatarHora(iso){
   const d = new Date(iso);
   return d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', timeZone: 'America/Manaus' }) + ' (Manaus)';
 }
 
 function formatarNumero(n, casas = 0){
-  if(n === null || n === undefined) return '—';
+  if(n === null || n === undefined || Number.isNaN(n)) return '—';
   return n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
 }
 
-function formatarVento(graus, kmh){
-  if(kmh === 0 || kmh === null || kmh === undefined) return 'Calmo';
-  const dir = (graus === 'VRB' || graus === null || graus === undefined) ? 'variável' : `${formatarNumero(graus)}°`;
-  return `${dir}, ${formatarNumero(kmh)} km/h`;
+// Heat Index (NOAA) — regressão de Rothfusz. Entrada em °C, saída em °C.
+function heatIndexC(tempC, rh){
+  const T = tempC * 9/5 + 32;
+  if(T < 80) return tempC;
+  let HI = -42.379 + 2.04901523*T + 10.14333127*rh - 0.22475541*T*rh
+    - 0.00683783*T*T - 0.05481717*rh*rh + 0.00122874*T*T*rh
+    + 0.00085282*T*rh*rh - 0.00000199*T*T*rh*rh;
+  if(rh < 13 && T >= 80 && T <= 112){
+    HI -= ((13 - rh) / 4) * Math.sqrt((17 - Math.abs(T - 95.0)) / 17);
+  } else if(rh > 85 && T >= 80 && T <= 87){
+    HI += ((rh - 85) / 10) * ((87 - T) / 5);
+  }
+  return (HI - 32) * 5/9;
 }
+
+// Humidex (Environment Canada). Entrada em °C, saída em °C.
+function humidexC(tempC, dewpC){
+  const e = 6.11 * Math.exp(5417.7530 * (1/273.16 - 1/(273.15 + dewpC)));
+  return tempC + 0.5555 * (e - 10);
+}
+
+function nivelHeatIndex(hi){
+  if(hi < 27) return 0;
+  if(hi < 32) return 1;
+  if(hi < 39) return 2;
+  if(hi < 51) return 3;
+  return 3;
+}
+
+function nivelHumidex(hx){
+  if(hx < 30) return 0;
+  if(hx < 40) return 1;
+  if(hx < 45) return 2;
+  return 3;
+}
+
+const NIVEL_INFO = [
+  { rotulo: 'Sem risco significativo', cor: 'var(--nivel-0)', fundo: 'var(--nivel-0-fraco)' },
+  { rotulo: 'Cuidado', cor: 'var(--nivel-1)', fundo: 'var(--nivel-1-fraco)' },
+  { rotulo: 'Cuidado extremo', cor: 'var(--nivel-2)', fundo: 'var(--nivel-2-fraco)' },
+  { rotulo: 'Perigo', cor: 'var(--nivel-3)', fundo: 'var(--nivel-3-fraco)' },
+];
+
+const BANNER_TEXTO = [
+  'O calor de hoje não representa risco elevado pra maior parte das pessoas. Ainda assim, vale manter hidratação em dia.',
+  'Fadiga é possível com exposição prolongada ao sol ou esforço físico. Beba água com frequência e procure sombra em atividades ao ar livre.',
+  'Cãibras e exaustão pelo calor são possíveis. Reduza esforço físico ao ar livre, principalmente entre 11h e 15h, e hidrate-se bem.',
+  'Exaustão pelo calor é provável e golpe de calor é possível com exposição prolongada. Evite esforço físico ao ar livre e monitore pessoas em grupos de risco.',
+];
+
+const POPULACOES = [
+  { icone: '👶', nome: 'Crianças pequenas' },
+  { icone: '👵', nome: 'Idosos' },
+  { icone: '🤰', nome: 'Gestantes' },
+  { icone: '❤️', nome: 'Pessoas com doenças cardiovasculares' },
+  { icone: '🫁', nome: 'Pessoas com doenças respiratórias' },
+  { icone: '🏃', nome: 'Trabalhadores ao ar livre' },
+];
+
+const RISCOS = [
+  ['Heat Index / Humidex alto', 'Desidratação e cãibras pelo calor'],
+  ['Umidade elevada', 'Menor evaporação do suor, dificultando o resfriamento do corpo'],
+  ['Vento fraco', 'Maior sensação de abafamento e menor troca de calor com o ar'],
+  ['Temperatura elevada mantida por horas', 'Estresse térmico acumulado e exaustão pelo calor'],
+  ['Exposição prolongada sem hidratação', 'Golpe de calor — condição grave, risco à vida'],
+  ['Calor associado a esforço físico', 'Sobrecarga cardiovascular, especialmente em quem já tem doença do coração'],
+  ['Noites quentes, sem alívio térmico', 'Pior qualidade do sono e menor recuperação do corpo'],
+  ['Calor combinado a poluição do ar', 'Agravamento de doenças respiratórias'],
+];
 
 function dadosEmbutidos(){
   return JSON.parse(document.getElementById('dados-estacao').textContent);
@@ -490,15 +652,14 @@ async function buscarDadosFrescos(){
 
 async function iniciar(){
   const embutidos = dadosEmbutidos();
-  if(embutidos && embutidos.historico) renderizar(embutidos);
+  if(embutidos && embutidos.atual) renderizar(embutidos);
   if(location.protocol === 'file:') return;
   try{
     renderizar(await buscarDadosFrescos());
   }catch(e){
     console.error(e);
-    if(!embutidos || !embutidos.historico){
-      document.getElementById('conteudo').className = 'erro';
-      document.getElementById('conteudo').textContent = 'Não foi possível carregar os dados agora. Tente atualizar em instantes.';
+    if(!embutidos || !embutidos.atual){
+      document.getElementById('conteudo').innerHTML = '<div class="erro">Não foi possível carregar os dados agora. Tente atualizar em instantes.</div>';
     }
   }
 }
@@ -519,125 +680,97 @@ async function atualizarManualmente(){
   }
 }
 
-function construirGrafico(historico){
-  const largura = 860, altura = 260, margemEsq = 40, margemDir = 12, margemTopo = 16, margemBaixo = 28;
-  const areaLargura = largura - margemEsq - margemDir;
-  const areaAltura = altura - margemTopo - margemBaixo;
-
-  const temps = historico.map(h => h.tempC).filter(t => t !== null && t !== undefined);
-  const min = Math.min(...temps);
-  const max = Math.max(...temps);
-  const folga = (max - min) * 0.15 || 1;
-  const yMin = min - folga, yMax = max + folga;
-
-  const x = i => margemEsq + (i / (historico.length - 1)) * areaLargura;
-  const y = v => margemTopo + areaAltura - ((v - yMin) / (yMax - yMin)) * areaAltura;
-
-  const pontos = historico.map((h, i) => `${x(i)},${y(h.tempC)}`).join(' ');
-  const areaPontos = `${x(0)},${y(yMin)} ${pontos} ${x(historico.length - 1)},${y(yMin)}`;
-
-  let marcasDia = '';
-  let diaAnterior = null;
-  historico.forEach((h, i) => {
-    const dia = h.hora.slice(0, 10);
-    if(dia !== diaAnterior){
-      diaAnterior = dia;
-      const label = new Date(h.hora).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
-      marcasDia += `
-        <line class="grade" x1="${x(i)}" y1="${margemTopo}" x2="${x(i)}" y2="${margemTopo + areaAltura}" />
-        <text class="eixo-label" x="${x(i)}" y="${altura - 8}">${label}</text>
-      `;
-    }
-  });
-
-  const ultimo = historico[historico.length - 1];
-
-  return `
-    <svg viewBox="0 0 ${largura} ${altura}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="gradCeu" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#2563a8" stop-opacity="0.35"/>
-          <stop offset="100%" stop-color="#2563a8" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <text class="eixo-label" x="4" y="${y(yMax) + 4}">${formatarNumero(yMax,0)}°C</text>
-      <text class="eixo-label" x="4" y="${y(yMin) + 4}">${formatarNumero(yMin,0)}°C</text>
-      ${marcasDia}
-      <polygon class="area-temp" points="${areaPontos}" />
-      <polyline class="linha-temp" points="${pontos}" />
-      <circle class="ponto-atual" cx="${x(historico.length - 1)}" cy="${y(ultimo.tempC)}" r="4.5" />
-    </svg>
-  `;
-}
-
 function renderizar(dados){
   const a = dados.atual;
   const conteudo = document.getElementById('conteudo');
-  const cobertura = COBERTURA[a.cobertura] || a.cobertura || '—';
-  const voo = VOO[a.categoriaVoo] || a.categoriaVoo || '';
 
-  const primeiro = dados.historico[0];
-  const ultimo = dados.historico[dados.historico.length - 1];
+  const hi = heatIndexC(a.tempC, a.umidade);
+  const hx = humidexC(a.tempC, a.orvalhoC);
+  const nivelHi = nivelHeatIndex(hi);
+  const nivelHx = nivelHumidex(hx);
+  const nivelGeral = Math.max(nivelHi, nivelHx);
+  const infoHi = NIVEL_INFO[nivelHi];
+  const infoHx = NIVEL_INFO[nivelHx];
+  const infoGeral = NIVEL_INFO[nivelGeral];
+  const ventoFraco = a.ventoKmh !== null && a.ventoKmh !== undefined && a.ventoKmh < 10;
 
-  conteudo.className = '';
+  const populacoesHtml = POPULACOES.map(p => `
+    <div class="populacao ${nivelGeral >= 2 ? 'destaque' : ''}">
+      <span class="icone">${p.icone}</span>
+      <span class="nome">${p.nome}</span>
+    </div>
+  `).join('');
+
+  const riscosHtml = RISCOS.map(([condicao, efeito]) => `
+    <tr><td>${condicao}</td><td>${efeito}</td></tr>
+  `).join('');
+
   conteudo.innerHTML = `
-    <div class="hero-estacao">
-      <div class="temp-grande">${formatarNumero(a.tempC)}<span class="grau">°C</span></div>
-      <div class="hero-meta">
-        <div class="descricao">
-          ${cobertura}
-          ${voo ? `<span class="tag-voo">${voo}</span>` : ''}
-        </div>
-        <div class="hora-leitura">leitura de ${formatarHora(a.hora)} — ${dados.estacao.nome}</div>
+    <div class="banner-alerta" style="background:${infoGeral.fundo}; border-color:${infoGeral.cor};">
+      <span class="nivel-rotulo" style="background:${infoGeral.cor}; color:#fff;">${infoGeral.rotulo}</span>
+      <h2>Sensação de ${formatarNumero(Math.max(hi, hx))}°C em Manaus agora</h2>
+      <p>${BANNER_TEXTO[nivelGeral]}${ventoFraco ? ' O vento está fraco agora, o que piora a sensação de abafamento.' : ''}</p>
+    </div>
+
+    <div class="grid-indices">
+      <div class="card-indice">
+        <div class="titulo-indice">Heat Index (NOAA)</div>
+        <div class="subtitulo-indice">Temperatura + umidade relativa</div>
+        <div class="valor-indice">${formatarNumero(hi)}<span class="grau">°C</span></div>
+        <span class="badge-nivel" style="background:${infoHi.fundo}; color:${infoHi.cor};">${infoHi.rotulo}</span>
+      </div>
+      <div class="card-indice">
+        <div class="titulo-indice">Humidex (Canadá)</div>
+        <div class="subtitulo-indice">Temperatura + ponto de orvalho</div>
+        <div class="valor-indice">${formatarNumero(hx)}<span class="grau">°C</span></div>
+        <span class="badge-nivel" style="background:${infoHx.fundo}; color:${infoHx.cor};">${infoHx.rotulo}</span>
       </div>
     </div>
 
     <div class="grid-dados">
       <div class="dado">
+        <div class="rotulo">Temperatura real</div>
+        <div class="valor">${formatarNumero(a.tempC)}<span class="unidade">°C</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Umidade relativa</div>
+        <div class="valor">${formatarNumero(a.umidade)}<span class="unidade">%</span></div>
+      </div>
+      <div class="dado">
         <div class="rotulo">Ponto de orvalho</div>
         <div class="valor">${formatarNumero(a.orvalhoC)}<span class="unidade">°C</span></div>
       </div>
       <div class="dado">
-        <div class="rotulo">Umidade (estimada)</div>
-        <div class="valor">${formatarNumero(a.umidade)}<span class="unidade">%</span></div>
-      </div>
-      <div class="dado">
         <div class="rotulo">Vento</div>
-        <div class="valor" style="font-size:20px;">${formatarVento(a.ventoGraus, a.ventoKmh)}</div>
-      </div>
-      <div class="dado">
-        <div class="rotulo">Pressão (QNH)</div>
-        <div class="valor">${formatarNumero(a.pressaoHpa)}<span class="unidade">hPa</span></div>
-      </div>
-      <div class="dado">
-        <div class="rotulo">Visibilidade</div>
-        <div class="valor">${a.visibilidadeKm >= 9.5 ? '10+' : formatarNumero(a.visibilidadeKm, 1)}<span class="unidade">km</span></div>
-      </div>
-      <div class="dado">
-        <div class="rotulo">Teto de nuvens</div>
-        <div class="valor">${a.tetoM ? formatarNumero(a.tetoM) : 'sem teto'}<span class="unidade">${a.tetoM ? 'm' : ''}</span></div>
+        <div class="valor">${a.ventoKmh != null ? formatarNumero(a.ventoKmh) : '—'}<span class="unidade">km/h</span></div>
       </div>
     </div>
 
-    <div class="metar-raw">
-      <span class="rotulo">METAR bruto</span>
-      ${a.raw}
-    </div>
+    <h2 class="secao-titulo">Populações que merecem atenção hoje</h2>
+    <p class="secao-sub">${nivelGeral >= 2 ? 'Com o nível de calor de hoje, redobre o cuidado com:' : 'Sem risco elevado hoje, mas estes grupos sentem o calor primeiro em qualquer dia quente:'}</p>
+    <div class="grid-populacoes">${populacoesHtml}</div>
 
-    <div class="estacao-divisor">
-      <span>Temperatura — ${formatarHora(primeiro.hora)} a ${formatarHora(ultimo.hora)}</span>
-      <div class="linha-svg"></div>
+    <h2 class="secao-titulo">Riscos associados a dias de calor e umidade</h2>
+    <p class="secao-sub">Além do que a estação mede agora, é assim que a literatura de saúde ambiental descreve os efeitos do calor no corpo.</p>
+    <div style="overflow-x:auto;">
+      <table class="tabela-riscos">
+        <tr><th>Condição</th><th>Possíveis efeitos</th></tr>
+        ${riscosHtml}
+      </table>
     </div>
-
-    <div class="grafico-card">
-      ${construirGrafico(dados.historico)}
-      <div class="grafico-legenda">
-        <span>${formatarHora(primeiro.hora)}</span>
-        <span>${formatarHora(ultimo.hora)}</span>
-      </div>
-    </div>
+    <p class="fonte-nota">Baseado em orientações públicas de calor e saúde do NOAA/NWS, CDC e OMS. Leitura de ${formatarHora(a.hora)} — não substitui orientação médica.</p>
   `;
 }
+
+document.querySelectorAll('.aba').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.aba').forEach(b => b.classList.remove('ativa'));
+    document.querySelectorAll('.painel-secao').forEach(s => s.classList.remove('ativa'));
+    btn.classList.add('ativa');
+    const alvo = btn.dataset.aba === 'painel' ? 'conteudo' : 'secao-calculo';
+    document.getElementById(alvo).classList.add('ativa');
+  });
+});
 
 document.getElementById('btnAtualizar').addEventListener('click', atualizarManualmente);
 iniciar();

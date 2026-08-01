@@ -29,6 +29,6 @@ jobs:
             echo "Sem novidades na estação."
             exit 0
           fi
-          git add data/estacao-manaus.json projetos/manaus-estacao.html
+          git add data/estacao-manaus.json projetos/manaus-estacao.html projetos/manaus-conforto.html
           git commit -m "Atualiza dados da estação de Manaus (METAR)"
           git push

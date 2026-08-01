@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-01T10:49:13.445Z",
+  "atualizadoEm": "2026-08-01T13:56:10.904Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,18 +9,18 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-01T10:00:00.000Z",
-    "tempC": 25,
+    "hora": "2026-08-01T13:00:00.000Z",
+    "tempC": 30,
     "orvalhoC": 22,
-    "umidade": 83,
-    "ventoGraus": 50,
-    "ventoKmh": 6,
-    "pressaoHpa": 1013,
+    "umidade": 62,
+    "ventoGraus": 60,
+    "ventoKmh": 11,
+    "pressaoHpa": 1015,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
     "categoriaVoo": "VFR",
-    "raw": "METAR SBEG 011000Z 05003KT CAVOK 25/22 Q1013"
+    "raw": "METAR SBEG 011300Z 06006KT 010V100 CAVOK 30/22 Q1015"
   },
   "historico": [
     {
@@ -2136,6 +2136,48 @@
       "tetoM": null,
       "categoriaVoo": "VFR",
       "raw": "METAR SBEG 011000Z 05003KT CAVOK 25/22 Q1013"
+    },
+    {
+      "hora": "2026-08-01T11:00:00.000Z",
+      "tempC": 26,
+      "orvalhoC": 22,
+      "umidade": 79,
+      "ventoGraus": 80,
+      "ventoKmh": 4,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "raw": "METAR SBEG 011100Z 08002KT CAVOK 26/22 Q1013"
+    },
+    {
+      "hora": "2026-08-01T12:00:00.000Z",
+      "tempC": 28,
+      "orvalhoC": 22,
+      "umidade": 70,
+      "ventoGraus": 40,
+      "ventoKmh": 9,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "raw": "METAR SBEG 011200Z 04005KT 010V080 CAVOK 28/22 Q1014"
+    },
+    {
+      "hora": "2026-08-01T13:00:00.000Z",
+      "tempC": 30,
+      "orvalhoC": 22,
+      "umidade": 62,
+      "ventoGraus": 60,
+      "ventoKmh": 11,
+      "pressaoHpa": 1015,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "raw": "METAR SBEG 011300Z 06006KT 010V100 CAVOK 30/22 Q1015"
     }
   ]
 }

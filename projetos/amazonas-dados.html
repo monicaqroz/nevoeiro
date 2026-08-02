@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazonas em Dados — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .amz-content{ max-width: none; padding: 0; }
+
+  .amz-page{
+    position: relative;
+    --fundo: #f6f8f5;
+    --tinta: #16211d;
+    --tinta-fraca: #5d6b64;
+    --verde: #1f6f4a;
+    --verde-forte: #123f2b;
+    --verde-neblina: #e3efe7;
+    --sol: #c9963a;
+    --sol-fraco: #f8eeda;
+    --linha: #e0e6de;
+    --branco: #ffffff;
+    --sombra: 0 1px 2px rgba(20,30,25,0.04), 0 8px 24px rgba(20,30,25,0.06);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .amz-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .amz-page a{ color: inherit; }
+
+  .amz-page .encontro{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 90% 50% at 88% -8%, var(--verde-neblina), transparent 60%),
+      radial-gradient(ellipse 70% 45% at -5% 105%, var(--sol-fraco), transparent 55%),
+      var(--fundo);
+  }
+
+  .amz-page header{ max-width: 1040px; margin: 0 auto; padding: 72px 24px 32px; }
+  .amz-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--verde);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+  .amz-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--verde);
+    box-shadow: 0 0 0 0 rgba(31,111,74,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(31,111,74,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(31,111,74,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(31,111,74,0); }
+  }
+
+  .amz-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--verde-forte);
+  }
+  .amz-page h1 em{ font-style: italic; font-weight: 620; color: var(--sol); }
+  .amz-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 15px; line-height: 1.6; margin-top: 10px; }
+
+  .amz-page .amz-main{ max-width: 1040px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .amz-page .carregando, .amz-page .erro{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+    padding: 40px 0;
+  }
+  .amz-page .erro{ color: var(--sol); }
+
+  /* Layout: mapa + seletor */
+  .amz-page .painel-selecao{
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 320px;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: start;
+  }
+  @media (max-width: 780px){
+    .amz-page .painel-selecao{ grid-template-columns: 1fr; }
+  }
+
+  .amz-page .mapa-card{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: var(--sombra);
+  }
+  .amz-page .mapa-card svg{ width: 100%; height: auto; display: block; }
+  .amz-page .municipio{
+    fill: var(--verde-neblina);
+    stroke: #ffffff;
+    stroke-width: 0.6;
+    cursor: pointer;
+    transition: fill 0.15s ease;
+  }
+  .amz-page .municipio:hover{ fill: #b9d9c7; }
+  .amz-page .municipio.selecionado{ fill: var(--sol); }
+
+  .amz-page .lista-card{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--sombra);
+  }
+  .amz-page .lista-card label{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .amz-page select{
+    width: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--linha);
+    background: var(--fundo);
+    color: var(--tinta);
+    margin-bottom: 18px;
+  }
+  .amz-page .mini-info{ font-size: 12.5px; color: var(--tinta-fraca); line-height: 1.6; }
+  .amz-page .mini-info strong{ color: var(--tinta); }
+
+  /* Cabecalho do municipio selecionado */
+  .amz-page .municipio-header{
+    display:flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .amz-page .municipio-header h2{
+    font-family:'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 500;
+    color: var(--verde-forte);
+    margin: 0;
+  }
+  .amz-page .municipio-header .regiao{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+  }
+
+  .amz-page .abas{ display:flex; gap: 8px; margin: 20px 0 24px; flex-wrap: wrap; }
+  .amz-page .aba{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--branco);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .amz-page .aba:hover{ border-color: var(--verde); color: var(--tinta); }
+  .amz-page .aba.ativa{ background: var(--verde-forte); border-color: var(--verde-forte); color: #fff; }
+  .amz-page .aba.em-breve{ opacity: 0.5; cursor: default; }
+  .amz-page .aba.em-breve:hover{ border-color: var(--linha); color: var(--tinta-fraca); }
+
+  .amz-page .destaque{
+    background: var(--verde-neblina);
+    border: 1px solid rgba(31,111,74,0.25);
+    border-radius: 18px;
+    padding: 26px 30px;
+    margin-bottom: 24px;
+  }
+  .amz-page .destaque .destaque-titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--verde-forte);
+    margin: 0 0 12px;
+  }
+  .amz-page .destaque ul{ margin: 0; padding-left: 1.3em; }
+  .amz-page .destaque li{ font-size: 14.5px; line-height: 1.9; color: var(--tinta); }
+  .amz-page .destaque li strong{ color: var(--verde-forte); }
+
+  .amz-page .grid-dados{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .amz-page .dado{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--sombra);
+  }
+  .amz-page .dado .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .amz-page .dado .valor{
+    font-family:'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--tinta);
+  }
+  .amz-page .dado .valor .unidade{ font-size: 12px; color: var(--tinta-fraca); font-family:'Space Grotesk', sans-serif; }
+  .amz-page .dado .valor-sub{ font-size: 11.5px; color: var(--tinta-fraca); margin-top: 4px; }
+
+  .amz-page .secao-titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--verde-forte);
+    margin: 28px 0 14px;
+  }
+  .amz-page .bloco-barras{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 18px 20px;
+    box-shadow: var(--sombra);
+    margin-bottom: 8px;
+  }
+  .amz-page .barra-linha{ margin-bottom: 14px; }
+  .amz-page .barra-linha:last-child{ margin-bottom: 0; }
+  .amz-page .barra-topo{
+    display:flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    margin-bottom: 5px;
+  }
+  .amz-page .barra-fundo{
+    height: 8px;
+    border-radius: 999px;
+    background: var(--fundo);
+    overflow: hidden;
+  }
+  .amz-page .barra-preenchida{
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.3s ease;
+  }
+  .amz-page .fonte-aba{
+    font-size: 11.5px;
+    color: var(--tinta-fraca);
+    margin-top: 16px;
+  }
+
+  .amz-page footer{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+
+  .amz-page .atualizar{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    color: var(--tinta);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .amz-page .atualizar:hover{ border-color: var(--verde); transform: translateY(-1px); }
+  .amz-page a:focus-visible, .amz-page button:focus-visible, .amz-page select:focus-visible{
+    outline: 2px solid var(--verde);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos.html">Artigos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/bem-vindo.html">Bem-vindo ao Nevoeiro</a>
+          </div>
+        </div>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../projetos.html" class="active">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="manaus-tempo.html">Clima em Manaus</a>
+            <a href="manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="manaus-conforto.html">Conforto Térmico</a>
+            <a href="manaus-rio.html">Nível do Rio Negro</a>
+            <a href="amazonas-dados.html" class="active">Amazonas em Dados</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content amz-content">
+      <div class="amz-page">
+        <div class="encontro"></div>
+
+        <header>
+          <div class="eyebrow">Amazonas, Brasil — 62 municípios</div>
+          <h1>Amazonas<br><em>em Dados</em></h1>
+          <p class="sub">Um raio-x dos municípios do Amazonas, direto do IBGE — clique no mapa ou escolha na lista pra ver como cada município se compara ao resto do estado.</p>
+        </header>
+
+        <section class="amz-main">
+          <div id="conteudo" class="carregando">Carregando o mapa e os dados dos 62 municípios…</div>
+        </section>
+
+        <footer>
+          Dados do <a href="https://servicodados.ibge.gov.br/api/docs" target="_blank" rel="noopener">IBGE</a> — malha municipal, estimativas de população, Censo 2022 (área e densidade) e PIB dos Municípios.
+          <br>
+          <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar dados</button>
+          <br>
+          <a class="back-link" href="../projetos.html">← Voltar para Projetos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const COD_UF = 13;
+const ANO_AREA = 2022;
+const ID_MANAUS = '1302603';
+
+const URL_MUNICIPIOS = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${COD_UF}/municipios`;
+const URL_MALHA = `https://servicodados.ibge.gov.br/api/v3/malhas/estados/${COD_UF}?intrarregiao=municipio&formato=application/vnd.geo+json&qualidade=minima`;
+const URL_POPULACAO = `https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/-1/variaveis/9324?localidades=N6[N3[${COD_UF}]]`;
+const URL_AREA_DENSIDADE = `https://servicodados.ibge.gov.br/api/v3/agregados/4714/periodos/${ANO_AREA}/variaveis/6318|614?localidades=N6[N3[${COD_UF}]]`;
+const URL_PIB = `https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/-1/variaveis/37?localidades=N6[N3[${COD_UF}]]`;
+
+// Pessoas
+const URL_SEXO = `https://servicodados.ibge.gov.br/api/v3/agregados/9514/periodos/2022/variaveis/93?localidades=N6[N3[${COD_UF}]]&classificacao=2[4,5]|287[100362]|286[113635]`;
+const URL_IDADE_MEDIANA = `https://servicodados.ibge.gov.br/api/v3/agregados/9515/periodos/2022/variaveis/10613?localidades=N6[N3[${COD_UF}]]`;
+const URL_COR_RACA = `https://servicodados.ibge.gov.br/api/v3/agregados/9605/periodos/2022/variaveis/93?localidades=N6[N3[${COD_UF}]]&classificacao=86[2776,2777,2778,2779,2780]`;
+const URL_URBANO_RURAL = `https://servicodados.ibge.gov.br/api/v3/agregados/10211/periodos/2022/variaveis/93?localidades=N6[N3[${COD_UF}]]&classificacao=2661[32776]|1[1,2]`;
+const URL_POPULACAO_2015 = `https://servicodados.ibge.gov.br/api/v3/agregados/6579/periodos/2015|2025/variaveis/9324?localidades=N6[N3[${COD_UF}]]`;
+
+// Economia
+const URL_PIB_SETORES = `https://servicodados.ibge.gov.br/api/v3/agregados/5938/periodos/-1/variaveis/513|517|6575|525?localidades=N6[N3[${COD_UF}]]`;
+const URL_PRODUCAO_AGRICOLA = `https://servicodados.ibge.gov.br/api/v3/agregados/5457/periodos/-1/variaveis/215?localidades=N6[N3[${COD_UF}]]&classificacao=782[0]`;
+
+// Qualidade de vida
+const URL_ALFABETIZACAO = `https://servicodados.ibge.gov.br/api/v3/agregados/9543/periodos/2022/variaveis/2513?localidades=N6[N3[${COD_UF}]]&classificacao=2[6794]|86[95251]|287[100362]`;
+const URL_MEDIA_MORADORES = `https://servicodados.ibge.gov.br/api/v3/agregados/9877/periodos/2022/variaveis/9325?localidades=N6[N3[${COD_UF}]]&classificacao=11561[100679]|12237[104570]|11562[72593]`;
+
+let dados = {};
+let listaOrdenada = [];
+let totalPopulacaoEstado = 0;
+let densidadeMediaEstadual = 0;
+let municipioAtualId = ID_MANAUS;
+let abaAtiva = 'geral';
+
+function formatarNumero(n, casas = 0){
+  if(n === null || n === undefined || Number.isNaN(n)) return '—';
+  return n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+}
+
+function formatarMoeda(valor){
+  if(valor === null || valor === undefined) return '—';
+  if(valor >= 1e9) return 'R$ ' + formatarNumero(valor / 1e9, 2) + ' bi';
+  if(valor >= 1e6) return 'R$ ' + formatarNumero(valor / 1e6, 1) + ' mi';
+  if(valor >= 1e3) return 'R$ ' + formatarNumero(valor / 1e3, 1) + ' mil';
+  return 'R$ ' + formatarNumero(valor, 0);
+}
+
+async function buscarJson(url){
+  const resp = await fetch(url);
+  if(!resp.ok) throw new Error(`Falha ao buscar ${url}: HTTP ${resp.status}`);
+  return resp.json();
+}
+
+function paraNumero(bruto){
+  return (bruto === '...' || bruto === '-' || bruto === null || bruto === undefined) ? null : parseFloat(bruto);
+}
+
+function aplicarSerie(varObj, campo, transform){
+  varObj.resultados[0].series.forEach(s => {
+    const id = s.localidade.id;
+    const valor = paraNumero(Object.values(s.serie)[0]);
+    if(dados[id]) dados[id][campo] = transform ? transform(valor) : valor;
+  });
+}
+
+// Para consultas com mais de uma categoria selecionada (ex: Sexo=[Homens,Mulheres]),
+// a API devolve um "resultados" por categoria — mapeamento liga o id da categoria ao campo.
+function aplicarSeriesPorCategoria(varObj, mapeamento){
+  varObj.resultados.forEach(res => {
+    let campo = null;
+    for(const classif of res.classificacoes){
+      const catId = Object.keys(classif.categoria)[0];
+      if(mapeamento[catId]){ campo = mapeamento[catId]; break; }
+    }
+    if(!campo) return;
+    res.series.forEach(s => {
+      const id = s.localidade.id;
+      const valor = paraNumero(Object.values(s.serie)[0]);
+      if(dados[id]) dados[id][campo] = valor;
+    });
+  });
+}
+
+function ranquear(campo){
+  const comParametro = listaOrdenada.filter(m => m[campo] !== null && m[campo] !== undefined);
+  const ordenado = [...comParametro].sort((a, b) => b[campo] - a[campo]);
+  ordenado.forEach((m, i) => { m['rank_' + campo] = i + 1; });
+}
+
+async function carregarTudo(){
+  const conteudo = document.getElementById('conteudo');
+  conteudo.className = 'carregando';
+  conteudo.textContent = 'Carregando o mapa e os dados dos 62 municípios…';
+
+  try{
+    const [
+      municipios, malha, popData, areaData, pibData,
+      sexoData, idadeMedianaData, corRacaData, urbanoRuralData, populacao2015Data,
+      pibSetoresData, producaoAgricolaData,
+      alfabetizacaoData, mediaMoradoresData,
+    ] = await Promise.all([
+      buscarJson(URL_MUNICIPIOS),
+      buscarJson(URL_MALHA),
+      buscarJson(URL_POPULACAO),
+      buscarJson(URL_AREA_DENSIDADE),
+      buscarJson(URL_PIB),
+      buscarJson(URL_SEXO),
+      buscarJson(URL_IDADE_MEDIANA),
+      buscarJson(URL_COR_RACA),
+      buscarJson(URL_URBANO_RURAL),
+      buscarJson(URL_POPULACAO_2015),
+      buscarJson(URL_PIB_SETORES),
+      buscarJson(URL_PRODUCAO_AGRICOLA),
+      buscarJson(URL_ALFABETIZACAO),
+      buscarJson(URL_MEDIA_MORADORES),
+    ]);
+
+    dados = {};
+    municipios.forEach(m => {
+      dados[m.id] = {
+        id: String(m.id),
+        nome: m.nome,
+        microrregiao: m.microrregiao ? m.microrregiao.nome : null,
+        mesorregiao: m.microrregiao && m.microrregiao.mesorregiao ? m.microrregiao.mesorregiao.nome : null,
+      };
+    });
+    listaOrdenada = Object.values(dados);
+
+    aplicarSerie(popData[0], 'populacao');
+    aplicarSerie(areaData[0], 'area');
+    aplicarSerie(areaData[1], 'densidade');
+    aplicarSerie(pibData[0], 'pibMil');
+
+    aplicarSeriesPorCategoria(sexoData[0], { '4': 'homens', '5': 'mulheres' });
+    aplicarSerie(idadeMedianaData[0], 'idadeMediana');
+    aplicarSeriesPorCategoria(corRacaData[0], {
+      '2776': 'corBranca', '2777': 'corPreta', '2778': 'corAmarela', '2779': 'corParda', '2780': 'corIndigena',
+    });
+    aplicarSeriesPorCategoria(urbanoRuralData[0], { '1': 'urbana', '2': 'rural' });
+    // a série tem 2015 e 2025 juntas; extraímos só 2015 (2025 já está em 'populacao')
+    populacao2015Data[0].resultados[0].series.forEach(s => {
+      const id = s.localidade.id;
+      if(dados[id]) dados[id].populacao2015 = paraNumero(s.serie['2015']);
+    });
+
+    pibSetoresData.forEach(varObj => {
+      const campoPorVar = { '513': 'vabAgropecuaria', '517': 'vabIndustria', '6575': 'vabServicos', '525': 'vabAdministracao' };
+      aplicarSerie(varObj, campoPorVar[varObj.id]);
+    });
+    aplicarSerie(producaoAgricolaData[0], 'producaoAgricolaMil');
+
+    aplicarSerie(alfabetizacaoData[0], 'alfabetizacao');
+    aplicarSerie(mediaMoradoresData[0], 'mediaMoradores');
+
+    listaOrdenada.forEach(m => {
+      m.pib = m.pibMil !== null && m.pibMil !== undefined ? m.pibMil * 1000 : null;
+      m.pibPerCapita = (m.pib !== null && m.populacao) ? m.pib / m.populacao : null;
+      m.producaoAgricola = m.producaoAgricolaMil !== null && m.producaoAgricolaMil !== undefined ? m.producaoAgricolaMil * 1000 : null;
+      m.crescimentoPop = (m.populacao !== null && m.populacao2015) ? ((m.populacao / m.populacao2015) - 1) * 100 : null;
+    });
+
+    totalPopulacaoEstado = listaOrdenada.reduce((soma, m) => soma + (m.populacao || 0), 0);
+    const areaTotalEstado = listaOrdenada.reduce((soma, m) => soma + (m.area || 0), 0);
+    densidadeMediaEstadual = totalPopulacaoEstado / areaTotalEstado;
+
+    ['populacao', 'area', 'densidade', 'pib', 'pibPerCapita'].forEach(ranquear);
+
+    renderizarLayout(malha, municipios);
+    selecionarMunicipio(ID_MANAUS);
+  }catch(e){
+    console.error(e);
+    conteudo.className = 'erro';
+    conteudo.textContent = 'Não foi possível carregar os dados do IBGE agora. Tente atualizar em instantes.';
+  }
+}
+
+function construirSvgMapa(malha){
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  malha.features.forEach(f => {
+    const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+    polys.forEach(poly => poly.forEach(ring => ring.forEach(([x, y]) => {
+      if(x < minX) minX = x;
+      if(x > maxX) maxX = x;
+      if(y < minY) minY = y;
+      if(y > maxY) maxY = y;
+    })));
+  });
+
+  const LARGURA = 800;
+  const ALTURA = LARGURA * (maxY - minY) / (maxX - minX);
+  const proj = ([lon, lat]) => {
+    const x = (lon - minX) / (maxX - minX) * LARGURA;
+    const y = (maxY - lat) / (maxY - minY) * ALTURA;
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  };
+  const caminhoDe = (geom) => {
+    const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates;
+    return polys.map(poly => poly.map(ring => 'M' + ring.map(proj).join('L') + 'Z').join(' ')).join(' ');
+  };
+
+  const caminhos = malha.features.map(f => {
+    const cod = f.properties.codarea;
+    return `<path class="municipio" data-codigo="${cod}" d="${caminhoDe(f.geometry)}"></path>`;
+  }).join('');
+
+  return `<svg viewBox="0 0 ${LARGURA} ${ALTURA.toFixed(1)}" xmlns="http://www.w3.org/2000/svg">${caminhos}</svg>`;
+}
+
+function renderizarLayout(malha, municipios){
+  const conteudo = document.getElementById('conteudo');
+  const opcoesHtml = [...municipios]
+    .sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
+    .map(m => `<option value="${m.id}">${m.nome}</option>`)
+    .join('');
+
+  conteudo.className = '';
+  conteudo.innerHTML = `
+    <div class="painel-selecao">
+      <div class="mapa-card" id="mapaCard">${construirSvgMapa(malha)}</div>
+      <div class="lista-card">
+        <label for="seletorMunicipio">Escolher município</label>
+        <select id="seletorMunicipio">${opcoesHtml}</select>
+        <p class="mini-info">
+          <strong>${listaOrdenada.length}</strong> municípios no Amazonas ·
+          população estadual estimada de <strong>${formatarNumero(totalPopulacaoEstado)}</strong> habitantes.
+          Clique num município no mapa ou escolha na lista acima.
+        </p>
+      </div>
+    </div>
+    <div id="painelMunicipio"></div>
+  `;
+
+  document.getElementById('mapaCard').addEventListener('click', (e) => {
+    const path = e.target.closest('.municipio');
+    if(path) selecionarMunicipio(path.dataset.codigo);
+  });
+
+  document.getElementById('seletorMunicipio').addEventListener('change', (e) => {
+    selecionarMunicipio(e.target.value);
+  });
+}
+
+function montarDestaques(m){
+  const pctPop = totalPopulacaoEstado ? (m.populacao / totalPopulacaoEstado * 100) : null;
+  const bullets = [];
+
+  if(pctPop !== null){
+    bullets.push(`<strong>${formatarNumero(pctPop, pctPop < 1 ? 2 : 1)}%</strong> da população do Amazonas`);
+  }
+  if(m.rank_populacao){
+    bullets.push(m.rank_populacao === 1
+      ? 'a <strong>maior população</strong> do estado'
+      : `a <strong>${m.rank_populacao}ª maior população</strong> entre os ${listaOrdenada.length} municípios`);
+  }
+  if(m.rank_pib){
+    bullets.push(m.rank_pib === 1
+      ? 'o <strong>maior PIB municipal</strong> do estado'
+      : `o <strong>${m.rank_pib}º maior PIB municipal</strong> entre os ${listaOrdenada.length} municípios`);
+  }
+  if(m.densidade && densidadeMediaEstadual){
+    const razao = m.densidade / densidadeMediaEstadual;
+    bullets.push(razao >= 1
+      ? `densidade <strong>${formatarNumero(razao, 1)}x superior</strong> à média estadual`
+      : `densidade <strong>${formatarNumero(1 / razao, 1)}x inferior</strong> à média estadual`);
+  }
+  if(m.rank_area){
+    bullets.push(m.rank_area === 1
+      ? 'a <strong>maior área</strong> entre os municípios do estado'
+      : `a <strong>${m.rank_area}ª maior área</strong> entre os ${listaOrdenada.length} municípios`);
+  }
+
+  return bullets;
+}
+
+function renderizarPainelGeral(m){
+  const bullets = montarDestaques(m);
+  return `
+    <div class="destaque">
+      <p class="destaque-titulo">${m.nome} possui:</p>
+      <ul>${bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+    </div>
+
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">População</div>
+        <div class="valor">${formatarNumero(m.populacao)}<span class="unidade">hab.</span></div>
+        <div class="valor-sub">${m.rank_populacao ? `${m.rank_populacao}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Área</div>
+        <div class="valor">${formatarNumero(m.area)}<span class="unidade">km²</span></div>
+        <div class="valor-sub">${m.rank_area ? `${m.rank_area}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Densidade</div>
+        <div class="valor">${formatarNumero(m.densidade, 2)}<span class="unidade">hab/km²</span></div>
+        <div class="valor-sub">${m.rank_densidade ? `${m.rank_densidade}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">PIB</div>
+        <div class="valor">${formatarMoeda(m.pib)}</div>
+        <div class="valor-sub">${m.rank_pib ? `${m.rank_pib}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">PIB per capita</div>
+        <div class="valor">${formatarMoeda(m.pibPerCapita)}</div>
+        <div class="valor-sub">${m.rank_pibPerCapita ? `${m.rank_pibPerCapita}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Localização</div>
+        <div class="valor" style="font-size:16px;">${m.microrregiao || '—'}</div>
+        <div class="valor-sub">${m.mesorregiao || ''}</div>
+      </div>
+    </div>
+  `;
+}
+
+const ABAS = [
+  { id: 'geral', nome: 'Visão geral', disponivel: true, render: renderizarPainelGeral },
+  { id: 'pessoas', nome: 'Pessoas', disponivel: true, render: renderizarPainelPessoas },
+  { id: 'economia', nome: 'Economia', disponivel: true, render: renderizarPainelEconomia },
+  { id: 'qualidade', nome: 'Qualidade de vida', disponivel: true, render: renderizarPainelQualidade },
+  { id: 'territorio', nome: 'Território e ambiente', disponivel: true, render: renderizarPainelTerritorio },
+];
+
+function renderizarAbas(){
+  return `
+    <div class="abas">
+      ${ABAS.map(a => `
+        <button class="aba ${a.id === abaAtiva ? 'ativa' : ''} ${a.disponivel ? '' : 'em-breve'}"
+                data-aba="${a.id}" type="button" ${a.disponivel ? '' : 'title="Em breve"'}>
+          ${a.nome}
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function formatarPct(valor, casas = 1){
+  if(valor === null || valor === undefined) return '—';
+  return `${valor >= 0 ? '' : ''}${formatarNumero(valor, casas)}%`;
+}
+
+function linhaBarra(rotulo, valor, total, cor){
+  const pct = total ? (valor / total * 100) : 0;
+  return `
+    <div class="barra-linha">
+      <div class="barra-topo">
+        <span>${rotulo}</span>
+        <span>${valor === null || valor === undefined ? '—' : formatarNumero(valor)} ${total ? `(${formatarNumero(pct, 1)}%)` : ''}</span>
+      </div>
+      <div class="barra-fundo"><div class="barra-preenchida" style="width:${Math.min(pct, 100)}%; background:${cor};"></div></div>
+    </div>
+  `;
+}
+
+function renderizarPainelPessoas(m){
+  const totalCorRaca = (m.corBranca || 0) + (m.corPreta || 0) + (m.corAmarela || 0) + (m.corParda || 0) + (m.corIndigena || 0);
+  const totalUrbanoRural = (m.urbana || 0) + (m.rural || 0);
+  return `
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">Homens</div>
+        <div class="valor">${formatarNumero(m.homens)}<span class="unidade">hab.</span></div>
+        <div class="valor-sub">${m.populacao ? formatarPct(m.homens / m.populacao * 100) : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Mulheres</div>
+        <div class="valor">${formatarNumero(m.mulheres)}<span class="unidade">hab.</span></div>
+        <div class="valor-sub">${m.populacao ? formatarPct(m.mulheres / m.populacao * 100) : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Idade mediana</div>
+        <div class="valor">${formatarNumero(m.idadeMediana, 1)}<span class="unidade">anos</span></div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Crescimento pop. (2015–2025)</div>
+        <div class="valor">${m.crescimentoPop === null ? '—' : (m.crescimentoPop >= 0 ? '+' : '') + formatarNumero(m.crescimentoPop, 1)}<span class="unidade">%</span></div>
+      </div>
+    </div>
+
+    <div class="secao-titulo">Cor ou raça</div>
+    <div class="bloco-barras">
+      ${linhaBarra('Parda', m.corParda, totalCorRaca, '#c9963a')}
+      ${linhaBarra('Branca', m.corBranca, totalCorRaca, '#1f6f4a')}
+      ${linhaBarra('Preta', m.corPreta, totalCorRaca, '#123f2b')}
+      ${linhaBarra('Indígena', m.corIndigena, totalCorRaca, '#7a9b8a')}
+      ${linhaBarra('Amarela', m.corAmarela, totalCorRaca, '#d9c9a3')}
+    </div>
+
+    <div class="secao-titulo">Urbano e rural</div>
+    <div class="bloco-barras">
+      ${linhaBarra('Urbana', m.urbana, totalUrbanoRural, '#1f6f4a')}
+      ${linhaBarra('Rural', m.rural, totalUrbanoRural, '#c9963a')}
+    </div>
+    <p class="fonte-aba">Fonte: Censo Demográfico 2022 (IBGE), exceto crescimento populacional (estimativas 2015–2025).</p>
+  `;
+}
+
+function renderizarPainelEconomia(m){
+  const vabTotal = (m.vabAgropecuaria || 0) + (m.vabIndustria || 0) + (m.vabServicos || 0) + (m.vabAdministracao || 0);
+  return `
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">PIB municipal</div>
+        <div class="valor">${formatarMoeda(m.pib)}</div>
+        <div class="valor-sub">${m.rank_pib ? `${m.rank_pib}º do estado` : '—'}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">PIB per capita</div>
+        <div class="valor">${formatarMoeda(m.pibPerCapita)}</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Produção agropecuária</div>
+        <div class="valor">${formatarMoeda(m.producaoAgricola)}</div>
+        <div class="valor-sub">Valor da produção agrícola</div>
+      </div>
+    </div>
+
+    <div class="secao-titulo">PIB por setor (valor adicionado bruto)</div>
+    <div class="bloco-barras">
+      ${linhaBarra('Serviços', m.vabServicos, vabTotal, '#1f6f4a')}
+      ${linhaBarra('Administração pública', m.vabAdministracao, vabTotal, '#123f2b')}
+      ${linhaBarra('Indústria', m.vabIndustria, vabTotal, '#c9963a')}
+      ${linhaBarra('Agropecuária', m.vabAgropecuaria, vabTotal, '#7a9b8a')}
+    </div>
+    <p class="fonte-aba">Fonte: PIB dos Municípios e Produção Agrícola Municipal (IBGE). Trabalho e renda ainda não estão disponíveis nesta versão.</p>
+  `;
+}
+
+function renderizarPainelQualidade(m){
+  return `
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">Taxa de alfabetização</div>
+        <div class="valor">${formatarNumero(m.alfabetizacao, 1)}<span class="unidade">%</span></div>
+        <div class="valor-sub">pessoas de 15 anos ou mais</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Média de moradores</div>
+        <div class="valor">${formatarNumero(m.mediaMoradores, 2)}<span class="unidade">por domicílio</span></div>
+      </div>
+    </div>
+    <p class="fonte-aba">Fonte: Censo Demográfico 2022 (IBGE). Saúde e saneamento ainda não estão disponíveis nesta versão.</p>
+  `;
+}
+
+function renderizarPainelTerritorio(m){
+  return `
+    <div class="grid-dados">
+      <div class="dado">
+        <div class="rotulo">Bioma predominante</div>
+        <div class="valor" style="font-size:18px;">Amazônia</div>
+      </div>
+      <div class="dado">
+        <div class="rotulo">Área</div>
+        <div class="valor">${formatarNumero(m.area)}<span class="unidade">km²</span></div>
+        <div class="valor-sub">${m.rank_area ? `${m.rank_area}º do estado` : '—'}</div>
+      </div>
+    </div>
+    <p class="fonte-aba">Quase todo o território do Amazonas está no bioma Amazônia (classificação IBGE). Rios, queimadas e cobertura vegetal detalhados ainda não estão disponíveis nesta versão — pretendo trazer dados do INPE e do MapBiomas nas próximas etapas.</p>
+  `;
+}
+
+function selecionarMunicipio(id){
+  const m = dados[id];
+  if(!m) return;
+  municipioAtualId = id;
+
+  document.querySelectorAll('.municipio').forEach(p => {
+    p.classList.toggle('selecionado', p.dataset.codigo === id);
+  });
+  const seletor = document.getElementById('seletorMunicipio');
+  if(seletor && seletor.value !== id) seletor.value = id;
+
+  const painel = document.getElementById('painelMunicipio');
+  const regiao = [m.microrregiao, m.mesorregiao].filter(Boolean).join(' · ');
+  const abaObj = ABAS.find(a => a.id === abaAtiva) || ABAS[0];
+  painel.innerHTML = `
+    <div class="municipio-header">
+      <h2>${m.nome}</h2>
+      <span class="regiao">${regiao}</span>
+    </div>
+    ${renderizarAbas()}
+    <div id="conteudoAba">${abaObj.render(m)}</div>
+  `;
+
+  painel.querySelectorAll('.aba').forEach(btn => {
+    btn.addEventListener('click', () => {
+      abaAtiva = btn.dataset.aba;
+      selecionarMunicipio(municipioAtualId);
+    });
+  });
+}
+
+document.getElementById('btnAtualizar').addEventListener('click', carregarTudo);
+carregarTudo();
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

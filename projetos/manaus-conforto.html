@@ -448,6 +448,7 @@
 
         <footer>
           Índices calculados a partir dos dados METAR da estação SBEG (Aeroporto Eduardo Gomes, Manaus).
+          <span id="horaLeituraFonte"></span> Atualizado a cada 3 horas.
           <br>
           <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar agora</button>
           <br>
@@ -787,6 +788,9 @@ function renderizar(dados){
     </div>
     <p class="fonte-nota">Baseado em orientações públicas de calor e saúde do NOAA/NWS, CDC e OMS. Leitura de ${formatarHora(a.hora)} — não substitui orientação médica.</p>
   `;
+
+  const horaFonte = document.getElementById('horaLeituraFonte');
+  if(horaFonte) horaFonte.textContent = ` Leitura de ${formatarHora(a.hora)}.`;
 }
 
 document.querySelectorAll('.aba').forEach(btn => {

@@ -350,6 +350,7 @@
 
         <footer>
           Dados via Open-Meteo, atualizados a cada visita. Coordenadas: −3.10, −60.02.
+          <span id="horaConsulta"></span>
           <br>
           <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar agora</button>
           <br>
@@ -468,6 +469,9 @@ function renderizar(dados){
       ${previsaoHTML}
     </div>
   `;
+
+  const horaConsulta = new Date(c.time).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('horaConsulta').textContent = ` Consultado às ${horaConsulta} (horário de Manaus).`;
 }
 
 document.getElementById('btnAtualizar').addEventListener('click', carregarClima);

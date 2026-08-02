@@ -27,17 +27,32 @@ jobs:
       - name: Processar e gerar data/eleitorado-am.json
         run: node scripts/scrape-eleitorado.js tmp-eleitorado/perfil_eleitor_secao_ATUAL_AM.csv
 
+      - name: Baixar e descompactar candidatos eleitos do TSE (AM, 2022 e 2024)
+        run: |
+          mkdir -p tmp-politicos
+          curl -sL "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2022.zip" -o tmp-politicos/cand2022.zip
+          curl -sL "https://cdn.tse.jus.br/estatistica/sead/odsele/bem_candidato/bem_candidato_2022.zip" -o tmp-politicos/bem2022.zip
+          curl -sL "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2024.zip" -o tmp-politicos/cand2024.zip
+          curl -sL "https://cdn.tse.jus.br/estatistica/sead/odsele/bem_candidato/bem_candidato_2024.zip" -o tmp-politicos/bem2024.zip
+          unzip -o tmp-politicos/cand2022.zip "consulta_cand_2022_AM.csv" -d tmp-politicos
+          unzip -o tmp-politicos/bem2022.zip "bem_candidato_2022_AM.csv" -d tmp-politicos
+          unzip -o tmp-politicos/cand2024.zip "consulta_cand_2024_AM.csv" -d tmp-politicos
+          unzip -o tmp-politicos/bem2024.zip "bem_candidato_2024_AM.csv" -d tmp-politicos
+
+      - name: Processar e gerar data/politicos-am.json
+        run: node scripts/scrape-politicos.js tmp-politicos
+
       - name: Limpar arquivos temporários
-        run: rm -rf tmp-eleitorado
+        run: rm -rf tmp-eleitorado tmp-politicos
 
       - name: Commitar alterações
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- data/eleitorado-am.json; then
-            echo "Sem novidades no eleitorado."
+          if git diff --quiet -- data/eleitorado-am.json data/politicos-am.json; then
+            echo "Sem novidades no eleitorado ou no raio-x político."
             exit 0
           fi
-          git add data/eleitorado-am.json projetos/eleitorado-am.html
-          git commit -m "Atualiza perfil do eleitorado do Amazonas (TSE)"
+          git add data/eleitorado-am.json data/politicos-am.json projetos/eleitorado-am.html
+          git commit -m "Atualiza perfil do eleitorado e raio-x político do Amazonas (TSE)"
           git push

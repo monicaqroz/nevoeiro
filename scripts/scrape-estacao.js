@@ -24,6 +24,25 @@ function umidadeRelativa(tempC, dewpC) {
   return Math.round(100 * (magnus(dewpC) / magnus(tempC)));
 }
 
+// Reconhece o grupo de tempo presente (fenômeno meteorológico) num METAR, ex:
+// "-RA", "RA", "+TSRA", "SHRA", "DZ". Ignora outros grupos (vento, nuvens, etc).
+const REGEX_GRUPO_TEMPO = /^[-+]?(VC)?(MI|BC|PR|DR|BL|SH|TS|FZ)*(DZ|RA|SN|SG|IC|PL|GR|GS|UP)+$/;
+
+function condicaoClima(raw) {
+  if (!raw) return { chovendo: false, condicao: null };
+  const grupo = raw.split(' ').find((t) => REGEX_GRUPO_TEMPO.test(t));
+  if (!grupo) return { chovendo: false, condicao: null };
+
+  const intensidade = grupo.startsWith('+') ? 'forte' : grupo.startsWith('-') ? 'fraca' : 'moderada';
+  let condicao;
+  if (grupo.includes('TS')) condicao = `Trovoada com chuva ${intensidade}`;
+  else if (grupo.includes('SH')) condicao = `Pancadas de chuva ${intensidade}`;
+  else if (grupo.includes('DZ')) condicao = `Garoa ${intensidade}`;
+  else condicao = `Chuva ${intensidade}`;
+
+  return { chovendo: true, condicao };
+}
+
 function visibilidadeKm(visib) {
   if (visib == null) return null;
   const str = String(visib).replace('+', '');
@@ -46,8 +65,11 @@ async function buscarObservacoes() {
 
 function paraRegistro(obs) {
   const nuvem = obs.clouds && obs.clouds.length ? obs.clouds[obs.clouds.length - 1] : null;
+  const { chovendo, condicao } = condicaoClima(obs.rawOb);
   return {
-    hora: new Date(obs.obsTime * 1000).toISOString(),
+    // sem milissegundos, pra bater com o formato já usado no histórico existente
+    // (senão a mesma hora vira duas chaves diferentes no dedupe e duplica o registro)
+    hora: new Date(obs.obsTime * 1000).toISOString().replace(/\.\d{3}Z$/, 'Z'),
     tempC: obs.temp,
     orvalhoC: obs.dewp,
     umidade: (obs.temp != null && obs.dewp != null) ? umidadeRelativa(obs.temp, obs.dewp) : null,
@@ -58,6 +80,8 @@ function paraRegistro(obs) {
     cobertura: obs.cover || null,
     tetoM: nuvem && nuvem.base != null ? Math.round(nuvem.base * 0.3048) : null,
     categoriaVoo: obs.fltCat || null,
+    chovendo,
+    condicao,
     raw: obs.rawOb,
   };
 }

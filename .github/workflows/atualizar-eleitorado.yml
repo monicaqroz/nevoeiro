@@ -1,0 +1,43 @@
+name: Atualizar perfil do eleitorado (TSE)
+
+on:
+  schedule:
+    - cron: '30 6 1 * *' # dia 1 de cada mês — a base do TSE não muda com frequência
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Baixar e descompactar dados do TSE (AM)
+        run: |
+          mkdir -p tmp-eleitorado
+          curl -sL "https://cdn.tse.jus.br/estatistica/sead/odsele/perfil_eleitor_secao/perfil_eleitor_secao_ATUAL_AM.zip" -o tmp-eleitorado/am.zip
+          unzip -o tmp-eleitorado/am.zip -d tmp-eleitorado
+
+      - name: Processar e gerar data/eleitorado-am.json
+        run: node scripts/scrape-eleitorado.js tmp-eleitorado/perfil_eleitor_secao_ATUAL_AM.csv
+
+      - name: Limpar arquivos temporários
+        run: rm -rf tmp-eleitorado
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/eleitorado-am.json; then
+            echo "Sem novidades no eleitorado."
+            exit 0
+          fi
+          git add data/eleitorado-am.json projetos/eleitorado-am.html
+          git commit -m "Atualiza perfil do eleitorado do Amazonas (TSE)"
+          git push

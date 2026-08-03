@@ -21,7 +21,8 @@ async function buscarHtml() {
 }
 
 function extrairAtual(html) {
-  const mData = html.match(/jet-listing-dynamic-field__content"\s*>(\d{2})\/(\d{2})\/(\d{4})<\/div>/);
+  // Dia/mês podem vir sem zero à esquerda na fonte (ex: "3/08/2026").
+  const mData = html.match(/jet-listing-dynamic-field__content"\s*>(\d{1,2})\/(\d{1,2})\/(\d{4})<\/div>/);
   const mCota = html.match(/data-to-value="([\d.]+)"/);
   const mSituacao = html.match(/Situa[cç][aã]o<\/h2>\s*<\/div>\s*<div[^>]*>\s*<h4 class="elementor-heading-title elementor-size-default">(.*?)<\/h4>/);
   const mVarDia = html.match(/<h5 class="elementor-heading-title elementor-size-default">(Vazou|Encheu): (-?[\d.,]+)cm<\/h5>/);
@@ -35,7 +36,7 @@ function extrairAtual(html) {
   const sinalAcum = mVarAcum[1] === 'Vazou' ? -1 : 1;
 
   return {
-    data: `${ano}-${mes}-${dia}`,
+    data: `${ano}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`,
     cota: parseFloat(mCota[1]),
     situacao: mSituacao[1],
     variacaoDiaCm: parseNumero(mVarDia[2]), // o texto da página já vem com o sinal

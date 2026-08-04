@@ -1,0 +1,57 @@
+name: Atualizar educação básica no Amazonas (INEP)
+
+on:
+  schedule:
+    - cron: '30 7 5 * *' # dia 5 de cada mês — Censo Escolar e IDEB mudam pouco (anual/bienal)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Baixar e descompactar o Censo Escolar (Brasil, filtrado depois para o AM)
+        run: |
+          mkdir -p tmp-educacao
+          curl -sL "https://download.inep.gov.br/dados_abertos/microdados_censo_escolar_2024.zip" -o tmp-educacao/censo.zip
+          unzip -o tmp-educacao/censo.zip "*/dados/microdados_ed_basica_2024.csv" -d tmp-educacao
+          find tmp-educacao -name "microdados_ed_basica_2024.csv" -exec mv {} tmp-educacao/microdados_ed_basica_2024.csv \;
+
+      - name: Baixar e descompactar o IDEB por município (anos iniciais, anos finais e ensino médio)
+        run: |
+          mkdir -p tmp-educacao/ideb
+          curl -sL "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_iniciais_municipios_2023.zip" -o tmp-educacao/ideb/ai.zip
+          curl -sL "https://download.inep.gov.br/ideb/resultados/divulgacao_anos_finais_municipios_2023.zip" -o tmp-educacao/ideb/af.zip
+          curl -sL "https://download.inep.gov.br/ideb/resultados/divulgacao_ensino_medio_municipios_2023.zip" -o tmp-educacao/ideb/em.zip
+          unzip -o -j tmp-educacao/ideb/ai.zip "*.ods" -d tmp-educacao/ideb
+          unzip -o -j tmp-educacao/ideb/af.zip "*.ods" -d tmp-educacao/ideb
+          unzip -o -j tmp-educacao/ideb/em.zip "*.ods" -d tmp-educacao/ideb
+
+      - name: Processar e gerar data/educacao-am.json
+        run: node scripts/scrape-educacao.js tmp-educacao/microdados_ed_basica_2024.csv tmp-educacao/ideb
+
+      - name: Limpar arquivos temporários
+        run: rm -rf tmp-educacao
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/educacao-am.json; then
+            echo "Sem novidades na educação básica."
+            exit 0
+          fi
+          git add data/educacao-am.json projetos/amazonas-educacao.html
+          git commit -m "Atualiza dados de educação básica do Amazonas (INEP)"
+          git push

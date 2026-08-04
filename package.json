@@ -1,0 +1,8 @@
+{
+  "name": "nevoeiro",
+  "private": true,
+  "description": "Scripts de coleta de dados dos projetos do site (sem build step para o site em si).",
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

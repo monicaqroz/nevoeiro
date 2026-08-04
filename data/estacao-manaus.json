@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-04T17:03:58.197Z",
+  "atualizadoEm": "2026-08-04T19:57:15.000Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-04T17:00:00Z",
-    "tempC": 34,
-    "orvalhoC": 21,
-    "umidade": 47,
-    "ventoGraus": 140,
-    "ventoKmh": 20,
-    "pressaoHpa": 1011,
+    "hora": "2026-08-04T19:00:00Z",
+    "tempC": 35,
+    "orvalhoC": 19,
+    "umidade": 39,
+    "ventoGraus": 110,
+    "ventoKmh": 13,
+    "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
     "cobertura": "SCT",
     "tetoM": 1219,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 041700Z 14011KT 9999 SCT040 34/21 Q1011"
+    "raw": "METAR SBEG 041900Z 11007KT 9999 SCT040 35/19 Q1010"
   },
   "historico": [
     {
@@ -2632,6 +2632,38 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 041700Z 14011KT 9999 SCT040 34/21 Q1011"
+    },
+    {
+      "hora": "2026-08-04T18:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": 130,
+      "ventoKmh": 17,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1219,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 041800Z 13009KT 090V160 9999 SCT040 34/21 Q1010"
+    },
+    {
+      "hora": "2026-08-04T19:00:00Z",
+      "tempC": 35,
+      "orvalhoC": 19,
+      "umidade": 39,
+      "ventoGraus": 110,
+      "ventoKmh": 13,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1219,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 041900Z 11007KT 9999 SCT040 35/19 Q1010"
     }
   ]
 }

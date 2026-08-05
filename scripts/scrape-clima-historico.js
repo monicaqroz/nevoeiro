@@ -96,6 +96,13 @@ function media(lista) {
   return lista.reduce((s, v) => s + v, 0) / lista.length;
 }
 
+function desvioPadrao(lista) {
+  if (lista.length < 2) return null;
+  const m = media(lista);
+  const variancia = lista.reduce((s, v) => s + (v - m) ** 2, 0) / lista.length;
+  return Math.sqrt(variancia);
+}
+
 function maximo(lista) {
   return lista.length ? Math.max(...lista) : null;
 }
@@ -205,13 +212,17 @@ function construirClimatologiaMensal(diasPorAno) {
       if (!porAno.has(d.ano)) porAno.set(d.ano, 0);
       if (d.chuva !== null) porAno.set(d.ano, porAno.get(d.ano) + d.chuva);
     });
+    const temperaturasDoMes = dias.map((d) => d.tempMedia).filter((v) => v !== null);
+    const umidadesDoMes = dias.map((d) => d.umidadeMedia).filter((v) => v !== null);
     resultado.push({
       mes,
-      tempMedia: arredonda(media(dias.map((d) => d.tempMedia).filter((v) => v !== null))),
+      tempMedia: arredonda(media(temperaturasDoMes)),
+      tempDesvioPadrao: arredonda(desvioPadrao(temperaturasDoMes)),
       tempMaxMedia: arredonda(media(dias.map((d) => d.tempMax).filter((v) => v !== null))),
       tempMinMedia: arredonda(media(dias.map((d) => d.tempMin).filter((v) => v !== null))),
       chuvaMediaMensal: arredonda(media([...porAno.values()])),
-      umidadeMedia: arredonda(media(dias.map((d) => d.umidadeMedia).filter((v) => v !== null))),
+      umidadeMedia: arredonda(media(umidadesDoMes)),
+      umidadeDesvioPadrao: arredonda(desvioPadrao(umidadesDoMes)),
       ventoVelMedia: arredonda(media(dias.map((d) => d.ventoVelMedia).filter((v) => v !== null))),
     });
   }

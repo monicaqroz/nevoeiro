@@ -470,7 +470,7 @@
 
 <script id="dados-clima-historico" type="application/json">
 {
-    "atualizadoEm":  "2026-08-05T01:01:11Z",
+    "atualizadoEm":  "2026-08-05T10:27:47Z",
     "fonte":  "https://portal.inmet.gov.br/dadoshistoricos (estacao automatica A101, Manaus)",
     "referencia":  "Dados horarios da estacao automatica de Manaus (A101, fundada em 09/05/2000), 2000-2026",
     "periodo":  {
@@ -4415,109 +4415,133 @@
                                {
                                    "mes":  1,
                                    "tempMedia":  27,
+                                   "tempDesvioPadrao":  1.4,
                                    "tempMaxMedia":  31.5,
                                    "tempMinMedia":  24.2,
                                    "chuvaMediaMensal":  239.6,
                                    "umidadeMedia":  79.8,
+                                   "umidadeDesvioPadrao":  7.29,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  2,
                                    "tempMedia":  26.8,
+                                   "tempDesvioPadrao":  1.34,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  248.4,
                                    "umidadeMedia":  81,
+                                   "umidadeDesvioPadrao":  6.96,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  3,
                                    "tempMedia":  26.8,
+                                   "tempDesvioPadrao":  1.3,
                                    "tempMaxMedia":  31.2,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  309.8,
                                    "umidadeMedia":  81.9,
+                                   "umidadeDesvioPadrao":  6.51,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  4,
                                    "tempMedia":  26.9,
+                                   "tempDesvioPadrao":  1.09,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  270.2,
                                    "umidadeMedia":  82.4,
+                                   "umidadeDesvioPadrao":  5.28,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  5,
                                    "tempMedia":  27.1,
+                                   "tempDesvioPadrao":  1.14,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.3,
                                    "chuvaMediaMensal":  205.9,
                                    "umidadeMedia":  81.5,
+                                   "umidadeDesvioPadrao":  5.72,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  6,
                                    "tempMedia":  27.4,
+                                   "tempDesvioPadrao":  1.34,
                                    "tempMaxMedia":  31.8,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  110,
                                    "umidadeMedia":  77.4,
+                                   "umidadeDesvioPadrao":  6.86,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  7,
                                    "tempMedia":  27.9,
+                                   "tempDesvioPadrao":  1.42,
                                    "tempMaxMedia":  32.5,
                                    "tempMinMedia":  24.3,
                                    "chuvaMediaMensal":  70.3,
                                    "umidadeMedia":  72.5,
+                                   "umidadeDesvioPadrao":  7.97,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  8,
                                    "tempMedia":  28.8,
+                                   "tempDesvioPadrao":  1.54,
                                    "tempMaxMedia":  33.8,
                                    "tempMinMedia":  24.8,
                                    "chuvaMediaMensal":  43.8,
                                    "umidadeMedia":  68.2,
+                                   "umidadeDesvioPadrao":  8.7,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  9,
                                    "tempMedia":  29,
+                                   "tempDesvioPadrao":  1.77,
                                    "tempMaxMedia":  34.3,
                                    "tempMinMedia":  25,
                                    "chuvaMediaMensal":  73.3,
                                    "umidadeMedia":  68.4,
+                                   "umidadeDesvioPadrao":  9.51,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  10,
                                    "tempMedia":  28.8,
+                                   "tempDesvioPadrao":  1.86,
                                    "tempMaxMedia":  34,
                                    "tempMinMedia":  25,
                                    "chuvaMediaMensal":  112.1,
                                    "umidadeMedia":  70.8,
+                                   "umidadeDesvioPadrao":  9.31,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  11,
                                    "tempMedia":  28.2,
+                                   "tempDesvioPadrao":  1.61,
                                    "tempMaxMedia":  33.1,
                                    "tempMinMedia":  24.8,
                                    "chuvaMediaMensal":  175.3,
                                    "umidadeMedia":  74.9,
+                                   "umidadeDesvioPadrao":  8.03,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  12,
                                    "tempMedia":  27.4,
+                                   "tempDesvioPadrao":  1.46,
                                    "tempMaxMedia":  32,
                                    "tempMinMedia":  24.4,
                                    "chuvaMediaMensal":  228.9,
                                    "umidadeMedia":  78.9,
+                                   "umidadeDesvioPadrao":  7.57,
                                    "ventoVelMedia":  1.3
                                }
                            ],
@@ -4648,9 +4672,9 @@ function renderizarStatsAbertura(){
 }
 
 const VARIAVEIS = [
-  { id: 'temp', nome: 'Temperatura', unidade: '°C', campo: 'tempMedia', cor: 'var(--sol)' },
+  { id: 'temp', nome: 'Temperatura', unidade: '°C', campo: 'tempMedia', dpCampo: 'tempDesvioPadrao', cor: 'var(--sol)' },
   { id: 'chuva', nome: 'Chuva', unidade: 'mm', campo: 'chuvaMediaMensal', cor: 'var(--chuva)' },
-  { id: 'umidade', nome: 'Umidade', unidade: '%', campo: 'umidadeMedia', cor: 'var(--azul)' },
+  { id: 'umidade', nome: 'Umidade', unidade: '%', campo: 'umidadeMedia', dpCampo: 'umidadeDesvioPadrao', cor: 'var(--azul)' },
   { id: 'vento', nome: 'Vento', unidade: 'm/s', campo: 'ventoVelMedia', cor: 'var(--tinta-fraca)' },
 ];
 
@@ -4691,33 +4715,53 @@ function renderizarGraficoMensal(){
       `;
     }).join('');
   } else {
+    const temDp = !!v.dpCampo;
     const comValor = valores.filter(x => x !== null && x !== undefined);
-    const minimo = Math.min(...comValor);
-    const maximo = Math.max(...comValor);
-    const folga = (maximo - minimo) * 0.25 || 1;
+    const limitesConsiderados = temDp
+      ? dados.climatologiaMensal.flatMap(m => (m[v.campo] === null || m[v.dpCampo] === null || m[v.dpCampo] === undefined)
+          ? [m[v.campo]].filter(x => x !== null)
+          : [m[v.campo] - m[v.dpCampo], m[v.campo] + m[v.dpCampo]])
+      : comValor;
+    const minimo = Math.min(...limitesConsiderados);
+    const maximo = Math.max(...limitesConsiderados);
+    const folga = (maximo - minimo) * 0.15 || 1;
     const escalaMin = minimo - folga, escalaMax = maximo + folga;
+    const paraY = (valor) => ALTURA - MARGEM_BAIXO - ((valor - escalaMin) / (escalaMax - escalaMin)) * alturaUtil;
 
     const pontos = dados.climatologiaMensal.map((m, i) => {
       const valor = m[v.campo];
+      const dp = temDp ? m[v.dpCampo] : null;
       const x = i * larguraBarra + larguraBarra * 0.5;
-      const y = valor === null ? null : ALTURA - MARGEM_BAIXO - ((valor - escalaMin) / (escalaMax - escalaMin)) * alturaUtil;
-      return { x, y, valor };
+      const y = valor === null ? null : paraY(valor);
+      const yAlto = (valor !== null && dp !== null && dp !== undefined) ? paraY(valor + dp) : null;
+      const yBaixo = (valor !== null && dp !== null && dp !== undefined) ? paraY(valor - dp) : null;
+      return { x, y, valor, dp, yAlto, yBaixo };
     });
+
+    let faixa = '';
+    if(temDp){
+      const comFaixa = pontos.filter(p => p.yAlto !== null && p.yBaixo !== null);
+      if(comFaixa.length){
+        const topo = comFaixa.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.yAlto.toFixed(1)}`).join(' ');
+        const baixo = [...comFaixa].reverse().map(p => `L${p.x.toFixed(1)},${p.yBaixo.toFixed(1)}`).join(' ');
+        faixa = `<path d="${topo} ${baixo} Z" fill="${v.cor}" opacity="0.14" stroke="none"></path>`;
+      }
+    }
 
     const linha = pontos.filter(p => p.y !== null).map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
 
     const circulosEtextos = pontos.map((p, i) => p.y === null ? '' : `
-      <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" style="fill:${v.cor}"><title>${NOMES_MES[i]}: ${formatarNumero(p.valor)} ${v.unidade}</title></circle>
+      <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" style="fill:${v.cor}"><title>${NOMES_MES[i]}: ${formatarNumero(p.valor)} ${v.unidade}${p.dp !== null && p.dp !== undefined ? ` ± ${formatarNumero(p.dp)}` : ''}</title></circle>
       <text class="valor-label" x="${p.x.toFixed(1)}" y="${(p.y - 10).toFixed(1)}" text-anchor="middle">${formatarNumero(p.valor, casas)}</text>
       <text class="eixo-label" x="${p.x.toFixed(1)}" y="${ALTURA - 10}" text-anchor="middle">${NOMES_MES[i].slice(0, 3)}</text>
     `).join('');
 
-    elementos = `<path d="${linha}" fill="none" stroke="${v.cor}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></path>${circulosEtextos}`;
+    elementos = `${faixa}<path d="${linha}" fill="none" stroke="${v.cor}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></path>${circulosEtextos}`;
   }
 
   document.getElementById('graficoMensal').innerHTML = `
     <svg class="grafico-mensal" viewBox="0 0 ${LARGURA} ${ALTURA}" xmlns="http://www.w3.org/2000/svg">${elementos}</svg>
-    <p class="fonte-aba" style="font-size:11.5px; color:var(--tinta-fraca); margin-top:12px;">Média climatológica de ${v.nome.toLowerCase()} por mês, ${dados.periodo.de}–${dados.periodo.ate}.</p>
+    <p class="fonte-aba" style="font-size:11.5px; color:var(--tinta-fraca); margin-top:12px;">Média climatológica de ${v.nome.toLowerCase()} por mês, ${dados.periodo.de}–${dados.periodo.ate}.${v.dpCampo ? ' A faixa sombreada mostra ±1 desvio padrão — o quanto os dias variam em torno da média naquele mês.' : ''}</p>
   `;
 }
 

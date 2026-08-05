@@ -1,5 +1,5 @@
 ﻿{
-    "atualizadoEm":  "2026-08-05T01:01:11Z",
+    "atualizadoEm":  "2026-08-05T10:27:47Z",
     "fonte":  "https://portal.inmet.gov.br/dadoshistoricos (estacao automatica A101, Manaus)",
     "referencia":  "Dados horarios da estacao automatica de Manaus (A101, fundada em 09/05/2000), 2000-2026",
     "periodo":  {
@@ -3944,109 +3944,133 @@
                                {
                                    "mes":  1,
                                    "tempMedia":  27,
+                                   "tempDesvioPadrao":  1.4,
                                    "tempMaxMedia":  31.5,
                                    "tempMinMedia":  24.2,
                                    "chuvaMediaMensal":  239.6,
                                    "umidadeMedia":  79.8,
+                                   "umidadeDesvioPadrao":  7.29,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  2,
                                    "tempMedia":  26.8,
+                                   "tempDesvioPadrao":  1.34,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  248.4,
                                    "umidadeMedia":  81,
+                                   "umidadeDesvioPadrao":  6.96,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  3,
                                    "tempMedia":  26.8,
+                                   "tempDesvioPadrao":  1.3,
                                    "tempMaxMedia":  31.2,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  309.8,
                                    "umidadeMedia":  81.9,
+                                   "umidadeDesvioPadrao":  6.51,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  4,
                                    "tempMedia":  26.9,
+                                   "tempDesvioPadrao":  1.09,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  270.2,
                                    "umidadeMedia":  82.4,
+                                   "umidadeDesvioPadrao":  5.28,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  5,
                                    "tempMedia":  27.1,
+                                   "tempDesvioPadrao":  1.14,
                                    "tempMaxMedia":  31.3,
                                    "tempMinMedia":  24.3,
                                    "chuvaMediaMensal":  205.9,
                                    "umidadeMedia":  81.5,
+                                   "umidadeDesvioPadrao":  5.72,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  6,
                                    "tempMedia":  27.4,
+                                   "tempDesvioPadrao":  1.34,
                                    "tempMaxMedia":  31.8,
                                    "tempMinMedia":  24.1,
                                    "chuvaMediaMensal":  110,
                                    "umidadeMedia":  77.4,
+                                   "umidadeDesvioPadrao":  6.86,
                                    "ventoVelMedia":  1.2
                                },
                                {
                                    "mes":  7,
                                    "tempMedia":  27.9,
+                                   "tempDesvioPadrao":  1.42,
                                    "tempMaxMedia":  32.5,
                                    "tempMinMedia":  24.3,
                                    "chuvaMediaMensal":  70.3,
                                    "umidadeMedia":  72.5,
+                                   "umidadeDesvioPadrao":  7.97,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  8,
                                    "tempMedia":  28.8,
+                                   "tempDesvioPadrao":  1.54,
                                    "tempMaxMedia":  33.8,
                                    "tempMinMedia":  24.8,
                                    "chuvaMediaMensal":  43.8,
                                    "umidadeMedia":  68.2,
+                                   "umidadeDesvioPadrao":  8.7,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  9,
                                    "tempMedia":  29,
+                                   "tempDesvioPadrao":  1.77,
                                    "tempMaxMedia":  34.3,
                                    "tempMinMedia":  25,
                                    "chuvaMediaMensal":  73.3,
                                    "umidadeMedia":  68.4,
+                                   "umidadeDesvioPadrao":  9.51,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  10,
                                    "tempMedia":  28.8,
+                                   "tempDesvioPadrao":  1.86,
                                    "tempMaxMedia":  34,
                                    "tempMinMedia":  25,
                                    "chuvaMediaMensal":  112.1,
                                    "umidadeMedia":  70.8,
+                                   "umidadeDesvioPadrao":  9.31,
                                    "ventoVelMedia":  1.4
                                },
                                {
                                    "mes":  11,
                                    "tempMedia":  28.2,
+                                   "tempDesvioPadrao":  1.61,
                                    "tempMaxMedia":  33.1,
                                    "tempMinMedia":  24.8,
                                    "chuvaMediaMensal":  175.3,
                                    "umidadeMedia":  74.9,
+                                   "umidadeDesvioPadrao":  8.03,
                                    "ventoVelMedia":  1.3
                                },
                                {
                                    "mes":  12,
                                    "tempMedia":  27.4,
+                                   "tempDesvioPadrao":  1.46,
                                    "tempMaxMedia":  32,
                                    "tempMinMedia":  24.4,
                                    "chuvaMediaMensal":  228.9,
                                    "umidadeMedia":  78.9,
+                                   "umidadeDesvioPadrao":  7.57,
                                    "ventoVelMedia":  1.3
                                }
                            ],

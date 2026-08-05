@@ -1,0 +1,54 @@
+name: Atualizar clima histórico de Manaus (INMET)
+
+on:
+  schedule:
+    - cron: '30 8 3 * *' # dia 3 de cada mês — só o ano corrente muda; o histórico é fixo
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Baixar e atualizar o ano corrente e o anterior (o restante do histórico já está salvo em data/inmet-manaus-csv)
+        run: |
+          mkdir -p tmp-clima
+          ANO_ATUAL=$(date -u +%Y)
+          ANO_ANTERIOR=$((ANO_ATUAL - 1))
+          for ANO in "$ANO_ANTERIOR" "$ANO_ATUAL"; do
+            echo "Baixando $ANO..."
+            curl -sL -A "Mozilla/5.0" --retry 3 --max-time 300 -o "tmp-clima/$ANO.zip" "https://portal.inmet.gov.br/uploads/dadoshistoricos/$ANO.zip"
+            ENTRADA=$(unzip -l "tmp-clima/$ANO.zip" | grep -i "A101_MANAUS" | awk '{print $4}' | head -1)
+            if [ -n "$ENTRADA" ]; then
+              unzip -o -j "tmp-clima/$ANO.zip" "$ENTRADA" -d tmp-clima
+              NOME_ARQUIVO=$(basename "$ENTRADA")
+              mv "tmp-clima/$NOME_ARQUIVO" "data/inmet-manaus-csv/$NOME_ARQUIVO"
+              echo "Atualizado: data/inmet-manaus-csv/$NOME_ARQUIVO"
+            else
+              echo "Aviso: estação A101 Manaus não encontrada no ZIP de $ANO"
+            fi
+          done
+          rm -rf tmp-clima
+
+      - name: Processar e gerar data/clima-historico-manaus.json
+        run: node scripts/scrape-clima-historico.js data/inmet-manaus-csv
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/clima-historico-manaus.json data/inmet-manaus-csv; then
+            echo "Sem novidades no clima histórico."
+            exit 0
+          fi
+          git add data/clima-historico-manaus.json data/inmet-manaus-csv artigos/clima-manaus-historia.html
+          git commit -m "Atualiza clima histórico de Manaus (INMET)"
+          git push

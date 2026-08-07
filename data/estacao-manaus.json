@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-07T16:09:21.498Z",
+  "atualizadoEm": "2026-08-07T19:15:58.987Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-07T16:00:00Z",
+    "hora": "2026-08-07T19:00:00Z",
     "tempC": 34,
     "orvalhoC": 22,
     "umidade": 50,
     "ventoGraus": 90,
-    "ventoKmh": 15,
-    "pressaoHpa": 1013,
+    "ventoKmh": 11,
+    "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
     "cobertura": "SCT",
     "tetoM": 1067,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 071600Z 09008KT 9999 SCT035 34/22 Q1013"
+    "raw": "METAR SBEG 071900Z 09006KT 9999 SCT035 34/22 Q1010"
   },
   "historico": [
     {
@@ -3752,6 +3752,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 071600Z 09008KT 9999 SCT035 34/22 Q1013"
+    },
+    {
+      "hora": "2026-08-07T17:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": 80,
+      "ventoKmh": 13,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 071700Z 08007KT 9999 SCT035 34/21 Q1012"
+    },
+    {
+      "hora": "2026-08-07T18:00:00Z",
+      "tempC": 33,
+      "orvalhoC": 22,
+      "umidade": 53,
+      "ventoGraus": 110,
+      "ventoKmh": 9,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 071800Z 11005KT 9999 SCT035 33/22 Q1011"
+    },
+    {
+      "hora": "2026-08-07T19:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 22,
+      "umidade": 50,
+      "ventoGraus": 90,
+      "ventoKmh": 11,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 071900Z 09006KT 9999 SCT035 34/22 Q1010"
     }
   ]
 }

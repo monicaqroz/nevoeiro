@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-09T04:37:20.217Z",
+  "atualizadoEm": "2026-08-09T07:16:45.940Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-09T04:00:00Z",
-    "tempC": 28,
-    "orvalhoC": 22,
+    "hora": "2026-08-09T07:00:00Z",
+    "tempC": 27,
+    "orvalhoC": 21,
     "umidade": 70,
-    "ventoGraus": 120,
-    "ventoKmh": 6,
-    "pressaoHpa": 1011,
+    "ventoGraus": 70,
+    "ventoKmh": 11,
+    "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 090400Z 12003KT CAVOK 28/22 Q1011"
+    "raw": "METAR SBEG 090700Z 07006KT CAVOK 27/21 Q1010"
   },
   "historico": [
     {
@@ -4328,6 +4328,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 090400Z 12003KT CAVOK 28/22 Q1011"
+    },
+    {
+      "hora": "2026-08-09T05:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 22,
+      "umidade": 74,
+      "ventoGraus": 80,
+      "ventoKmh": 6,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 090500Z 08003KT CAVOK 27/22 Q1011"
+    },
+    {
+      "hora": "2026-08-09T06:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 21,
+      "umidade": 70,
+      "ventoGraus": 70,
+      "ventoKmh": 6,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 090600Z 07003KT CAVOK 27/21 Q1011"
+    },
+    {
+      "hora": "2026-08-09T07:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 21,
+      "umidade": 70,
+      "ventoGraus": 70,
+      "ventoKmh": 11,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 090700Z 07006KT CAVOK 27/21 Q1010"
     }
   ]
 }

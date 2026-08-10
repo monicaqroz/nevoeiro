@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-10T10:36:47.459Z",
+  "atualizadoEm": "2026-08-10T13:45:00.122Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-10T10:00:00Z",
-    "tempC": 26,
-    "orvalhoC": 22,
-    "umidade": 79,
-    "ventoGraus": 80,
-    "ventoKmh": 6,
-    "pressaoHpa": 1013,
+    "hora": "2026-08-10T13:00:00Z",
+    "tempC": 31,
+    "orvalhoC": 21,
+    "umidade": 55,
+    "ventoGraus": 70,
+    "ventoKmh": 19,
+    "pressaoHpa": 1016,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 101000Z 08003KT CAVOK 26/22 Q1013"
+    "raw": "METAR SBEG 101300Z 07010KT 040V100 CAVOK 31/21 Q1016"
   },
   "historico": [
     {
@@ -4808,6 +4808,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 101000Z 08003KT CAVOK 26/22 Q1013"
+    },
+    {
+      "hora": "2026-08-10T11:00:00Z",
+      "tempC": 28,
+      "orvalhoC": 22,
+      "umidade": 70,
+      "ventoGraus": 70,
+      "ventoKmh": 13,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 101100Z 07007KT CAVOK 28/22 Q1014"
+    },
+    {
+      "hora": "2026-08-10T12:00:00Z",
+      "tempC": 29,
+      "orvalhoC": 22,
+      "umidade": 66,
+      "ventoGraus": 60,
+      "ventoKmh": 11,
+      "pressaoHpa": 1015,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 101200Z 06006KT 030V090 CAVOK 29/22 Q1015"
+    },
+    {
+      "hora": "2026-08-10T13:00:00Z",
+      "tempC": 31,
+      "orvalhoC": 21,
+      "umidade": 55,
+      "ventoGraus": 70,
+      "ventoKmh": 19,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 101300Z 07010KT 040V100 CAVOK 31/21 Q1016"
     }
   ]
 }

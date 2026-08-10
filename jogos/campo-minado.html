@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campo Minado — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .cm-content{ max-width: none; padding: 0; }
+
+  .cm-page{
+    position: relative;
+    --fundo: #171b21;
+    --tinta: #e8ecef;
+    --tinta-fraca: #8b96a3;
+    --acento: #3ddc97;
+    --acento-forte: #23a172;
+    --acento-neblina: rgba(61,220,151,0.1);
+    --perigo: #e2574c;
+    --bandeira: #e2a83e;
+    --linha: #2a313b;
+    --painel: #1f242b;
+    --celula: #2c3440;
+    --celula-hover: #364152;
+    --celula-revelada: #12161b;
+    --sombra: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.35);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .cm-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .cm-page a{ color: inherit; }
+
+  .cm-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .cm-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .cm-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(61,220,151,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(61,220,151,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(61,220,151,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(61,220,151,0); }
+  }
+
+  .cm-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .cm-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .cm-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .cm-page .cm-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .cm-page .niveis{ display:flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .cm-page .nivel-btn{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--painel);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .cm-page .nivel-btn:hover{ border-color: var(--acento); color: var(--tinta); }
+  .cm-page .nivel-btn.ativo{ background: var(--acento-forte); border-color: var(--acento-forte); color: #0c1410; }
+
+  .cm-page .painel-jogo{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--sombra);
+  }
+
+  .cm-page .hud{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .cm-page .hud-item{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--tinta);
+    background: var(--celula-revelada);
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 8px 14px;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+    min-width: 76px;
+    justify-content: center;
+  }
+  .cm-page .hud-item .rotulo{ font-size: 13px; }
+  .cm-page .btn-rosto{
+    all: unset;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid var(--linha);
+    background: var(--celula-revelada);
+    transition: transform .15s ease;
+  }
+  .cm-page .btn-rosto:hover{ border-color: var(--acento); transform: scale(1.05); }
+  .cm-page .btn-modo{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--celula-revelada);
+  }
+  .cm-page .btn-modo.ativo{ border-color: var(--bandeira); color: var(--bandeira); }
+
+  .cm-page .tabuleiro-scroll{
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .cm-page .tabuleiro{
+    display: grid;
+    gap: 2px;
+    width: max-content;
+    margin: 0 auto;
+    touch-action: manipulation;
+  }
+  .cm-page .celula{
+    all: unset;
+    box-sizing: border-box;
+    width: 28px;
+    height: 28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    background: var(--celula);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -2px 0 rgba(0,0,0,0.25);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .cm-page .celula:hover:not(.revelada){ background: var(--celula-hover); }
+  .cm-page .celula.revelada{
+    background: var(--celula-revelada);
+    box-shadow: inset 0 0 0 1px var(--linha);
+    cursor: default;
+  }
+  .cm-page .celula.mina.revelada{ background: var(--perigo); }
+  .cm-page .celula.mina-errada{ background: rgba(226,87,76,0.25); }
+  .cm-page .celula .bandeira{ color: var(--bandeira); }
+  .cm-page .celula .mina-icone{ color: #1a0d0b; }
+
+  .cm-page .celula.n1{ color: #6db8ff; }
+  .cm-page .celula.n2{ color: #7fe08a; }
+  .cm-page .celula.n3{ color: #ff8f80; }
+  .cm-page .celula.n4{ color: #b79bff; }
+  .cm-page .celula.n5{ color: #e0a26a; }
+  .cm-page .celula.n6{ color: #62d8d0; }
+  .cm-page .celula.n7{ color: #e8ecef; }
+  .cm-page .celula.n8{ color: #8b96a3; }
+
+  .cm-page .mensagem-fim{
+    text-align: center;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 14px;
+  }
+  .cm-page .mensagem-fim.venceu{ background: var(--acento-neblina); color: var(--acento); border: 1px solid rgba(61,220,151,0.3); }
+  .cm-page .mensagem-fim.perdeu{ background: rgba(226,87,76,0.12); color: var(--perigo); border: 1px solid rgba(226,87,76,0.3); }
+
+  .cm-page .instrucoes{
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+  .cm-page .instrucoes strong{ color: var(--tinta); }
+
+  .cm-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .cm-page a:focus-visible, .cm-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../projetos/manaus-tempo.html">Clima em Manaus</a>
+            <a href="../projetos/manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="../projetos/manaus-conforto.html">Conforto Térmico</a>
+            <a href="../projetos/manaus-rio.html">Nível do Rio Negro</a>
+            <a href="../projetos/amazonas-dados.html">Amazonas em Dados</a>
+            <a href="../projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="../projetos/amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="../projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../jogos.html">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar jogos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="campo-minado.html" class="active">Campo Minado</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content cm-content">
+      <div class="cm-page">
+        <header>
+          <div class="eyebrow">Jogos — lógica e dedução</div>
+          <h1>Campo<br><em>Minado</em></h1>
+          <p class="sub">
+            Clique pra revelar uma célula. O número mostra quantas minas tem nos 8 vizinhos —
+            use isso pra deduzir onde é seguro. Marque uma bandeira nas células que você acha
+            que têm mina (clique direito no computador, ou use o botão "modo bandeira" no celular).
+          </p>
+        </header>
+
+        <section class="cm-main">
+          <div class="niveis" id="niveis"></div>
+
+          <div class="painel-jogo">
+            <div class="hud">
+              <div class="hud-item">🚩 <span id="hudMinas">10</span></div>
+              <button class="btn-rosto" id="btnRosto" type="button" aria-label="Reiniciar jogo">🙂</button>
+              <div class="hud-item">⏱ <span id="hudTempo">000</span></div>
+              <button class="btn-modo" id="btnModo" type="button">Modo: revelar</button>
+            </div>
+            <div class="tabuleiro-scroll">
+              <div class="tabuleiro" id="tabuleiro"></div>
+            </div>
+            <div id="mensagemFim"></div>
+          </div>
+
+          <p class="instrucoes">
+            <strong>Computador:</strong> clique esquerdo revela, clique direito marca bandeira.<br>
+            <strong>Celular:</strong> toque revela; toque e segure marca bandeira, ou use o botão "Modo" pra alternar.<br>
+            A primeira célula clicada nunca é uma mina.
+          </p>
+        </section>
+
+        <footer>
+          Campo Minado clássico, feito do zero em HTML/CSS/JS.
+          <br>
+          <a class="back-link" href="../jogos.html">← Voltar para Jogos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const NIVEIS = [
+  { id: 'facil', nome: 'Fácil', linhas: 9, colunas: 9, minas: 10 },
+  { id: 'medio', nome: 'Médio', linhas: 16, colunas: 16, minas: 40 },
+  { id: 'dificil', nome: 'Difícil', linhas: 16, colunas: 30, minas: 99 },
+  { id: 'extremo', nome: 'Extremo', linhas: 20, colunas: 24, minas: 130 },
+];
+const TAMANHO_CELULA = 28;
+const TEMPO_LONGO_TOQUE = 450;
+
+let nivelAtivo = NIVEIS[0];
+let tabuleiro = [];
+let minasGeradas = false;
+let jogoTerminado = false;
+let bandeirasColocadas = 0;
+let celulasReveladas = 0;
+let totalCelulasSeguras = 0;
+let tempoDecorrido = 0;
+let intervaloTimer = null;
+let modoBandeira = false;
+let toqueLongoTimer = null;
+let toqueLongoDisparado = false;
+
+function celulaVazia(){
+  return { mina: false, revelada: false, bandeira: false, adjacentes: 0 };
+}
+
+function criarTabuleiroVazio(){
+  tabuleiro = [];
+  for(let l = 0; l < nivelAtivo.linhas; l++){
+    const linha = [];
+    for(let c = 0; c < nivelAtivo.colunas; c++) linha.push(celulaVazia());
+    tabuleiro.push(linha);
+  }
+}
+
+function vizinhos(l, c){
+  const lista = [];
+  for(let dl = -1; dl <= 1; dl++){
+    for(let dc = -1; dc <= 1; dc++){
+      if(dl === 0 && dc === 0) continue;
+      const nl = l + dl, nc = c + dc;
+      if(nl >= 0 && nl < nivelAtivo.linhas && nc >= 0 && nc < nivelAtivo.colunas) lista.push([nl, nc]);
+    }
+  }
+  return lista;
+}
+
+function gerarMinas(lClicada, cClicada){
+  const proibidas = new Set(vizinhos(lClicada, cClicada).map(([l, c]) => `${l},${c}`));
+  proibidas.add(`${lClicada},${cClicada}`);
+
+  let colocadas = 0;
+  while(colocadas < nivelAtivo.minas){
+    const l = Math.floor(Math.random() * nivelAtivo.linhas);
+    const c = Math.floor(Math.random() * nivelAtivo.colunas);
+    const chave = `${l},${c}`;
+    if(proibidas.has(chave) || tabuleiro[l][c].mina) continue;
+    tabuleiro[l][c].mina = true;
+    colocadas++;
+  }
+
+  for(let l = 0; l < nivelAtivo.linhas; l++){
+    for(let c = 0; c < nivelAtivo.colunas; c++){
+      if(tabuleiro[l][c].mina) continue;
+      tabuleiro[l][c].adjacentes = vizinhos(l, c).filter(([nl, nc]) => tabuleiro[nl][nc].mina).length;
+    }
+  }
+
+  minasGeradas = true;
+  totalCelulasSeguras = nivelAtivo.linhas * nivelAtivo.colunas - nivelAtivo.minas;
+}
+
+function iniciarTimer(){
+  pararTimer();
+  intervaloTimer = setInterval(() => {
+    tempoDecorrido++;
+    document.getElementById('hudTempo').textContent = String(Math.min(tempoDecorrido, 999)).padStart(3, '0');
+  }, 1000);
+}
+
+function pararTimer(){
+  if(intervaloTimer){ clearInterval(intervaloTimer); intervaloTimer = null; }
+}
+
+function atualizarContadorMinas(){
+  document.getElementById('hudMinas').textContent = String(nivelAtivo.minas - bandeirasColocadas).padStart(2, '0');
+}
+
+function revelarCelula(l, c){
+  if(jogoTerminado) return;
+  const celula = tabuleiro[l][c];
+  if(celula.revelada || celula.bandeira) return;
+
+  if(!minasGeradas){
+    gerarMinas(l, c);
+    iniciarTimer();
+  }
+
+  if(celula.mina){
+    celula.revelada = true;
+    terminarJogo(false, l, c);
+    return;
+  }
+
+  const pilha = [[l, c]];
+  while(pilha.length){
+    const [cl, cc] = pilha.pop();
+    const cel = tabuleiro[cl][cc];
+    if(cel.revelada || cel.bandeira || cel.mina) continue;
+    cel.revelada = true;
+    celulasReveladas++;
+    if(cel.adjacentes === 0){
+      vizinhos(cl, cc).forEach(([nl, nc]) => {
+        if(!tabuleiro[nl][nc].revelada) pilha.push([nl, nc]);
+      });
+    }
+  }
+
+  renderizarTabuleiro();
+  if(celulasReveladas >= totalCelulasSeguras) terminarJogo(true);
+}
+
+function alternarBandeira(l, c){
+  if(jogoTerminado) return;
+  const celula = tabuleiro[l][c];
+  if(celula.revelada) return;
+  celula.bandeira = !celula.bandeira;
+  bandeirasColocadas += celula.bandeira ? 1 : -1;
+  atualizarContadorMinas();
+  renderizarTabuleiro();
+}
+
+function terminarJogo(venceu, lMina, cMina){
+  jogoTerminado = true;
+  pararTimer();
+  document.getElementById('btnRosto').textContent = venceu ? '😎' : '😵';
+
+  if(!venceu){
+    for(let l = 0; l < nivelAtivo.linhas; l++){
+      for(let c = 0; c < nivelAtivo.colunas; c++){
+        const cel = tabuleiro[l][c];
+        if(cel.mina) cel.revelada = true;
+      }
+    }
+  } else {
+    for(let l = 0; l < nivelAtivo.linhas; l++){
+      for(let c = 0; c < nivelAtivo.colunas; c++){
+        if(tabuleiro[l][c].mina) tabuleiro[l][c].bandeira = true;
+      }
+    }
+    bandeirasColocadas = nivelAtivo.minas;
+    atualizarContadorMinas();
+  }
+
+  renderizarTabuleiro(lMina, cMina);
+
+  const mensagem = document.getElementById('mensagemFim');
+  mensagem.innerHTML = venceu
+    ? `<div class="mensagem-fim venceu">Você venceu! Tempo: ${tempoDecorrido}s</div>`
+    : `<div class="mensagem-fim perdeu">Bum! Era uma mina — tenta de novo.</div>`;
+}
+
+function iconeCelula(cel, ehMinaErrada){
+  if(cel.bandeira) return '<span class="bandeira">🚩</span>';
+  if(!cel.revelada) return '';
+  if(cel.mina) return '<span class="mina-icone">💣</span>';
+  if(cel.adjacentes === 0) return '';
+  return String(cel.adjacentes);
+}
+
+function renderizarTabuleiro(lErrada, cErrada){
+  const tab = document.getElementById('tabuleiro');
+  tab.style.gridTemplateColumns = `repeat(${nivelAtivo.colunas}, ${TAMANHO_CELULA}px)`;
+
+  let html = '';
+  for(let l = 0; l < nivelAtivo.linhas; l++){
+    for(let c = 0; c < nivelAtivo.colunas; c++){
+      const cel = tabuleiro[l][c];
+      const ehMinaClicada = l === lErrada && c === cErrada;
+      const classes = ['celula'];
+      if(cel.revelada) classes.push('revelada');
+      if(cel.revelada && cel.mina) classes.push('mina');
+      if(ehMinaClicada) classes.push('mina-errada');
+      if(cel.revelada && !cel.mina && cel.adjacentes > 0) classes.push(`n${cel.adjacentes}`);
+      html += `<button type="button" class="${classes.join(' ')}" data-l="${l}" data-c="${c}" ${cel.revelada ? 'tabindex="-1"' : ''}>${iconeCelula(cel)}</button>`;
+    }
+  }
+  tab.innerHTML = html;
+
+  tab.querySelectorAll('.celula').forEach(botao => {
+    const l = parseInt(botao.dataset.l, 10), c = parseInt(botao.dataset.c, 10);
+
+    botao.addEventListener('click', () => {
+      if(modoBandeira) alternarBandeira(l, c);
+      else revelarCelula(l, c);
+    });
+
+    botao.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      alternarBandeira(l, c);
+    });
+
+    botao.addEventListener('touchstart', () => {
+      toqueLongoDisparado = false;
+      toqueLongoTimer = setTimeout(() => {
+        toqueLongoDisparado = true;
+        alternarBandeira(l, c);
+      }, TEMPO_LONGO_TOQUE);
+    }, { passive: true });
+
+    botao.addEventListener('touchend', (e) => {
+      if(toqueLongoTimer) clearTimeout(toqueLongoTimer);
+      if(toqueLongoDisparado){ e.preventDefault(); }
+    });
+
+    botao.addEventListener('touchmove', () => {
+      if(toqueLongoTimer) clearTimeout(toqueLongoTimer);
+    }, { passive: true });
+  });
+}
+
+function alternarModo(){
+  modoBandeira = !modoBandeira;
+  const botao = document.getElementById('btnModo');
+  botao.textContent = `Modo: ${modoBandeira ? 'bandeira 🚩' : 'revelar'}`;
+  botao.classList.toggle('ativo', modoBandeira);
+}
+
+function novoJogo(nivel){
+  if(nivel) nivelAtivo = nivel;
+  jogoTerminado = false;
+  minasGeradas = false;
+  bandeirasColocadas = 0;
+  celulasReveladas = 0;
+  tempoDecorrido = 0;
+  pararTimer();
+
+  document.getElementById('hudTempo').textContent = '000';
+  document.getElementById('btnRosto').textContent = '🙂';
+  document.getElementById('mensagemFim').innerHTML = '';
+
+  criarTabuleiroVazio();
+  atualizarContadorMinas();
+  renderizarTabuleiro();
+
+  document.querySelectorAll('.nivel-btn').forEach(b => b.classList.toggle('ativo', b.dataset.nivel === nivelAtivo.id));
+}
+
+function renderizarNiveis(){
+  document.getElementById('niveis').innerHTML = NIVEIS.map(n =>
+    `<button class="nivel-btn ${n.id === nivelAtivo.id ? 'ativo' : ''}" data-nivel="${n.id}" type="button">${n.nome} <span style="opacity:.6;">(${n.linhas}×${n.colunas}, ${n.minas} minas)</span></button>`
+  ).join('');
+  document.querySelectorAll('.nivel-btn').forEach(botao => {
+    botao.addEventListener('click', () => novoJogo(NIVEIS.find(n => n.id === botao.dataset.nivel)));
+  });
+}
+
+document.getElementById('btnRosto').addEventListener('click', () => novoJogo());
+document.getElementById('btnModo').addEventListener('click', alternarModo);
+
+renderizarNiveis();
+novoJogo();
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

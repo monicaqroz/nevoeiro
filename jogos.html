@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nevoeiro</title>
+  <title>Jogos — Nevoeiro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
         <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
       </a>
       <nav class="nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html">Home</a>
 
         <div class="nav-item">
           <div class="nav-row">
@@ -49,10 +49,11 @@
             <a href="artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
           </div>
         </div>
-        <div class="nav-item">
+
+        <div class="nav-item open">
           <div class="nav-row">
-            <a href="jogos.html">Jogos</a>
-            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar jogos">
+            <a href="jogos.html" class="active">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar jogos">
               <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
           </div>
@@ -65,42 +66,23 @@
       </nav>
     </aside>
 
-    <main class="content home-stage">
-      <div class="fog" aria-hidden="true">
-        <div class="fog-layer fog-1"></div>
-        <div class="fog-layer fog-2"></div>
-        <div class="fog-layer fog-3"></div>
-        <div class="fog-layer fog-4"></div>
-      </div>
-      <div class="tag-cloud" aria-label="Temas por aqui">
-        <span class="tag tag-md">Modelagem de Dados</span>
-        <span class="tag tag-sm">Ecologia</span>
-        <span class="tag tag-md tag-v" style="color: var(--text);">IA</span>
-        <span class="tag tag-xl tag-v">Amazônia</span>
-        <span class="tag tag-lg">Visualização</span>
-        <span class="tag tag-lg">Dados Abertos</span>
-        <span class="tag tag-md">Linux</span>
-        <span class="tag tag-xl">Meteorologia</span>
-        <span class="tag tag-md">SQL Server</span>
-        <span class="tag tag-lg tag-v">Java</span>
-        <span class="tag tag-md">APIs</span>
-        <span class="tag tag-lg">Desenvolvimento Web</span>
-        <span class="tag tag-md tag-v">Climatologia</span>
-        <span class="tag tag-sm tag-v">Python</span>
-        <span class="tag tag-lg tag-v">METAR</span>
-        <span class="tag tag-sm">ETL</span>
-        <span class="tag tag-lg">Pesquisa</span>
-        <span class="tag tag-lg tag-v">Estatística</span>
-        <span class="tag tag-sm">JavaScript</span>
-        <span class="tag tag-xl tag-v" style="color: var(--orange);">Concursos</span>
-        <span class="tag tag-md">Ciência da Computação</span>
-        <span class="tag tag-md tag-v">Git</span>
-        <span class="tag tag-sm">Análise e Desenvolvimento de Sistemas</span>
-      </div>
+    <main class="content">
+      <h1 class="hero-title">Jogos</h1>
+      <p class="hero-tagline">Uns joguinhos pra distrair (e exercitar a lógica)</p>
+
+      <ul class="article-list">
+        <li>
+          <h2 class="article-title"><a href="jogos/campo-minado.html">Campo Minado</a></h2>
+          <p class="article-excerpt">
+            O clássico jogo de dedução — clique pra revelar, marque as minas com bandeira, e use os
+            números vizinhos pra descobrir onde está o perigo. Com quatro níveis de dificuldade.
+          </p>
+          <a class="read-more" href="jogos/campo-minado.html">Jogar →</a>
+        </li>
+      </ul>
     </main>
   </div>
 
-  <script src="js/nevoeiro.js"></script>
   <script src="js/nav.js"></script>
 </body>
 </html>

@@ -201,6 +201,48 @@ a:hover {
   margin: 0 0 3rem;
 }
 
+.ekg-linha {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 1.25rem;
+}
+
+.ekg-desde {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ekg-svg {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  display: block;
+  overflow: visible;
+}
+
+.ekg-svg polyline {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: ekg-desenhar 2.4s ease-out forwards;
+}
+
+@keyframes ekg-desenhar {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ekg-svg polyline {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
 .cv-destaque {
   font-size: 1rem;
   line-height: 1.6;

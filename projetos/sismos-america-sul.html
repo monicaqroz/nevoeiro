@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sismos — Placa Sul-Americana — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .sis-content{ max-width: none; padding: 0; }
+
+  .sis-page{
+    position: relative;
+    --fundo: #f7f5f3;
+    --tinta: #241c18;
+    --tinta-fraca: #6b6058;
+    --terra: #b8442f;
+    --terra-forte: #7a2a1c;
+    --terra-neblina: #f5e2dd;
+    --ambar: #d98e3d;
+    --ambar-fraco: #faf0df;
+    --linha: #e6ded8;
+    --branco: #ffffff;
+    --sombra: 0 1px 2px rgba(30,20,15,0.04), 0 8px 24px rgba(30,20,15,0.07);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .sis-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .sis-page a{ color: inherit; }
+
+  .sis-page .encontro{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 90% 50% at 88% -8%, var(--terra-neblina), transparent 60%),
+      radial-gradient(ellipse 70% 45% at -5% 105%, var(--ambar-fraco), transparent 55%),
+      var(--fundo);
+  }
+
+  .sis-page header{ max-width: 1040px; margin: 0 auto; padding: 72px 24px 32px; }
+  .sis-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terra);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .sis-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--terra);
+    box-shadow: 0 0 0 0 rgba(184,68,47,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(184,68,47,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(184,68,47,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(184,68,47,0); }
+  }
+
+  .sis-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--terra-forte);
+  }
+  .sis-page h1 em{ font-style: italic; font-weight: 620; color: var(--ambar); }
+  .sis-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 15px; line-height: 1.6; margin-top: 10px; }
+
+  .sis-page .sis-main{ max-width: 1040px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .sis-page .carregando, .sis-page .erro{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--tinta-fraca);
+    padding: 40px 0;
+  }
+  .sis-page .erro{ color: var(--ambar); }
+
+  .sis-page .alerta-card{
+    border-radius: 18px;
+    padding: 20px 24px;
+    margin-bottom: 22px;
+    box-shadow: var(--sombra);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .sis-page .alerta-card.risco{
+    background: var(--terra-neblina);
+    border: 1px solid rgba(184,68,47,0.35);
+  }
+  .sis-page .alerta-card.tranquilo{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+  }
+  .sis-page .alerta-card .alerta-titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .sis-page .alerta-card.risco .alerta-titulo{ color: var(--terra-forte); }
+  .sis-page .alerta-card.tranquilo .alerta-titulo{ color: var(--tinta); }
+  .sis-page .alerta-card strong{ color: var(--terra-forte); }
+
+  .sis-page .abas{ display:flex; gap: 18px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+  .sis-page .grupo-abas{ display:flex; gap: 8px; flex-wrap: wrap; }
+  .sis-page .grupo-titulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--tinta-fraca);
+    margin-bottom: 6px;
+  }
+  .sis-page .aba{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--branco);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .sis-page .aba:hover{ border-color: var(--terra); color: var(--tinta); }
+  .sis-page .aba.ativa{ background: var(--terra-forte); border-color: var(--terra-forte); color: #fff; }
+
+  .sis-page .mapa-card{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: var(--sombra);
+    margin-bottom: 24px;
+  }
+  .sis-page .mapa-card svg{ width: 100%; height: auto; display: block; cursor: default; }
+  .sis-page .pais{ fill: #ddd6cf; stroke: #f7f5f3; stroke-width: 0.6; }
+  .sis-page .placa{ fill: none; stroke: var(--terra); stroke-width: 1; opacity: 0.55; }
+  .sis-page .placa.subduccao{ stroke-width: 1.6; opacity: 0.8; }
+  .sis-page .marcador-manaus{ fill: var(--ambar); stroke: var(--terra-forte); stroke-width: 1.2; }
+  .sis-page .sismo{ cursor: pointer; transition: opacity 0.15s ease; }
+  .sis-page .sismo:hover{ opacity: 0.75; }
+  .sis-page .sismo.selecionado{ stroke: var(--terra-forte); stroke-width: 2; }
+  .sis-page .sismo.alerta{ stroke: var(--ambar); stroke-width: 2; }
+  .sis-page .legenda-mapa{
+    display:flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 11.5px;
+    color: var(--tinta-fraca);
+    margin-top: 12px;
+    align-items: center;
+  }
+  .sis-page .legenda-item{ display:flex; align-items:center; gap: 6px; }
+  .sis-page .legenda-dot{ width: 10px; height: 10px; border-radius: 50%; display:inline-block; }
+
+  .sis-page .secao-titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--terra-forte);
+    margin: 0 0 14px;
+  }
+
+  .sis-page .lista-sismos{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+    overflow: hidden;
+  }
+  .sis-page .linha-sismo{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--linha);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .sis-page .linha-sismo:last-child{ border-bottom: none; }
+  .sis-page .linha-sismo:hover, .sis-page .linha-sismo.selecionada{ background: var(--terra-neblina); }
+  .sis-page .linha-sismo .mag{
+    font-family:'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--terra-forte);
+    min-width: 46px;
+  }
+  .sis-page .linha-sismo .info{ flex: 1; }
+  .sis-page .linha-sismo .local{ font-size: 13.5px; color: var(--tinta); }
+  .sis-page .linha-sismo .meta{ font-size: 11.5px; color: var(--tinta-fraca); margin-top: 2px; }
+  .sis-page .linha-sismo .distancia{ font-size: 11.5px; color: var(--tinta-fraca); text-align: right; white-space: nowrap; }
+  .sis-page .linha-sismo.alerta .mag{ color: var(--ambar); }
+
+  .sis-page .painel-detalhe{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .sis-page .painel-detalhe h3{
+    font-family:'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--terra-forte);
+    margin: 0 0 8px;
+  }
+  .sis-page .painel-detalhe a{ color: var(--terra); text-decoration: underline; }
+
+  .sis-page footer{
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .sis-page .atualizar{
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    color: var(--tinta);
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+  }
+  .sis-page .atualizar:hover{ border-color: var(--terra); }
+  .sis-page a:focus-visible, .sis-page button:focus-visible{
+    outline: 2px solid var(--terra);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos.html">Artigos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/bem-vindo.html">Bem-vindo ao Nevoeiro</a>
+          </div>
+        </div>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../projetos.html" class="active">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="manaus-tempo.html">Clima em Manaus</a>
+            <a href="manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="manaus-conforto.html">Conforto Térmico</a>
+            <a href="manaus-rio.html">Nível do Rio Negro</a>
+            <a href="amazonas-dados.html">Amazonas em Dados</a>
+            <a href="eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="sismos-america-sul.html" class="active">Sismos — Placa Sul-Americana</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content sis-content">
+      <div class="sis-page">
+        <div class="encontro"></div>
+
+        <header>
+          <div class="eyebrow">América do Sul e Central — dados ao vivo do USGS</div>
+          <h1>Sismos<br><em>Placa Sul-Americana</em></h1>
+          <p class="sub">
+            Manaus fica longe de qualquer zona sísmica ativa, mas prédios altos sobre o solo sedimentar
+            da bacia amazônica balançam com as ondas de sismos bem grandes na Cordilheira dos Andes
+            e no Caribe. Esse painel acompanha a atividade sísmica da região e avisa quando um evento
+            tem magnitude e proximidade suficientes pra isso ser plausível.
+          </p>
+        </header>
+
+        <section class="sis-main">
+          <div id="alertaContainer"></div>
+          <div id="conteudo" class="carregando">Carregando o mapa e os sismos recentes…</div>
+        </section>
+
+        <footer>
+          Dados de sismos do <a href="https://earthquake.usgs.gov/earthquakes/map/" target="_blank" rel="noopener">USGS</a> (atualizados a cada poucos minutos). Limites de placas: catálogo de Peter Bird (2002). O alerta de "pode ser sentido em Manaus" é um critério aproximado (magnitude e distância) — não é uma previsão científica.
+          <br>
+          <button class="atualizar" id="btnAtualizar" style="margin-top:14px;">↻ Atualizar sismos</button>
+          <br>
+          <a class="back-link" href="../projetos.html">← Voltar para Projetos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const BBOX = { minLon: -100, maxLon: -28, minLat: -58, maxLat: 26 };
+const MANAUS = { lat: -3.10194, lon: -60.02472, nome: 'Manaus' };
+const URL_PAISES = 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json';
+const URL_PLACAS = 'https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json';
+const URL_USGS = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
+
+const PAISES_REGIAO = new Set([
+  'BRA','COL','PER','VEN','ECU','BOL','CHL','ARG','PRY','URY','GUY','SUR', // America do Sul
+  'PAN','CRI','NIC','HND','GTM','SLV','BLZ','MEX', // America Central
+  'CUB','JAM','HTI','DOM','BHS','TTO','PRI', // Caribe
+]);
+
+const ALERTA_MAG_MIN = 6.0;
+const ALERTA_RAIO_KM = 3000;
+const ALERTA_JANELA_DIAS = 30;
+
+const PERIODOS = [
+  { id: '1d', nome: '24 horas', dias: 1 },
+  { id: '7d', nome: '7 dias', dias: 7 },
+  { id: '30d', nome: '30 dias', dias: 30 },
+  { id: '90d', nome: '90 dias', dias: 90 },
+];
+const MAGNITUDES = [
+  { id: '2.5', nome: 'M 2,5+', valor: 2.5 },
+  { id: '4.5', nome: 'M 4,5+', valor: 4.5 },
+  { id: '6', nome: 'M 6,0+', valor: 6.0 },
+];
+
+let periodoAtivo = '7d';
+let magnitudeAtiva = '4.5';
+let paisesGeo = null;
+let placasGeo = null;
+let sismos = [];
+let sismoSelecionadoId = null;
+
+function formatarNumero(n, casas = 1){
+  if(n === null || n === undefined || Number.isNaN(n)) return '—';
+  return n.toLocaleString('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas });
+}
+
+async function buscarJson(url){
+  const resp = await fetch(url);
+  if(!resp.ok) throw new Error(`Falha ao buscar ${url}: HTTP ${resp.status}`);
+  return resp.json();
+}
+
+function distanciaKm(lat1, lon1, lat2, lon2){
+  const R = 6371;
+  const toRad = (d) => d * Math.PI / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function projetar([lon, lat]){
+  const LARGURA = 720, ALTURA = 720 * (BBOX.maxLat - BBOX.minLat) / (BBOX.maxLon - BBOX.minLon);
+  const x = (lon - BBOX.minLon) / (BBOX.maxLon - BBOX.minLon) * LARGURA;
+  const y = (BBOX.maxLat - lat) / (BBOX.maxLat - BBOX.minLat) * ALTURA;
+  return [x, y];
+}
+
+function alturaMapa(){
+  return 720 * (BBOX.maxLat - BBOX.minLat) / (BBOX.maxLon - BBOX.minLon);
+}
+
+async function carregarBaseGeografica(){
+  const [paises, placas] = await Promise.all([
+    buscarJson(URL_PAISES),
+    buscarJson(URL_PLACAS),
+  ]);
+  paisesGeo = { ...paises, features: paises.features.filter(f => PAISES_REGIAO.has(f.id)) };
+  placasGeo = placas;
+}
+
+async function buscarSismos(){
+  const periodo = PERIODOS.find(p => p.id === periodoAtivo);
+  const magnitude = MAGNITUDES.find(m => m.id === magnitudeAtiva);
+  const desde = new Date(Date.now() - periodo.dias * 24 * 60 * 60 * 1000).toISOString();
+  const url = `${URL_USGS}?format=geojson&starttime=${desde}&minmagnitude=${magnitude.valor}&minlatitude=${BBOX.minLat}&maxlatitude=${BBOX.maxLat}&minlongitude=${BBOX.minLon}&maxlongitude=${BBOX.maxLon}&orderby=time`;
+  const dados = await buscarJson(url);
+  sismos = dados.features.map(f => {
+    const [lon, lat, profundidade] = f.geometry.coordinates;
+    return {
+      id: f.id,
+      mag: f.properties.mag,
+      local: f.properties.place,
+      tempo: f.properties.time,
+      profundidade,
+      lat, lon,
+      url: f.properties.url,
+      distanciaManaus: distanciaKm(lat, lon, MANAUS.lat, MANAUS.lon),
+    };
+  }).sort((a, b) => b.tempo - a.tempo);
+}
+
+async function buscarAlertas(){
+  const desde = new Date(Date.now() - ALERTA_JANELA_DIAS * 24 * 60 * 60 * 1000).toISOString();
+  const url = `${URL_USGS}?format=geojson&starttime=${desde}&minmagnitude=${ALERTA_MAG_MIN}&minlatitude=${BBOX.minLat}&maxlatitude=${BBOX.maxLat}&minlongitude=${BBOX.minLon}&maxlongitude=${BBOX.maxLon}&orderby=time`;
+  const dados = await buscarJson(url);
+  return dados.features
+    .map(f => {
+      const [lon, lat] = f.geometry.coordinates;
+      return {
+        id: f.id, mag: f.properties.mag, local: f.properties.place, tempo: f.properties.time, url: f.properties.url,
+        distanciaManaus: distanciaKm(lat, lon, MANAUS.lat, MANAUS.lon),
+      };
+    })
+    .filter(s => s.distanciaManaus <= ALERTA_RAIO_KM)
+    .sort((a, b) => b.tempo - a.tempo);
+}
+
+function renderizarAlerta(alertas){
+  const container = document.getElementById('alertaContainer');
+  if(alertas.length){
+    const principal = alertas[0];
+    container.innerHTML = `
+      <div class="alerta-card risco">
+        <div class="alerta-titulo">⚠️ Possível de ter sido sentido em Manaus</div>
+        <p>
+          <strong>M ${formatarNumero(principal.mag)}</strong> — ${principal.local}, a
+          <strong>${formatarNumero(principal.distanciaManaus, 0)} km</strong> de Manaus,
+          em ${new Date(principal.tempo).toLocaleString('pt-BR', { timeZone: 'America/Manaus' })} (horário de Manaus).
+          ${alertas.length > 1 ? `Mais ${alertas.length - 1} evento(s) parecido(s) nos últimos ${ALERTA_JANELA_DIAS} dias.` : ''}
+          <a href="${principal.url}" target="_blank" rel="noopener">Ver no USGS →</a>
+        </p>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+      <div class="alerta-card tranquilo">
+        <div class="alerta-titulo">Sem sismos com potencial de serem sentidos em Manaus</div>
+        <p>Nos últimos ${ALERTA_JANELA_DIAS} dias, nenhum sismo de magnitude ${formatarNumero(ALERTA_MAG_MIN, 1)}+ ocorreu a menos de ${formatarNumero(ALERTA_RAIO_KM, 0)} km de Manaus.</p>
+      </div>
+    `;
+  }
+}
+
+function construirSvgPaises(){
+  return paisesGeo.features.map(f => {
+    const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+    const d = polys.map(poly => poly.map(ring => 'M' + ring.map(projetar).map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join('L') + 'Z').join(' ')).join(' ');
+    return `<path class="pais" d="${d}"></path>`;
+  }).join('');
+}
+
+function construirSvgPlacas(){
+  return placasGeo.features.map(f => {
+    const linhas = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates;
+    const subduccao = f.properties.Type === 'subduction';
+    return linhas.map(linha => {
+      const d = 'M' + linha.map(projetar).map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join('L');
+      return `<path class="placa ${subduccao ? 'subduccao' : ''}" d="${d}"></path>`;
+    }).join('');
+  }).join('');
+}
+
+function raioMarcador(mag){
+  return Math.max(3, mag * 2.2);
+}
+
+function corMarcador(sismo){
+  const alerta = sismo.mag >= ALERTA_MAG_MIN && sismo.distanciaManaus <= ALERTA_RAIO_KM;
+  if(alerta) return 'var(--ambar)';
+  if(sismo.mag >= 6) return 'var(--terra-forte)';
+  if(sismo.mag >= 4.5) return 'var(--terra)';
+  return '#c98a72';
+}
+
+function construirSvgSismos(){
+  return [...sismos].sort((a, b) => a.mag - b.mag).map(s => {
+    const [x, y] = projetar([s.lon, s.lat]);
+    const r = raioMarcador(s.mag);
+    const alerta = s.mag >= ALERTA_MAG_MIN && s.distanciaManaus <= ALERTA_RAIO_KM;
+    const selecionado = s.id === sismoSelecionadoId;
+    return `<circle class="sismo ${alerta ? 'alerta' : ''} ${selecionado ? 'selecionado' : ''}" data-id="${s.id}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}" style="fill:${corMarcador(s)}; fill-opacity:0.75;"><title>M ${formatarNumero(s.mag)} — ${s.local}</title></circle>`;
+  }).join('');
+}
+
+function renderizarMapa(){
+  const [mx, my] = projetar([MANAUS.lon, MANAUS.lat]);
+  const ALTURA = alturaMapa();
+  return `
+    <div class="mapa-card">
+      <svg viewBox="0 0 720 ${ALTURA.toFixed(1)}" xmlns="http://www.w3.org/2000/svg">
+        ${construirSvgPaises()}
+        ${construirSvgPlacas()}
+        ${construirSvgSismos()}
+        <circle class="marcador-manaus" cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="5"><title>Manaus</title></circle>
+      </svg>
+      <div class="legenda-mapa">
+        <span class="legenda-item"><span class="legenda-dot" style="background:var(--ambar); border:1.5px solid var(--terra-forte);"></span>Manaus</span>
+        <span class="legenda-item"><span class="legenda-dot" style="background:#c98a72;"></span>M menor</span>
+        <span class="legenda-item"><span class="legenda-dot" style="background:var(--terra-forte);"></span>M 6+</span>
+        <span class="legenda-item"><span class="legenda-dot" style="background:var(--ambar); box-shadow: 0 0 0 2px var(--ambar);"></span>Alerta (perto de Manaus)</span>
+        <span class="legenda-item"><span style="width:16px; height:2px; background:var(--terra); display:inline-block;"></span>Limite de placa</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderizarAbas(){
+  return `
+    <div class="abas">
+      <div>
+        <div class="grupo-titulo">Período</div>
+        <div class="grupo-abas" id="abasPeriodo">
+          ${PERIODOS.map(p => `<button class="aba ${p.id === periodoAtivo ? 'ativa' : ''}" data-periodo="${p.id}" type="button">${p.nome}</button>`).join('')}
+        </div>
+      </div>
+      <div>
+        <div class="grupo-titulo">Magnitude mínima</div>
+        <div class="grupo-abas" id="abasMagnitude">
+          ${MAGNITUDES.map(m => `<button class="aba ${m.id === magnitudeAtiva ? 'ativa' : ''}" data-magnitude="${m.id}" type="button">${m.nome}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function formatarTempoRelativo(timestamp){
+  const diffMs = Date.now() - timestamp;
+  const horas = diffMs / 3600000;
+  if(horas < 1) return `há ${Math.round(diffMs / 60000)} min`;
+  if(horas < 48) return `há ${Math.round(horas)} h`;
+  return `há ${Math.round(horas / 24)} dias`;
+}
+
+function renderizarDetalhe(sismo){
+  if(!sismo) return '';
+  const alerta = sismo.mag >= ALERTA_MAG_MIN && sismo.distanciaManaus <= ALERTA_RAIO_KM;
+  return `
+    <div class="painel-detalhe">
+      <h3>M ${formatarNumero(sismo.mag)} — ${sismo.local}</h3>
+      <p>
+        <strong>Quando:</strong> ${new Date(sismo.tempo).toLocaleString('pt-BR', { timeZone: 'America/Manaus' })} (horário de Manaus)<br>
+        <strong>Profundidade:</strong> ${formatarNumero(sismo.profundidade, 0)} km<br>
+        <strong>Distância de Manaus:</strong> ${formatarNumero(sismo.distanciaManaus, 0)} km
+        ${alerta ? ' — <strong>dentro do critério de alerta</strong>' : ''}<br>
+        <a href="${sismo.url}" target="_blank" rel="noopener">Ver detalhes no USGS →</a>
+      </p>
+    </div>
+  `;
+}
+
+function renderizarLista(){
+  if(!sismos.length){
+    return '<p class="mini-info">Nenhum sismo encontrado com esses filtros.</p>';
+  }
+  const linhas = sismos.map(s => {
+    const alerta = s.mag >= ALERTA_MAG_MIN && s.distanciaManaus <= ALERTA_RAIO_KM;
+    const selecionada = s.id === sismoSelecionadoId;
+    return `
+      <div class="linha-sismo ${alerta ? 'alerta' : ''} ${selecionada ? 'selecionada' : ''}" data-id="${s.id}">
+        <div class="mag">${formatarNumero(s.mag)}</div>
+        <div class="info">
+          <div class="local">${s.local}</div>
+          <div class="meta">${formatarTempoRelativo(s.tempo)} · profundidade ${formatarNumero(s.profundidade, 0)} km</div>
+        </div>
+        <div class="distancia">${formatarNumero(s.distanciaManaus, 0)} km<br>de Manaus</div>
+      </div>
+    `;
+  }).join('');
+  return `<div class="lista-sismos">${linhas}</div>`;
+}
+
+function selecionarSismo(id){
+  sismoSelecionadoId = id;
+  renderizarConteudo();
+  const el = document.querySelector(`.linha-sismo[data-id="${id}"]`);
+  if(el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function renderizarConteudo(){
+  const conteudo = document.getElementById('conteudo');
+  const sismoSelecionado = sismos.find(s => s.id === sismoSelecionadoId) || null;
+  conteudo.className = '';
+  conteudo.innerHTML = `
+    ${renderizarAbas()}
+    ${renderizarMapa()}
+    ${renderizarDetalhe(sismoSelecionado)}
+    <div class="secao-titulo">Sismos no período (${sismos.length})</div>
+    ${renderizarLista()}
+  `;
+
+  document.querySelectorAll('#abasPeriodo .aba').forEach(btn => {
+    btn.addEventListener('click', async () => { periodoAtivo = btn.dataset.periodo; await recarregarSismos(); });
+  });
+  document.querySelectorAll('#abasMagnitude .aba').forEach(btn => {
+    btn.addEventListener('click', async () => { magnitudeAtiva = btn.dataset.magnitude; await recarregarSismos(); });
+  });
+  document.querySelectorAll('.sismo, .linha-sismo').forEach(el => {
+    el.addEventListener('click', () => selecionarSismo(el.dataset.id));
+  });
+}
+
+async function recarregarSismos(){
+  const conteudo = document.getElementById('conteudo');
+  conteudo.className = 'carregando';
+  conteudo.textContent = 'Buscando sismos…';
+  try{
+    await buscarSismos();
+    sismoSelecionadoId = null;
+    renderizarConteudo();
+  }catch(e){
+    console.error(e);
+    conteudo.className = 'erro';
+    conteudo.textContent = 'Não foi possível buscar os sismos agora. Tente atualizar em instantes.';
+  }
+}
+
+async function carregarTudo(){
+  const conteudo = document.getElementById('conteudo');
+  conteudo.className = 'carregando';
+  conteudo.textContent = 'Carregando o mapa e os sismos recentes…';
+  try{
+    const [, , alertas] = await Promise.all([
+      carregarBaseGeografica(),
+      buscarSismos(),
+      buscarAlertas(),
+    ]);
+    renderizarAlerta(alertas);
+    renderizarConteudo();
+  }catch(e){
+    console.error(e);
+    conteudo.className = 'erro';
+    conteudo.textContent = 'Não foi possível carregar os dados agora. Tente atualizar em instantes.';
+  }
+}
+
+async function atualizarManualmente(){
+  const botao = document.getElementById('btnAtualizar');
+  const textoOriginal = botao.textContent;
+  botao.disabled = true;
+  botao.textContent = 'Atualizando…';
+  try{
+    const alertas = await buscarAlertas();
+    renderizarAlerta(alertas);
+    await recarregarSismos();
+  }catch(e){
+    console.error(e);
+    alert('Não foi possível atualizar agora — os dados exibidos são os últimos carregados com sucesso.');
+  }finally{
+    botao.disabled = false;
+    botao.textContent = textoOriginal;
+  }
+}
+
+document.getElementById('btnAtualizar').addEventListener('click', atualizarManualmente);
+carregarTudo();
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

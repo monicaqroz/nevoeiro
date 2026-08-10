@@ -471,6 +471,7 @@ function alternarBandeira(l, c){
   if(jogoTerminado) return;
   const celula = tabuleiro[l][c];
   if(celula.revelada) return;
+  if(!celula.bandeira && bandeirasColocadas >= nivelAtivo.minas) return;
   celula.bandeira = !celula.bandeira;
   bandeirasColocadas += celula.bandeira ? 1 : -1;
   atualizarContadorMinas();

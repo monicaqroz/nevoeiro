@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estatísticas — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .es-content{ max-width: none; padding: 0; }
+
+  .es-page{
+    position: relative;
+    --fundo: #171b21;
+    --tinta: #e8ecef;
+    --tinta-fraca: #8b96a3;
+    --acento: #f0a83a;
+    --acento-forte: #d68f24;
+    --acento-neblina: rgba(240,168,58,0.12);
+    --linha: #2a313b;
+    --painel: #1f242b;
+    --sombra: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.35);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .es-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .es-page a{ color: inherit; }
+
+  .es-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .es-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .es-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(240,168,58,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(240,168,58,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(240,168,58,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(240,168,58,0); }
+  }
+
+  .es-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .es-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .es-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .es-page .es-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .es-page .destaque-total{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .es-page .destaque-total .valor{
+    font-family:'Fraunces', serif;
+    font-size: clamp(2.4rem, 7vw, 3.4rem);
+    color: var(--acento);
+  }
+  .es-page .destaque-total .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .es-page .painel{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+  }
+  .es-page .painel h2{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin: 0 0 16px;
+  }
+
+  .es-page .grafico-dias{
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 120px;
+  }
+  .es-page .barra-dia{
+    flex: 1;
+    background: var(--acento);
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    opacity: 0.85;
+    position: relative;
+  }
+  .es-page .barra-dia:hover{ opacity: 1; }
+  .es-page .grafico-legenda{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--tinta-fraca);
+  }
+
+  .es-page .duas-colunas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .es-page .lista-ranking{ display: flex; flex-direction: column; gap: 8px; }
+  .es-page .item-ranking{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .es-page .item-ranking .nome{
+    flex: 1;
+    color: var(--tinta);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .es-page .item-ranking .barra-fundo{
+    flex-basis: 90px;
+    height: 6px;
+    background: #12161b;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .es-page .item-ranking .barra-preenchida{
+    height: 100%;
+    background: var(--acento);
+    border-radius: 999px;
+  }
+  .es-page .item-ranking .numero{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    min-width: 26px;
+    text-align: right;
+  }
+
+  .es-page .vazio{
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    font-style: italic;
+  }
+
+  .es-page .atualizado-em{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--tinta-fraca);
+    margin-top: 8px;
+  }
+
+  .es-page .aviso{
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+
+  .es-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .es-page a:focus-visible, .es-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="projetos/manaus-tempo.html">Clima em Manaus</a>
+            <a href="projetos/manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="projetos/manaus-conforto.html">Conforto Térmico</a>
+            <a href="projetos/manaus-rio.html">Nível do Rio Negro</a>
+            <a href="projetos/amazonas-dados.html">Amazonas em Dados</a>
+            <a href="projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="projetos/amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+            <a href="projetos/rastreador-voos.html">Rastreador de Voos</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="jogos.html">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar jogos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="jogos/campo-minado.html">Campo Minado</a>
+            <a href="jogos/zuma.html">Bolinhas</a>
+            <a href="jogos/xadrez.html">Xadrez</a>
+            <a href="jogos/batalha-naval.html">Batalha Naval</a>
+          </div>
+        </div>
+
+        <a href="sobre.html" class="active">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content es-content">
+      <div class="es-page">
+        <header>
+          <div class="eyebrow">Nevoeiro — bastidores</div>
+          <h1>Estatísticas<br><em>do site</em></h1>
+          <p class="sub">
+            Quem visita o Nevoeiro, de onde vem e no que clica. Números coletados pelo GoatCounter,
+            atualizados uma vez por dia.
+          </p>
+        </header>
+
+        <section class="es-main">
+          <div class="destaque-total">
+            <span class="valor" id="totalVisitantes">—</span>
+            <span class="rotulo">visitantes ao todo</span>
+          </div>
+
+          <div class="painel">
+            <h2>Visitas por dia</h2>
+            <div class="grafico-dias" id="graficoDias"></div>
+            <div class="grafico-legenda" id="graficoLegenda"></div>
+          </div>
+
+          <div class="duas-colunas">
+            <div class="painel">
+              <h2>Páginas mais vistas</h2>
+              <div class="lista-ranking" id="listaPaginas"></div>
+            </div>
+            <div class="painel">
+              <h2>Cliques mais frequentes</h2>
+              <div class="lista-ranking" id="listaCliques"></div>
+            </div>
+            <div class="painel">
+              <h2>De onde vêm (países)</h2>
+              <div class="lista-ranking" id="listaPaises"></div>
+            </div>
+            <div class="painel">
+              <h2>Referências</h2>
+              <div class="lista-ranking" id="listaReferencias"></div>
+            </div>
+          </div>
+
+          <div class="atualizado-em" id="atualizadoEm"></div>
+
+          <p class="aviso">
+            Os cliques rastreados são só nos cards de jogos e projetos — o resto da navegação não é
+            individualmente identificado, e nenhum dado pessoal é coletado (o GoatCounter não usa
+            cookies nem guarda o IP de quem visita).
+          </p>
+        </section>
+
+        <footer>
+          Estatísticas de acesso via <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>, exibidas aqui com o visual do site.
+          <br>
+          <a class="back-link" href="sobre.html">← Voltar para Sobre mim</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script id="dados-estatisticas" type="application/json">
+{
+  "atualizadoEm": null,
+  "totalVisitantes": 0,
+  "porDia": [],
+  "paginasMaisVistas": [],
+  "cliquesMaisFrequentes": [],
+  "paises": [],
+  "referencias": []
+}
+</script>
+
+<script>
+const URL_DADOS = 'data/estatisticas-site.json';
+
+function dadosEmbutidos(){
+  return JSON.parse(document.getElementById('dados-estatisticas').textContent);
+}
+
+async function buscarDadosFrescos(){
+  const resp = await fetch(`${URL_DADOS}?t=${Date.now()}`);
+  if(!resp.ok) throw new Error('Falha ao buscar dados atualizados');
+  return resp.json();
+}
+
+function formatarData(dataStr){
+  const [, mes, dia] = dataStr.split('-');
+  return `${dia}/${mes}`;
+}
+
+function renderizarLista(elId, itens, chaveNome, chaveContagem){
+  const el = document.getElementById(elId);
+  if(!itens || itens.length === 0){
+    el.innerHTML = '<div class="vazio">Sem dados ainda.</div>';
+    return;
+  }
+  const maior = Math.max(...itens.map(i => i[chaveContagem]));
+  el.innerHTML = itens.map(item => {
+    const largura = maior > 0 ? Math.max((item[chaveContagem] / maior) * 100, 4) : 0;
+    return `<div class="item-ranking">
+      <span class="nome" title="${item[chaveNome]}">${item[chaveNome]}</span>
+      <span class="barra-fundo"><span class="barra-preenchida" style="width:${largura.toFixed(0)}%"></span></span>
+      <span class="numero">${item[chaveContagem]}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderizarGrafico(porDia){
+  const graf = document.getElementById('graficoDias');
+  const legenda = document.getElementById('graficoLegenda');
+  if(!porDia || porDia.length === 0){
+    graf.innerHTML = '<div class="vazio">Sem dados ainda.</div>';
+    legenda.innerHTML = '';
+    return;
+  }
+  const maior = Math.max(...porDia.map(d => d.visitantes), 1);
+  graf.innerHTML = porDia.map(d => {
+    const altura = Math.max((d.visitantes / maior) * 100, 2);
+    return `<div class="barra-dia" style="height:${altura.toFixed(0)}%" title="${formatarData(d.dia)}: ${d.visitantes} visitantes"></div>`;
+  }).join('');
+  legenda.innerHTML = `<span>${formatarData(porDia[0].dia)}</span><span>${formatarData(porDia[porDia.length - 1].dia)}</span>`;
+}
+
+function renderizar(dados){
+  document.getElementById('totalVisitantes').textContent = (dados.totalVisitantes || 0).toLocaleString('pt-BR');
+  renderizarGrafico(dados.porDia);
+  renderizarLista('listaPaginas', dados.paginasMaisVistas, 'titulo', 'visitantes');
+  renderizarLista('listaCliques', dados.cliquesMaisFrequentes, 'nome', 'visitantes');
+  renderizarLista('listaPaises', dados.paises, 'nome', 'visitantes');
+  renderizarLista('listaReferencias', dados.referencias, 'nome', 'visitantes');
+
+  const atualizadoEl = document.getElementById('atualizadoEm');
+  if(dados.atualizadoEm){
+    const data = new Date(dados.atualizadoEm);
+    atualizadoEl.textContent = `Atualizado em ${data.toLocaleString('pt-BR')}`;
+  } else {
+    atualizadoEl.textContent = '';
+  }
+}
+
+async function iniciar(){
+  renderizar(dadosEmbutidos());
+  if(location.protocol === 'file:') return;
+  try{
+    renderizar(await buscarDadosFrescos());
+  }catch(e){
+    console.error(e);
+  }
+}
+
+iniciar();
+</script>
+
+<script src="js/nav.js"></script>
+<script data-goatcounter="https://nevoeiro.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

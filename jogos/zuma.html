@@ -459,6 +459,9 @@ function verificarERemoverGrupos(indiceAlvo){
       cadeia.splice(ini, tamanhoGrupo);
       pontuacao += tamanhoGrupo * 10 + (combos > 0 ? 20 : 0);
       combos++;
+      if(ini > 0){
+        frenteDistancia -= tamanhoGrupo * ESPACAMENTO;
+      }
       indice = ini > 0 ? ini - 1 : ini;
       mudou = cadeia.length > 0;
     }

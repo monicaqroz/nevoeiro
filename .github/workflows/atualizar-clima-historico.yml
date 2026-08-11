@@ -51,4 +51,5 @@ jobs:
           fi
           git add data/clima-historico-manaus.json data/inmet-manaus-csv artigos/clima-manaus-historia.html
           git commit -m "Atualiza clima histórico de Manaus (INMET)"
+          git pull --rebase origin main
           git push

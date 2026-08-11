@@ -54,4 +54,5 @@ jobs:
           fi
           git add data/educacao-am.json projetos/amazonas-educacao.html
           git commit -m "Atualiza dados de educação básica do Amazonas (INEP)"
+          git pull --rebase origin main
           git push

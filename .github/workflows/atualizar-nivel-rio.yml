@@ -31,4 +31,5 @@ jobs:
           fi
           git add data/nivel-rio-negro.json
           git commit -m "Atualiza nível do Rio Negro"
+          git pull --rebase origin main
           git push

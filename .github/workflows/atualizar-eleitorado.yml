@@ -55,4 +55,5 @@ jobs:
           fi
           git add data/eleitorado-am.json data/politicos-am.json projetos/eleitorado-am.html
           git commit -m "Atualiza perfil do eleitorado e raio-x político do Amazonas (TSE)"
+          git pull --rebase origin main
           git push

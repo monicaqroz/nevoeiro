@@ -33,4 +33,5 @@ jobs:
           fi
           git add data/estatisticas-site.json estatisticas.html
           git commit -m "Atualiza estatísticas do site"
+          git pull --rebase origin main
           git push

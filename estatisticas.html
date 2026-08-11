@@ -152,16 +152,16 @@
     align-items: center;
     gap: 10px;
     font-size: 13px;
+    flex-wrap: wrap;
   }
   .es-page .item-ranking .nome{
-    flex: 1;
+    flex: 1 1 100%;
     color: var(--tinta);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-break: break-word;
   }
   .es-page .item-ranking .barra-fundo{
-    flex-basis: 90px;
+    flex: 1 1 auto;
+    min-width: 60px;
     height: 6px;
     background: #12161b;
     border-radius: 999px;
@@ -232,15 +232,15 @@
             </button>
           </div>
           <div class="nav-submenu">
+            <a href="projetos/amazonas-dados.html">Amazonas em Dados</a>
             <a href="projetos/manaus-tempo.html">Clima em Manaus</a>
             <a href="projetos/manaus-estacao.html">Clima em Manaus — Estação</a>
             <a href="projetos/manaus-conforto.html">Conforto Térmico</a>
-            <a href="projetos/manaus-rio.html">Nível do Rio Negro</a>
-            <a href="projetos/amazonas-dados.html">Amazonas em Dados</a>
-            <a href="projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
             <a href="projetos/amazonas-educacao.html">Educação Básica no Amazonas</a>
-            <a href="projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+            <a href="projetos/manaus-rio.html">Nível do Rio Negro</a>
+            <a href="projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
             <a href="projetos/rastreador-voos.html">Rastreador de Voos</a>
+            <a href="projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
           </div>
         </div>
 
@@ -692,21 +692,45 @@ function formatarData(dataStr){
   return `${dia}/${mes}`;
 }
 
+function limparTituloPagina(titulo){
+  return (titulo || '').replace(/\s*—\s*Nevoeiro\s*$/, '');
+}
+
 function renderizarLista(elId, itens, chaveNome, chaveContagem){
   const el = document.getElementById(elId);
+  el.innerHTML = '';
   if(!itens || itens.length === 0){
-    el.innerHTML = '<div class="vazio">Sem dados ainda.</div>';
+    const vazio = document.createElement('div');
+    vazio.className = 'vazio';
+    vazio.textContent = 'Sem dados ainda.';
+    el.appendChild(vazio);
     return;
   }
   const maior = Math.max(...itens.map(i => i[chaveContagem]));
-  el.innerHTML = itens.map(item => {
+  itens.forEach(item => {
     const largura = maior > 0 ? Math.max((item[chaveContagem] / maior) * 100, 4) : 0;
-    return `<div class="item-ranking">
-      <span class="nome" title="${item[chaveNome]}">${item[chaveNome]}</span>
-      <span class="barra-fundo"><span class="barra-preenchida" style="width:${largura.toFixed(0)}%"></span></span>
-      <span class="numero">${item[chaveContagem]}</span>
-    </div>`;
-  }).join('');
+
+    const linha = document.createElement('div');
+    linha.className = 'item-ranking';
+
+    const nome = document.createElement('span');
+    nome.className = 'nome';
+    nome.textContent = item[chaveNome];
+
+    const barraFundo = document.createElement('span');
+    barraFundo.className = 'barra-fundo';
+    const barraPreenchida = document.createElement('span');
+    barraPreenchida.className = 'barra-preenchida';
+    barraPreenchida.style.width = largura.toFixed(0) + '%';
+    barraFundo.appendChild(barraPreenchida);
+
+    const numero = document.createElement('span');
+    numero.className = 'numero';
+    numero.textContent = item[chaveContagem];
+
+    linha.append(nome, barraFundo, numero);
+    el.appendChild(linha);
+  });
 }
 
 function renderizarGrafico(porDia){
@@ -728,7 +752,8 @@ function renderizarGrafico(porDia){
 function renderizar(dados){
   document.getElementById('totalVisitantes').textContent = (dados.totalVisitantes || 0).toLocaleString('pt-BR');
   renderizarGrafico(dados.porDia);
-  renderizarLista('listaPaginas', dados.paginasMaisVistas, 'titulo', 'visitantes');
+  const paginasLimpas = (dados.paginasMaisVistas || []).map(p => ({ ...p, titulo: limparTituloPagina(p.titulo) }));
+  renderizarLista('listaPaginas', paginasLimpas, 'titulo', 'visitantes');
   renderizarLista('listaCliques', dados.cliquesMaisFrequentes, 'nome', 'visitantes');
   renderizarLista('listaPaises', dados.paises, 'nome', 'visitantes');
   renderizarLista('listaReferencias', dados.referencias, 'nome', 'visitantes');

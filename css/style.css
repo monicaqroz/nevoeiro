@@ -490,6 +490,11 @@ a:hover {
   font-size: 0.85rem;
 }
 
+.botao-estatisticas,
+.botao-estatisticas:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
 .botao-estatisticas {
   display: inline-flex;
   align-items: center;
@@ -498,17 +503,13 @@ a:hover {
   padding: 10px 20px;
   border-radius: 999px;
   background: var(--orange);
-  color: #ffffff;
   font-size: 0.85rem;
   font-weight: 600;
-  text-decoration: none;
   box-shadow: 0 4px 14px rgba(240, 93, 35, 0.25);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: box-shadow 0.15s ease;
 }
 .botao-estatisticas:hover {
-  transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(240, 93, 35, 0.35);
-  color: #ffffff;
 }
 
 /* Responsivo */

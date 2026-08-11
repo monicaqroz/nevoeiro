@@ -334,7 +334,7 @@ const CANVAS_LARGURA = 760, CANVAS_ALTURA = 480;
 const RAIO_BOLA = 14;
 const ESPACAMENTO = RAIO_BOLA * 2;
 const VELOCIDADE_TIRO = 720;
-const LIMIAR_COLISAO = RAIO_BOLA * 1.9;
+const LIMIAR_COLISAO = RAIO_BOLA * 2.3;
 
 const CAMINHO_PONTOS = [
   [50, 440], [50, 60], [710, 60], [710, 420], [280, 420],
@@ -410,7 +410,7 @@ function gerarCadeiaInicial(){
     cores.push(cor);
   }
   cadeia = cores.map(cor => ({ cor }));
-  frenteDistancia = 0;
+  frenteDistancia = ESPACAMENTO * Math.min(12, cadeia.length - 1);
 }
 
 function distanciaDaBola(indice){
@@ -551,12 +551,19 @@ function atualizar(dt){
   }
 
   if(bolaDisparada){
-    bolaDisparada.x += bolaDisparada.vx * dt;
-    bolaDisparada.y += bolaDisparada.vy * dt;
+    const distanciaPercorrida = Math.hypot(bolaDisparada.vx, bolaDisparada.vy) * dt;
+    const passos = Math.max(1, Math.ceil(distanciaPercorrida / (LIMIAR_COLISAO * 0.6)));
+    const dtPasso = dt / passos;
 
-    if(bolaDisparada.x < -30 || bolaDisparada.x > CANVAS_LARGURA + 30 || bolaDisparada.y < -30 || bolaDisparada.y > CANVAS_ALTURA + 30){
-      bolaDisparada = null;
-    } else {
+    for(let passo = 0; passo < passos && bolaDisparada; passo++){
+      bolaDisparada.x += bolaDisparada.vx * dtPasso;
+      bolaDisparada.y += bolaDisparada.vy * dtPasso;
+
+      if(bolaDisparada.x < -30 || bolaDisparada.x > CANVAS_LARGURA + 30 || bolaDisparada.y < -30 || bolaDisparada.y > CANVAS_ALTURA + 30){
+        bolaDisparada = null;
+        break;
+      }
+
       let colidiu = false;
       for(let i = 0; i < cadeia.length; i++){
         const d = distanciaDaBola(i);
@@ -662,7 +669,12 @@ function desenhar(){
 function loop(tempo){
   const dt = ultimoTempo ? Math.min((tempo - ultimoTempo) / 1000, 0.05) : 0;
   ultimoTempo = tempo;
-  atualizar(dt);
+  try{
+    atualizar(dt);
+  } catch(erro){
+    console.error('Erro no loop do jogo:', erro);
+    bolaDisparada = null;
+  }
   desenhar();
   requestAnimationFrame(loop);
 }

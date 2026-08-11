@@ -297,27 +297,27 @@
   ],
   "cliquesMaisFrequentes": [
     {
-      "nome": "\n        📊 Estatísticas do site\n      ",
+      "nome": "📊 Estatísticas do site",
       "visitantes": 3
     },
     {
-      "nome": "\n          <span class=\"card-icone\"><img src=\"assets/projetos/rastreador-voos.svg\" alt=\"\" loading=\"lazy\"></span>\n          <h2>Rastreador de Voos</h2>\n        ",
+      "nome": "Rastreador de Voos",
       "visitantes": 2
     },
     {
-      "nome": "\n          <span class=\"card-icone\"><img src=\"assets/projetos/manaus-tempo.svg\" alt=\"\" loading=\"lazy\"></span>\n          <h2>Clima em Manaus</h2>\n        ",
+      "nome": "Clima em Manaus",
       "visitantes": 1
     },
     {
-      "nome": "\n          <span class=\"card-icone\"><img src=\"assets/jogos/batalha-naval.svg\" alt=\"\" loading=\"lazy\"></span>\n          <h2>Batalha Naval</h2>\n          <p>Posicione sua frota e afunde os navios do comp",
+      "nome": "Batalha Naval Posicione sua frota e afunde os navios do comp",
       "visitantes": 1
     },
     {
-      "nome": "\n          <span class=\"card-icone\"><img src=\"assets/projetos/sismos-america-sul.svg\" alt=\"\" loading=\"lazy\"></span>\n          <h2>Sismos — Placa Sul-Americana</h2>\n        ",
+      "nome": "Sismos — Placa Sul-Americana",
       "visitantes": 1
     },
     {
-      "nome": "\n          <span class=\"card-icone\"><img src=\"assets/jogos/campo-minado.svg\" alt=\"\" loading=\"lazy\"></span>\n          <h2>Campo Minado</h2>\n          <p>O clássico jogo de dedução, com quatro níveis de",
+      "nome": "Campo Minado O clássico jogo de dedução, com quatro níveis de",
       "visitantes": 1
     }
   ],

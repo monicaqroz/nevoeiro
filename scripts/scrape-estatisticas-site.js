@@ -52,19 +52,29 @@ async function buscarTotal() {
   };
 }
 
+function limparTexto(texto) {
+  // Cliques registrados antes de existir data-goatcounter-title chegam com o
+  // HTML interno do elemento como "título" (comportamento padrão do GoatCounter).
+  // Remove as tags pra pelo menos sobrar um texto legível nesses registros antigos.
+  return (texto || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 async function buscarHits() {
   const dados = await chamarApi('/stats/hits', { limit: 100 });
   const hits = dados.hits || [];
 
   const paginas = hits
     .filter((h) => !h.event)
-    .map((h) => ({ caminho: h.path, titulo: h.title || h.path, visitantes: h.count }))
+    .map((h) => ({ caminho: h.path, titulo: limparTexto(h.title) || h.path, visitantes: h.count }))
     .sort((a, b) => b.visitantes - a.visitantes)
     .slice(0, 10);
 
   const cliques = hits
     .filter((h) => h.event)
-    .map((h) => ({ nome: h.title || h.path, visitantes: h.count }))
+    .map((h) => ({ nome: limparTexto(h.title) || h.path, visitantes: h.count }))
     .sort((a, b) => b.visitantes - a.visitantes)
     .slice(0, 10);
 

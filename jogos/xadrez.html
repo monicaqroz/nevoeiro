@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xadrez — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .xd-content{ max-width: none; padding: 0; }
+
+  .xd-page{
+    position: relative;
+    --fundo: #171b21;
+    --tinta: #e8ecef;
+    --tinta-fraca: #8b96a3;
+    --acento: #3ddc97;
+    --acento-forte: #23a172;
+    --acento-neblina: rgba(61,220,151,0.1);
+    --perigo: #e2574c;
+    --linha: #2a313b;
+    --painel: #1f242b;
+    --celula-hover: #364152;
+    --casa-clara: #3a4453;
+    --casa-escura: #232933;
+    --casa-selecionada: rgba(61,220,151,0.55);
+    --casa-destino: rgba(61,220,151,0.6);
+    --sombra: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.35);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .xd-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .xd-page a{ color: inherit; }
+
+  .xd-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .xd-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .xd-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(61,220,151,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(61,220,151,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(61,220,151,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(61,220,151,0); }
+  }
+
+  .xd-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .xd-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .xd-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .xd-page .xd-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .xd-page .niveis{ display:flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .xd-page .nivel-btn{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--painel);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .xd-page .nivel-btn:hover{ border-color: var(--acento); color: var(--tinta); }
+  .xd-page .nivel-btn.ativo{ background: var(--acento-forte); border-color: var(--acento-forte); color: #0c1410; }
+
+  .xd-page .painel-jogo{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--sombra);
+  }
+
+  .xd-page .hud{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .xd-page .hud-item{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--tinta);
+    background: #12161b;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 8px 14px;
+  }
+  .xd-page .hud-item.xeque-aviso:not(:empty){ color: var(--perigo); border-color: rgba(226,87,76,0.4); }
+  .xd-page .btn-reiniciar{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: #12161b;
+  }
+  .xd-page .btn-reiniciar:hover{ border-color: var(--acento); color: var(--tinta); }
+
+  .xd-page .quadro-xadrez{ position: relative; max-width: 480px; margin: 0 auto; }
+  .xd-page .tabuleiro-xadrez{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--linha);
+    touch-action: manipulation;
+  }
+  .xd-page .casa{
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    aspect-ratio: 1;
+    font-size: clamp(22px, 5.4vw, 38px);
+    line-height: 1;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .xd-page .casa.clara{ background: var(--casa-clara); }
+  .xd-page .casa.escura{ background: var(--casa-escura); }
+  .xd-page .casa.selecionada{ box-shadow: inset 0 0 0 3px var(--acento); }
+  .xd-page .casa.xeque{ box-shadow: inset 0 0 0 3px var(--perigo); background: rgba(226,87,76,0.45); }
+  .xd-page .casa.destino::after{
+    content: '';
+    position: absolute;
+    width: 26%;
+    height: 26%;
+    border-radius: 50%;
+    background: var(--casa-destino);
+  }
+  .xd-page .casa.destino-captura{ box-shadow: inset 0 0 0 4px var(--casa-destino); }
+  .xd-page .peca-branca{ color: #f5f5f0; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+  .xd-page .peca-preta{ color: #0c1116; text-shadow: 0 1px 1px rgba(255,255,255,0.15); }
+
+  .xd-page .overlay-promocao{
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(14,17,20,0.9);
+    border-radius: 10px;
+  }
+  .xd-page .overlay-promocao.visivel{ display: flex; }
+  .xd-page .btn-promocao{
+    all: unset;
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border-radius: 10px;
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    color: #f5f5f0;
+  }
+  .xd-page .btn-promocao:hover{ border-color: var(--acento); background: var(--celula-hover); }
+
+  .xd-page .overlay-fim{
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    background: rgba(14,17,20,0.9);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+  .xd-page .overlay-fim.visivel{ display: flex; }
+  .xd-page .overlay-fim .titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+  .xd-page .overlay-fim.venceu .titulo{ color: var(--acento); }
+  .xd-page .overlay-fim.perdeu .titulo{ color: var(--perigo); }
+  .xd-page .overlay-fim.empate .titulo{ color: var(--tinta-fraca); }
+  .xd-page .overlay-fim .pontos{ font-family:'JetBrains Mono', monospace; color: var(--tinta-fraca); font-size: 13px; }
+  .xd-page .overlay-fim button{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--acento);
+    color: #0c1410;
+  }
+
+  .xd-page .capturadas-linha{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+    min-height: 28px;
+    font-size: 1.15rem;
+  }
+  .xd-page .capturadas{ display: flex; flex-wrap: wrap; gap: 2px; max-width: 46%; }
+
+  .xd-page .historico-lances-wrap{
+    margin-top: 20px;
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .xd-page .historico-titulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin-bottom: 8px;
+  }
+  .xd-page .historico-lances{
+    max-height: 140px;
+    overflow-y: auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--tinta);
+  }
+  .xd-page .historico-lances div{ padding: 1px 0; }
+  .xd-page .historico-lances:empty::before{ content: 'Nenhum lance ainda.'; color: var(--tinta-fraca); }
+
+  .xd-page .instrucoes{
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+  .xd-page .instrucoes strong{ color: var(--tinta); }
+
+  .xd-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .xd-page a:focus-visible, .xd-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../projetos/manaus-tempo.html">Clima em Manaus</a>
+            <a href="../projetos/manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="../projetos/manaus-conforto.html">Conforto Térmico</a>
+            <a href="../projetos/manaus-rio.html">Nível do Rio Negro</a>
+            <a href="../projetos/amazonas-dados.html">Amazonas em Dados</a>
+            <a href="../projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="../projetos/amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="../projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../jogos.html">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar jogos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="campo-minado.html">Campo Minado</a>
+            <a href="zuma.html">Bolinhas</a>
+            <a href="xadrez.html" class="active">Xadrez</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content xd-content">
+      <div class="xd-page">
+        <header>
+          <div class="eyebrow">Jogos — estratégia</div>
+          <h1>Xadrez<br><em>contra a Máquina</em></h1>
+          <p class="sub">
+            Você joga com as brancas contra um adversário virtual. Clique numa peça pra ver os
+            movimentos possíveis e clique no destino pra jogar.
+          </p>
+        </header>
+
+        <section class="xd-main">
+          <div class="niveis" id="niveis"></div>
+
+          <div class="painel-jogo">
+            <div class="hud">
+              <div class="hud-item" id="statusTurno">Sua vez (brancas)</div>
+              <div class="hud-item xeque-aviso" id="statusXeque"></div>
+              <button class="btn-reiniciar" id="btnReiniciar" type="button">↻ Reiniciar</button>
+            </div>
+
+            <div class="quadro-xadrez">
+              <div class="tabuleiro-xadrez" id="tabuleiroXadrez"></div>
+              <div class="overlay-promocao" id="overlayPromocao"></div>
+              <div class="overlay-fim" id="overlayFim">
+                <div class="titulo" id="overlayTitulo">Fim de jogo</div>
+                <div class="pontos" id="overlayMensagem"></div>
+                <button id="btnJogarDeNovo" type="button">Jogar de novo</button>
+              </div>
+            </div>
+
+            <div class="capturadas-linha">
+              <div class="capturadas" id="capturadasPorBranco"></div>
+              <div class="capturadas" id="capturadasPorPreto"></div>
+            </div>
+          </div>
+
+          <div class="historico-lances-wrap">
+            <div class="historico-titulo">Lances</div>
+            <div class="historico-lances" id="historicoLances"></div>
+          </div>
+
+          <p class="instrucoes">
+            <strong>Como jogar:</strong> clique numa peça pra destacar os movimentos possíveis, depois clique no destino.
+            Roque e captura en passant funcionam normalmente; ao promover um peão, escolha a peça na tela.<br>
+            Xeque, xeque-mate e afogamento (empate por falta de movimentos) são detectados automaticamente.<br>
+            Nos níveis mais altos o computador pensa mais jogadas à frente — e erra menos.
+          </p>
+        </section>
+
+        <footer>
+          Xadrez contra o computador, feito do zero em HTML/CSS/JS — busca minimax com poda alfa-beta.
+          <br>
+          <a class="back-link" href="../jogos.html">← Voltar para Jogos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const GLIFOS = {
+  wK:'♔', wQ:'♕', wR:'♖', wB:'♗', wN:'♘', wP:'♙',
+  bK:'♚', bQ:'♛', bR:'♜', bB:'♝', bN:'♞', bP:'♟',
+};
+
+const NIVEIS = [
+  { id: 'facil', nome: 'Fácil', profundidade: 1, erro: 0.4 },
+  { id: 'medio', nome: 'Médio', profundidade: 2, erro: 0.12 },
+  { id: 'dificil', nome: 'Difícil', profundidade: 3, erro: 0 },
+];
+
+const VALORES_PECA = { P: 100, N: 320, B: 330, R: 500, Q: 900, K: 0 };
+
+const PST_PEAO = [
+  [0,0,0,0,0,0,0,0],
+  [50,50,50,50,50,50,50,50],
+  [10,10,20,30,30,20,10,10],
+  [5,5,10,25,25,10,5,5],
+  [0,0,0,20,20,0,0,0],
+  [5,-5,-10,0,0,-10,-5,5],
+  [5,10,10,-20,-20,10,10,5],
+  [0,0,0,0,0,0,0,0],
+];
+const PST_CENTRAL = [
+  [-20,-10,-10,-10,-10,-10,-10,-20],
+  [-10,0,0,0,0,0,0,-10],
+  [-10,0,5,5,5,5,0,-10],
+  [-10,0,5,10,10,5,0,-10],
+  [-10,0,5,10,10,5,0,-10],
+  [-10,0,5,5,5,5,0,-10],
+  [-10,0,0,0,0,0,0,-10],
+  [-20,-10,-10,-10,-10,-10,-10,-20],
+];
+
+const CORJOGADOR = 'w';
+
+let nivelAtivo = NIVEIS[1];
+let tabuleiro = [];
+let estadoJogo = null;
+let selecionada = null;
+let movimentosLegaisSelecionados = [];
+let jogoTerminado = false;
+let pensandoIA = false;
+let promocaoPendente = null;
+let pecasCapturadasPorBranco = [];
+let pecasCapturadasPorPreto = [];
+let historicoTexto = [];
+let numeroLance = 1;
+
+function corDaPeca(p){ return p ? p[0] : null; }
+function tipoDaPeca(p){ return p ? p[1] : null; }
+function corOposta(cor){ return cor === 'w' ? 'b' : 'w'; }
+function dentroDoTabuleiro(l, c){ return l >= 0 && l < 8 && c >= 0 && c < 8; }
+
+function criarTabuleiroInicial(){
+  const linhaFundo = ['R','N','B','Q','K','B','N','R'];
+  const t = Array.from({ length: 8 }, () => Array(8).fill(null));
+  for(let c = 0; c < 8; c++){
+    t[0][c] = 'b' + linhaFundo[c];
+    t[1][c] = 'bP';
+    t[6][c] = 'wP';
+    t[7][c] = 'w' + linhaFundo[c];
+  }
+  return t;
+}
+
+function encontrarRei(tab, cor){
+  for(let l = 0; l < 8; l++){
+    for(let c = 0; c < 8; c++){
+      if(tab[l][c] === cor + 'K') return [l, c];
+    }
+  }
+  return null;
+}
+
+function casaAtacada(tab, l, c, corAtacante){
+  const direcaoPeao = corAtacante === 'w' ? 1 : -1;
+  for(const dc of [-1, 1]){
+    const pl = l + direcaoPeao, pc = c + dc;
+    if(dentroDoTabuleiro(pl, pc) && tab[pl][pc] === corAtacante + 'P') return true;
+  }
+  const saltosCavalo = [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
+  for(const [dl, dc] of saltosCavalo){
+    const nl = l + dl, nc = c + dc;
+    if(dentroDoTabuleiro(nl, nc) && tab[nl][nc] === corAtacante + 'N') return true;
+  }
+  for(let dl = -1; dl <= 1; dl++){
+    for(let dc = -1; dc <= 1; dc++){
+      if(dl === 0 && dc === 0) continue;
+      const nl = l + dl, nc = c + dc;
+      if(dentroDoTabuleiro(nl, nc) && tab[nl][nc] === corAtacante + 'K') return true;
+    }
+  }
+  const diagonais = [[-1,-1],[-1,1],[1,-1],[1,1]];
+  for(const [dl, dc] of diagonais){
+    let nl = l + dl, nc = c + dc;
+    while(dentroDoTabuleiro(nl, nc)){
+      const p = tab[nl][nc];
+      if(p){
+        if(corDaPeca(p) === corAtacante && (tipoDaPeca(p) === 'B' || tipoDaPeca(p) === 'Q')) return true;
+        break;
+      }
+      nl += dl; nc += dc;
+    }
+  }
+  const retas = [[-1,0],[1,0],[0,-1],[0,1]];
+  for(const [dl, dc] of retas){
+    let nl = l + dl, nc = c + dc;
+    while(dentroDoTabuleiro(nl, nc)){
+      const p = tab[nl][nc];
+      if(p){
+        if(corDaPeca(p) === corAtacante && (tipoDaPeca(p) === 'R' || tipoDaPeca(p) === 'Q')) return true;
+        break;
+      }
+      nl += dl; nc += dc;
+    }
+  }
+  return false;
+}
+
+function reiEmXeque(tab, cor){
+  const posRei = encontrarRei(tab, cor);
+  if(!posRei) return false;
+  return casaAtacada(tab, posRei[0], posRei[1], corOposta(cor));
+}
+
+function adicionarMovimento(lista, de, para, tab, opts){
+  lista.push(Object.assign({
+    de, para,
+    pecaMovida: tab[de[0]][de[1]],
+    pecaCapturada: tab[para[0]][para[1]],
+    enPassant: false,
+    roque: null,
+    promocao: null,
+    duploPasso: false,
+  }, opts || {}));
+}
+
+function gerarMovimentosPeao(tab, l, c, cor, estado, lista){
+  const dir = cor === 'w' ? -1 : 1;
+  const linhaInicial = cor === 'w' ? 6 : 1;
+  const linhaPromocao = cor === 'w' ? 0 : 7;
+  const pecasPromocao = ['Q','R','B','N'];
+
+  const l1 = l + dir;
+  if(dentroDoTabuleiro(l1, c) && !tab[l1][c]){
+    if(l1 === linhaPromocao){
+      for(const pr of pecasPromocao) adicionarMovimento(lista, [l,c], [l1,c], tab, { promocao: pr });
+    } else {
+      adicionarMovimento(lista, [l,c], [l1,c], tab);
+      const l2 = l + dir * 2;
+      if(l === linhaInicial && !tab[l2][c]){
+        adicionarMovimento(lista, [l,c], [l2,c], tab, { duploPasso: true });
+      }
+    }
+  }
+  for(const dc of [-1, 1]){
+    const nl = l + dir, nc = c + dc;
+    if(!dentroDoTabuleiro(nl, nc)) continue;
+    const alvo = tab[nl][nc];
+    if(alvo && corDaPeca(alvo) !== cor){
+      if(nl === linhaPromocao){
+        for(const pr of pecasPromocao) adicionarMovimento(lista, [l,c], [nl,nc], tab, { promocao: pr });
+      } else {
+        adicionarMovimento(lista, [l,c], [nl,nc], tab);
+      }
+    } else if(estado.enPassantAlvo && estado.enPassantAlvo[0] === nl && estado.enPassantAlvo[1] === nc){
+      adicionarMovimento(lista, [l,c], [nl,nc], tab, { enPassant: true, pecaCapturada: tab[l][nc] });
+    }
+  }
+}
+
+function gerarMovimentosCavalo(tab, l, c, cor, lista){
+  const saltos = [[-2,-1],[-2,1],[-1,-2],[-1,2],[1,-2],[1,2],[2,-1],[2,1]];
+  for(const [dl, dc] of saltos){
+    const nl = l + dl, nc = c + dc;
+    if(!dentroDoTabuleiro(nl, nc)) continue;
+    const alvo = tab[nl][nc];
+    if(!alvo || corDaPeca(alvo) !== cor) adicionarMovimento(lista, [l,c], [nl,nc], tab);
+  }
+}
+
+function gerarMovimentosDeslizante(tab, l, c, cor, direcoes, lista){
+  for(const [dl, dc] of direcoes){
+    let nl = l + dl, nc = c + dc;
+    while(dentroDoTabuleiro(nl, nc)){
+      const alvo = tab[nl][nc];
+      if(!alvo){
+        adicionarMovimento(lista, [l,c], [nl,nc], tab);
+      } else {
+        if(corDaPeca(alvo) !== cor) adicionarMovimento(lista, [l,c], [nl,nc], tab);
+        break;
+      }
+      nl += dl; nc += dc;
+    }
+  }
+}
+
+function gerarMovimentosRei(tab, l, c, cor, estado, lista){
+  for(let dl = -1; dl <= 1; dl++){
+    for(let dc = -1; dc <= 1; dc++){
+      if(dl === 0 && dc === 0) continue;
+      const nl = l + dl, nc = c + dc;
+      if(!dentroDoTabuleiro(nl, nc)) continue;
+      const alvo = tab[nl][nc];
+      if(!alvo || corDaPeca(alvo) !== cor) adicionarMovimento(lista, [l,c], [nl,nc], tab);
+    }
+  }
+
+  if(reiEmXeque(tab, cor)) return;
+  const linhaBase = cor === 'w' ? 7 : 0;
+  if(l !== linhaBase || c !== 4) return;
+  const adversario = corOposta(cor);
+
+  if(estado.direitosRoque[cor + 'K'] && !tab[linhaBase][5] && !tab[linhaBase][6] && tab[linhaBase][7] === cor + 'R'){
+    if(!casaAtacada(tab, linhaBase, 5, adversario) && !casaAtacada(tab, linhaBase, 6, adversario)){
+      adicionarMovimento(lista, [l,c], [linhaBase,6], tab, { roque: 'curto' });
+    }
+  }
+  if(estado.direitosRoque[cor + 'Q'] && !tab[linhaBase][1] && !tab[linhaBase][2] && !tab[linhaBase][3] && tab[linhaBase][0] === cor + 'R'){
+    if(!casaAtacada(tab, linhaBase, 3, adversario) && !casaAtacada(tab, linhaBase, 2, adversario)){
+      adicionarMovimento(lista, [l,c], [linhaBase,2], tab, { roque: 'longo' });
+    }
+  }
+}
+
+function gerarMovimentosPseudoLegais(tab, cor, estado){
+  const lista = [];
+  for(let l = 0; l < 8; l++){
+    for(let c = 0; c < 8; c++){
+      const p = tab[l][c];
+      if(!p || corDaPeca(p) !== cor) continue;
+      const tipo = tipoDaPeca(p);
+      if(tipo === 'P') gerarMovimentosPeao(tab, l, c, cor, estado, lista);
+      else if(tipo === 'N') gerarMovimentosCavalo(tab, l, c, cor, lista);
+      else if(tipo === 'B') gerarMovimentosDeslizante(tab, l, c, cor, [[-1,-1],[-1,1],[1,-1],[1,1]], lista);
+      else if(tipo === 'R') gerarMovimentosDeslizante(tab, l, c, cor, [[-1,0],[1,0],[0,-1],[0,1]], lista);
+      else if(tipo === 'Q') gerarMovimentosDeslizante(tab, l, c, cor, [[-1,-1],[-1,1],[1,-1],[1,1],[-1,0],[1,0],[0,-1],[0,1]], lista);
+      else if(tipo === 'K') gerarMovimentosRei(tab, l, c, cor, estado, lista);
+    }
+  }
+  return lista;
+}
+
+function aplicarMovimento(tab, estado, mov){
+  const novoTab = tab.map(linha => linha.slice());
+  const novoEstado = {
+    turno: corOposta(estado.turno),
+    direitosRoque: Object.assign({}, estado.direitosRoque),
+    enPassantAlvo: null,
+  };
+
+  const peca = novoTab[mov.de[0]][mov.de[1]];
+  novoTab[mov.de[0]][mov.de[1]] = null;
+
+  if(mov.enPassant){
+    novoTab[mov.de[0]][mov.para[1]] = null;
+  }
+
+  novoTab[mov.para[0]][mov.para[1]] = mov.promocao ? (corDaPeca(peca) + mov.promocao) : peca;
+
+  if(mov.roque === 'curto'){
+    const linhaBase = mov.de[0];
+    novoTab[linhaBase][5] = novoTab[linhaBase][7];
+    novoTab[linhaBase][7] = null;
+  } else if(mov.roque === 'longo'){
+    const linhaBase = mov.de[0];
+    novoTab[linhaBase][3] = novoTab[linhaBase][0];
+    novoTab[linhaBase][0] = null;
+  }
+
+  const cor = corDaPeca(peca);
+  const tipo = tipoDaPeca(peca);
+  if(tipo === 'K'){
+    novoEstado.direitosRoque[cor + 'K'] = false;
+    novoEstado.direitosRoque[cor + 'Q'] = false;
+  }
+  if(tipo === 'R'){
+    const linhaBase = cor === 'w' ? 7 : 0;
+    if(mov.de[0] === linhaBase && mov.de[1] === 0) novoEstado.direitosRoque[cor + 'Q'] = false;
+    if(mov.de[0] === linhaBase && mov.de[1] === 7) novoEstado.direitosRoque[cor + 'K'] = false;
+  }
+  if(mov.pecaCapturada && tipoDaPeca(mov.pecaCapturada) === 'R'){
+    const corCapturada = corDaPeca(mov.pecaCapturada);
+    const linhaBase = corCapturada === 'w' ? 7 : 0;
+    if(mov.para[0] === linhaBase && mov.para[1] === 0) novoEstado.direitosRoque[corCapturada + 'Q'] = false;
+    if(mov.para[0] === linhaBase && mov.para[1] === 7) novoEstado.direitosRoque[corCapturada + 'K'] = false;
+  }
+
+  if(mov.duploPasso){
+    novoEstado.enPassantAlvo = [(mov.de[0] + mov.para[0]) / 2, mov.de[1]];
+  }
+
+  return { tabuleiro: novoTab, estado: novoEstado };
+}
+
+function gerarMovimentosLegais(tab, cor, estado){
+  const pseudo = gerarMovimentosPseudoLegais(tab, cor, estado);
+  return pseudo.filter(mov => {
+    const { tabuleiro: novoTab } = aplicarMovimento(tab, estado, mov);
+    return !reiEmXeque(novoTab, cor);
+  });
+}
+
+function valorPeca(tipo){
+  return { P:1, N:3, B:3, R:5, Q:9, K:0 }[tipo] || 0;
+}
+
+function valorOrdenacao(mov){
+  let v = 0;
+  if(mov.pecaCapturada) v += 10 + valorPeca(tipoDaPeca(mov.pecaCapturada)) - valorPeca(tipoDaPeca(mov.pecaMovida)) / 10;
+  if(mov.promocao) v += 8;
+  return v;
+}
+
+function ordenarMovimentos(lista){
+  lista.sort((a, b) => valorOrdenacao(b) - valorOrdenacao(a));
+}
+
+function avaliarTabuleiro(tab){
+  let pontuacao = 0;
+  for(let l = 0; l < 8; l++){
+    for(let c = 0; c < 8; c++){
+      const p = tab[l][c];
+      if(!p) continue;
+      const cor = corDaPeca(p), tipo = tipoDaPeca(p);
+      let valor = VALORES_PECA[tipo];
+      if(tipo === 'P'){
+        valor += cor === 'w' ? PST_PEAO[l][c] : PST_PEAO[7 - l][c];
+      } else if(tipo !== 'K'){
+        valor += PST_CENTRAL[l][c];
+      }
+      pontuacao += cor === 'w' ? valor : -valor;
+    }
+  }
+  return pontuacao;
+}
+
+function minimax(tab, estado, profundidade, alfa, beta){
+  const cor = estado.turno;
+  const maximizando = cor === 'w';
+  const movimentos = gerarMovimentosLegais(tab, cor, estado);
+
+  if(movimentos.length === 0){
+    if(reiEmXeque(tab, cor)) return maximizando ? (-100000 - profundidade) : (100000 + profundidade);
+    return 0;
+  }
+  if(profundidade === 0) return avaliarTabuleiro(tab);
+
+  ordenarMovimentos(movimentos);
+
+  let melhor = maximizando ? -Infinity : Infinity;
+  for(const mov of movimentos){
+    const { tabuleiro: novoTab, estado: novoEst } = aplicarMovimento(tab, estado, mov);
+    const valor = minimax(novoTab, novoEst, profundidade - 1, alfa, beta);
+    if(maximizando){
+      if(valor > melhor) melhor = valor;
+      if(valor > alfa) alfa = valor;
+    } else {
+      if(valor < melhor) melhor = valor;
+      if(valor < beta) beta = valor;
+    }
+    if(beta <= alfa) break;
+  }
+  return melhor;
+}
+
+function escolherMovimentoIA(tab, estado, nivel){
+  const movimentos = gerarMovimentosLegais(tab, estado.turno, estado);
+  if(movimentos.length === 0) return null;
+  ordenarMovimentos(movimentos);
+
+  const corIA = estado.turno;
+  const avaliacoes = movimentos.map(mov => {
+    const { tabuleiro: novoTab, estado: novoEst } = aplicarMovimento(tab, estado, mov);
+    const valor = minimax(novoTab, novoEst, nivel.profundidade - 1, -Infinity, Infinity);
+    return { mov, valor };
+  });
+
+  avaliacoes.sort((a, b) => corIA === 'w' ? b.valor - a.valor : a.valor - b.valor);
+
+  if(nivel.erro && Math.random() < nivel.erro && avaliacoes.length > 1){
+    const faixa = Math.min(3, avaliacoes.length);
+    return avaliacoes[Math.floor(Math.random() * faixa)].mov;
+  }
+  return avaliacoes[0].mov;
+}
+
+function casaParaAlgebrico(pos){
+  return 'abcdefgh'[pos[1]] + (8 - pos[0]);
+}
+
+function notacaoLance(mov, ehXeque, ehMate){
+  let sufixo = ehMate ? '#' : ehXeque ? '+' : '';
+  if(mov.roque === 'curto') return 'O-O' + sufixo;
+  if(mov.roque === 'longo') return 'O-O-O' + sufixo;
+  const tipo = tipoDaPeca(mov.pecaMovida);
+  const letra = { P:'', N:'N', B:'B', R:'R', Q:'Q', K:'K' }[tipo];
+  const captura = mov.pecaCapturada ? 'x' : '';
+  const origem = (tipo === 'P' && captura) ? 'abcdefgh'[mov.de[1]] : '';
+  const destino = casaParaAlgebrico(mov.para);
+  const promo = mov.promocao ? ('=' + mov.promocao) : '';
+  return `${letra}${origem}${captura}${destino}${promo}${sufixo}`;
+}
+
+function registrarLance(mov, corQueJogou, ehXeque, ehMate){
+  const texto = notacaoLance(mov, ehXeque, ehMate);
+  if(corQueJogou === 'w'){
+    historicoTexto.push(`${numeroLance}. ${texto}`);
+  } else {
+    if(historicoTexto.length === 0) historicoTexto.push(`${numeroLance}. ... ${texto}`);
+    else historicoTexto[historicoTexto.length - 1] += ` ${texto}`;
+    numeroLance++;
+  }
+}
+
+function jogarMovimento(mov){
+  const corQueJogou = estadoJogo.turno;
+  const resultado = aplicarMovimento(tabuleiro, estadoJogo, mov);
+
+  if(mov.pecaCapturada){
+    if(corDaPeca(mov.pecaCapturada) === 'b') pecasCapturadasPorBranco.push(mov.pecaCapturada);
+    else pecasCapturadasPorPreto.push(mov.pecaCapturada);
+  }
+
+  tabuleiro = resultado.tabuleiro;
+  estadoJogo = resultado.estado;
+  selecionada = null;
+  movimentosLegaisSelecionados = [];
+
+  const movimentosSeguintes = gerarMovimentosLegais(tabuleiro, estadoJogo.turno, estadoJogo);
+  const ehXeque = reiEmXeque(tabuleiro, estadoJogo.turno);
+  const ehMate = movimentosSeguintes.length === 0 && ehXeque;
+  const ehAfogamento = movimentosSeguintes.length === 0 && !ehXeque;
+
+  registrarLance(mov, corQueJogou, ehXeque, ehMate);
+  renderizarTudo();
+
+  if(ehMate){
+    const vencedor = corOposta(estadoJogo.turno);
+    terminarJogo(vencedor === CORJOGADOR, `Xeque-mate — ${vencedor === 'w' ? 'brancas vencem' : 'pretas vencem'}.`);
+  } else if(ehAfogamento){
+    terminarJogo(null, 'Afogamento — sem movimentos legais.');
+  } else if(estadoJogo.turno !== CORJOGADOR){
+    agendarJogadaIA();
+  }
+}
+
+function agendarJogadaIA(){
+  pensandoIA = true;
+  atualizarStatus();
+  setTimeout(() => {
+    if(jogoTerminado) return;
+    const mov = escolherMovimentoIA(tabuleiro, estadoJogo, nivelAtivo);
+    pensandoIA = false;
+    if(mov) jogarMovimento(mov);
+  }, 350);
+}
+
+function terminarJogo(jogadorVenceu, mensagem){
+  jogoTerminado = true;
+  const overlay = document.getElementById('overlayFim');
+  overlay.classList.add('visivel', jogadorVenceu === null ? 'empate' : jogadorVenceu ? 'venceu' : 'perdeu');
+  document.getElementById('overlayTitulo').textContent = jogadorVenceu === null ? 'Empate' : jogadorVenceu ? 'Você venceu!' : 'O computador venceu';
+  document.getElementById('overlayMensagem').textContent = mensagem;
+}
+
+function selecionarCasa(l, c){
+  selecionada = [l, c];
+  const todos = gerarMovimentosLegais(tabuleiro, CORJOGADOR, estadoJogo);
+  movimentosLegaisSelecionados = todos.filter(m => m.de[0] === l && m.de[1] === c);
+  renderizarTabuleiroXadrez();
+}
+
+function renderizarPromocao(){
+  const overlay = document.getElementById('overlayPromocao');
+  if(!promocaoPendente){
+    overlay.classList.remove('visivel');
+    overlay.innerHTML = '';
+    return;
+  }
+  const pecas = ['Q','R','B','N'];
+  overlay.innerHTML = pecas.map(p => `<button type="button" class="btn-promocao" data-peca="${p}">${GLIFOS[CORJOGADOR + p]}</button>`).join('');
+  overlay.classList.add('visivel');
+  overlay.querySelectorAll('.btn-promocao').forEach(botao => {
+    botao.addEventListener('click', () => {
+      const escolhida = promocaoPendente.opcoes.find(m => m.promocao === botao.dataset.peca);
+      promocaoPendente = null;
+      renderizarPromocao();
+      jogarMovimento(escolhida);
+    });
+  });
+}
+
+function lidarComCliqueCasa(l, c){
+  if(jogoTerminado || pensandoIA || promocaoPendente) return;
+  if(estadoJogo.turno !== CORJOGADOR) return;
+
+  const pecaClicada = tabuleiro[l][c];
+
+  if(selecionada){
+    if(selecionada[0] === l && selecionada[1] === c){
+      selecionada = null;
+      movimentosLegaisSelecionados = [];
+      renderizarTabuleiroXadrez();
+      return;
+    }
+    const paraDestino = movimentosLegaisSelecionados.filter(m => m.para[0] === l && m.para[1] === c);
+    if(paraDestino.length > 0){
+      if(paraDestino.length > 1){
+        promocaoPendente = { opcoes: paraDestino };
+        renderizarPromocao();
+        return;
+      }
+      jogarMovimento(paraDestino[0]);
+      return;
+    }
+    if(pecaClicada && corDaPeca(pecaClicada) === CORJOGADOR){
+      selecionarCasa(l, c);
+      return;
+    }
+    selecionada = null;
+    movimentosLegaisSelecionados = [];
+    renderizarTabuleiroXadrez();
+    return;
+  }
+
+  if(pecaClicada && corDaPeca(pecaClicada) === CORJOGADOR){
+    selecionarCasa(l, c);
+  }
+}
+
+function renderizarTabuleiroXadrez(){
+  const tab = document.getElementById('tabuleiroXadrez');
+  const emXeque = reiEmXeque(tabuleiro, estadoJogo.turno);
+  const posRei = emXeque ? encontrarRei(tabuleiro, estadoJogo.turno) : null;
+
+  let html = '';
+  for(let l = 0; l < 8; l++){
+    for(let c = 0; c < 8; c++){
+      const p = tabuleiro[l][c];
+      const clara = (l + c) % 2 === 0;
+      const classes = ['casa', clara ? 'clara' : 'escura'];
+      if(selecionada && selecionada[0] === l && selecionada[1] === c) classes.push('selecionada');
+      const destino = movimentosLegaisSelecionados.find(m => m.para[0] === l && m.para[1] === c);
+      if(destino) classes.push((destino.pecaCapturada || destino.enPassant) ? 'destino-captura' : 'destino');
+      if(posRei && posRei[0] === l && posRei[1] === c) classes.push('xeque');
+      const corPeca = p ? (corDaPeca(p) === 'w' ? 'peca-branca' : 'peca-preta') : '';
+      html += `<button type="button" class="${classes.join(' ')}" data-l="${l}" data-c="${c}">${p ? `<span class="${corPeca}">${GLIFOS[p]}</span>` : ''}</button>`;
+    }
+  }
+  tab.innerHTML = html;
+
+  tab.querySelectorAll('.casa').forEach(botao => {
+    botao.addEventListener('click', () => {
+      lidarComCliqueCasa(parseInt(botao.dataset.l, 10), parseInt(botao.dataset.c, 10));
+    });
+  });
+}
+
+function atualizarStatus(){
+  const elTurno = document.getElementById('statusTurno');
+  const elXeque = document.getElementById('statusXeque');
+  if(jogoTerminado){
+    elTurno.textContent = 'Partida encerrada';
+    elXeque.textContent = '';
+    return;
+  }
+  if(pensandoIA){
+    elTurno.textContent = 'Computador pensando…';
+  } else {
+    elTurno.textContent = estadoJogo.turno === CORJOGADOR ? 'Sua vez (brancas)' : 'Vez do computador';
+  }
+  const emXeque = reiEmXeque(tabuleiro, estadoJogo.turno);
+  elXeque.textContent = emXeque ? `Xeque em ${estadoJogo.turno === 'w' ? 'brancas' : 'pretas'}!` : '';
+}
+
+function renderizarCapturadas(){
+  document.getElementById('capturadasPorBranco').innerHTML = pecasCapturadasPorBranco.map(p => `<span class="peca-preta">${GLIFOS[p]}</span>`).join('');
+  document.getElementById('capturadasPorPreto').innerHTML = pecasCapturadasPorPreto.map(p => `<span class="peca-branca">${GLIFOS[p]}</span>`).join('');
+}
+
+function renderizarHistorico(){
+  const el = document.getElementById('historicoLances');
+  el.innerHTML = historicoTexto.map(l => `<div>${l}</div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function renderizarTudo(){
+  renderizarTabuleiroXadrez();
+  atualizarStatus();
+  renderizarCapturadas();
+  renderizarHistorico();
+}
+
+function novoJogo(nivel){
+  if(nivel) nivelAtivo = nivel;
+  tabuleiro = criarTabuleiroInicial();
+  estadoJogo = { turno: 'w', direitosRoque: { wK:true, wQ:true, bK:true, bQ:true }, enPassantAlvo: null };
+  selecionada = null;
+  movimentosLegaisSelecionados = [];
+  jogoTerminado = false;
+  pensandoIA = false;
+  promocaoPendente = null;
+  pecasCapturadasPorBranco = [];
+  pecasCapturadasPorPreto = [];
+  historicoTexto = [];
+  numeroLance = 1;
+
+  document.getElementById('overlayFim').classList.remove('visivel', 'venceu', 'perdeu', 'empate');
+  renderizarPromocao();
+  document.querySelectorAll('.nivel-btn').forEach(b => b.classList.toggle('ativo', b.dataset.nivel === nivelAtivo.id));
+
+  renderizarTudo();
+}
+
+function renderizarNiveis(){
+  document.getElementById('niveis').innerHTML = NIVEIS.map(n =>
+    `<button class="nivel-btn ${n.id === nivelAtivo.id ? 'ativo' : ''}" data-nivel="${n.id}" type="button">${n.nome}</button>`
+  ).join('');
+  document.querySelectorAll('.nivel-btn').forEach(botao => {
+    botao.addEventListener('click', () => novoJogo(NIVEIS.find(n => n.id === botao.dataset.nivel)));
+  });
+}
+
+document.getElementById('btnReiniciar').addEventListener('click', () => novoJogo());
+document.getElementById('btnJogarDeNovo').addEventListener('click', () => novoJogo());
+
+renderizarNiveis();
+novoJogo();
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

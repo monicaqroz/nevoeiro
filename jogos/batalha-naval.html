@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batalha Naval — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .bn-content{ max-width: none; padding: 0; }
+
+  .bn-page{
+    position: relative;
+    --fundo: #171b21;
+    --tinta: #e8ecef;
+    --tinta-fraca: #8b96a3;
+    --acento: #3ddc97;
+    --acento-forte: #23a172;
+    --acento-neblina: rgba(61,220,151,0.1);
+    --perigo: #e2574c;
+    --linha: #2a313b;
+    --painel: #1f242b;
+    --casa-agua: #1c2b3d;
+    --casa-agua-hover: #24374d;
+    --navio-corpo: #7a8699;
+    --navio-corpo-escuro: #55606f;
+    --sombra: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.35);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .bn-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .bn-page a{ color: inherit; }
+
+  .bn-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .bn-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .bn-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(61,220,151,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(61,220,151,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(61,220,151,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(61,220,151,0); }
+  }
+
+  .bn-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .bn-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .bn-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .bn-page .bn-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .bn-page .niveis{ display:flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .bn-page .nivel-btn{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: var(--painel);
+    transition: border-color .15s ease, color .15s ease, background .15s ease;
+  }
+  .bn-page .nivel-btn:hover{ border-color: var(--acento); color: var(--tinta); }
+  .bn-page .nivel-btn.ativo{ background: var(--acento-forte); border-color: var(--acento-forte); color: #0c1410; }
+
+  .bn-page .painel-jogo{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--sombra);
+  }
+
+  .bn-page .hud{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .bn-page .hud-item{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--tinta);
+    background: #12161b;
+    border: 1px solid var(--linha);
+    border-radius: 8px;
+    padding: 8px 14px;
+  }
+  .bn-page .btn-reiniciar{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: #12161b;
+  }
+  .bn-page .btn-reiniciar:hover{ border-color: var(--acento); color: var(--tinta); }
+
+  .bn-page .controles-colocacao{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .bn-page .controles-colocacao.oculto{ display:none; }
+  .bn-page .btn-aux, .bn-page .btn-orientacao{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+    background: #12161b;
+  }
+  .bn-page .btn-aux:hover, .bn-page .btn-orientacao:hover{ border-color: var(--acento); color: var(--tinta); }
+  .bn-page .btn-iniciar{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 9px 18px;
+    border-radius: 8px;
+    background: var(--acento);
+    color: #0c1410;
+  }
+  .bn-page .btn-iniciar:disabled{ background: #2a313b; color: var(--tinta-fraca); cursor: not-allowed; }
+
+  .bn-page .tabuleiros-linha{ display:flex; gap:24px; flex-wrap:wrap; justify-content:center; }
+  .bn-page .coluna-tabuleiro{ flex: 1 1 300px; max-width: 380px; }
+  .bn-page .tabuleiro-titulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .bn-page .quadro-inimigo{ position: relative; }
+  .bn-page .tabuleiro-grade{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--linha);
+    touch-action: manipulation;
+    transition: opacity .2s ease;
+  }
+  .bn-page .tabuleiro-grade.desabilitado{ opacity: .4; pointer-events: none; }
+
+  .bn-page .casa{
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    aspect-ratio: 1;
+    background: var(--casa-agua);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .bn-page .casa:hover:not(.navio):not(.atingido):not(.erro){ background: var(--casa-agua-hover); }
+
+  .bn-page .casa.navio{
+    background: linear-gradient(180deg, var(--navio-corpo), var(--navio-corpo-escuro));
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+  }
+  .bn-page .casa.navio.dir-h.ponta-a{ border-top-left-radius: 50%; border-bottom-left-radius: 50%; }
+  .bn-page .casa.navio.dir-h.ponta-b{ border-top-right-radius: 50%; border-bottom-right-radius: 50%; }
+  .bn-page .casa.navio.dir-v.ponta-a{ border-top-left-radius: 50%; border-top-right-radius: 50%; }
+  .bn-page .casa.navio.dir-v.ponta-b{ border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; }
+  .bn-page .casa.navio.afundado{ background: linear-gradient(180deg, #4a3838, #2e2222); }
+
+  .bn-page .casa .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: clamp(7px, 1.6vw, 10px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    pointer-events: none;
+  }
+  .bn-page .casa.atingido .marca-acerto{
+    position: absolute;
+    color: var(--perigo);
+    font-weight: 900;
+    font-size: clamp(12px, 3vw, 18px);
+    text-shadow: 0 0 4px rgba(226,87,76,0.8);
+    pointer-events: none;
+  }
+  .bn-page .casa.erro .marca-erro{
+    display: block;
+    width: 28%;
+    height: 28%;
+    border-radius: 50%;
+    background: rgba(150,190,230,0.6);
+    pointer-events: none;
+  }
+  .bn-page .casa.preview-valida{ box-shadow: inset 0 0 0 2px var(--acento); background: rgba(61,220,151,0.35); }
+  .bn-page .casa.preview-invalida{ box-shadow: inset 0 0 0 2px var(--perigo); background: rgba(226,87,76,0.35); }
+
+  .bn-page .frota-lista{ margin-top: 10px; display:flex; flex-direction:column; gap: 4px; }
+  .bn-page .navio-item{
+    display:flex; align-items:center; gap: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #12161b;
+    border: 1px solid var(--linha);
+    color: var(--tinta-fraca);
+  }
+  .bn-page .navio-item .navio-sigla{ font-weight: 700; color: var(--tinta); width: 24px; }
+  .bn-page .navio-item .navio-nome{ flex: 1; }
+  .bn-page .navio-item.afundado{ opacity: .5; text-decoration: line-through; }
+  .bn-page .navio-item.pendente{ cursor: pointer; }
+  .bn-page .navio-item.pendente:hover{ border-color: var(--acento); }
+  .bn-page .navio-item.selecionado{ border-color: var(--acento); color: var(--tinta); }
+  .bn-page .navio-item.colocado{ color: var(--tinta); }
+
+  .bn-page .overlay-fim{
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    background: rgba(14,17,20,0.9);
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+  .bn-page .overlay-fim.visivel{ display: flex; }
+  .bn-page .overlay-fim .titulo{
+    font-family:'Fraunces', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+  .bn-page .overlay-fim.venceu .titulo{ color: var(--acento); }
+  .bn-page .overlay-fim.perdeu .titulo{ color: var(--perigo); }
+  .bn-page .overlay-fim .pontos{ font-family:'JetBrains Mono', monospace; color: var(--tinta-fraca); font-size: 12px; }
+  .bn-page .overlay-fim button{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: var(--acento);
+    color: #0c1410;
+  }
+
+  .bn-page .historico-lances-wrap{
+    margin-top: 20px;
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .bn-page .historico-titulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin-bottom: 8px;
+  }
+  .bn-page .historico-lances{
+    max-height: 140px;
+    overflow-y: auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--tinta);
+  }
+  .bn-page .historico-lances div{ padding: 1px 0; }
+  .bn-page .historico-lances:empty::before{ content: 'A batalha ainda não começou.'; color: var(--tinta-fraca); }
+
+  .bn-page .instrucoes{
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+  .bn-page .instrucoes strong{ color: var(--tinta); }
+  .bn-page kbd{
+    font-family:'JetBrains Mono', monospace;
+    background: #12161b;
+    border: 1px solid var(--linha);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+  }
+
+  .bn-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .bn-page a:focus-visible, .bn-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../projetos/manaus-tempo.html">Clima em Manaus</a>
+            <a href="../projetos/manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="../projetos/manaus-conforto.html">Conforto Térmico</a>
+            <a href="../projetos/manaus-rio.html">Nível do Rio Negro</a>
+            <a href="../projetos/amazonas-dados.html">Amazonas em Dados</a>
+            <a href="../projetos/eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="../projetos/amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="../projetos/sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../jogos.html">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar jogos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="campo-minado.html">Campo Minado</a>
+            <a href="zuma.html">Bolinhas</a>
+            <a href="xadrez.html">Xadrez</a>
+            <a href="batalha-naval.html" class="active">Batalha Naval</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content bn-content">
+      <div class="bn-page">
+        <header>
+          <div class="eyebrow">Jogos — estratégia e mira</div>
+          <h1>Batalha<br><em>Naval</em></h1>
+          <p class="sub">
+            Posicione sua frota e afunde os navios do computador antes que ele afunde os seus.
+          </p>
+        </header>
+
+        <section class="bn-main">
+          <div class="niveis" id="niveis"></div>
+
+          <div class="painel-jogo">
+            <div class="hud">
+              <div class="hud-item" id="statusFase">Posicione sua frota</div>
+              <div class="hud-item" id="statusTurno"></div>
+              <button class="btn-reiniciar" id="btnReiniciar" type="button">↻ Reiniciar</button>
+            </div>
+
+            <div class="controles-colocacao" id="controlesColocacao">
+              <button class="btn-orientacao" id="btnOrientacao" type="button">↔ Horizontal</button>
+              <button class="btn-aux" id="btnAleatorio" type="button">🎲 Aleatório</button>
+              <button class="btn-aux" id="btnLimpar" type="button">Limpar</button>
+              <button class="btn-iniciar" id="btnIniciarBatalha" type="button" disabled>Iniciar Batalha</button>
+            </div>
+
+            <div class="tabuleiros-linha">
+              <div class="coluna-tabuleiro">
+                <div class="tabuleiro-titulo">Sua frota</div>
+                <div class="tabuleiro-grade" id="tabuleiroProprio"></div>
+                <div class="frota-lista" id="frotaJogadorLista"></div>
+              </div>
+              <div class="coluna-tabuleiro">
+                <div class="tabuleiro-titulo">Frota inimiga</div>
+                <div class="quadro-inimigo">
+                  <div class="tabuleiro-grade desabilitado" id="tabuleiroInimigo"></div>
+                  <div class="overlay-fim" id="overlayFim">
+                    <div class="titulo" id="overlayTitulo">Fim de jogo</div>
+                    <div class="pontos" id="overlayMensagem"></div>
+                    <button id="btnJogarDeNovo" type="button">Jogar de novo</button>
+                  </div>
+                </div>
+                <div class="frota-lista" id="frotaComputadorLista"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="historico-lances-wrap">
+            <div class="historico-titulo">Registro da batalha</div>
+            <div class="historico-lances" id="logBatalha"></div>
+          </div>
+
+          <p class="instrucoes">
+            <strong>Posicionar:</strong> clique num navio da lista e depois numa célula do seu tabuleiro. A tecla <kbd>R</kbd> (ou o botão) gira o navio.
+            Navios podem ficar encostados, mas não sobrepostos.<br>
+            <strong>Batalha:</strong> clique numa célula do tabuleiro inimigo pra atirar. Acerto ou erro, o turno sempre passa pro adversário.<br>
+            Frota: Porta-aviões (5), Encouraçado (4), Cruzador (3), Submarino (3), Contratorpedeiro (2).
+          </p>
+        </section>
+
+        <footer>
+          Batalha Naval contra o computador, feito do zero em HTML/CSS/JS — a IA caça navios perto de acertos anteriores.
+          <br>
+          <a class="back-link" href="../jogos.html">← Voltar para Jogos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const NAVIOS = [
+  { id: 'porta-avioes', nome: 'Porta-aviões', sigla: 'PA', tamanho: 5 },
+  { id: 'encouracado', nome: 'Encouraçado', sigla: 'EN', tamanho: 4 },
+  { id: 'cruzador', nome: 'Cruzador', sigla: 'CR', tamanho: 3 },
+  { id: 'submarino', nome: 'Submarino', sigla: 'SU', tamanho: 3 },
+  { id: 'contratorpedeiro', nome: 'Contratorpedeiro', sigla: 'CT', tamanho: 2 },
+];
+
+const NIVEIS = [
+  { id: 'facil', nome: 'Fácil', modoCaca: false, seguirLinha: false },
+  { id: 'medio', nome: 'Médio', modoCaca: true, seguirLinha: false },
+  { id: 'dificil', nome: 'Difícil', modoCaca: true, seguirLinha: true },
+];
+
+let nivelAtivo = NIVEIS[1];
+let faseJogo = 'colocacao';
+let tabuleiroJogador = [];
+let frotaJogador = [];
+let tabuleiroComputador = [];
+let frotaComputador = [];
+let navioSelecionado = null;
+let orientacaoSelecionada = 'h';
+let previewCelulas = [];
+let previewValida = false;
+let turnoJogador = true;
+let jogoTerminado = false;
+let pilhaAlvosIA = [];
+let hitsAtivosIA = [];
+let logBatalha = [];
+let celulasProprioEls = [];
+
+function criarTabuleiroVazio(){
+  return Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => ({ navioId: null, atingida: false })));
+}
+
+function celulasParaNavio(l, c, tamanho, orientacao){
+  const celulas = [];
+  for(let i = 0; i < tamanho; i++){
+    celulas.push(orientacao === 'h' ? [l, c + i] : [l + i, c]);
+  }
+  return celulas;
+}
+
+function celulaInicialAjustada(l, c, tamanho, orientacao){
+  if(orientacao === 'h'){
+    return [l, Math.max(0, Math.min(c, 10 - tamanho))];
+  }
+  return [Math.max(0, Math.min(l, 10 - tamanho)), c];
+}
+
+function posicaoValida(tabuleiro, celulas){
+  return celulas.every(([l, c]) => l >= 0 && l < 10 && c >= 0 && c < 10 && !tabuleiro[l][c].navioId);
+}
+
+function posicionarNavio(tabuleiro, frota, navioTemplate, l, c, orientacao){
+  const celulas = celulasParaNavio(l, c, navioTemplate.tamanho, orientacao);
+  if(!posicaoValida(tabuleiro, celulas)) return false;
+  celulas.forEach(([cl, cc]) => { tabuleiro[cl][cc].navioId = navioTemplate.id; });
+  frota.push({
+    id: navioTemplate.id, nome: navioTemplate.nome, sigla: navioTemplate.sigla, tamanho: navioTemplate.tamanho,
+    celulas, orientacao, hits: 0, afundado: false,
+  });
+  return true;
+}
+
+function posicionarFrotaAleatoria(tabuleiro, frota){
+  for(const navioTemplate of NAVIOS){
+    let colocado = false;
+    let tentativas = 0;
+    while(!colocado && tentativas < 500){
+      tentativas++;
+      const orientacao = Math.random() < 0.5 ? 'h' : 'v';
+      const l = Math.floor(Math.random() * 10);
+      const c = Math.floor(Math.random() * 10);
+      colocado = posicionarNavio(tabuleiro, frota, navioTemplate, l, c, orientacao);
+    }
+  }
+}
+
+function atacar(tabuleiro, frota, l, c){
+  const celula = tabuleiro[l][c];
+  celula.atingida = true;
+  if(!celula.navioId) return { acertou: false, afundou: false };
+  const navio = frota.find(n => n.id === celula.navioId);
+  navio.hits++;
+  const afundou = navio.hits >= navio.tamanho;
+  if(afundou) navio.afundado = true;
+  return { acertou: true, afundou, navio };
+}
+
+function todosAfundados(frota){
+  return frota.length === NAVIOS.length && frota.every(n => n.afundado);
+}
+
+function casaParaCoordenada(l, c){
+  return 'ABCDEFGHIJ'[c] + (l + 1);
+}
+
+function vizinhosValidos(l, c){
+  const candidatos = [[l - 1, c], [l + 1, c], [l, c - 1], [l, c + 1]];
+  return candidatos.filter(([nl, nc]) => nl >= 0 && nl < 10 && nc >= 0 && nc < 10 && !tabuleiroJogador[nl][nc].atingida);
+}
+
+function alinhamento(hits){
+  if(hits.length < 2) return null;
+  if(hits.every(h => h[0] === hits[0][0])) return 'h';
+  if(hits.every(h => h[1] === hits[0][1])) return 'v';
+  return null;
+}
+
+function candidatosExtensaoLinha(hits, direcao){
+  let candidatos;
+  if(direcao === 'h'){
+    const linha = hits[0][0];
+    const colunas = hits.map(h => h[1]);
+    candidatos = [[linha, Math.min(...colunas) - 1], [linha, Math.max(...colunas) + 1]];
+  } else {
+    const coluna = hits[0][1];
+    const linhas = hits.map(h => h[0]);
+    candidatos = [[Math.min(...linhas) - 1, coluna], [Math.max(...linhas) + 1, coluna]];
+  }
+  return candidatos.filter(([l, c]) => l >= 0 && l < 10 && c >= 0 && c < 10 && !tabuleiroJogador[l][c].atingida);
+}
+
+function escolherAlvoIA(){
+  if(nivelAtivo.modoCaca){
+    while(pilhaAlvosIA.length > 0){
+      const alvo = pilhaAlvosIA.pop();
+      if(!tabuleiroJogador[alvo[0]][alvo[1]].atingida) return alvo;
+    }
+  }
+  const candidatos = [];
+  for(let l = 0; l < 10; l++){
+    for(let c = 0; c < 10; c++){
+      if(!tabuleiroJogador[l][c].atingida) candidatos.push([l, c]);
+    }
+  }
+  return candidatos[Math.floor(Math.random() * candidatos.length)];
+}
+
+function processarResultadoIA(l, c, resultado){
+  if(!resultado.acertou) return;
+  if(resultado.afundou){
+    hitsAtivosIA = [];
+    pilhaAlvosIA = [];
+    return;
+  }
+  if(!nivelAtivo.modoCaca) return;
+
+  hitsAtivosIA.push([l, c]);
+
+  if(nivelAtivo.seguirLinha){
+    const direcao = alinhamento(hitsAtivosIA);
+    if(direcao){
+      pilhaAlvosIA = candidatosExtensaoLinha(hitsAtivosIA, direcao);
+      return;
+    }
+  }
+  pilhaAlvosIA.push(...vizinhosValidos(l, c));
+}
+
+function adicionarLog(texto){
+  logBatalha.push(texto);
+  if(logBatalha.length > 60) logBatalha.shift();
+}
+
+function selecionarNavio(id){
+  if(faseJogo !== 'colocacao') return;
+  if(frotaJogador.some(n => n.id === id)) return;
+  navioSelecionado = NAVIOS.find(n => n.id === id);
+  renderizarTudo();
+}
+
+function proximoNavioPendente(){
+  return NAVIOS.find(n => !frotaJogador.some(f => f.id === n.id)) || null;
+}
+
+function limparPreviewVisual(){
+  previewCelulas.forEach(([l, c]) => {
+    const el = celulasProprioEls[l] && celulasProprioEls[l][c];
+    if(el) el.classList.remove('preview-valida', 'preview-invalida');
+  });
+}
+
+function aplicarPreviewVisual(){
+  previewCelulas.forEach(([l, c]) => {
+    const el = celulasProprioEls[l] && celulasProprioEls[l][c];
+    if(el) el.classList.add(previewValida ? 'preview-valida' : 'preview-invalida');
+  });
+}
+
+function aoPassarMouseCelulaPropria(l, c){
+  if(!navioSelecionado) navioSelecionado = proximoNavioPendente();
+  limparPreviewVisual();
+  if(faseJogo !== 'colocacao' || !navioSelecionado){
+    previewCelulas = [];
+    return;
+  }
+  const [li, ci] = celulaInicialAjustada(l, c, navioSelecionado.tamanho, orientacaoSelecionada);
+  previewCelulas = celulasParaNavio(li, ci, navioSelecionado.tamanho, orientacaoSelecionada);
+  previewValida = posicaoValida(tabuleiroJogador, previewCelulas);
+  aplicarPreviewVisual();
+}
+
+function aoSairMouseTabuleiroProprio(){
+  limparPreviewVisual();
+  previewCelulas = [];
+}
+
+function aoClicarCelulaPropria(l, c){
+  if(faseJogo !== 'colocacao') return;
+  if(!navioSelecionado) navioSelecionado = proximoNavioPendente();
+  if(!navioSelecionado) return;
+  const [li, ci] = celulaInicialAjustada(l, c, navioSelecionado.tamanho, orientacaoSelecionada);
+  const sucesso = posicionarNavio(tabuleiroJogador, frotaJogador, navioSelecionado, li, ci, orientacaoSelecionada);
+  if(!sucesso) return;
+  previewCelulas = [];
+  navioSelecionado = proximoNavioPendente();
+  renderizarTudo();
+}
+
+function colocarAleatorio(){
+  tabuleiroJogador = criarTabuleiroVazio();
+  frotaJogador = [];
+  posicionarFrotaAleatoria(tabuleiroJogador, frotaJogador);
+  navioSelecionado = null;
+  renderizarTudo();
+}
+
+function limparColocacao(){
+  tabuleiroJogador = criarTabuleiroVazio();
+  frotaJogador = [];
+  navioSelecionado = NAVIOS[0];
+  renderizarTudo();
+}
+
+function iniciarBatalha(){
+  if(frotaJogador.length < NAVIOS.length) return;
+  faseJogo = 'batalha';
+  turnoJogador = true;
+  logBatalha = [];
+  adicionarLog('A batalha começou! Sua vez.');
+  renderizarTudo();
+}
+
+function aoClicarCelulaInimiga(l, c){
+  if(faseJogo !== 'batalha' || !turnoJogador || jogoTerminado) return;
+  const celula = tabuleiroComputador[l][c];
+  if(celula.atingida) return;
+
+  const resultado = atacar(tabuleiroComputador, frotaComputador, l, c);
+  const alvoTexto = casaParaCoordenada(l, c);
+  if(resultado.acertou){
+    adicionarLog(resultado.afundou ? `Você afundou o ${resultado.navio.nome}! (${alvoTexto})` : `Você acertou em ${alvoTexto}!`);
+  } else {
+    adicionarLog(`Água em ${alvoTexto}.`);
+  }
+  renderizarTudo();
+
+  if(todosAfundados(frotaComputador)){
+    terminarJogo(true);
+    return;
+  }
+
+  turnoJogador = false;
+  atualizarStatus();
+  setTimeout(executarTurnoIA, 550);
+}
+
+function executarTurnoIA(){
+  if(jogoTerminado) return;
+  const [l, c] = escolherAlvoIA();
+  const resultado = atacar(tabuleiroJogador, frotaJogador, l, c);
+  processarResultadoIA(l, c, resultado);
+  const alvoTexto = casaParaCoordenada(l, c);
+  if(resultado.acertou){
+    adicionarLog(resultado.afundou ? `O computador afundou seu ${resultado.navio.nome}! (${alvoTexto})` : `O computador acertou em ${alvoTexto}!`);
+  } else {
+    adicionarLog(`O computador errou em ${alvoTexto}.`);
+  }
+  renderizarTudo();
+
+  if(todosAfundados(frotaJogador)){
+    terminarJogo(false);
+    return;
+  }
+
+  turnoJogador = true;
+  atualizarStatus();
+}
+
+function terminarJogo(jogadorVenceu){
+  jogoTerminado = true;
+  faseJogo = 'fim';
+  const overlay = document.getElementById('overlayFim');
+  overlay.classList.add('visivel', jogadorVenceu ? 'venceu' : 'perdeu');
+  document.getElementById('overlayTitulo').textContent = jogadorVenceu ? 'Você venceu!' : 'O computador venceu';
+  document.getElementById('overlayMensagem').textContent = jogadorVenceu ? 'Você afundou toda a frota inimiga.' : 'Sua frota foi afundada.';
+  atualizarStatus();
+}
+
+function celulaHtml(l, c, tabuleiro, frota, proprio){
+  const celula = tabuleiro[l][c];
+  const navio = celula.navioId ? frota.find(n => n.id === celula.navioId) : null;
+  const classes = ['casa'];
+  let rotulo = '';
+
+  const mostrarNavio = navio && (proprio || navio.afundado);
+  if(mostrarNavio){
+    classes.push('navio', navio.orientacao === 'h' ? 'dir-h' : 'dir-v');
+    const idx = navio.celulas.findIndex(([nl, nc]) => nl === l && nc === c);
+    if(idx === 0) classes.push('ponta-a');
+    if(idx === navio.celulas.length - 1) classes.push('ponta-b');
+    if(navio.afundado) classes.push('afundado');
+    const meioIdx = Math.floor((navio.celulas.length - 1) / 2);
+    if(idx === meioIdx) rotulo = navio.sigla;
+  }
+
+  if(celula.atingida){
+    classes.push(navio ? 'atingido' : 'erro');
+  }
+
+  if(proprio && faseJogo === 'colocacao' && previewCelulas.some(([pl, pc]) => pl === l && pc === c)){
+    classes.push(previewValida ? 'preview-valida' : 'preview-invalida');
+  }
+
+  const marcador = celula.atingida ? (navio ? '<span class="marca-acerto">✕</span>' : '<span class="marca-erro"></span>') : '';
+  const rotuloHtml = rotulo ? `<span class="rotulo">${rotulo}</span>` : '';
+
+  return `<button type="button" class="${classes.join(' ')}" data-l="${l}" data-c="${c}" tabindex="-1">${rotuloHtml}${marcador}</button>`;
+}
+
+function renderizarTabuleiroProprio(){
+  const el = document.getElementById('tabuleiroProprio');
+  let html = '';
+  for(let l = 0; l < 10; l++){
+    for(let c = 0; c < 10; c++) html += celulaHtml(l, c, tabuleiroJogador, frotaJogador, true);
+  }
+  el.innerHTML = html;
+  celulasProprioEls = Array.from({ length: 10 }, () => Array(10).fill(null));
+  el.querySelectorAll('.casa').forEach(botao => {
+    celulasProprioEls[parseInt(botao.dataset.l, 10)][parseInt(botao.dataset.c, 10)] = botao;
+  });
+}
+
+function renderizarTabuleiroInimigo(){
+  const el = document.getElementById('tabuleiroInimigo');
+  let html = '';
+  for(let l = 0; l < 10; l++){
+    for(let c = 0; c < 10; c++) html += celulaHtml(l, c, tabuleiroComputador, frotaComputador, false);
+  }
+  el.innerHTML = html;
+  el.classList.toggle('desabilitado', faseJogo !== 'batalha');
+}
+
+function renderizarFrotaLista(elId, frotaAtual){
+  document.getElementById(elId).innerHTML = NAVIOS.map(navioTemplate => {
+    const instancia = frotaAtual.find(n => n.id === navioTemplate.id);
+    const colocado = !!instancia;
+    const afundado = instancia && instancia.afundado;
+    const classes = ['navio-item'];
+    if(afundado) classes.push('afundado');
+    else if(colocado) classes.push('colocado');
+    else classes.push('pendente');
+    if(navioSelecionado && navioSelecionado.id === navioTemplate.id && !colocado) classes.push('selecionado');
+    return `<div class="${classes.join(' ')}" data-navio="${navioTemplate.id}">
+      <span class="navio-sigla">${navioTemplate.sigla}</span>
+      <span class="navio-nome">${navioTemplate.nome}</span>
+      <span class="navio-tamanho">${navioTemplate.tamanho}</span>
+    </div>`;
+  }).join('');
+}
+
+function atualizarControlesColocacao(){
+  document.getElementById('controlesColocacao').classList.toggle('oculto', faseJogo !== 'colocacao');
+  document.getElementById('btnOrientacao').textContent = orientacaoSelecionada === 'h' ? '↔ Horizontal' : '↕ Vertical';
+  document.getElementById('btnIniciarBatalha').disabled = frotaJogador.length < NAVIOS.length;
+}
+
+function atualizarStatus(){
+  const elFase = document.getElementById('statusFase');
+  const elTurno = document.getElementById('statusTurno');
+  if(faseJogo === 'colocacao'){
+    elFase.textContent = navioSelecionado ? `Posicionando: ${navioSelecionado.nome} (${navioSelecionado.tamanho})` : 'Frota completa — pronto pra batalha';
+    elTurno.textContent = '';
+  } else if(faseJogo === 'batalha'){
+    elFase.textContent = 'Batalha em andamento';
+    elTurno.textContent = turnoJogador ? 'Sua vez — mire na frota inimiga' : 'Vez do computador…';
+  } else {
+    elFase.textContent = 'Partida encerrada';
+    elTurno.textContent = '';
+  }
+}
+
+function renderizarLog(){
+  const el = document.getElementById('logBatalha');
+  el.innerHTML = logBatalha.map(t => `<div>${t}</div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+function renderizarTudo(){
+  atualizarControlesColocacao();
+  renderizarTabuleiroProprio();
+  renderizarTabuleiroInimigo();
+  renderizarFrotaLista('frotaJogadorLista', frotaJogador);
+  renderizarFrotaLista('frotaComputadorLista', frotaComputador);
+  atualizarStatus();
+  renderizarLog();
+}
+
+function novoJogo(nivel){
+  if(nivel) nivelAtivo = nivel;
+  faseJogo = 'colocacao';
+  tabuleiroJogador = criarTabuleiroVazio();
+  frotaJogador = [];
+  tabuleiroComputador = criarTabuleiroVazio();
+  frotaComputador = [];
+  posicionarFrotaAleatoria(tabuleiroComputador, frotaComputador);
+  navioSelecionado = NAVIOS[0];
+  orientacaoSelecionada = 'h';
+  previewCelulas = [];
+  previewValida = false;
+  turnoJogador = true;
+  jogoTerminado = false;
+  pilhaAlvosIA = [];
+  hitsAtivosIA = [];
+  logBatalha = [];
+
+  document.getElementById('overlayFim').classList.remove('visivel', 'venceu', 'perdeu');
+  document.querySelectorAll('.nivel-btn').forEach(b => b.classList.toggle('ativo', b.dataset.nivel === nivelAtivo.id));
+
+  renderizarTudo();
+}
+
+function renderizarNiveis(){
+  document.getElementById('niveis').innerHTML = NIVEIS.map(n =>
+    `<button class="nivel-btn ${n.id === nivelAtivo.id ? 'ativo' : ''}" data-nivel="${n.id}" type="button">${n.nome}</button>`
+  ).join('');
+  document.querySelectorAll('.nivel-btn').forEach(botao => {
+    botao.addEventListener('click', () => novoJogo(NIVEIS.find(n => n.id === botao.dataset.nivel)));
+  });
+}
+
+function inicializarTabuleiros(){
+  const elProprio = document.getElementById('tabuleiroProprio');
+  elProprio.addEventListener('click', (e) => {
+    const botao = e.target.closest('.casa');
+    if(!botao) return;
+    aoClicarCelulaPropria(parseInt(botao.dataset.l, 10), parseInt(botao.dataset.c, 10));
+  });
+  elProprio.addEventListener('mouseover', (e) => {
+    const botao = e.target.closest('.casa');
+    if(!botao) return;
+    aoPassarMouseCelulaPropria(parseInt(botao.dataset.l, 10), parseInt(botao.dataset.c, 10));
+  });
+  elProprio.addEventListener('mouseleave', aoSairMouseTabuleiroProprio);
+
+  const elInimigo = document.getElementById('tabuleiroInimigo');
+  elInimigo.addEventListener('click', (e) => {
+    const botao = e.target.closest('.casa');
+    if(!botao) return;
+    aoClicarCelulaInimiga(parseInt(botao.dataset.l, 10), parseInt(botao.dataset.c, 10));
+  });
+
+  document.getElementById('frotaJogadorLista').addEventListener('click', (e) => {
+    const item = e.target.closest('.navio-item');
+    if(!item) return;
+    selecionarNavio(item.dataset.navio);
+  });
+}
+
+document.getElementById('btnReiniciar').addEventListener('click', () => novoJogo());
+document.getElementById('btnJogarDeNovo').addEventListener('click', () => novoJogo());
+document.getElementById('btnOrientacao').addEventListener('click', () => {
+  orientacaoSelecionada = orientacaoSelecionada === 'h' ? 'v' : 'h';
+  renderizarTudo();
+});
+document.getElementById('btnAleatorio').addEventListener('click', colocarAleatorio);
+document.getElementById('btnLimpar').addEventListener('click', limparColocacao);
+document.getElementById('btnIniciarBatalha').addEventListener('click', iniciarBatalha);
+
+document.addEventListener('keydown', (e) => {
+  if(faseJogo === 'colocacao' && (e.key === 'r' || e.key === 'R')){
+    orientacaoSelecionada = orientacaoSelecionada === 'h' ? 'v' : 'h';
+    renderizarTudo();
+  }
+});
+
+inicializarTabuleiros();
+renderizarNiveis();
+novoJogo();
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

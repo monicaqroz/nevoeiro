@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rastreador de Voos — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .rv-content{ max-width: none; padding: 0; }
+
+  .rv-page{
+    position: relative;
+    --fundo: #171b21;
+    --tinta: #e8ecef;
+    --tinta-fraca: #8b96a3;
+    --acento: #38bdf8;
+    --acento-forte: #0ea5e9;
+    --acento-neblina: rgba(56,189,248,0.12);
+    --perigo: #e2574c;
+    --linha: #2a313b;
+    --painel: #1f242b;
+    --sombra: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.35);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .rv-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .rv-page a{ color: inherit; }
+
+  .rv-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .rv-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .rv-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(56,189,248,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(56,189,248,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(56,189,248,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(56,189,248,0); }
+  }
+
+  .rv-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .rv-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .rv-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .rv-page .rv-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .rv-page .busca{ display:flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .rv-page .busca input{
+    flex: 1 1 220px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--linha);
+    background: var(--painel);
+    color: var(--tinta);
+  }
+  .rv-page .busca input::placeholder{ color: var(--tinta-fraca); text-transform: none; letter-spacing: normal; }
+  .rv-page .busca input:focus{ outline: 2px solid var(--acento); outline-offset: 1px; }
+  .rv-page .busca button{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 10px;
+    background: var(--acento);
+    color: #06202e;
+  }
+  .rv-page .busca button:disabled{ background: #2a313b; color: var(--tinta-fraca); cursor: not-allowed; }
+
+  .rv-page .exemplos{ font-size: 12px; color: var(--tinta-fraca); margin-bottom: 28px; }
+  .rv-page .exemplos button{
+    all: unset;
+    cursor: pointer;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--acento);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    margin-right: 4px;
+  }
+
+  .rv-page .estado{
+    text-align: center;
+    color: var(--tinta-fraca);
+    font-size: 13.5px;
+    padding: 40px 20px;
+    border: 1px dashed var(--linha);
+    border-radius: 14px;
+  }
+  .rv-page .estado.erro{ color: var(--perigo); border-color: rgba(226,87,76,0.3); }
+
+  .rv-page .resultado{ display: none; }
+  .rv-page .resultado.visivel{ display: block; }
+
+  .rv-page .cabecalho-voo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .rv-page .cabecalho-voo .nome-cia{
+    font-family:'Fraunces', serif;
+    font-size: 1.3rem;
+  }
+  .rv-page .cabecalho-voo .codigo-voo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+  }
+  .rv-page .badge-ao-vivo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--acento-neblina);
+    color: var(--acento);
+    border: 1px solid rgba(56,189,248,0.35);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .rv-page .badge-ao-vivo::before{
+    content:'';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--acento);
+  }
+  .rv-page .badge-ao-vivo.parado{
+    background: rgba(139,150,163,0.1);
+    color: var(--tinta-fraca);
+    border-color: var(--linha);
+  }
+  .rv-page .badge-ao-vivo.parado::before{ background: var(--tinta-fraca); }
+
+  .rv-page .rota-aeroportos{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .rv-page .aeroporto-card{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .rv-page .aeroporto-card .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin-bottom: 4px;
+  }
+  .rv-page .aeroporto-card .codigo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--acento);
+  }
+  .rv-page .aeroporto-card .nome{ font-size: 13px; margin-top: 2px; }
+  .rv-page .aeroporto-card .cidade{ font-size: 12px; color: var(--tinta-fraca); margin-top: 2px; }
+  .rv-page .seta-rota{
+    font-size: 1.4rem;
+    color: var(--tinta-fraca);
+  }
+
+  .rv-page .mapa-wrap{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: var(--sombra);
+    margin-bottom: 18px;
+  }
+  .rv-page .mapa-wrap svg{ width: 100%; height: auto; display: block; }
+
+  .rv-page .status-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+  .rv-page .status-item{
+    background: #12161b;
+    border: 1px solid var(--linha);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .rv-page .status-item .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+  }
+  .rv-page .status-item .valor{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .rv-page .aviso{
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+  .rv-page .aviso strong{ color: var(--tinta); }
+
+  .rv-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .rv-page a:focus-visible, .rv-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 560px){
+    .rv-page .rota-aeroportos{ grid-template-columns: 1fr; }
+    .rv-page .seta-rota{ transform: rotate(90deg); justify-self: center; }
+  }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a href="../index.html" class="brand">
+        Nevoeiro
+        <div class="brand-tagline">Um espaço para pensar, estudar e criar</div>
+      </a>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+
+        <div class="nav-item open">
+          <div class="nav-row">
+            <a href="../projetos.html">Projetos</a>
+            <button class="nav-caret" type="button" aria-expanded="true" aria-label="Mostrar projetos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="manaus-tempo.html">Clima em Manaus</a>
+            <a href="manaus-estacao.html">Clima em Manaus — Estação</a>
+            <a href="manaus-conforto.html">Conforto Térmico</a>
+            <a href="manaus-rio.html">Nível do Rio Negro</a>
+            <a href="amazonas-dados.html">Amazonas em Dados</a>
+            <a href="eleitorado-am.html">Perfil do Eleitor Amazonense</a>
+            <a href="amazonas-educacao.html">Educação Básica no Amazonas</a>
+            <a href="sismos-america-sul.html">Sismos — Placa Sul-Americana</a>
+            <a href="rastreador-voos.html" class="active">Rastreador de Voos</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../artigos-interativos.html">Artigos Interativos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar artigos interativos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../artigos/clima-manaus-historia.html">Clima de Manaus — História em Dados</a>
+          </div>
+        </div>
+
+        <div class="nav-item">
+          <div class="nav-row">
+            <a href="../jogos.html">Jogos</a>
+            <button class="nav-caret" type="button" aria-expanded="false" aria-label="Mostrar jogos">
+              <svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="nav-submenu">
+            <a href="../jogos/campo-minado.html">Campo Minado</a>
+            <a href="../jogos/zuma.html">Bolinhas</a>
+            <a href="../jogos/xadrez.html">Xadrez</a>
+            <a href="../jogos/batalha-naval.html">Batalha Naval</a>
+          </div>
+        </div>
+
+        <a href="../sobre.html">Sobre mim</a>
+      </nav>
+    </aside>
+
+    <main class="content rv-content">
+      <div class="rv-page">
+        <header>
+          <div class="eyebrow">Projetos — dados ao vivo</div>
+          <h1>Rastreador<br><em>de Voos</em></h1>
+          <p class="sub">
+            Digite um número de voo pra ver a rota — aeroporto de origem, destino e, se o avião
+            estiver no ar agora, a posição dele ao vivo.
+          </p>
+        </header>
+
+        <section class="rv-main">
+          <div class="busca">
+            <input type="text" id="campoVoo" placeholder="Número do voo — ex: GLO1462, TAM3500, AAL962" autocomplete="off" spellcheck="false">
+            <button type="button" id="btnBuscar">Buscar</button>
+          </div>
+          <div class="exemplos">
+            Exemplos: <button type="button" data-voo="GLO1462">GLO1462</button><button type="button" data-voo="TAM3500">TAM3500</button><button type="button" data-voo="AAL962">AAL962</button>
+          </div>
+
+          <div class="estado" id="estado">Digite um número de voo pra começar.</div>
+
+          <div class="resultado" id="resultado">
+            <div class="cabecalho-voo">
+              <div>
+                <div class="nome-cia" id="nomeCia"></div>
+                <div class="codigo-voo" id="codigoVoo"></div>
+              </div>
+              <div class="badge-ao-vivo parado" id="badgeAoVivo">Não está no ar</div>
+            </div>
+
+            <div class="rota-aeroportos">
+              <div class="aeroporto-card">
+                <div class="rotulo">Origem</div>
+                <div class="codigo" id="origemCodigo"></div>
+                <div class="nome" id="origemNome"></div>
+                <div class="cidade" id="origemCidade"></div>
+              </div>
+              <div class="seta-rota">✈</div>
+              <div class="aeroporto-card">
+                <div class="rotulo">Destino</div>
+                <div class="codigo" id="destinoCodigo"></div>
+                <div class="nome" id="destinoNome"></div>
+                <div class="cidade" id="destinoCidade"></div>
+              </div>
+            </div>
+
+            <div class="mapa-wrap">
+              <svg id="mapaSvg" viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+
+            <div class="status-grid" id="statusGrid" style="display:none;">
+              <div class="status-item"><div class="rotulo">Altitude</div><div class="valor" id="statusAltitude">—</div></div>
+              <div class="status-item"><div class="rotulo">Velocidade</div><div class="valor" id="statusVelocidade">—</div></div>
+              <div class="status-item"><div class="rotulo">Rumo</div><div class="valor" id="statusRumo">—</div></div>
+              <div class="status-item"><div class="rotulo">Aeronave</div><div class="valor" id="statusAeronave">—</div></div>
+            </div>
+          </div>
+
+          <p class="aviso">
+            <strong>Sobre os dados:</strong> a rota vem de uma base colaborativa de números de voo (adsb.db) e pode estar
+            desatualizada ou não existir pra todo voo. A posição ao vivo vem de receptores ADS-B comunitários
+            (airplanes.live) — só aparece se o avião estiver no ar e transmitindo no momento da busca.
+          </p>
+        </section>
+
+        <footer>
+          Rastreador de voos feito do zero em HTML/CSS/JS, com dados públicos de rota (adsb.db) e posição ao vivo (airplanes.live).
+          <br>
+          <a class="back-link" href="../projetos.html">← Voltar para Projetos</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+<script>
+const URL_ROTA = 'https://api.adsbdb.com/v0/callsign/';
+const URL_AO_VIVO = 'https://api.airplanes.live/v2/callsign/';
+const URL_PAISES = 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json';
+
+const VIEW_W = 1000, VIEW_H = 560;
+
+let paisesCache = null;
+let carregandoPaises = null;
+
+const campoVoo = document.getElementById('campoVoo');
+const btnBuscar = document.getElementById('btnBuscar');
+const estadoEl = document.getElementById('estado');
+const resultadoEl = document.getElementById('resultado');
+
+function normalizarVoo(texto){
+  return texto.trim().toUpperCase().replace(/\s+/g, '');
+}
+
+function mostrarEstado(mensagem, ehErro){
+  estadoEl.textContent = mensagem;
+  estadoEl.classList.toggle('erro', !!ehErro);
+  estadoEl.style.display = 'block';
+  resultadoEl.classList.remove('visivel');
+}
+
+function mostrarResultado(){
+  estadoEl.style.display = 'none';
+  resultadoEl.classList.add('visivel');
+}
+
+async function garantirPaises(){
+  if(paisesCache) return paisesCache;
+  if(!carregandoPaises){
+    carregandoPaises = fetch(URL_PAISES).then(r => r.json()).then(dados => {
+      paisesCache = dados;
+      return dados;
+    }).catch(() => {
+      paisesCache = { features: [] };
+      return paisesCache;
+    });
+  }
+  return carregandoPaises;
+}
+
+async function buscarRota(numeroVoo){
+  const resp = await fetch(URL_ROTA + encodeURIComponent(numeroVoo));
+  if(!resp.ok){
+    if(resp.status === 400) return null;
+    throw new Error('Falha ao buscar rota (' + resp.status + ')');
+  }
+  const dados = await resp.json();
+  return (dados && dados.response && dados.response.flightroute) ? dados.response.flightroute : null;
+}
+
+async function buscarPosicaoAoVivo(callsignIcao){
+  try{
+    const resp = await fetch(URL_AO_VIVO + encodeURIComponent(callsignIcao));
+    if(!resp.ok) return null;
+    const dados = await resp.json();
+    if(dados && Array.isArray(dados.ac) && dados.ac.length > 0) return dados.ac[0];
+    return null;
+  } catch(e){
+    return null;
+  }
+}
+
+function calcularBBox(origem, destino){
+  const lons = [origem.longitude, destino.longitude];
+  const lats = [origem.latitude, destino.latitude];
+  let minLon = Math.min(...lons), maxLon = Math.max(...lons);
+  let minLat = Math.min(...lats), maxLat = Math.max(...lats);
+
+  const spanLon = Math.max(maxLon - minLon, 4);
+  const spanLat = Math.max(maxLat - minLat, 4);
+  const padLon = Math.max(spanLon * 0.35, 10);
+  const padLat = Math.max(spanLat * 0.35, 10);
+
+  return {
+    minLon: Math.max(-180, minLon - padLon),
+    maxLon: Math.min(180, maxLon + padLon),
+    minLat: Math.max(-80, minLat - padLat),
+    maxLat: Math.min(80, maxLat + padLat),
+  };
+}
+
+function calcularProjecao(bbox){
+  const latMedia = (bbox.minLat + bbox.maxLat) / 2;
+  const corrLon = Math.max(Math.cos(latMedia * Math.PI / 180), 0.15);
+  const largura = (bbox.maxLon - bbox.minLon) * corrLon;
+  const altura = bbox.maxLat - bbox.minLat;
+  const margem = 36;
+  const escala = Math.min((VIEW_W - margem * 2) / largura, (VIEW_H - margem * 2) / altura);
+  const offsetX = (VIEW_W - largura * escala) / 2;
+  const offsetY = (VIEW_H - altura * escala) / 2;
+  return { bbox, corrLon, escala, offsetX, offsetY };
+}
+
+function projetar(lon, lat, proj){
+  const x = proj.offsetX + (lon - proj.bbox.minLon) * proj.corrLon * proj.escala;
+  const y = VIEW_H - (proj.offsetY + (lat - proj.bbox.minLat) * proj.escala);
+  return { x, y };
+}
+
+function caminhoPoligono(coordenadas, proj){
+  return coordenadas.map(anel =>
+    'M' + anel.map(([lon, lat]) => {
+      const p = projetar(lon, lat, proj);
+      return `${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+    }).join('L') + 'Z'
+  ).join(' ');
+}
+
+function construirSvgPaises(proj){
+  if(!paisesCache || !paisesCache.features) return '';
+  let d = '';
+  for(const feature of paisesCache.features){
+    const geom = feature.geometry;
+    if(!geom) continue;
+    if(geom.type === 'Polygon'){
+      d += caminhoPoligono(geom.coordinates, proj) + ' ';
+    } else if(geom.type === 'MultiPolygon'){
+      for(const poligono of geom.coordinates) d += caminhoPoligono(poligono, proj) + ' ';
+    }
+  }
+  return `<path d="${d}" fill="#1c2531" stroke="#2a3644" stroke-width="1"/>`;
+}
+
+function pontoControleCurva(p1, p2){
+  const mx = (p1.x + p2.x) / 2;
+  const my = (p1.y + p2.y) / 2;
+  const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+  return { x: mx, y: my - dist * 0.12 };
+}
+
+function pontoNaCurva(p1, controle, p2, t){
+  const um_t = 1 - t;
+  return {
+    x: um_t * um_t * p1.x + 2 * um_t * t * controle.x + t * t * p2.x,
+    y: um_t * um_t * p1.y + 2 * um_t * t * controle.y + t * t * p2.y,
+  };
+}
+
+function anguloEntre(p1, p2){
+  return Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI + 90;
+}
+
+function construirSvgAviao(p, rumoGraus, opcoes){
+  const rumo = typeof rumoGraus === 'number' ? rumoGraus : 0;
+  const escala = (opcoes && opcoes.escala) || 1;
+  const opacidadeHalo = (opcoes && opcoes.opacidadeHalo) || 0.18;
+  const opacidadeIcone = (opcoes && opcoes.opacidadeIcone) || 1;
+  return `<g transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)}) rotate(${rumo.toFixed(1)}) scale(${escala})" opacity="${opacidadeIcone}">
+    <circle r="14" fill="#38bdf8" opacity="${opacidadeHalo}"/>
+    <path d="M0,-9 L2.6,-1.8 L9,1.8 L9,4.4 L2.6,2.6 L1.8,8 L3.4,9.6 L3.4,10.6 L0,8.8 L-3.4,10.6 L-3.4,9.6 L-1.8,8 L-2.6,2.6 L-9,4.4 L-9,1.8 L-2.6,-1.8 Z" fill="#e8ecef" stroke="#06202e" stroke-width="0.8"/>
+  </g>`;
+}
+
+function renderizarMapa(proj, origemXY, destinoXY, aoVivoXY, rumo){
+  const svg = document.getElementById('mapaSvg');
+  const controle = pontoControleCurva(origemXY, destinoXY);
+  let conteudo = construirSvgPaises(proj);
+
+  conteudo += `<path d="M${origemXY.x.toFixed(1)},${origemXY.y.toFixed(1)} Q${controle.x.toFixed(1)},${controle.y.toFixed(1)} ${destinoXY.x.toFixed(1)},${destinoXY.y.toFixed(1)}" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 5" opacity="0.85"/>`;
+
+  [origemXY, destinoXY].forEach(p => {
+    conteudo += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="6" fill="#12161b" stroke="#38bdf8" stroke-width="2.5"/>`;
+  });
+
+  const meioRota = pontoNaCurva(origemXY, controle, destinoXY, 0.5);
+  const rumoRota = anguloEntre(origemXY, destinoXY);
+  conteudo += construirSvgAviao(meioRota, rumoRota, { escala: 0.85, opacidadeHalo: 0, opacidadeIcone: 0.55 });
+
+  if(aoVivoXY){
+    conteudo += construirSvgAviao(aoVivoXY, rumo);
+  }
+
+  svg.innerHTML = conteudo;
+}
+
+function formatarNumero(valor, unidade){
+  if(typeof valor !== 'number' || Number.isNaN(valor)) return '—';
+  return Math.round(valor).toLocaleString('pt-BR') + ' ' + unidade;
+}
+
+async function executarBusca(){
+  const bruto = campoVoo.value;
+  const numeroVoo = normalizarVoo(bruto);
+  if(!numeroVoo){
+    mostrarEstado('Digite um número de voo pra começar.');
+    return;
+  }
+
+  btnBuscar.disabled = true;
+  mostrarEstado(`Buscando rota do voo ${numeroVoo}…`);
+
+  try{
+    const rota = await buscarRota(numeroVoo);
+    if(!rota){
+      mostrarEstado(`Não encontramos rota pra "${numeroVoo}". Confira o número (ex: GLO1462 ou G31462) e tente de novo.`, true);
+      return;
+    }
+
+    await garantirPaises();
+
+    const origem = rota.origin, destino = rota.destination;
+    document.getElementById('nomeCia').textContent = rota.airline ? rota.airline.name : 'Companhia não identificada';
+    document.getElementById('codigoVoo').textContent = `${rota.callsign_icao || rota.callsign} · ${rota.callsign_iata || ''}`.trim();
+    document.getElementById('origemCodigo').textContent = origem.iata_code || origem.icao_code || '—';
+    document.getElementById('origemNome').textContent = origem.name;
+    document.getElementById('origemCidade').textContent = `${origem.municipality || ''}${origem.country_name ? ', ' + origem.country_name : ''}`;
+    document.getElementById('destinoCodigo').textContent = destino.iata_code || destino.icao_code || '—';
+    document.getElementById('destinoNome').textContent = destino.name;
+    document.getElementById('destinoCidade').textContent = `${destino.municipality || ''}${destino.country_name ? ', ' + destino.country_name : ''}`;
+
+    const callsignBusca = rota.callsign_icao || numeroVoo;
+    const posicao = await buscarPosicaoAoVivo(callsignBusca);
+
+    const badge = document.getElementById('badgeAoVivo');
+    const statusGrid = document.getElementById('statusGrid');
+    let aoVivoXY = null;
+    let rumo = 0;
+
+    const bbox = calcularBBox(origem, destino);
+    const proj = calcularProjecao(bbox);
+    const origemXY = projetar(origem.longitude, origem.latitude, proj);
+    const destinoXY = projetar(destino.longitude, destino.latitude, proj);
+
+    if(posicao && typeof posicao.lat === 'number' && typeof posicao.lon === 'number'){
+      badge.textContent = 'No ar agora';
+      badge.classList.remove('parado');
+      aoVivoXY = projetar(posicao.lon, posicao.lat, proj);
+      rumo = typeof posicao.track === 'number' ? posicao.track : 0;
+
+      document.getElementById('statusAltitude').textContent = typeof posicao.alt_baro === 'number' ? formatarNumero(posicao.alt_baro, 'pés') : '—';
+      document.getElementById('statusVelocidade').textContent = typeof posicao.gs === 'number' ? formatarNumero(posicao.gs, 'kt') : '—';
+      document.getElementById('statusRumo').textContent = typeof posicao.track === 'number' ? Math.round(posicao.track) + '°' : '—';
+      document.getElementById('statusAeronave').textContent = posicao.t || posicao.desc || '—';
+      statusGrid.style.display = 'grid';
+    } else {
+      badge.textContent = 'Não está no ar agora';
+      badge.classList.add('parado');
+      statusGrid.style.display = 'none';
+    }
+
+    renderizarMapa(proj, origemXY, destinoXY, aoVivoXY, rumo);
+    mostrarResultado();
+  } catch(erro){
+    console.error(erro);
+    mostrarEstado('Não foi possível buscar esse voo agora. Tenta de novo em instantes.', true);
+  } finally {
+    btnBuscar.disabled = false;
+  }
+}
+
+btnBuscar.addEventListener('click', executarBusca);
+campoVoo.addEventListener('keydown', (e) => {
+  if(e.key === 'Enter') executarBusca();
+});
+document.querySelectorAll('.exemplos button').forEach(botao => {
+  botao.addEventListener('click', () => {
+    campoVoo.value = botao.dataset.voo;
+    executarBusca();
+  });
+});
+</script>
+
+<script src="../js/nav.js"></script>
+</body>
+</html>

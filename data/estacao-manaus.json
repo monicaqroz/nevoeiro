@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-11T16:10:48.790Z",
+  "atualizadoEm": "2026-08-11T19:20:38.697Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-11T16:00:00Z",
-    "tempC": 35,
+    "hora": "2026-08-11T19:00:00Z",
+    "tempC": 25,
     "orvalhoC": 21,
-    "umidade": 44,
-    "ventoGraus": 70,
-    "ventoKmh": 15,
-    "pressaoHpa": 1015,
+    "umidade": 78,
+    "ventoGraus": 100,
+    "ventoKmh": 13,
+    "pressaoHpa": 1012,
     "visibilidadeKm": 9.7,
     "cobertura": "SCT",
-    "tetoM": 1219,
+    "tetoM": 1463,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 111600Z 07008KT 030V150 9999 SCT040 35/21 Q1015"
+    "raw": "METAR SBEG 111900Z 10007KT 060V150 9999 SCT048 25/21 Q1012"
   },
   "historico": [
     {
@@ -5288,6 +5288,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 111600Z 07008KT 030V150 9999 SCT040 35/21 Q1015"
+    },
+    {
+      "hora": "2026-08-11T17:00:00Z",
+      "tempC": 36,
+      "orvalhoC": 21,
+      "umidade": 42,
+      "ventoGraus": 80,
+      "ventoKmh": 15,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1463,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 111700Z 08008KT 9999 SCT048 36/21 Q1014"
+    },
+    {
+      "hora": "2026-08-11T18:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": 140,
+      "ventoKmh": 11,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1463,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 111800Z 14006KT 110V170 9999 SCT048 34/21 Q1013"
+    },
+    {
+      "hora": "2026-08-11T19:00:00Z",
+      "tempC": 25,
+      "orvalhoC": 21,
+      "umidade": 78,
+      "ventoGraus": 100,
+      "ventoKmh": 13,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1463,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 111900Z 10007KT 060V150 9999 SCT048 25/21 Q1012"
     }
   ]
 }

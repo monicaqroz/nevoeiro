@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-12T07:52:48.192Z",
+  "atualizadoEm": "2026-08-12T10:20:03.561Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,12 +9,12 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-12T07:00:00Z",
-    "tempC": 27,
+    "hora": "2026-08-12T10:00:00Z",
+    "tempC": 26,
     "orvalhoC": 22,
-    "umidade": 74,
-    "ventoGraus": 230,
-    "ventoKmh": 4,
+    "umidade": 79,
+    "ventoGraus": 130,
+    "ventoKmh": 9,
     "pressaoHpa": 1014,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
@@ -22,7 +22,7 @@
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 120700Z 23002KT CAVOK 27/22 Q1014"
+    "raw": "METAR SBEG 121000Z 13005KT CAVOK 26/22 Q1014"
   },
   "historico": [
     {
@@ -5528,6 +5528,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 120700Z 23002KT CAVOK 27/22 Q1014"
+    },
+    {
+      "hora": "2026-08-12T08:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 22,
+      "umidade": 74,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 120800Z 00000KT CAVOK 27/22 Q1014"
+    },
+    {
+      "hora": "2026-08-12T09:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 22,
+      "umidade": 79,
+      "ventoGraus": 120,
+      "ventoKmh": 7,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 120900Z 12004KT CAVOK 26/22 Q1013"
+    },
+    {
+      "hora": "2026-08-12T10:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 22,
+      "umidade": 79,
+      "ventoGraus": 130,
+      "ventoKmh": 9,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 121000Z 13005KT CAVOK 26/22 Q1014"
     }
   ]
 }

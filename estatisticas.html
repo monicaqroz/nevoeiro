@@ -1,13 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estatísticas — Nevoeiro</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estatísticas — Nevoeiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .es-content{ max-width: none; padding: 0; }
+
+  .es-page{
+    position: relative;
+    --fundo: #ffffff;
+    --tinta: #111111;
+    --tinta-fraca: #6b6b6b;
+    --acento: #f05d23;
+    --acento-forte: #d14d1a;
+    --acento-neblina: rgba(240,93,35,0.08);
+    --linha: #e3e3e3;
+    --painel: #fafafa;
+    --sombra: 0 1px 2px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.06);
+    background: var(--fundo);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .es-page *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  .es-page a{ color: inherit; }
+
+  .es-page header{ max-width: 900px; margin: 0 auto; padding: 56px 24px 24px; }
+  .es-page .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--acento);
+    display:flex; align-items:center; gap:10px;
+    font-weight: 500;
+  }
+  .es-page .eyebrow::before{
+    content:'';
+    width:7px; height:7px; border-radius:50%;
+    background: var(--acento);
+    box-shadow: 0 0 0 0 rgba(240,93,35,0.5);
+    animation: pulso 2.4s ease-out infinite;
+  }
+  @keyframes pulso{
+    0%{ box-shadow: 0 0 0 0 rgba(240,93,35,0.45); }
+    70%{ box-shadow: 0 0 0 8px rgba(240,93,35,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(240,93,35,0); }
+  }
+
+  .es-page h1{
+    font-family:'Fraunces', serif;
+    font-weight: 360;
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    line-height: 0.98;
+    margin: 16px 0 6px;
+    letter-spacing: -0.01em;
+    color: var(--tinta);
+  }
+  .es-page h1 em{ font-style: italic; font-weight: 620; color: var(--acento); }
+  .es-page .sub{ max-width: 68ch; color: var(--tinta-fraca); font-size: 14.5px; line-height: 1.6; margin-top: 10px; }
+
+  .es-page .es-main{ max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+
+  .es-page .destaque-total{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .es-page .destaque-total .valor{
+    font-family:'Fraunces', serif;
+    font-size: clamp(2.4rem, 7vw, 3.4rem);
+    color: var(--acento);
+  }
+  .es-page .destaque-total .rotulo{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .es-page .painel{
+    background: var(--painel);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--sombra);
+    margin-bottom: 20px;
+  }
+  .es-page .painel h2{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--tinta-fraca);
+    margin: 0 0 16px;
+  }
+
+  .es-page .grafico-dias{
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 120px;
+  }
+  .es-page .barra-dia{
+    flex: 1;
+    background: var(--acento);
+    border-radius: 3px 3px 0 0;
+    min-height: 2px;
+    opacity: 0.85;
+    position: relative;
+  }
+  .es-page .barra-dia:hover{ opacity: 1; }
+  .es-page .grafico-legenda{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--tinta-fraca);
+  }
+
+  .es-page .duas-colunas{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .es-page .lista-ranking{ display: flex; flex-direction: column; gap: 8px; }
+  .es-page .item-ranking{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+  .es-page .item-ranking .nome{
+    flex: 1 1 100%;
+    color: var(--tinta);
+    word-break: break-word;
+  }
+  .es-page .item-ranking .barra-fundo{
+    flex: 1 1 auto;
+    min-width: 60px;
+    height: 6px;
+    background: var(--linha);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .es-page .item-ranking .barra-preenchida{
+    height: 100%;
+    background: var(--acento);
+    border-radius: 999px;
+  }
+  .es-page .item-ranking .numero{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    min-width: 26px;
+    text-align: right;
+  }
+
+  .es-page .vazio{
+    font-size: 12.5px;
+    color: var(--tinta-fraca);
+    font-style: italic;
+  }
+
+  .es-page .atualizado-em{
+    font-family:'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: var(--tinta-fraca);
+    margin-top: 8px;
+  }
+
+  .es-page .aviso{
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    line-height: 1.7;
+  }
+
+  .es-page footer{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+    font-size: 12px;
+    color: var(--tinta-fraca);
+    border-top: 1px solid var(--linha);
+  }
+  .es-page a:focus-visible, .es-page button:focus-visible{
+    outline: 2px solid var(--acento);
+    outline-offset: 2px;
+  }
+</style>
 </head>
 <body>
   <div class="layout">
@@ -66,60 +271,406 @@
           </div>
         </div>
 
-        <a href="sobre.html">Sobre mim</a>
+        <a href="sobre.html" class="active">Sobre mim</a>
       </nav>
     </aside>
 
-    <main class="content">
-      <h1 class="hero-title">Estatísticas</h1>
-      <p class="hero-tagline">Quem visita o Nevoeiro, de onde vem e no que clica</p>
+    <main class="content es-content">
+      <div class="es-page">
+        <header>
+          <div class="eyebrow">Nevoeiro — bastidores</div>
+          <h1>Estatísticas<br><em>do site</em></h1>
+          <p class="sub">
+            Quem visita o Nevoeiro, de onde vem e no que clica. Números coletados pelo GoatCounter,
+            atualizados uma vez por dia.
+          </p>
+        </header>
 
-      <div class="cv-stats">
-        <div class="cv-stat">
-          <span class="cv-stat-valor" id="totalVisitantes">—</span>
-          <span class="cv-stat-rotulo">visitantes ao todo</span>
-        </div>
+        <section class="es-main">
+          <div class="destaque-total">
+            <span class="valor" id="totalVisitantes">—</span>
+            <span class="rotulo">visitantes ao todo</span>
+          </div>
+
+          <div class="painel">
+            <h2>Visitas por dia</h2>
+            <div class="grafico-dias" id="graficoDias"></div>
+            <div class="grafico-legenda" id="graficoLegenda"></div>
+          </div>
+
+          <div class="duas-colunas">
+            <div class="painel">
+              <h2>Páginas mais vistas</h2>
+              <div class="lista-ranking" id="listaPaginas"></div>
+            </div>
+            <div class="painel">
+              <h2>Cliques mais frequentes</h2>
+              <div class="lista-ranking" id="listaCliques"></div>
+            </div>
+            <div class="painel">
+              <h2>De onde vêm (países)</h2>
+              <div class="lista-ranking" id="listaPaises"></div>
+            </div>
+            <div class="painel">
+              <h2>Referências</h2>
+              <div class="lista-ranking" id="listaReferencias"></div>
+            </div>
+          </div>
+
+          <div class="atualizado-em" id="atualizadoEm"></div>
+
+          <p class="aviso">
+            Os cliques rastreados são só nos cards de jogos e projetos — o resto da navegação não é
+            individualmente identificado, e nenhum dado pessoal é coletado (o GoatCounter não usa
+            cookies nem guarda o IP de quem visita).
+          </p>
+        </section>
+
+        <footer>
+          Estatísticas de acesso via <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>, exibidas aqui com o visual do site.
+          <br>
+          <a class="back-link" href="sobre.html">← Voltar para Sobre mim</a>
+        </footer>
       </div>
-
-      <h2 class="cv-secao-titulo">Visitas por dia</h2>
-      <div class="es-grafico" id="graficoDias"></div>
-      <div class="es-grafico-legenda" id="graficoLegenda"></div>
-
-      <h2 class="cv-secao-titulo">Páginas mais vistas</h2>
-      <div class="es-lista" id="listaPaginas"></div>
-
-      <h2 class="cv-secao-titulo">Cliques mais frequentes</h2>
-      <div class="es-lista" id="listaCliques"></div>
-
-      <h2 class="cv-secao-titulo">De onde vêm (países)</h2>
-      <div class="es-lista" id="listaPaises"></div>
-
-      <h2 class="cv-secao-titulo">Referências</h2>
-      <div class="es-lista" id="listaReferencias"></div>
-
-      <p class="cv-fonte" id="atualizadoEm"></p>
-
-      <p class="cv-fonte">
-        Os cliques rastreados são só nos cards de jogos e projetos — o resto da navegação não é
-        individualmente identificado, e nenhum dado pessoal é coletado (o GoatCounter não usa
-        cookies nem guarda o IP de quem visita). Números via
-        <a href="https://www.goatcounter.com/" target="_blank" rel="noopener">GoatCounter</a>,
-        atualizados uma vez por dia.
-      </p>
-
-      <a class="back-link" href="sobre.html">← Voltar para Sobre mim</a>
     </main>
   </div>
 
 <script id="dados-estatisticas" type="application/json">
 {
-  "atualizadoEm": null,
-  "totalVisitantes": 0,
-  "porDia": [],
-  "paginasMaisVistas": [],
-  "cliquesMaisFrequentes": [],
-  "paises": [],
-  "referencias": []
+  "atualizadoEm": "2026-08-11T22:02:00.043Z",
+  "totalVisitantes": 50,
+  "porDia": [
+    {
+      "dia": "2026-06-13",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-14",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-15",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-16",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-17",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-18",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-19",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-20",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-21",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-22",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-23",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-24",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-25",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-26",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-27",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-28",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-29",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-06-30",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-01",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-02",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-03",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-04",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-05",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-06",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-07",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-08",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-09",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-10",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-11",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-12",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-13",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-14",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-15",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-16",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-17",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-18",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-19",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-20",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-21",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-22",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-23",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-24",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-25",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-26",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-27",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-28",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-29",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-30",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-07-31",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-01",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-02",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-03",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-04",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-05",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-06",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-07",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-08",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-09",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-10",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-08-11",
+      "visitantes": 50
+    }
+  ],
+  "paginasMaisVistas": [
+    {
+      "caminho": "/projetos/sismos-america-sul.html",
+      "titulo": "Sismos — Placa Sul-Americana — Nevoeiro",
+      "visitantes": 3
+    },
+    {
+      "caminho": "/index.html",
+      "titulo": "Nevoeiro",
+      "visitantes": 3
+    },
+    {
+      "caminho": "/estatisticas.html",
+      "titulo": "Estatísticas — Nevoeiro",
+      "visitantes": 3
+    },
+    {
+      "caminho": "/sobre.html",
+      "titulo": "Sobre mim — Nevoeiro",
+      "visitantes": 3
+    },
+    {
+      "caminho": "/artigos-interativos.html",
+      "titulo": "Artigos Interativos — Nevoeiro",
+      "visitantes": 2
+    },
+    {
+      "caminho": "/jogos/batalha-naval.html",
+      "titulo": "Batalha Naval — Nevoeiro",
+      "visitantes": 2
+    },
+    {
+      "caminho": "/projetos/eleitorado-am.html",
+      "titulo": "Perfil do Eleitor Amazonense — Nevoeiro",
+      "visitantes": 2
+    },
+    {
+      "caminho": "/projetos/manaus-rio.html",
+      "titulo": "Nível do Rio Negro — Nevoeiro",
+      "visitantes": 2
+    },
+    {
+      "caminho": "/projetos/manaus-conforto.html",
+      "titulo": "Conforto Térmico de Manaus — Nevoeiro",
+      "visitantes": 2
+    },
+    {
+      "caminho": "/projetos/manaus-estacao.html",
+      "titulo": "Clima em Manaus — Estação — Nevoeiro",
+      "visitantes": 2
+    }
+  ],
+  "cliquesMaisFrequentes": [
+    {
+      "nome": "📊 Estatísticas do site",
+      "visitantes": 3
+    },
+    {
+      "nome": "Rastreador de Voos",
+      "visitantes": 2
+    },
+    {
+      "nome": "Clima em Manaus",
+      "visitantes": 1
+    },
+    {
+      "nome": "Batalha Naval Posicione sua frota e afunde os navios do comp",
+      "visitantes": 1
+    },
+    {
+      "nome": "Sismos — Placa Sul-Americana",
+      "visitantes": 1
+    },
+    {
+      "nome": "Campo Minado O clássico jogo de dedução, com quatro níveis de",
+      "visitantes": 1
+    }
+  ],
+  "paises": [
+    {
+      "nome": "Brazil",
+      "visitantes": 50
+    }
+  ],
+  "referencias": [
+    {
+      "nome": "",
+      "visitantes": 12
+    }
+  ]
 }
 </script>
 
@@ -150,7 +701,7 @@ function renderizarLista(elId, itens, chaveNome, chaveContagem){
   el.innerHTML = '';
   if(!itens || itens.length === 0){
     const vazio = document.createElement('div');
-    vazio.className = 'es-vazio';
+    vazio.className = 'vazio';
     vazio.textContent = 'Sem dados ainda.';
     el.appendChild(vazio);
     return;
@@ -160,21 +711,21 @@ function renderizarLista(elId, itens, chaveNome, chaveContagem){
     const largura = maior > 0 ? Math.max((item[chaveContagem] / maior) * 100, 4) : 0;
 
     const linha = document.createElement('div');
-    linha.className = 'es-item';
+    linha.className = 'item-ranking';
 
     const nome = document.createElement('span');
-    nome.className = 'es-nome';
+    nome.className = 'nome';
     nome.textContent = item[chaveNome];
 
     const barraFundo = document.createElement('span');
-    barraFundo.className = 'es-barra-fundo';
+    barraFundo.className = 'barra-fundo';
     const barraPreenchida = document.createElement('span');
-    barraPreenchida.className = 'es-barra-preenchida';
+    barraPreenchida.className = 'barra-preenchida';
     barraPreenchida.style.width = largura.toFixed(0) + '%';
     barraFundo.appendChild(barraPreenchida);
 
     const numero = document.createElement('span');
-    numero.className = 'es-numero';
+    numero.className = 'numero';
     numero.textContent = item[chaveContagem];
 
     linha.append(nome, barraFundo, numero);
@@ -186,14 +737,14 @@ function renderizarGrafico(porDia){
   const graf = document.getElementById('graficoDias');
   const legenda = document.getElementById('graficoLegenda');
   if(!porDia || porDia.length === 0){
-    graf.innerHTML = '<div class="es-vazio">Sem dados ainda.</div>';
+    graf.innerHTML = '<div class="vazio">Sem dados ainda.</div>';
     legenda.innerHTML = '';
     return;
   }
   const maior = Math.max(...porDia.map(d => d.visitantes), 1);
   graf.innerHTML = porDia.map(d => {
     const altura = Math.max((d.visitantes / maior) * 100, 2);
-    return `<div class="es-barra-dia" style="height:${altura.toFixed(0)}%" title="${formatarData(d.dia)}: ${d.visitantes} visitantes"></div>`;
+    return `<div class="barra-dia" style="height:${altura.toFixed(0)}%" title="${formatarData(d.dia)}: ${d.visitantes} visitantes"></div>`;
   }).join('');
   legenda.innerHTML = `<span>${formatarData(porDia[0].dia)}</span><span>${formatarData(porDia[porDia.length - 1].dia)}</span>`;
 }

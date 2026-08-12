@@ -25,11 +25,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- data/nivel-rio-negro.json; then
+          if git diff --quiet -- data/nivel-rio-negro.json projetos/manaus-rio.html; then
             echo "Sem novidades no nível do rio."
             exit 0
           fi
-          git add data/nivel-rio-negro.json
+          git add data/nivel-rio-negro.json projetos/manaus-rio.html
           git commit -m "Atualiza nível do Rio Negro"
           git pull --rebase origin main
           git push

@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-08-11T22:02:00.043Z",
-  "totalVisitantes": 50,
+  "atualizadoEm": "2026-08-12T11:46:43.548Z",
+  "totalVisitantes": 74,
   "porDia": [
-    {
-      "dia": "2026-06-13",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-14",
       "visitantes": 0
@@ -240,65 +236,69 @@
     },
     {
       "dia": "2026-08-11",
-      "visitantes": 50
+      "visitantes": 70
+    },
+    {
+      "dia": "2026-08-12",
+      "visitantes": 4
     }
   ],
   "paginasMaisVistas": [
     {
       "caminho": "/projetos/sismos-america-sul.html",
       "titulo": "Sismos — Placa Sul-Americana — Nevoeiro",
-      "visitantes": 3
+      "visitantes": 5
     },
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 3
-    },
-    {
-      "caminho": "/estatisticas.html",
-      "titulo": "Estatísticas — Nevoeiro",
-      "visitantes": 3
-    },
-    {
-      "caminho": "/sobre.html",
-      "titulo": "Sobre mim — Nevoeiro",
-      "visitantes": 3
-    },
-    {
-      "caminho": "/artigos-interativos.html",
-      "titulo": "Artigos Interativos — Nevoeiro",
-      "visitantes": 2
-    },
-    {
-      "caminho": "/jogos/batalha-naval.html",
-      "titulo": "Batalha Naval — Nevoeiro",
-      "visitantes": 2
+      "visitantes": 5
     },
     {
       "caminho": "/projetos/eleitorado-am.html",
       "titulo": "Perfil do Eleitor Amazonense — Nevoeiro",
-      "visitantes": 2
+      "visitantes": 4
     },
     {
       "caminho": "/projetos/manaus-rio.html",
       "titulo": "Nível do Rio Negro — Nevoeiro",
-      "visitantes": 2
-    },
-    {
-      "caminho": "/projetos/manaus-conforto.html",
-      "titulo": "Conforto Térmico de Manaus — Nevoeiro",
-      "visitantes": 2
+      "visitantes": 4
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 2
+      "visitantes": 4
+    },
+    {
+      "caminho": "/projetos/manaus-tempo.html",
+      "titulo": "Clima em Manaus — Nevoeiro",
+      "visitantes": 4
+    },
+    {
+      "caminho": "/projetos/rastreador-voos.html",
+      "titulo": "Rastreador de Voos — Nevoeiro",
+      "visitantes": 4
+    },
+    {
+      "caminho": "/estatisticas.html",
+      "titulo": "Estatísticas — Nevoeiro",
+      "visitantes": 4
+    },
+    {
+      "caminho": "/sobre.html",
+      "titulo": "Sobre mim — Nevoeiro",
+      "visitantes": 4
+    },
+    {
+      "caminho": "/artigos-interativos.html",
+      "titulo": "Artigos Interativos — Nevoeiro",
+      "visitantes": 3
     }
   ],
   "cliquesMaisFrequentes": [
     {
       "nome": "📊 Estatísticas do site",
-      "visitantes": 3
+      "visitantes": 4
     },
     {
       "nome": "Rastreador de Voos",
@@ -324,13 +324,13 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 50
+      "visitantes": 74
     }
   ],
   "referencias": [
     {
       "nome": "",
-      "visitantes": 12
+      "visitantes": 14
     }
   ]
 }

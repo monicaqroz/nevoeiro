@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-14T02:46:42.796Z",
+  "atualizadoEm": "2026-08-14T05:02:57.405Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-14T02:00:00Z",
-    "tempC": 27,
-    "orvalhoC": 24,
+    "hora": "2026-08-14T05:00:00Z",
+    "tempC": 26,
+    "orvalhoC": 23,
     "umidade": 84,
     "ventoGraus": 0,
     "ventoKmh": 0,
-    "pressaoHpa": 1014,
+    "pressaoHpa": 1013,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 140200Z 00000KT CAVOK 27/24 Q1014"
+    "raw": "METAR SBEG 140500Z 00000KT CAVOK 26/23 Q1013"
   },
   "historico": [
     {
@@ -6216,6 +6216,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 140200Z 00000KT CAVOK 27/24 Q1014"
+    },
+    {
+      "hora": "2026-08-14T03:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 24,
+      "umidade": 89,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 140300Z 00000KT CAVOK 26/24 Q1014"
+    },
+    {
+      "hora": "2026-08-14T04:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 23,
+      "umidade": 84,
+      "ventoGraus": 280,
+      "ventoKmh": 2,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 140400Z 28001KT CAVOK 26/23 Q1013"
+    },
+    {
+      "hora": "2026-08-14T05:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 23,
+      "umidade": 84,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 140500Z 00000KT CAVOK 26/23 Q1013"
     }
   ]
 }

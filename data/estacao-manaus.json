@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-15T12:59:41.476Z",
+  "atualizadoEm": "2026-08-15T15:35:19.179Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-15T12:00:00Z",
-    "tempC": 29,
-    "orvalhoC": 23,
-    "umidade": 70,
-    "ventoGraus": 50,
-    "ventoKmh": 6,
+    "hora": "2026-08-15T15:00:00Z",
+    "tempC": 34,
+    "orvalhoC": 21,
+    "umidade": 47,
+    "ventoGraus": 110,
+    "ventoKmh": 19,
     "pressaoHpa": 1013,
     "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
+    "cobertura": "FEW",
+    "tetoM": 914,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 151200Z 05003KT 360V090 CAVOK 29/23 Q1013"
+    "raw": "METAR SBEG 151500Z 11010KT 9999 FEW030 34/21 Q1013"
   },
   "historico": [
     {
@@ -6760,6 +6760,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 151200Z 05003KT 360V090 CAVOK 29/23 Q1013"
+    },
+    {
+      "hora": "2026-08-15T13:00:00Z",
+      "tempC": 32,
+      "orvalhoC": 22,
+      "umidade": 56,
+      "ventoGraus": 60,
+      "ventoKmh": 11,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 151300Z 06006KT 020V090 CAVOK 32/22 Q1014"
+    },
+    {
+      "hora": "2026-08-15T14:00:00Z",
+      "tempC": 33,
+      "orvalhoC": 22,
+      "umidade": 53,
+      "ventoGraus": 90,
+      "ventoKmh": 19,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 762,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 151400Z 09010KT 060V120 9999 FEW025 33/22 Q1014"
+    },
+    {
+      "hora": "2026-08-15T15:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": 110,
+      "ventoKmh": 19,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 914,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 151500Z 11010KT 9999 FEW030 34/21 Q1013"
     }
   ]
 }

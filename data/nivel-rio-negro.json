@@ -1,12 +1,12 @@
 {
-  "atualizadoEm": "2026-08-16T14:30:18.921Z",
+  "atualizadoEm": "2026-08-17T14:35:31.162Z",
   "fonte": "https://portodemanaus.com.br/nivel-do-rio-negro/",
   "atual": {
-    "data": "2026-08-14",
-    "cota": 26.33,
+    "data": "2026-08-17",
+    "cota": 25.99,
     "situacao": "Vazando",
-    "variacaoDiaCm": -8,
-    "variacaoAcumuladaM": -2.18
+    "variacaoDiaCm": -12,
+    "variacaoAcumuladaM": -2.52
   },
   "historico": [
     {
@@ -983,6 +983,21 @@
       "data": "2026-08-14",
       "cota": 26.33,
       "variacaoCm": -8
+    },
+    {
+      "data": "2026-08-15",
+      "cota": 26.22,
+      "variacaoCm": -11
+    },
+    {
+      "data": "2026-08-16",
+      "cota": 26.11,
+      "variacaoCm": -11
+    },
+    {
+      "data": "2026-08-17",
+      "cota": 25.99,
+      "variacaoCm": -12
     }
   ]
 }

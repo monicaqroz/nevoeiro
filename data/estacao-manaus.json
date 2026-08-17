@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-17T18:58:12.966Z",
+  "atualizadoEm": "2026-08-17T21:41:45.455Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,20 +9,20 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-17T18:00:00Z",
+    "hora": "2026-08-17T21:00:00Z",
     "tempC": 34,
-    "orvalhoC": 22,
-    "umidade": 50,
-    "ventoGraus": 90,
-    "ventoKmh": 17,
-    "pressaoHpa": 1010,
+    "orvalhoC": 23,
+    "umidade": 53,
+    "ventoGraus": 80,
+    "ventoKmh": 20,
+    "pressaoHpa": 1009,
     "visibilidadeKm": 9.7,
     "cobertura": "FEW",
     "tetoM": 1067,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 171800Z 09009KT 9999 SCT030 FEW035TCU 34/22 Q1010"
+    "raw": "METAR SBEG 172100Z 08011KT 9999 FEW030 FEW035TCU 34/23 Q1009"
   },
   "historico": [
     {
@@ -7640,6 +7640,54 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 171800Z 09009KT 9999 SCT030 FEW035TCU 34/22 Q1010"
+    },
+    {
+      "hora": "2026-08-17T19:00:00Z",
+      "tempC": 35,
+      "orvalhoC": 22,
+      "umidade": 47,
+      "ventoGraus": 110,
+      "ventoKmh": 19,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 171900Z 11010KT 9999 SCT030 FEW035TCU 35/22 Q1010"
+    },
+    {
+      "hora": "2026-08-17T20:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 22,
+      "umidade": 50,
+      "ventoGraus": 80,
+      "ventoKmh": 17,
+      "pressaoHpa": 1009,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 172000Z 08009KT 9999 FEW030 FEW035TCU 34/22 Q1009"
+    },
+    {
+      "hora": "2026-08-17T21:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 23,
+      "umidade": 53,
+      "ventoGraus": 80,
+      "ventoKmh": 20,
+      "pressaoHpa": 1009,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 172100Z 08011KT 9999 FEW030 FEW035TCU 34/23 Q1009"
     }
   ]
 }

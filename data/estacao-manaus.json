@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-18T13:08:04.518Z",
+  "atualizadoEm": "2026-08-18T15:46:37.097Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,12 +9,12 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-18T13:00:00Z",
-    "tempC": 31,
-    "orvalhoC": 22,
-    "umidade": 59,
-    "ventoGraus": 60,
-    "ventoKmh": 15,
+    "hora": "2026-08-18T15:00:00Z",
+    "tempC": 34,
+    "orvalhoC": 21,
+    "umidade": 47,
+    "ventoGraus": 70,
+    "ventoKmh": 22,
     "pressaoHpa": 1013,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
@@ -22,7 +22,7 @@
     "categoriaVoo": "VFR",
     "chovendo": false,
     "condicao": null,
-    "raw": "METAR SBEG 181300Z 06008KT CAVOK 31/22 Q1013"
+    "raw": "METAR SBEG 181500Z 07012KT CAVOK 34/21 Q1013"
   },
   "historico": [
     {
@@ -7944,6 +7944,38 @@
       "chovendo": false,
       "condicao": null,
       "raw": "METAR SBEG 181300Z 06008KT CAVOK 31/22 Q1013"
+    },
+    {
+      "hora": "2026-08-18T14:00:00Z",
+      "tempC": 32,
+      "orvalhoC": 22,
+      "umidade": 56,
+      "ventoGraus": 60,
+      "ventoKmh": 20,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 181400Z 06011KT 030V100 CAVOK 32/22 Q1014"
+    },
+    {
+      "hora": "2026-08-18T15:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": 70,
+      "ventoKmh": 22,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "condicao": null,
+      "raw": "METAR SBEG 181500Z 07012KT CAVOK 34/21 Q1013"
     }
   ]
 }

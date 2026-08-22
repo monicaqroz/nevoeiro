@@ -104,22 +104,46 @@ function atualizarPaginaEmbutida(resultado) {
   console.log(`Atualizado: ${ARQUIVO_PAGINA}`);
 }
 
+// A API do GoatCounter às vezes responde 404 de forma passageira num endpoint
+// específico (já aconteceu com /stats/total e /stats/hits em dias diferentes,
+// com os outros endpoints respondendo normalmente). Em vez de derrubar a
+// atualização inteira por causa de uma falha pontual, cada seção é buscada
+// isoladamente: se falhar, mantém o dado da rodada anterior e segue com o
+// resto, só falhando de verdade se TODAS as seções derem erro.
+async function tentar(fn, nomeSecao) {
+  try {
+    return await fn();
+  } catch (err) {
+    console.warn(`Aviso: falha ao buscar ${nomeSecao}, mantendo dado anterior. ${err.message}`);
+    return null;
+  }
+}
+
 async function main() {
+  let anterior = {};
+  if (fs.existsSync(ARQUIVO_DADOS)) {
+    anterior = JSON.parse(fs.readFileSync(ARQUIVO_DADOS, 'utf8'));
+  }
+
   const [total, hits, paises, referencias] = await Promise.all([
-    buscarTotal(),
-    buscarHits(),
-    buscarLista('locations', 10),
-    buscarLista('toprefs', 10),
+    tentar(buscarTotal, '/stats/total'),
+    tentar(buscarHits, '/stats/hits'),
+    tentar(() => buscarLista('locations', 10), '/stats/locations'),
+    tentar(() => buscarLista('toprefs', 10), '/stats/toprefs'),
   ]);
+
+  if (!total && !hits && !paises && !referencias) {
+    throw new Error('Todas as seções falharam — nenhum dado novo pra gravar.');
+  }
 
   const resultado = {
     atualizadoEm: agoraIso(),
-    totalVisitantes: total.totalVisitantes,
-    porDia: total.porDia,
-    paginasMaisVistas: hits.paginas,
-    cliquesMaisFrequentes: hits.cliques,
-    paises,
-    referencias,
+    totalVisitantes: total ? total.totalVisitantes : (anterior.totalVisitantes ?? 0),
+    porDia: total ? total.porDia : (anterior.porDia ?? []),
+    paginasMaisVistas: hits ? hits.paginas : (anterior.paginasMaisVistas ?? []),
+    cliquesMaisFrequentes: hits ? hits.cliques : (anterior.cliquesMaisFrequentes ?? []),
+    paises: paises ?? anterior.paises ?? [],
+    referencias: referencias ?? anterior.referencias ?? [],
   };
 
   fs.mkdirSync(path.dirname(ARQUIVO_DADOS), { recursive: true });

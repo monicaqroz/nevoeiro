@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-08-22T02:18:24.156Z",
+  "atualizadoEm": "2026-08-22T09:19:00.351Z",
   "totalVisitantes": 243,
   "porDia": [
-    {
-      "dia": "2026-06-23",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-24",
       "visitantes": 0
@@ -241,6 +237,10 @@
     {
       "dia": "2026-08-21",
       "visitantes": 22
+    },
+    {
+      "dia": "2026-08-22",
+      "visitantes": 0
     }
   ],
   "paginasMaisVistas": [
@@ -336,7 +336,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 222
+      "visitantes": 240
     },
     {
       "nome": "United States",

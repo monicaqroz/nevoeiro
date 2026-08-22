@@ -25,8 +25,9 @@ function umidadeRelativa(tempC, dewpC) {
 }
 
 // Reconhece o grupo de tempo presente (fenômeno meteorológico) num METAR, ex:
-// "-RA", "RA", "+TSRA", "SHRA", "DZ". Ignora outros grupos (vento, nuvens, etc).
-const REGEX_GRUPO_TEMPO = /^[-+]?(VC)?(MI|BC|PR|DR|BL|SH|TS|FZ)*(DZ|RA|SN|SG|IC|PL|GR|GS|UP)+$/;
+// "-RA", "RA", "+TSRA", "SHRA", "DZ", "VCSH" (descritor sozinho, sem tipo de
+// precipitação explícito — comum e válido, ex: "VCSH" = aguaceiro nas proximidades).
+const REGEX_GRUPO_TEMPO = /^[-+]?(VC)?((MI|BC|PR|DR|BL|SH|TS|FZ)+(DZ|RA|SN|SG|IC|PL|GR|GS|UP)*|(DZ|RA|SN|SG|IC|PL|GR|GS|UP)+)$/;
 
 function condicaoClima(raw) {
   if (!raw) return { chovendo: false, condicao: null };
@@ -34,11 +35,12 @@ function condicaoClima(raw) {
   if (!grupo) return { chovendo: false, condicao: null };
 
   const intensidade = grupo.startsWith('+') ? 'forte' : grupo.startsWith('-') ? 'fraca' : 'moderada';
+  const proximidades = grupo.includes('VC') ? ' nas proximidades' : '';
   let condicao;
-  if (grupo.includes('TS')) condicao = `Trovoada com chuva ${intensidade}`;
-  else if (grupo.includes('SH')) condicao = `Pancadas de chuva ${intensidade}`;
-  else if (grupo.includes('DZ')) condicao = `Garoa ${intensidade}`;
-  else condicao = `Chuva ${intensidade}`;
+  if (grupo.includes('TS')) condicao = `Trovoada com chuva ${intensidade}${proximidades}`;
+  else if (grupo.includes('SH')) condicao = `Pancadas de chuva ${intensidade}${proximidades}`;
+  else if (grupo.includes('DZ')) condicao = `Garoa ${intensidade}${proximidades}`;
+  else condicao = `Chuva ${intensidade}${proximidades}`;
 
   return { chovendo: true, condicao };
 }

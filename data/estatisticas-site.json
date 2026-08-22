@@ -1,19 +1,7 @@
 {
-  "atualizadoEm": "2026-08-18T09:23:33.379Z",
-  "totalVisitantes": 185,
+  "atualizadoEm": "2026-08-22T02:18:24.156Z",
+  "totalVisitantes": 243,
   "porDia": [
-    {
-      "dia": "2026-06-20",
-      "visitantes": 0
-    },
-    {
-      "dia": "2026-06-21",
-      "visitantes": 0
-    },
-    {
-      "dia": "2026-06-22",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-23",
       "visitantes": 0
@@ -240,73 +228,89 @@
     },
     {
       "dia": "2026-08-18",
-      "visitantes": 0
+      "visitantes": 6
+    },
+    {
+      "dia": "2026-08-19",
+      "visitantes": 26
+    },
+    {
+      "dia": "2026-08-20",
+      "visitantes": 4
+    },
+    {
+      "dia": "2026-08-21",
+      "visitantes": 22
     }
   ],
   "paginasMaisVistas": [
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 15
+      "visitantes": 23
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 14
+      "visitantes": 21
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 12
-    },
-    {
-      "caminho": "/projetos/sismos-america-sul.html",
-      "titulo": "Sismos — Placa Sul-Americana — Nevoeiro",
-      "visitantes": 12
+      "visitantes": 18
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 12
-    },
-    {
-      "caminho": "/sobre.html",
-      "titulo": "Sobre mim — Nevoeiro",
-      "visitantes": 11
+      "visitantes": 18
     },
     {
       "caminho": "/projetos/manaus-rio.html",
       "titulo": "Nível do Rio Negro — Nevoeiro",
-      "visitantes": 10
+      "visitantes": 15
+    },
+    {
+      "caminho": "/projetos/sismos-america-sul.html",
+      "titulo": "Sismos — Placa Sul-Americana — Nevoeiro",
+      "visitantes": 14
+    },
+    {
+      "caminho": "/sobre.html",
+      "titulo": "Sobre mim — Nevoeiro",
+      "visitantes": 14
     },
     {
       "caminho": "/estatisticas.html",
       "titulo": "Estatísticas — Nevoeiro",
-      "visitantes": 10
+      "visitantes": 13
     },
     {
       "caminho": "/artigos-interativos.html",
       "titulo": "Artigos Interativos — Nevoeiro",
-      "visitantes": 8
+      "visitantes": 9
     },
     {
       "caminho": "/projetos/rastreador-voos.html",
       "titulo": "Rastreador de Voos — Nevoeiro",
-      "visitantes": 8
+      "visitantes": 9
     }
   ],
   "cliquesMaisFrequentes": [
     {
       "nome": "📊 Estatísticas do site",
-      "visitantes": 10
+      "visitantes": 13
     },
     {
       "nome": "Card: Clima em Manaus — Estação",
-      "visitantes": 3
+      "visitantes": 5
     },
     {
       "nome": "Clima em Manaus",
-      "visitantes": 3
+      "visitantes": 4
+    },
+    {
+      "nome": "Card: Nível do Rio Negro",
+      "visitantes": 2
     },
     {
       "nome": "Card: Ecossistema Nevoeiro",
@@ -332,7 +336,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 182
+      "visitantes": 222
     },
     {
       "nome": "United States",
@@ -342,7 +346,7 @@
   "referencias": [
     {
       "nome": "",
-      "visitantes": 39
+      "visitantes": 55
     }
   ]
 }

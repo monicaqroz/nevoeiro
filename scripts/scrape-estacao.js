@@ -30,32 +30,38 @@ function umidadeRelativa(tempC, dewpC) {
 const REGEX_GRUPO_TEMPO = /^[-+]?(VC)?((MI|BC|PR|DR|BL|SH|TS|FZ)+(DZ|RA|SN|SG|IC|PL|GR|GS|UP)*|(DZ|RA|SN|SG|IC|PL|GR|GS|UP)+)$/;
 
 function condicaoClima(raw) {
-  if (!raw) return { chovendo: false, condicao: null };
+  if (!raw) return { chovendo: false, chuvaNaEstacao: false, condicao: null };
   const grupo = raw.split(' ').find((t) => REGEX_GRUPO_TEMPO.test(t));
-  if (!grupo) return { chovendo: false, condicao: null };
+  if (!grupo) return { chovendo: false, chuvaNaEstacao: false, condicao: null };
 
+  // "VC" (vicinity) significa que o fenômeno está nas proximidades, não em cima
+  // da estação — não conta como chuva "de verdade" ali pra fins do contador de
+  // dias sem chuva, só pra descrever a condição atual.
+  const naVizinhanca = grupo.includes('VC');
   const intensidade = grupo.startsWith('+') ? 'forte' : grupo.startsWith('-') ? 'fraca' : 'moderada';
-  const proximidades = grupo.includes('VC') ? ' nas proximidades' : '';
+  const proximidades = naVizinhanca ? ' nas proximidades' : '';
   let condicao;
   if (grupo.includes('TS')) condicao = `Trovoada com chuva ${intensidade}${proximidades}`;
   else if (grupo.includes('SH')) condicao = `Pancadas de chuva ${intensidade}${proximidades}`;
   else if (grupo.includes('DZ')) condicao = `Garoa ${intensidade}${proximidades}`;
   else condicao = `Chuva ${intensidade}${proximidades}`;
 
-  return { chovendo: true, condicao };
+  return { chovendo: true, chuvaNaEstacao: !naVizinhanca, condicao };
 }
 
 // Conta os dias secos consecutivos até o dia mais recente com dados, agrupando
 // as observações por dia local em Manaus (UTC-4, sem horário de verão). Um dia
-// conta como "com chuva" se qualquer observação daquele dia tiver chovendo=true.
-// Para no primeiro dia chuvoso ou sem nenhuma observação (sem dado = sem contar).
+// conta como "com chuva" se qualquer observação daquele dia tiver chuva de
+// verdade na estação (chuvaNaEstacao=true) — fenômenos só "nas proximidades"
+// (VCSH, VCTS) não contam, já que não choveu ali. Para no primeiro dia chuvoso
+// ou sem nenhuma observação (sem dado = sem contar).
 function calcularDiasSemChuva(historico) {
   const porDia = new Map();
   for (const r of historico) {
-    if (r.chovendo == null) continue;
+    if (r.chuvaNaEstacao == null) continue;
     const dataManaus = new Date(new Date(r.hora).getTime() - 4 * 60 * 60 * 1000);
     const chave = dataManaus.toISOString().slice(0, 10);
-    porDia.set(chave, (porDia.get(chave) || false) || r.chovendo);
+    porDia.set(chave, (porDia.get(chave) || false) || r.chuvaNaEstacao);
   }
   if (!porDia.size) return null;
 
@@ -93,7 +99,7 @@ async function buscarObservacoes() {
 
 function paraRegistro(obs) {
   const nuvem = obs.clouds && obs.clouds.length ? obs.clouds[obs.clouds.length - 1] : null;
-  const { chovendo, condicao } = condicaoClima(obs.rawOb);
+  const { chovendo, chuvaNaEstacao, condicao } = condicaoClima(obs.rawOb);
   return {
     // sem milissegundos, pra bater com o formato já usado no histórico existente
     // (senão a mesma hora vira duas chaves diferentes no dedupe e duplica o registro)
@@ -109,6 +115,7 @@ function paraRegistro(obs) {
     tetoM: nuvem && nuvem.base != null ? Math.round(nuvem.base * 0.3048) : null,
     categoriaVoo: obs.fltCat || null,
     chovendo,
+    chuvaNaEstacao,
     condicao,
     raw: obs.rawOb,
   };
@@ -147,6 +154,15 @@ async function main() {
   let historicoExistente = [];
   if (fs.existsSync(ARQUIVO_DADOS)) {
     historicoExistente = JSON.parse(fs.readFileSync(ARQUIVO_DADOS, 'utf8')).historico || [];
+  }
+
+  // Migração pontual: registros salvos antes de existir o campo chuvaNaEstacao
+  // não o têm, mas já guardam o METAR bruto — recalcula a partir dele em vez
+  // de deixar o histórico velho incompleto.
+  for (const r of historicoExistente) {
+    if (r.chuvaNaEstacao == null && r.raw) {
+      r.chuvaNaEstacao = condicaoClima(r.raw).chuvaNaEstacao;
+    }
   }
 
   const porHora = new Map(historicoExistente.map((h) => [h.hora, h]));

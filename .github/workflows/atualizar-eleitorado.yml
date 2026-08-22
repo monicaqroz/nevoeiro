@@ -5,6 +5,10 @@ on:
     - cron: '30 6 1 * *' # dia 1 de cada mês — a base do TSE não muda com frequência
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 

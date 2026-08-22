@@ -5,6 +5,10 @@ on:
     - cron: '30 8 3 * *' # dia 3 de cada mês — só o ano corrente muda; o histórico é fixo
   workflow_dispatch: {}
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
 

@@ -81,10 +81,10 @@ async function buscarHits() {
   return { paginas, cliques };
 }
 
-async function buscarLista(pagina, limite) {
+async function buscarLista(pagina, limite, rotuloVazio) {
   const dados = await chamarApi(`/stats/${pagina}`, { limit: limite });
   return (dados.stats || [])
-    .map((s) => ({ nome: s.name, visitantes: s.count }))
+    .map((s) => ({ nome: s.name || rotuloVazio || s.name, visitantes: s.count }))
     .sort((a, b) => b.visitantes - a.visitantes)
     .slice(0, limite);
 }
@@ -129,7 +129,7 @@ async function main() {
     tentar(buscarTotal, '/stats/total'),
     tentar(buscarHits, '/stats/hits'),
     tentar(() => buscarLista('locations', 10), '/stats/locations'),
-    tentar(() => buscarLista('toprefs', 10), '/stats/toprefs'),
+    tentar(() => buscarLista('toprefs', 10, 'Acesso direto'), '/stats/toprefs'),
   ]);
 
   if (!total && !hits && !paises && !referencias) {

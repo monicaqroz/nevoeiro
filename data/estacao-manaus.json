@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-22T18:49:32.101Z",
+  "atualizadoEm": "2026-08-22T21:35:57.774Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,21 +9,21 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-22T18:00:00Z",
-    "tempC": 30,
-    "orvalhoC": 24,
-    "umidade": 70,
-    "ventoGraus": 30,
+    "hora": "2026-08-22T21:00:00Z",
+    "tempC": 28,
+    "orvalhoC": 23,
+    "umidade": 74,
+    "ventoGraus": 310,
     "ventoKmh": 6,
     "pressaoHpa": 1011,
     "visibilidadeKm": 9.7,
-    "cobertura": "SCT",
-    "tetoM": 3048,
+    "cobertura": "FEW",
+    "tetoM": 1067,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 221800Z 03003KT 9999 FEW030 SCT100 30/24 Q1011"
+    "raw": "METAR SBEG 222100Z 31003KT 9999 FEW030 FEW035TCU 28/23 Q1011"
   },
   "diasSemChuva": 0,
   "historico": [
@@ -10192,6 +10192,57 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 221800Z 03003KT 9999 FEW030 SCT100 30/24 Q1011"
+    },
+    {
+      "hora": "2026-08-22T19:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 23,
+      "umidade": 79,
+      "ventoGraus": 350,
+      "ventoKmh": 7,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 3048,
+      "categoriaVoo": "VFR",
+      "chovendo": true,
+      "chuvaNaEstacao": false,
+      "condicao": "Pancadas de chuva moderada nas proximidades",
+      "raw": "METAR SBEG 221900Z 35004KT 9999 VCSH FEW025 FEW030TCU SCT100 27/23 Q1011"
+    },
+    {
+      "hora": "2026-08-22T20:00:00Z",
+      "tempC": 29,
+      "orvalhoC": 22,
+      "umidade": 66,
+      "ventoGraus": 330,
+      "ventoKmh": 7,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 3048,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 222000Z 33004KT 9999 FEW030 FEW035TCU SCT100 29/22 Q1011"
+    },
+    {
+      "hora": "2026-08-22T21:00:00Z",
+      "tempC": 28,
+      "orvalhoC": 23,
+      "umidade": 74,
+      "ventoGraus": 310,
+      "ventoKmh": 6,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 222100Z 31003KT 9999 FEW030 FEW035TCU 28/23 Q1011"
     }
   ]
 }

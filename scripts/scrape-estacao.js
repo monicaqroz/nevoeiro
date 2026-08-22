@@ -45,6 +45,32 @@ function condicaoClima(raw) {
   return { chovendo: true, condicao };
 }
 
+// Conta os dias secos consecutivos até o dia mais recente com dados, agrupando
+// as observações por dia local em Manaus (UTC-4, sem horário de verão). Um dia
+// conta como "com chuva" se qualquer observação daquele dia tiver chovendo=true.
+// Para no primeiro dia chuvoso ou sem nenhuma observação (sem dado = sem contar).
+function calcularDiasSemChuva(historico) {
+  const porDia = new Map();
+  for (const r of historico) {
+    if (r.chovendo == null) continue;
+    const dataManaus = new Date(new Date(r.hora).getTime() - 4 * 60 * 60 * 1000);
+    const chave = dataManaus.toISOString().slice(0, 10);
+    porDia.set(chave, (porDia.get(chave) || false) || r.chovendo);
+  }
+  if (!porDia.size) return null;
+
+  const diasOrdenados = [...porDia.keys()].sort();
+  const cursor = new Date(`${diasOrdenados[diasOrdenados.length - 1]}T00:00:00Z`);
+  let streak = 0;
+  while (true) {
+    const chave = cursor.toISOString().slice(0, 10);
+    if (!porDia.has(chave) || porDia.get(chave)) break;
+    streak++;
+    cursor.setUTCDate(cursor.getUTCDate() - 1);
+  }
+  return streak;
+}
+
 function visibilidadeKm(visib) {
   if (visib == null) return null;
   const str = String(visib).replace('+', '');
@@ -132,6 +158,7 @@ async function main() {
     fonte: 'https://aviationweather.gov/data/metar',
     estacao,
     atual: historico[historico.length - 1],
+    diasSemChuva: calcularDiasSemChuva(historico),
     historico,
   };
 

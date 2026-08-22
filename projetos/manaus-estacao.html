@@ -9847,6 +9847,10 @@ function renderizar(dados){
         <div class="rotulo">Teto de nuvens</div>
         <div class="valor">${a.tetoM ? formatarNumero(a.tetoM) : 'sem teto'}<span class="unidade">${a.tetoM ? 'm' : ''}</span></div>
       </div>
+      <div class="dado">
+        <div class="rotulo">Dias sem chuva</div>
+        <div class="valor">${formatarNumero(dados.diasSemChuva, 0)}<span class="unidade">${dados.diasSemChuva === 1 ? 'dia' : 'dias'}</span></div>
+      </div>
     </div>
 
     <div class="metar-raw">

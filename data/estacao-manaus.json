@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-23T07:01:18.483Z",
+  "atualizadoEm": "2026-08-23T09:43:45.222Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,21 +9,21 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-23T07:00:00Z",
-    "tempC": 25,
-    "orvalhoC": 25,
+    "hora": "2026-08-23T09:00:00Z",
+    "tempC": 24,
+    "orvalhoC": 24,
     "umidade": 100,
     "ventoGraus": 340,
     "ventoKmh": 4,
     "pressaoHpa": 1012,
-    "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
-    "categoriaVoo": "VFR",
+    "visibilidadeKm": 0.9,
+    "cobertura": "SCT",
+    "tetoM": 91,
+    "categoriaVoo": "LIFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 230700Z 34002KT CAVOK 25/25 Q1012"
+    "raw": "METAR SBEG 230900Z 34002KT 0900 R29/2000 R11/2000 FG SCT003 24/24 Q1012"
   },
   "diasSemChuva": 1,
   "historico": [
@@ -10413,6 +10413,57 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 230700Z 34002KT CAVOK 25/25 Q1012"
+    },
+    {
+      "hora": "2026-08-23T08:00:00Z",
+      "tempC": 25,
+      "orvalhoC": 24,
+      "umidade": 94,
+      "ventoGraus": 350,
+      "ventoKmh": 6,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 230800Z 35003KT CAVOK 25/24 Q1011"
+    },
+    {
+      "hora": "2026-08-23T08:34:00Z",
+      "tempC": 25,
+      "orvalhoC": 24,
+      "umidade": 94,
+      "ventoGraus": 340,
+      "ventoKmh": 4,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 1.5,
+      "cobertura": "SCT",
+      "tetoM": 91,
+      "categoriaVoo": "LIFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "SPECI SBEG 230834Z 34002KT 1500 R29/2000 R11/2000 BR SCT003 25/24 Q1012"
+    },
+    {
+      "hora": "2026-08-23T09:00:00Z",
+      "tempC": 24,
+      "orvalhoC": 24,
+      "umidade": 100,
+      "ventoGraus": 340,
+      "ventoKmh": 4,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 0.9,
+      "cobertura": "SCT",
+      "tetoM": 91,
+      "categoriaVoo": "LIFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 230900Z 34002KT 0900 R29/2000 R11/2000 FG SCT003 24/24 Q1012"
     }
   ]
 }

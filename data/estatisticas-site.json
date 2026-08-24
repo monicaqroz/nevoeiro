@@ -1,15 +1,7 @@
 {
-  "atualizadoEm": "2026-08-23T09:19:55.261Z",
-  "totalVisitantes": 243,
+  "atualizadoEm": "2026-08-24T09:37:59.455Z",
+  "totalVisitantes": 266,
   "porDia": [
-    {
-      "dia": "2026-06-24",
-      "visitantes": 0
-    },
-    {
-      "dia": "2026-06-25",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-26",
       "visitantes": 0
@@ -240,33 +232,46 @@
     },
     {
       "dia": "2026-08-22",
-      "visitantes": 0
+      "visitantes": 9
+    },
+    {
+      "dia": "2026-08-23",
+      "visitantes": 11
+    },
+    {
+      "dia": "2026-08-24",
+      "visitantes": 3
     }
   ],
   "paginasMaisVistas": [
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 24
+      "visitantes": 27
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 23
+      "visitantes": 26
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 20
+      "visitantes": 22
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 19
+      "visitantes": 21
     },
     {
       "caminho": "/projetos/manaus-rio.html",
       "titulo": "Nível do Rio Negro — Nevoeiro",
+      "visitantes": 15
+    },
+    {
+      "caminho": "/sobre.html",
+      "titulo": "Sobre mim — Nevoeiro",
       "visitantes": 15
     },
     {
@@ -275,14 +280,9 @@
       "visitantes": 14
     },
     {
-      "caminho": "/sobre.html",
-      "titulo": "Sobre mim — Nevoeiro",
-      "visitantes": 14
-    },
-    {
       "caminho": "/estatisticas.html",
       "titulo": "Estatísticas — Nevoeiro",
-      "visitantes": 13
+      "visitantes": 14
     },
     {
       "caminho": "/",
@@ -298,11 +298,11 @@
   "cliquesMaisFrequentes": [
     {
       "nome": "📊 Estatísticas do site",
-      "visitantes": 13
+      "visitantes": 14
     },
     {
       "nome": "Card: Clima em Manaus — Estação",
-      "visitantes": 6
+      "visitantes": 7
     },
     {
       "nome": "Clima em Manaus",
@@ -336,7 +336,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 249
+      "visitantes": 263
     },
     {
       "nome": "United States",

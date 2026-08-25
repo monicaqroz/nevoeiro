@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-25T01:57:48.496Z",
+  "atualizadoEm": "2026-08-25T03:59:58.779Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,13 +9,13 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-25T01:00:00Z",
-    "tempC": 27,
+    "hora": "2026-08-25T03:00:00Z",
+    "tempC": 26,
     "orvalhoC": 22,
-    "umidade": 74,
+    "umidade": 79,
     "ventoGraus": 0,
     "ventoKmh": 0,
-    "pressaoHpa": 1012,
+    "pressaoHpa": 1013,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
@@ -23,7 +23,7 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 250100Z 00000KT CAVOK 27/22 Q1012"
+    "raw": "METAR SBEG 250300Z 00000KT CAVOK 26/22 Q1013"
   },
   "diasSemChuva": 2,
   "historico": [
@@ -11161,6 +11161,40 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 250100Z 00000KT CAVOK 27/22 Q1012"
+    },
+    {
+      "hora": "2026-08-25T02:00:00Z",
+      "tempC": 27,
+      "orvalhoC": 22,
+      "umidade": 74,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 250200Z 00000KT CAVOK 27/22 Q1013"
+    },
+    {
+      "hora": "2026-08-25T03:00:00Z",
+      "tempC": 26,
+      "orvalhoC": 22,
+      "umidade": 79,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1013,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 250300Z 00000KT CAVOK 26/22 Q1013"
     }
   ]
 }

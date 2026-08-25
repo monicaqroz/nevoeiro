@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-08-24T09:37:59.455Z",
-  "totalVisitantes": 266,
+  "atualizadoEm": "2026-08-25T09:26:43.622Z",
+  "totalVisitantes": 268,
   "porDia": [
-    {
-      "dia": "2026-06-26",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-27",
       "visitantes": 0
@@ -240,19 +236,23 @@
     },
     {
       "dia": "2026-08-24",
-      "visitantes": 3
+      "visitantes": 5
+    },
+    {
+      "dia": "2026-08-25",
+      "visitantes": 0
     }
   ],
   "paginasMaisVistas": [
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 27
+      "visitantes": 28
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 26
+      "visitantes": 27
     },
     {
       "caminho": "/projetos.html",
@@ -336,7 +336,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 263
+      "visitantes": 265
     },
     {
       "nome": "United States",
@@ -346,7 +346,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 58
+      "visitantes": 63
     }
   ]
 }

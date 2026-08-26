@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-26T13:16:45.265Z",
+  "atualizadoEm": "2026-08-26T16:34:12.516Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,21 +9,21 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-26T13:00:00Z",
-    "tempC": 30,
-    "orvalhoC": 22,
-    "umidade": 62,
-    "ventoGraus": 350,
-    "ventoKmh": 11,
-    "pressaoHpa": 1012,
+    "hora": "2026-08-26T16:00:00Z",
+    "tempC": 34,
+    "orvalhoC": 21,
+    "umidade": 47,
+    "ventoGraus": "VRB",
+    "ventoKmh": 13,
+    "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
+    "cobertura": "SCT",
+    "tetoM": 1067,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 261300Z 35006KT 320V020 CAVOK 30/22 Q1012"
+    "raw": "METAR SBEG 261600Z VRB07KT 9999 SCT035 34/21 Q1010"
   },
   "diasSemChuva": 4,
   "historico": [
@@ -11773,6 +11773,57 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 261300Z 35006KT 320V020 CAVOK 30/22 Q1012"
+    },
+    {
+      "hora": "2026-08-26T14:00:00Z",
+      "tempC": 33,
+      "orvalhoC": 22,
+      "umidade": 53,
+      "ventoGraus": 20,
+      "ventoKmh": 11,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 261400Z 02006KT 340V090 CAVOK 33/22 Q1012"
+    },
+    {
+      "hora": "2026-08-26T15:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 22,
+      "umidade": 50,
+      "ventoGraus": 30,
+      "ventoKmh": 13,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 914,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 261500Z 03007KT 350V100 9999 FEW030 34/22 Q1011"
+    },
+    {
+      "hora": "2026-08-26T16:00:00Z",
+      "tempC": 34,
+      "orvalhoC": 21,
+      "umidade": 47,
+      "ventoGraus": "VRB",
+      "ventoKmh": 13,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1067,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 261600Z VRB07KT 9999 SCT035 34/21 Q1010"
     }
   ]
 }

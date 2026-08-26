@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-08-25T09:26:43.622Z",
-  "totalVisitantes": 268,
+  "atualizadoEm": "2026-08-26T09:32:49.556Z",
+  "totalVisitantes": 273,
   "porDia": [
-    {
-      "dia": "2026-06-27",
-      "visitantes": 0
-    },
     {
       "dia": "2026-06-28",
       "visitantes": 0
@@ -240,6 +236,10 @@
     },
     {
       "dia": "2026-08-25",
+      "visitantes": 5
+    },
+    {
+      "dia": "2026-08-26",
       "visitantes": 0
     }
   ],
@@ -336,17 +336,17 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 265
+      "visitantes": 269
     },
     {
       "nome": "United States",
-      "visitantes": 3
+      "visitantes": 4
     }
   ],
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 63
+      "visitantes": 65
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-26T04:03:44.405Z",
+  "atualizadoEm": "2026-08-26T07:09:11.315Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,13 +9,13 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-08-26T04:00:00Z",
+    "hora": "2026-08-26T07:00:00Z",
     "tempC": 25,
     "orvalhoC": 22,
     "umidade": 83,
-    "ventoGraus": 350,
-    "ventoKmh": 4,
-    "pressaoHpa": 1011,
+    "ventoGraus": 0,
+    "ventoKmh": 0,
+    "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
@@ -23,7 +23,7 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 260400Z 35002KT CAVOK 25/22 Q1011"
+    "raw": "METAR SBEG 260700Z 00000KT CAVOK 25/22 Q1010"
   },
   "diasSemChuva": 4,
   "historico": [
@@ -11620,6 +11620,57 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 260400Z 35002KT CAVOK 25/22 Q1011"
+    },
+    {
+      "hora": "2026-08-26T05:00:00Z",
+      "tempC": 25,
+      "orvalhoC": 22,
+      "umidade": 83,
+      "ventoGraus": 360,
+      "ventoKmh": 4,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 260500Z 36002KT CAVOK 25/22 Q1011"
+    },
+    {
+      "hora": "2026-08-26T06:00:00Z",
+      "tempC": 25,
+      "orvalhoC": 22,
+      "umidade": 83,
+      "ventoGraus": 330,
+      "ventoKmh": 4,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 260600Z 33002KT CAVOK 25/22 Q1010"
+    },
+    {
+      "hora": "2026-08-26T07:00:00Z",
+      "tempC": 25,
+      "orvalhoC": 22,
+      "umidade": 83,
+      "ventoGraus": 0,
+      "ventoKmh": 0,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 260700Z 00000KT CAVOK 25/22 Q1010"
     }
   ]
 }

@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-08-31T16:33:51.950Z",
-  "totalVisitantes": 316,
+  "atualizadoEm": "2026-09-01T13:49:17.422Z",
+  "totalVisitantes": 325,
   "porDia": [
-    {
-      "dia": "2026-07-03",
-      "visitantes": 0
-    },
     {
       "dia": "2026-07-04",
       "visitantes": 0
@@ -240,29 +236,33 @@
     },
     {
       "dia": "2026-08-31",
+      "visitantes": 9
+    },
+    {
+      "dia": "2026-09-01",
       "visitantes": 0
     }
   ],
   "paginasMaisVistas": [
     {
-      "caminho": "/index.html",
-      "titulo": "Nevoeiro",
-      "visitantes": 34
-    },
-    {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 33
+      "visitantes": 36
+    },
+    {
+      "caminho": "/index.html",
+      "titulo": "Nevoeiro",
+      "visitantes": 36
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 27
+      "visitantes": 30
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 25
+      "visitantes": 29
     },
     {
       "caminho": "/projetos/manaus-rio.html",
@@ -287,7 +287,7 @@
     {
       "caminho": "/",
       "titulo": "Nevoeiro",
-      "visitantes": 11
+      "visitantes": 13
     },
     {
       "caminho": "/projetos/rastreador-voos.html",
@@ -306,7 +306,7 @@
     },
     {
       "nome": "Clima em Manaus",
-      "visitantes": 5
+      "visitantes": 6
     },
     {
       "nome": "Card: Nível do Rio Negro",
@@ -329,6 +329,10 @@
       "visitantes": 2
     },
     {
+      "nome": "Card: Conforto Térmico",
+      "visitantes": 1
+    },
+    {
       "nome": "Batalha Naval Posicione sua frota e afunde os navios do comp",
       "visitantes": 1
     }
@@ -336,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 312
+      "visitantes": 321
     },
     {
       "nome": "United States",
@@ -346,7 +350,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 76
+      "visitantes": 79
     }
   ]
 }

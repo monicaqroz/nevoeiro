@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-02T23:19:30.407Z",
+  "atualizadoEm": "2026-09-03T04:34:11.375Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBEG",
@@ -9,13 +9,13 @@
     "elevacaoM": 69
   },
   "atual": {
-    "hora": "2026-09-02T23:00:00Z",
-    "tempC": 34,
+    "hora": "2026-09-03T04:00:00Z",
+    "tempC": 30,
     "orvalhoC": 22,
-    "umidade": 50,
-    "ventoGraus": 110,
-    "ventoKmh": 11,
-    "pressaoHpa": 1009,
+    "umidade": 62,
+    "ventoGraus": 90,
+    "ventoKmh": 9,
+    "pressaoHpa": 1012,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
@@ -23,9 +23,9 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBEG 022300Z 11006KT CAVOK 34/22 Q1009"
+    "raw": "METAR SBEG 030400Z 09005KT CAVOK 30/22 Q1012"
   },
-  "diasSemChuva": 11,
+  "diasSemChuva": 12,
   "historico": [
     {
       "hora": "2026-07-28T23:00:00Z",
@@ -14799,6 +14799,91 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBEG 022300Z 11006KT CAVOK 34/22 Q1009"
+    },
+    {
+      "hora": "2026-09-03T00:00:00Z",
+      "tempC": 33,
+      "orvalhoC": 23,
+      "umidade": 56,
+      "ventoGraus": 120,
+      "ventoKmh": 9,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 030000Z 12005KT CAVOK 33/23 Q1010"
+    },
+    {
+      "hora": "2026-09-03T01:00:00Z",
+      "tempC": 32,
+      "orvalhoC": 23,
+      "umidade": 59,
+      "ventoGraus": 110,
+      "ventoKmh": 13,
+      "pressaoHpa": 1011,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 030100Z 11007KT CAVOK 32/23 Q1011"
+    },
+    {
+      "hora": "2026-09-03T02:00:00Z",
+      "tempC": 31,
+      "orvalhoC": 23,
+      "umidade": 62,
+      "ventoGraus": 100,
+      "ventoKmh": 9,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 030200Z 10005KT CAVOK 31/23 Q1012"
+    },
+    {
+      "hora": "2026-09-03T03:00:00Z",
+      "tempC": 30,
+      "orvalhoC": 23,
+      "umidade": 66,
+      "ventoGraus": 80,
+      "ventoKmh": 11,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 030300Z 08006KT CAVOK 30/23 Q1012"
+    },
+    {
+      "hora": "2026-09-03T04:00:00Z",
+      "tempC": 30,
+      "orvalhoC": 22,
+      "umidade": 62,
+      "ventoGraus": 90,
+      "ventoKmh": 9,
+      "pressaoHpa": 1012,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBEG 030400Z 09005KT CAVOK 30/22 Q1012"
     }
   ]
 }

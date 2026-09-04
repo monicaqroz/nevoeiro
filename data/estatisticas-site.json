@@ -1,19 +1,7 @@
 {
-  "atualizadoEm": "2026-09-03T13:08:34.508Z",
-  "totalVisitantes": 325,
+  "atualizadoEm": "2026-09-04T13:02:16.371Z",
+  "totalVisitantes": 353,
   "porDia": [
-    {
-      "dia": "2026-07-04",
-      "visitantes": 0
-    },
-    {
-      "dia": "2026-07-05",
-      "visitantes": 0
-    },
-    {
-      "dia": "2026-07-06",
-      "visitantes": 0
-    },
     {
       "dia": "2026-07-07",
       "visitantes": 0
@@ -240,6 +228,18 @@
     },
     {
       "dia": "2026-09-01",
+      "visitantes": 17
+    },
+    {
+      "dia": "2026-09-02",
+      "visitantes": 11
+    },
+    {
+      "dia": "2026-09-03",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-09-04",
       "visitantes": 0
     }
   ],

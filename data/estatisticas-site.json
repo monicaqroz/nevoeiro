@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-09-15T14:02:08.197Z",
-  "totalVisitantes": 418,
+  "atualizadoEm": "2026-09-16T13:55:52.166Z",
+  "totalVisitantes": 424,
   "porDia": [
-    {
-      "dia": "2026-07-18",
-      "visitantes": 0
-    },
     {
       "dia": "2026-07-19",
       "visitantes": 0
@@ -240,6 +236,10 @@
     },
     {
       "dia": "2026-09-15",
+      "visitantes": 6
+    },
+    {
+      "dia": "2026-09-16",
       "visitantes": 0
     }
   ],
@@ -247,22 +247,22 @@
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 51
+      "visitantes": 52
     },
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 49
+      "visitantes": 50
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 44
+      "visitantes": 45
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 43
+      "visitantes": 44
     },
     {
       "caminho": "/projetos/manaus-rio.html",
@@ -292,7 +292,7 @@
     {
       "caminho": "/projetos/manaus-conforto.html",
       "titulo": "Conforto Térmico de Manaus — Nevoeiro",
-      "visitantes": 11
+      "visitantes": 12
     }
   ],
   "cliquesMaisFrequentes": [
@@ -302,7 +302,7 @@
     },
     {
       "nome": "Clima em Manaus",
-      "visitantes": 13
+      "visitantes": 14
     },
     {
       "nome": "Card: Clima em Manaus — Estação",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 413
+      "visitantes": 419
     },
     {
       "nome": "United States",

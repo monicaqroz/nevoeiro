@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-09-16T13:55:52.166Z",
-  "totalVisitantes": 424,
+  "atualizadoEm": "2026-09-17T13:59:16.814Z",
+  "totalVisitantes": 432,
   "porDia": [
-    {
-      "dia": "2026-07-19",
-      "visitantes": 0
-    },
     {
       "dia": "2026-07-20",
       "visitantes": 0
@@ -240,6 +236,10 @@
     },
     {
       "dia": "2026-09-16",
+      "visitantes": 8
+    },
+    {
+      "dia": "2026-09-17",
       "visitantes": 0
     }
   ],
@@ -247,22 +247,22 @@
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 52
+      "visitantes": 53
     },
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 50
+      "visitantes": 51
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 45
+      "visitantes": 46
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 44
+      "visitantes": 45
     },
     {
       "caminho": "/projetos/manaus-rio.html",
@@ -292,7 +292,7 @@
     {
       "caminho": "/projetos/manaus-conforto.html",
       "titulo": "Conforto Térmico de Manaus — Nevoeiro",
-      "visitantes": 12
+      "visitantes": 13
     }
   ],
   "cliquesMaisFrequentes": [
@@ -302,11 +302,11 @@
     },
     {
       "nome": "Clima em Manaus",
-      "visitantes": 14
+      "visitantes": 15
     },
     {
       "nome": "Card: Clima em Manaus — Estação",
-      "visitantes": 12
+      "visitantes": 13
     },
     {
       "nome": "Card: Nível do Rio Negro",
@@ -315,6 +315,10 @@
     {
       "nome": "Sismos — Placa Sul-Americana",
       "visitantes": 3
+    },
+    {
+      "nome": "Card: Conforto Térmico",
+      "visitantes": 2
     },
     {
       "nome": "Card: Ecossistema Nevoeiro",
@@ -327,10 +331,6 @@
     {
       "nome": "Rastreador de Voos",
       "visitantes": 2
-    },
-    {
-      "nome": "Card: Conforto Térmico",
-      "visitantes": 1
     },
     {
       "nome": "Batalha Naval Posicione sua frota e afunde os navios do comp",
@@ -354,7 +354,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 111
+      "visitantes": 117
     }
   ]
 }

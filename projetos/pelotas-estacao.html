@@ -1178,6 +1178,12 @@
 </script>
 <script>
 const URL_DADOS = '../data/estacao-pelotas.json';
+const DIAS_GRAFICO = 7; // o arquivo guarda mais (folga), mas o gráfico mostra só a última semana
+
+function janelaRecente(historico, dias){
+  const limite = new Date(historico[historico.length - 1].hora).getTime() - dias * 24 * 60 * 60 * 1000;
+  return historico.filter((h) => new Date(h.hora).getTime() >= limite);
+}
 
 const COBERTURA = {
   SKC: 'Céu limpo', CLR: 'Céu limpo', CAVOK: 'Céu limpo',
@@ -1309,8 +1315,9 @@ function renderizar(dados){
   const cobertura = COBERTURA[a.cobertura] || a.cobertura || '—';
   const voo = VOO[a.categoriaVoo] || a.categoriaVoo || '';
 
-  const primeiro = dados.historico[0];
-  const ultimo = dados.historico[dados.historico.length - 1];
+  const grafico = janelaRecente(dados.historico, DIAS_GRAFICO);
+  const primeiro = grafico[0];
+  const ultimo = grafico[grafico.length - 1];
 
   conteudo.className = '';
   conteudo.innerHTML = `
@@ -1368,7 +1375,7 @@ function renderizar(dados){
     </div>
 
     <div class="grafico-card">
-      ${construirGrafico(dados.historico)}
+      ${construirGrafico(grafico)}
       <div class="grafico-legenda">
         <span>${formatarHora(primeiro.hora)}</span>
         <span>${formatarHora(ultimo.hora)}</span>

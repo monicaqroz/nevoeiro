@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ICAO = 'SBPK';
+const DIAS_RETENCAO = 30; // guarda mais do que os ~7 dias exibidos no gráfico, como folga
 const URL_FONTE = `https://aviationweather.gov/api/data/metar?ids=${ICAO}&format=json&hours=72`;
 const ARQUIVO_DADOS = path.join(__dirname, '..', 'data', 'estacao-pelotas.json');
 const PAGINAS_EMBUTIDAS = [
@@ -147,7 +148,12 @@ async function main() {
 
   const porHora = new Map(historicoExistente.map((h) => [h.hora, h]));
   for (const r of novosRegistros) porHora.set(r.hora, r);
-  const historico = [...porHora.values()].sort((a, b) => a.hora.localeCompare(b.hora));
+  const historicoCompleto = [...porHora.values()].sort((a, b) => a.hora.localeCompare(b.hora));
+
+  // Poda registros além da janela de retenção pra não deixar o JSON (e a página,
+  // que embute o histórico inteiro) crescendo sem limite pra sempre.
+  const limite = new Date(historicoCompleto[historicoCompleto.length - 1].hora).getTime() - DIAS_RETENCAO * 24 * 60 * 60 * 1000;
+  const historico = historicoCompleto.filter((h) => new Date(h.hora).getTime() >= limite);
 
   const resultado = {
     atualizadoEm: new Date().toISOString(),

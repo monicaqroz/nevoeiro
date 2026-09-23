@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rede de Cooperação — PPG-CLIAMB</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #ffffff;
+    --page:           #f4f4f1;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --hairline:       #e6e5df;
+    --border:         rgba(11,11,11,0.08);
+    --docente:        #1baf7a;
+    --docente-ink:    #0d6b49;
+    --docente-tint:   #e5f6ee;
+    --colaborador:    #2a78d6;
+    --colaborador-ink:#184f95;
+    --colaborador-tint:#eaf2fc;
+    --dim:            #c9c8c0;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow-card: 0 1px 2px rgba(20,20,15,0.04), 0 6px 20px rgba(20,20,15,0.05);
+    --shadow-card-hover: 0 2px 4px rgba(20,20,15,0.06), 0 10px 28px rgba(20,20,15,0.08);
+    --font-serif: "Fraunces", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    height: 100%;
+    background: var(--page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--docente-ink); }
+
+  .app{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  header.top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem 1.75rem;
+    background: var(--surface-2);
+    box-shadow: 0 1px 0 var(--hairline), 0 4px 16px rgba(20,20,15,0.04);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  header.top .title-row{
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  header.top h1{
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  header.top .sub{
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  header.top .stats{
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.55rem;
+    flex-wrap: wrap;
+  }
+  header.top .stat-pill{
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+  }
+  header.top .stat-pill b{ color: var(--text-primary); font-weight: 700; }
+
+  header.top .back{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    text-decoration: none;
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 0.45rem 0.95rem;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  header.top .back:hover{ color: var(--docente-ink); border-color: var(--docente); background: var(--docente-tint); text-decoration: none; }
+
+  .body{
+    flex: 1;
+    display: flex;
+    min-height: 0;
+  }
+
+  aside.panel{
+    width: 320px;
+    flex-shrink: 0;
+    background: var(--page);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1rem 1rem 0;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .panel-section{
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 1rem 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .panel-section h2{
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin: 0 0 0.7rem;
+    font-weight: 700;
+  }
+
+  .legend{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .legend-row{ display: flex; align-items: center; gap: 0.55rem; }
+  .legend-dot{ width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.04); }
+
+  .docentes-card{
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0.4rem;
+  }
+  .docentes-card .panel-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .docentes-card .panel-head h2{ margin: 0; }
+
+  .docente-list{
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    margin: 0 -0.4rem;
+  }
+
+  button.doc-row{
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    text-align: left;
+    padding: 0.45rem 0.4rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.84rem;
+    color: var(--text-primary);
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  button.doc-row:hover{ background: var(--surface-1); }
+  button.doc-row:active{ transform: scale(0.99); }
+  button.doc-row.active{
+    background: var(--docente-tint);
+    font-weight: 600;
+  }
+  button.doc-row .avatar{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--docente);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.02em;
+  }
+  button.doc-row.active .avatar{ box-shadow: 0 0 0 3px var(--docente-tint), 0 0 0 4px var(--docente); }
+  button.doc-row .n{
+    margin-left: auto;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    background: var(--surface-1);
+    border-radius: 999px;
+    padding: 0.1rem 0.45rem;
+  }
+  button.doc-row.active .n{ background: #fff; color: var(--docente-ink); }
+
+  #limpar, #limparFiltro{
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 0.28rem 0.7rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  #limpar:hover{ color: var(--text-primary); border-color: var(--text-muted); background: var(--surface-2); }
+
+  .dropdown{ position: relative; }
+  .dropdown-toggle{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-family: inherit;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--surface-1);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-sm);
+    padding: 0.55rem 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .dropdown-toggle:hover{ border-color: var(--colaborador); }
+  .dropdown-toggle svg{ flex-shrink: 0; transition: transform 0.15s ease; color: var(--text-muted); }
+  .dropdown.open .dropdown-toggle{ border-color: var(--colaborador-ink); background: var(--colaborador-tint); }
+  .dropdown.open .dropdown-toggle svg{ transform: rotate(180deg); }
+
+  .dropdown-menu{
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    z-index: 30;
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card-hover);
+    padding: 0.5rem;
+    max-height: 280px;
+    overflow-y: auto;
+    display: none;
+  }
+  .dropdown.open .dropdown-menu{ display: block; }
+  .dropdown-menu label{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.55rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .dropdown-menu label:hover{ background: var(--surface-1); }
+  .dropdown-menu input{ accent-color: var(--colaborador-ink); cursor: pointer; }
+  .dropdown-footer{
+    border-top: 1px solid var(--hairline);
+    margin-top: 0.3rem;
+    padding-top: 0.4rem;
+    text-align: right;
+  }
+  .dropdown-footer button{
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .dropdown-footer button:hover{ color: var(--text-primary); }
+
+  #detalhe{
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    padding: 1rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    max-height: 44%;
+    overflow-y: auto;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+  }
+  #detalhe .vazio{ color: var(--text-muted); font-style: italic; margin: 0; }
+  #detalhe h3{
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    margin: 0 0 0.15rem;
+  }
+  #detalhe .meta{ color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.75rem; }
+  .colab-item{
+    padding: 0.65rem 0.7rem;
+    margin-bottom: 0.4rem;
+    border-radius: var(--radius-sm);
+    background: var(--surface-1);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .colab-item:last-child{ margin-bottom: 0; }
+  .colab-item:hover{ background: var(--colaborador-tint); border-color: var(--colaborador); }
+  .colab-item:hover .colab-nome{ color: var(--colaborador-ink); }
+  .colab-nome{ font-weight: 600; color: var(--text-primary); transition: color 0.15s ease; }
+  .colab-inst{ color: var(--text-secondary); margin-top: 0.1rem; }
+  .colab-area{ color: var(--text-secondary); font-style: italic; margin-top: 0.25rem; }
+  .colab-tipo{ color: var(--text-muted); font-size: 0.74rem; margin-top: 0.3rem; }
+
+  #map{ flex: 1; min-width: 0; }
+
+  .leaflet-popup-content-wrapper{ border-radius: var(--radius-sm); }
+  .leaflet-popup-content{ font-family: var(--font-sans); font-size: 0.82rem; min-width: 190px; }
+  .leaflet-popup-content h4{ margin: 0 0 0.2rem; font-family: var(--font-serif); font-size: 0.95rem; }
+  .leaflet-popup-content .pop-meta{ color: var(--text-muted); font-size: 0.74rem; margin-bottom: 0.35rem; }
+  .leaflet-popup-content .pop-colab{ border-top: 1px dashed var(--hairline); padding-top: 0.3rem; margin-top: 0.3rem; }
+
+  @media (max-width: 760px){
+    .body{ flex-direction: column; }
+    aside.panel{ width: 100%; max-height: 50%; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="title-wrap">
+      <div class="title-row">
+        <h1>Rede de Cooperação</h1>
+      </div>
+      <div class="sub">PPG-CLIAMB — Docentes do programa (Manaus/INPA-UEA) e seus colaboradores pelo mundo</div>
+      <div class="stats" id="headerStats"></div>
+    </div>
+    <a class="back" href="../index.html">← nevoeiro</a>
+  </header>
+
+  <div class="body">
+    <aside class="panel">
+      <div class="panel-section">
+        <h2>Legenda</h2>
+        <div class="legend">
+          <div class="legend-row"><span class="legend-dot" style="background:#1baf7a"></span> Docente PPG-CLIAMB</div>
+          <div class="legend-row"><span class="legend-dot" style="background:#2a78d6"></span> Pesquisador(a) colaborador(a)</div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h2>Tipo de cooperação</h2>
+        <div class="dropdown" id="tipoDropdown">
+          <button type="button" class="dropdown-toggle" id="tipoDropdownBtn">
+            <span id="tipoDropdownLabel">Todos os tipos</span>
+            <svg width="11" height="7" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown-menu" id="tipoDropdownMenu"></div>
+        </div>
+      </div>
+
+      <div class="panel-section docentes-card">
+        <div class="panel-head">
+          <h2>Docentes</h2>
+          <button id="limpar" type="button">Limpar seleção</button>
+        </div>
+        <nav class="docente-list" id="docenteList" aria-label="Lista de docentes"></nav>
+      </div>
+
+      <div id="detalhe"><p class="vazio">Selecione um docente na lista ou clique num boneco no mapa para ver a rede de colaborações.</p></div>
+    </aside>
+
+    <div id="map" role="application" aria-label="Mapa da rede de cooperação"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var COR_DOCENTE = "#1baf7a";
+  var COR_COLAB = "#2a78d6";
+  var COR_DIM = "#c9c8c0";
+
+  var map = L.map("map", { minZoom: 2, worldCopyJump: true }).setView([5, -30], 3);
+  L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 16,
+    attribution: "Tiles &copy; Esri — Esri, DeLorme, NAVTEQ"
+  }).addTo(map);
+
+  var arcLayer = L.layerGroup().addTo(map);
+  var markerLayer = L.layerGroup().addTo(map);
+
+  var state = { data: null, selectedId: null, markers: {}, byId: {}, filterTipos: new Set() };
+
+  function edgeMatchesFilter(e){
+    if (state.filterTipos.size === 0) return true;
+    return (e.tipos || []).some(function(t){ return state.filterTipos.has(t); });
+  }
+
+  function personIcon(color, size){
+    size = size || 22;
+    var html = '<div style="width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+color+
+      ';display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.35);">' +
+      '<svg width="'+(size*0.62)+'" height="'+(size*0.62)+'" viewBox="0 0 24 24" fill="#fff">' +
+      '<circle cx="12" cy="7" r="4"></circle>' +
+      '<path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path>' +
+      '</svg></div>';
+    return L.divIcon({ html: html, className: "", iconSize: [size, size], iconAnchor: [size/2, size/2], popupAnchor: [0, -size/2] });
+  }
+
+  function edgesFor(nodeId){
+    return state.data.colaboracoes.filter(function(e){
+      return (e.docente_id === nodeId || e.colaborador_id === nodeId) && edgeMatchesFilter(e);
+    });
+  }
+
+  function popupHtml(node){
+    var html = "";
+    if (node.tipo === "docente"){
+      var n = edgesFor(node.id).length;
+      html += "<h4>"+esc(node.nome)+"</h4>";
+      html += "<div class='pop-meta'>Docente PPG-CLIAMB &middot; INPA-UEA, Manaus</div>";
+      html += "<div>"+n+" "+(n===1 ? "colaboração registrada" : "colaborações registradas")+"</div>";
+    } else {
+      html += "<h4>"+esc(node.nome)+"</h4>";
+      html += "<div class='pop-meta'>"+esc(node.instituicao)+(node.sigla?" ("+esc(node.sigla)+")":"")+"<br>"+esc(node.cidade)+", "+esc(node.pais)+"</div>";
+      edgesFor(node.id).forEach(function(e){
+        var doc = state.byId[e.docente_id];
+        html += "<div class='pop-colab'><strong>"+esc(doc ? doc.nome : "?")+"</strong>";
+        if (e.area) html += "<br>"+esc(e.area);
+        if (e.tipo_cooperacao) html += "<br>"+esc(e.tipo_cooperacao);
+        if (e.desde) html += "<br><span class='pop-meta'>desde "+esc(e.desde)+"</span>";
+        html += "</div>";
+      });
+    }
+    return html;
+  }
+
+  function esc(s){
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  function arcPoints(a, b, segments){
+    segments = segments || 48;
+    var lat1 = a[0], lon1 = a[1], lat2 = b[0], lon2 = b[1];
+    var dx = lon2 - lon1, dy = lat2 - lat1;
+    var dist = Math.sqrt(dx*dx + dy*dy);
+    var mx = (lon1+lon2)/2, my = (lat1+lat2)/2;
+    var nx = -dy, ny = dx;
+    var nlen = Math.sqrt(nx*nx + ny*ny) || 1;
+    var curvature = 0.15;
+    var cx = mx + (nx/nlen) * dist * curvature;
+    var cy = my + (ny/nlen) * dist * curvature;
+    var pts = [];
+    for (var i = 0; i <= segments; i++){
+      var t = i/segments;
+      var lon = (1-t)*(1-t)*lon1 + 2*(1-t)*t*cx + t*t*lon2;
+      var lat = (1-t)*(1-t)*lat1 + 2*(1-t)*t*cy + t*t*lat2;
+      pts.push([lat, lon]);
+    }
+    return pts;
+  }
+
+  function render(){
+    markerLayer.clearLayers();
+    arcLayer.clearLayers();
+
+    var all = state.data.docentes.concat(state.data.colaboradores);
+    var filterActive = state.filterTipos.size > 0;
+    var relevant = null;
+    if (state.selectedId || filterActive){
+      relevant = { nodes: {}, edges: [] };
+      if (state.selectedId) relevant.nodes[state.selectedId] = true;
+      var candidatas = state.selectedId ? edgesFor(state.selectedId) : state.data.colaboracoes.filter(edgeMatchesFilter);
+      candidatas.forEach(function(e){
+        relevant.nodes[e.docente_id] = true;
+        relevant.nodes[e.colaborador_id] = true;
+        relevant.edges.push(e);
+      });
+    }
+
+    if (relevant){
+      relevant.edges.forEach(function(e){
+        var a = state.byId[e.docente_id], b = state.byId[e.colaborador_id];
+        if (!a || !b) return;
+        var pts = arcPoints([a.lat, a.lon], [b.lat, b.lon]);
+        L.polyline(pts, { color: COR_DOCENTE, weight: 1.6, opacity: 0.75, dashArray: "1 5", lineCap: "round" }).addTo(arcLayer);
+      });
+    }
+
+    all.forEach(function(node){
+      var dimmed = relevant && !relevant.nodes[node.id];
+      var isSelected = node.id === state.selectedId;
+      var baseColor = node.tipo === "docente" ? COR_DOCENTE : COR_COLAB;
+      var color = dimmed ? COR_DIM : baseColor;
+      var size = isSelected ? 28 : 20;
+      var marker = L.marker([node.lat, node.lon], {
+        icon: personIcon(color, size),
+        opacity: dimmed ? 0.55 : 1,
+        zIndexOffset: isSelected ? 1000 : (dimmed ? 0 : 400)
+      });
+      marker.bindPopup(popupHtml(node));
+      marker.on("click", function(){
+        select(node.id);
+        var m = state.markers[node.id];
+        if (m) m.openPopup();
+      });
+      marker.addTo(markerLayer);
+      state.markers[node.id] = marker;
+    });
+  }
+
+  function select(id){
+    state.selectedId = (state.selectedId === id) ? null : id;
+    render();
+    renderList();
+    renderDetalhe();
+  }
+
+  function initials(nome){
+    var partes = nome.trim().split(/\s+/);
+    var first = partes[0] ? partes[0][0] : "";
+    var last = partes.length > 1 ? partes[partes.length - 1][0] : "";
+    return (first + last).toUpperCase();
+  }
+
+  function renderList(){
+    var wrap = document.getElementById("docenteList");
+    wrap.innerHTML = "";
+    state.data.docentes.forEach(function(d){
+      var n = edgesFor(d.id).length;
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "doc-row" + (d.id === state.selectedId ? " active" : "");
+      btn.innerHTML = '<span class="avatar"></span><span></span><span class="n"></span>';
+      btn.querySelectorAll("span")[0].textContent = initials(d.nome);
+      btn.querySelectorAll("span")[1].textContent = d.nome;
+      btn.querySelectorAll("span")[2].textContent = n;
+      btn.addEventListener("click", function(){ select(d.id); });
+      wrap.appendChild(btn);
+    });
+  }
+
+  function renderDetalhe(){
+    var box = document.getElementById("detalhe");
+    if (!state.selectedId){
+      box.innerHTML = "<p class='vazio'>Selecione um docente na lista ou clique num boneco no mapa para ver a rede de colaborações.</p>";
+      return;
+    }
+    var node = state.byId[state.selectedId];
+    var edges = edgesFor(state.selectedId);
+    var html = "<h3>"+esc(node.nome)+"</h3>";
+    html += "<div class='meta'>"+(node.tipo === "docente" ? "Docente PPG-CLIAMB / INPA-UEA" : esc(node.instituicao)+" — "+esc(node.cidade)+", "+esc(node.pais))+"</div>";
+    edges.forEach(function(e){
+      var other = state.byId[e.docente_id === node.id ? e.colaborador_id : e.docente_id];
+      if (!other) return;
+      var div = document.createElement("div");
+      var line = "<div class='colab-item' data-id='"+other.id+"'>";
+      line += "<div class='colab-nome'>"+esc(other.nome)+"</div>";
+      if (other.tipo === "colaborador"){
+        line += "<div class='colab-inst'>"+esc(other.instituicao)+" — "+esc(other.cidade)+", "+esc(other.pais)+"</div>";
+      } else {
+        line += "<div class='colab-inst'>Docente PPG-CLIAMB / INPA-UEA</div>";
+      }
+      if (e.area) line += "<div class='colab-area'>"+esc(e.area)+"</div>";
+      if (e.tipo_cooperacao) line += "<div class='colab-tipo'>"+esc(e.tipo_cooperacao)+"</div>";
+      line += "</div>";
+      html += line;
+    });
+    box.innerHTML = html;
+    box.querySelectorAll(".colab-item").forEach(function(el){
+      el.addEventListener("click", function(){
+        var id = el.getAttribute("data-id");
+        var m = state.markers[id];
+        if (m){ map.panTo(m.getLatLng()); m.openPopup(); }
+      });
+    });
+  }
+
+  function limpar(){
+    state.selectedId = null;
+    map.closePopup();
+    render();
+    renderList();
+    renderDetalhe();
+  }
+
+  function renderFiltro(){
+    var wrap = document.getElementById("tipoDropdownMenu");
+    wrap.innerHTML = "";
+    (state.data.meta.tipos_cooperacao || []).forEach(function(tag){
+      var label = document.createElement("label");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = tag;
+      input.checked = state.filterTipos.has(tag);
+      input.addEventListener("change", function(){
+        if (input.checked) state.filterTipos.add(tag); else state.filterTipos.delete(tag);
+        renderDropdownLabel();
+        render();
+        renderList();
+        renderDetalhe();
+      });
+      label.appendChild(input);
+      label.appendChild(document.createTextNode(tag));
+      wrap.appendChild(label);
+    });
+    var footer = document.createElement("div");
+    footer.className = "dropdown-footer";
+    var clearBtn = document.createElement("button");
+    clearBtn.type = "button";
+    clearBtn.textContent = "Limpar filtro";
+    clearBtn.addEventListener("click", limparFiltro);
+    footer.appendChild(clearBtn);
+    wrap.appendChild(footer);
+    renderDropdownLabel();
+  }
+
+  function renderDropdownLabel(){
+    var label = document.getElementById("tipoDropdownLabel");
+    var n = state.filterTipos.size;
+    label.textContent = n === 0 ? "Todos os tipos" : (n === 1 ? Array.from(state.filterTipos)[0] : n + " tipos selecionados");
+  }
+
+  function renderStats(){
+    var wrap = document.getElementById("headerStats");
+    var m = state.data.meta;
+    wrap.innerHTML =
+      "<span class='stat-pill'><b>"+m.total_docentes+"</b> docentes</span>" +
+      "<span class='stat-pill'><b>"+m.total_colaboradores+"</b> colaboradores(as)</span>" +
+      "<span class='stat-pill'><b>"+m.total_colaboracoes+"</b> colaborações</span>";
+  }
+
+  function limparFiltro(){
+    state.filterTipos.clear();
+    renderFiltro();
+    render();
+    renderList();
+    renderDetalhe();
+  }
+
+  map.on("click", limpar);
+  document.getElementById("limpar").addEventListener("click", limpar);
+
+  var tipoDropdown = document.getElementById("tipoDropdown");
+  document.getElementById("tipoDropdownBtn").addEventListener("click", function(e){
+    e.stopPropagation();
+    tipoDropdown.classList.toggle("open");
+  });
+  document.addEventListener("click", function(e){
+    if (!tipoDropdown.contains(e.target)) tipoDropdown.classList.remove("open");
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape") tipoDropdown.classList.remove("open");
+  });
+
+  try {
+    var data = window.REDE_COOPERACAO;
+    if (!data) throw new Error("data.js não carregou (window.REDE_COOPERACAO ausente)");
+    state.data = data;
+    data.docentes.concat(data.colaboradores).forEach(function(n){ state.byId[n.id] = n; });
+    renderStats();
+    renderFiltro();
+    render();
+    renderList();
+    renderDetalhe();
+  } catch (err) {
+    document.getElementById("map").innerHTML = "<p style='padding:2rem;color:#b23;'>Não foi possível carregar os dados da rede (" + esc(err.message) + ").</p>";
+  }
+})();
+</script>
+</body>
+</html>

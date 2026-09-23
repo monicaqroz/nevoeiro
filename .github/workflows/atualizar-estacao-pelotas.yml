@@ -1,0 +1,39 @@
+name: Atualizar estação de Pelotas (METAR)
+
+on:
+  schedule:
+    - cron: '25 */3 * * *' # a cada 3 horas
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Coletar METAR da estação
+        run: node scripts/scrape-estacao-pelotas.js
+
+      - name: Commitar alterações
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- data/estacao-pelotas.json; then
+            echo "Sem novidades na estação."
+            exit 0
+          fi
+          git add data/estacao-pelotas.json projetos/pelotas-estacao.html
+          git commit -m "Atualiza dados da estação de Pelotas (METAR)"
+          git pull --rebase origin main
+          git push

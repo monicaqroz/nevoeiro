@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-27T21:27:50.129Z",
+  "atualizadoEm": "2026-09-28T05:35:18.761Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,21 +9,21 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-09-27T21:00:00Z",
-    "tempC": 16,
+    "hora": "2026-09-28T00:00:00Z",
+    "tempC": 17,
     "orvalhoC": 16,
-    "umidade": 100,
-    "ventoGraus": 80,
-    "ventoKmh": 22,
-    "pressaoHpa": 1016,
+    "umidade": 94,
+    "ventoGraus": 150,
+    "ventoKmh": 19,
+    "pressaoHpa": 1019,
     "visibilidadeKm": 8,
-    "cobertura": "OVC",
-    "tetoM": 2743,
+    "cobertura": "BKN",
+    "tetoM": 1219,
     "categoriaVoo": "MVFR",
     "chovendo": true,
     "chuvaNaEstacao": true,
-    "condicao": "Chuva fraca",
-    "raw": "METAR SBPK 272100Z 08012KT 8000 -RA BKN015 OVC090 16/16 Q1016 RETS"
+    "condicao": "Trovoada com chuva fraca",
+    "raw": "METAR SBPK 280000Z 15010KT 8000 -TSRA SCT004 BKN015 BKN040CB 17/16 Q1019"
   },
   "diasSemChuva": 0,
   "historico": [
@@ -1896,6 +1896,57 @@
       "chuvaNaEstacao": true,
       "condicao": "Chuva fraca",
       "raw": "METAR SBPK 272100Z 08012KT 8000 -RA BKN015 OVC090 16/16 Q1016 RETS"
+    },
+    {
+      "hora": "2026-09-27T22:00:00Z",
+      "tempC": 16,
+      "orvalhoC": 16,
+      "umidade": 100,
+      "ventoGraus": 100,
+      "ventoKmh": 26,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 8,
+      "cobertura": "OVC",
+      "tetoM": 2743,
+      "categoriaVoo": "MVFR",
+      "chovendo": true,
+      "chuvaNaEstacao": true,
+      "condicao": "Chuva fraca",
+      "raw": "METAR SBPK 272200Z 10014KT 8000 -RA SCT007 BKN015 OVC090 16/16 Q1014"
+    },
+    {
+      "hora": "2026-09-27T23:00:00Z",
+      "tempC": 17,
+      "orvalhoC": 16,
+      "umidade": 94,
+      "ventoGraus": 120,
+      "ventoKmh": 9,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 8,
+      "cobertura": "OVC",
+      "tetoM": 2743,
+      "categoriaVoo": "MVFR",
+      "chovendo": true,
+      "chuvaNaEstacao": true,
+      "condicao": "Chuva fraca",
+      "raw": "METAR SBPK 272300Z 12005KT 8000 -RA SCT004 BKN015 OVC090 17/16 Q1016"
+    },
+    {
+      "hora": "2026-09-28T00:00:00Z",
+      "tempC": 17,
+      "orvalhoC": 16,
+      "umidade": 94,
+      "ventoGraus": 150,
+      "ventoKmh": 19,
+      "pressaoHpa": 1019,
+      "visibilidadeKm": 8,
+      "cobertura": "BKN",
+      "tetoM": 1219,
+      "categoriaVoo": "MVFR",
+      "chovendo": true,
+      "chuvaNaEstacao": true,
+      "condicao": "Trovoada com chuva fraca",
+      "raw": "METAR SBPK 280000Z 15010KT 8000 -TSRA SCT004 BKN015 BKN040CB 17/16 Q1019"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-02T22:21:49.335Z",
+  "atualizadoEm": "2026-10-03T05:28:25.881Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,13 +9,13 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-02T22:00:00Z",
-    "tempC": 12,
+    "hora": "2026-10-03T00:00:00Z",
+    "tempC": 10,
     "orvalhoC": 8,
-    "umidade": 77,
-    "ventoGraus": 110,
+    "umidade": 87,
+    "ventoGraus": 70,
     "ventoKmh": 9,
-    "pressaoHpa": 1017,
+    "pressaoHpa": 1018,
     "visibilidadeKm": 9.7,
     "cobertura": "CAVOK",
     "tetoM": null,
@@ -23,7 +23,7 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 022200Z 11005KT CAVOK 12/08 Q1017"
+    "raw": "METAR SBPK 030000Z 07005KT CAVOK 10/08 Q1018"
   },
   "diasSemChuva": 4,
   "historico": [
@@ -3222,6 +3222,40 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 022200Z 11005KT CAVOK 12/08 Q1017"
+    },
+    {
+      "hora": "2026-10-02T23:00:00Z",
+      "tempC": 11,
+      "orvalhoC": 8,
+      "umidade": 82,
+      "ventoGraus": 80,
+      "ventoKmh": 11,
+      "pressaoHpa": 1018,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 022300Z 08006KT CAVOK 11/08 Q1018"
+    },
+    {
+      "hora": "2026-10-03T00:00:00Z",
+      "tempC": 10,
+      "orvalhoC": 8,
+      "umidade": 87,
+      "ventoGraus": 70,
+      "ventoKmh": 9,
+      "pressaoHpa": 1018,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 030000Z 07005KT CAVOK 10/08 Q1018"
     }
   ]
 }

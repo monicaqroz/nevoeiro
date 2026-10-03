@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-03T05:28:25.881Z",
+  "atualizadoEm": "2026-10-03T11:49:52.874Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,23 +9,23 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-03T00:00:00Z",
-    "tempC": 10,
-    "orvalhoC": 8,
-    "umidade": 87,
-    "ventoGraus": 70,
-    "ventoKmh": 9,
-    "pressaoHpa": 1018,
+    "hora": "2026-10-03T11:00:00Z",
+    "tempC": 14,
+    "orvalhoC": 11,
+    "umidade": 82,
+    "ventoGraus": 60,
+    "ventoKmh": 17,
+    "pressaoHpa": 1014,
     "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
+    "cobertura": "SCT",
+    "tetoM": 1097,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 030000Z 07005KT CAVOK 10/08 Q1018"
+    "raw": "METAR SBPK 031100Z 06009KT 9999 SCT036 14/11 Q1014"
   },
-  "diasSemChuva": 4,
+  "diasSemChuva": 5,
   "historico": [
     {
       "hora": "2026-09-20T18:00:00Z",
@@ -3256,6 +3256,40 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 030000Z 07005KT CAVOK 10/08 Q1018"
+    },
+    {
+      "hora": "2026-10-03T10:00:00Z",
+      "tempC": 11,
+      "orvalhoC": 9,
+      "umidade": 87,
+      "ventoGraus": 10,
+      "ventoKmh": 6,
+      "pressaoHpa": 1015,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1097,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 031000Z 01003KT 9999 SCT036 11/09 Q1015"
+    },
+    {
+      "hora": "2026-10-03T11:00:00Z",
+      "tempC": 14,
+      "orvalhoC": 11,
+      "umidade": 82,
+      "ventoGraus": 60,
+      "ventoKmh": 17,
+      "pressaoHpa": 1014,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1097,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 031100Z 06009KT 9999 SCT036 14/11 Q1014"
     }
   ]
 }

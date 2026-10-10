@@ -229,13 +229,17 @@ function construirClimatologiaMensal(diasPorAno) {
   return resultado;
 }
 
+// Anos com falhas grandes (ex: 2000, ano de fundação; 2009, estação parada; ano corrente
+// ainda em andamento) ficam fora dos recordes anuais e da tendência
+const DIAS_MINIMOS_ANO_COMPLETO = 300;
+
 function construirRecordes(diasPorAno, serieAnual) {
   const todosDias = [...diasPorAno.values()].flat().filter((d) => d.confiavel);
   const maisQuente = todosDias.reduce((a, b) => (b.tempMax !== null && (!a || b.tempMax > a.tempMax) ? b : a), null);
   const maisFrio = todosDias.reduce((a, b) => (b.tempMin !== null && (!a || b.tempMin < a.tempMin) ? b : a), null);
   const maisChuvoso = todosDias.reduce((a, b) => (b.chuva !== null && (!a || b.chuva > a.chuva) ? b : a), null);
 
-  const anosComChuva = serieAnual.filter((a) => a.chuvaTotal !== null);
+  const anosComChuva = serieAnual.filter((a) => a.chuvaTotal !== null && a.diasComDado >= DIAS_MINIMOS_ANO_COMPLETO);
   const anoMaisChuvoso = anosComChuva.reduce((a, b) => (!a || b.chuvaTotal > a.chuvaTotal ? b : a), null);
   const anoMaisSeco = anosComChuva.reduce((a, b) => (!a || b.chuvaTotal < a.chuvaTotal ? b : a), null);
 
@@ -250,7 +254,7 @@ function construirRecordes(diasPorAno, serieAnual) {
 }
 
 function construirTendencia(serieAnual) {
-  const completos = serieAnual.filter((a) => a.diasComDado >= 300); // exclui anos com falhas grandes (ex: 2000, ano de fundação)
+  const completos = serieAnual.filter((a) => a.diasComDado >= DIAS_MINIMOS_ANO_COMPLETO);
   if (completos.length < 10) return null;
   const meio = Math.floor(completos.length / 2);
   const primeiraMetade = completos.slice(0, meio);
@@ -274,14 +278,21 @@ async function main() {
   const arquivos = fs.readdirSync(DIR_CSVS).filter((f) => f.toUpperCase().endsWith('.CSV'));
   if (!arquivos.length) throw new Error(`Nenhum CSV encontrado em ${DIR_CSVS}`);
 
-  const diasPorAno = new Map(); // ano -> [dias resumidos]
+  // O INMET renomeia o CSV do ano corrente a cada atualização (..._A_30-06-2026, ..._A_31-08-2026),
+  // então o mesmo dia pode aparecer em mais de um arquivo: fica a versão com mais horas de leitura
+  const diasUnicos = new Map(); // "YYYY-MM-DD" -> dia resumido
   for (const arquivo of arquivos) {
     const porDia = await lerArquivoAno(path.join(DIR_CSVS, arquivo));
-    for (const d of porDia.values()) {
+    for (const [chave, d] of porDia) {
       const resumo = resumirDia(d);
-      if (!diasPorAno.has(resumo.ano)) diasPorAno.set(resumo.ano, []);
-      diasPorAno.get(resumo.ano).push(resumo);
+      const existente = diasUnicos.get(chave);
+      if (!existente || resumo.horasComDado > existente.horasComDado) diasUnicos.set(chave, resumo);
     }
+  }
+  const diasPorAno = new Map(); // ano -> [dias resumidos]
+  for (const resumo of diasUnicos.values()) {
+    if (!diasPorAno.has(resumo.ano)) diasPorAno.set(resumo.ano, []);
+    diasPorAno.get(resumo.ano).push(resumo);
   }
 
   const climatologiaDiaria = construirClimatologiaDiaria(diasPorAno);

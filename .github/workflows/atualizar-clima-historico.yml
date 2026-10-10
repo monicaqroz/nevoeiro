@@ -34,6 +34,8 @@ jobs:
             if [ -n "$ENTRADA" ]; then
               unzip -o -j "tmp-clima/$ANO.zip" "$ENTRADA" -d tmp-clima
               NOME_ARQUIVO=$(basename "$ENTRADA")
+              # o nome do CSV muda a cada atualização (data final), então remove a versão anterior do mesmo ano
+              rm -f data/inmet-manaus-csv/*_A101_MANAUS_01-01-"$ANO"_A_*.CSV
               mv "tmp-clima/$NOME_ARQUIVO" "data/inmet-manaus-csv/$NOME_ARQUIVO"
               echo "Atualizado: data/inmet-manaus-csv/$NOME_ARQUIVO"
             else

@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-10T17:23:20.919Z",
+  "atualizadoEm": "2026-10-10T21:52:39.937Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,21 +9,21 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-10T17:00:00Z",
+    "hora": "2026-10-10T21:00:00Z",
     "tempC": 18,
     "orvalhoC": 14,
     "umidade": 77,
-    "ventoGraus": 190,
-    "ventoKmh": 22,
-    "pressaoHpa": 1016,
+    "ventoGraus": 240,
+    "ventoKmh": 15,
+    "pressaoHpa": 1017,
     "visibilidadeKm": 9.7,
     "cobertura": "BKN",
-    "tetoM": 610,
-    "categoriaVoo": "MVFR",
+    "tetoM": 1311,
+    "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 101700Z 19012KT 9999 FEW010 BKN020 18/14 Q1016"
+    "raw": "METAR SBPK 102100Z 24008KT 9999 BKN043 18/14 Q1017"
   },
   "diasSemChuva": 0,
   "historico": [
@@ -5214,6 +5214,74 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 101700Z 19012KT 9999 FEW010 BKN020 18/14 Q1016"
+    },
+    {
+      "hora": "2026-10-10T18:00:00Z",
+      "tempC": 18,
+      "orvalhoC": 14,
+      "umidade": 77,
+      "ventoGraus": 210,
+      "ventoKmh": 26,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "BKN",
+      "tetoM": 732,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 101800Z 21014KT 9999 BKN024 18/14 Q1016"
+    },
+    {
+      "hora": "2026-10-10T19:00:00Z",
+      "tempC": 19,
+      "orvalhoC": 13,
+      "umidade": 68,
+      "ventoGraus": 210,
+      "ventoKmh": 22,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1067,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 101900Z 21012KT 9999 BKN024 SCT035 19/13 Q1016"
+    },
+    {
+      "hora": "2026-10-10T20:00:00Z",
+      "tempC": 19,
+      "orvalhoC": 14,
+      "umidade": 73,
+      "ventoGraus": 220,
+      "ventoKmh": 26,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "BKN",
+      "tetoM": 1219,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 102000Z 22014KT 9999 SCT020 BKN040 19/14 Q1016"
+    },
+    {
+      "hora": "2026-10-10T21:00:00Z",
+      "tempC": 18,
+      "orvalhoC": 14,
+      "umidade": 77,
+      "ventoGraus": 240,
+      "ventoKmh": 15,
+      "pressaoHpa": 1017,
+      "visibilidadeKm": 9.7,
+      "cobertura": "BKN",
+      "tetoM": 1311,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 102100Z 24008KT 9999 BKN043 18/14 Q1017"
     }
   ]
 }

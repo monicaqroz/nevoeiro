@@ -64,6 +64,28 @@ INSTITUICOES = {
     "Max Planck Institute": ("Mainz", "Alemanha", 49.9929, 8.2473),
     "Universidade Federal do Pará": ("Belém", "Brasil", -1.4558, -48.4902),
     "Universidade de Genebra": ("Genebra", "Suíça", 46.2044, 6.1432),
+    "Universidade de Brasília": ("Brasília", "Brasil", -15.7942, -47.8822),
+    "Bangor University": ("Bangor", "Reino Unido", 53.2280, -4.1293),
+    "Berkeley, University of California": ("Berkeley", "Estados Unidos", 37.8719, -122.2585),
+    "CIRAD Montpellier": ("Montpellier", "França", 43.6119, 3.8772),
+    "Instituto Tecnológico Vale": ("Belém", "Brasil", -1.4558, -48.4902),
+    "Lawrence Berkeley National Laboratory": ("Berkeley", "Estados Unidos", 37.8768, -122.2500),
+    "Max Planck Institute for Biogeochemistry": ("Jena", "Alemanha", 50.9278, 11.5892),
+    "Pennsylvania State University": ("University Park", "Estados Unidos", 40.7982, -77.8599),
+    "Universidade Federal de Santa Catarina": ("Florianópolis", "Brasil", -27.6005, -48.5197),
+    "Universidade Federal de Santa Maria": ("Santa Maria", "Brasil", -29.7175, -53.7149),
+    "Universidade Federal do Rio Grande do Sul": ("Porto Alegre", "Brasil", -30.0346, -51.2177),
+    "Universidade San Francisco de Quito": ("Quito", "Equador", -0.1807, -78.4678),
+    "Universidade de California Santa Barbara": ("Santa Barbara", "Estados Unidos", 34.4140, -119.8489),
+    "Universidade de Estocolmo": ("Estocolmo", "Suécia", 59.3293, 18.0686),
+    "Universidade de Stanford": ("Stanford", "Estados Unidos", 37.4275, -122.1697),
+    "Universidade do Norte da Colúmbia Britânica": ("Prince George", "Canadá", 53.9171, -122.7497),
+    "University Of South Alabama": ("Mobile", "Estados Unidos", 30.6954, -88.1898),
+    "University of Bremen": ("Bremen", "Alemanha", 53.1079, 8.8517),
+    "University of Oklahoma": ("Norman", "Estados Unidos", 35.2226, -97.4395),
+    "Università degli Studi di Milano": ("Milão", "Itália", 45.4642, 9.1900),
+    "Virginia Tech": ("Blacksburg", "Estados Unidos", 37.2284, -80.4234),
+    "Michigan State University": ("East Lansing", "Estados Unidos", 42.7018, -84.4822),
 }
 
 # --- typo/name normalization -> canonical institution name --------------------
@@ -80,11 +102,15 @@ INST_ALIASES = {
     "Universidade de Oxford": "University of Oxford",
     "Universidade de Genébra": "Universidade de Genebra",
     "Universidade federal do Pará": "Universidade Federal do Pará",
-    # row 67 data-entry mismatch: institution name says "Universidade de Brasília" but the
-    # sigla ("UT-Austin") and País ("Estados Unidos") both point to UT Austin. Resolved to
-    # UT Austin pending final confirmation from the user.
-    "Universidade de Brasília": "University of Texas at Austin",
     "Institut de Recherche pour le Developpement": "Institut de Recherche pour le Développement",
+    "The University of Texas at Austin": "University of Texas at Austin",
+    "UFOPA": "Universidade Federal do Oeste do Pará",
+    "Ins. Nacional de Pesquisas da Amazônia": "Instituto Nacional de Pesquisas da Amazônia",
+    "Universidade Estadual de Amazonas": "Universidade do Estado do Amazonas",
+    "Universidade de Taubaté": "UNITAU",
+    "Max Planck Biogeoquimica": "Max Planck Institute for Biogeochemistry",
+    "Max Planck Institute de Biogeochemistry": "Max Planck Institute for Biogeochemistry",
+    "Universidade Estadual de Michigan": "Michigan State University",
 }
 
 PAIS_FIX = {
@@ -284,11 +310,10 @@ def main():
             "total_colaboracoes": len(edges),
             "tipos_cooperacao": tipos_unicos,
             "avisos": [
-                "Linha da planilha com Instituição 'Universidade de Brasília' e Sigla 'UT-Austin' foi "
-                "resolvida como University of Texas at Austin (com base no País='Estados Unidos' da própria linha) "
-                "-- pendente de confirmação final.",
                 "INPE, UNESP, IFAM, IRD e Serviço Geológico do Brasil são multi-campus/multi-sede: "
                 "a cidade usada é a da sede/campus principal, não necessariamente a unidade exata da parceria.",
+                "Instituto Tecnológico Vale tem unidades em Belém (PA) e Ouro Preto (MG); usamos Belém "
+                "por ser a unidade com foco amazônico, não necessariamente a unidade exata da parceria.",
             ],
         },
     }

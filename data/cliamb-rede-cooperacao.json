@@ -1,8 +1,8 @@
 {
   "docentes": [
     {
-      "id": "doc-alderlene-pimentel-de-brito",
-      "nome": "Alderlene Pimentel de Brito",
+      "id": "doc-adan-sady-de-medeiros",
+      "nome": "Adan Sady de Medeiros",
       "tipo": "docente",
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
@@ -11,14 +11,24 @@
       "lon": -59.47088
     },
     {
+      "id": "doc-alderlene-pimentel-de-brito",
+      "nome": "Alderlene Pimentel de Brito",
+      "tipo": "docente",
+      "instituicao": "PPG-CLIAMB / INPA-UEA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.93089,
+      "lon": -59.5041
+    },
+    {
       "id": "doc-aline-correa-de-sousa",
       "nome": "Aline Corrêa de Sousa",
       "tipo": "docente",
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.8634,
-      "lon": -59.53398
+      "lat": -2.76547,
+      "lon": -59.59975
     },
     {
       "id": "doc-aurora-miho-yanai",
@@ -27,8 +37,28 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.66636,
-      "lon": -59.7088
+      "lat": -2.64269,
+      "lon": -59.74629
+    },
+    {
+      "id": "doc-ayan-santos-fleischmann",
+      "nome": "Ayan Santos Fleischmann",
+      "tipo": "docente",
+      "instituicao": "PPG-CLIAMB / INPA-UEA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.57736,
+      "lon": -59.92605
+    },
+    {
+      "id": "doc-cleo-quaresma-dias-junior",
+      "nome": "Cleo Quaresma Dias Junior",
+      "tipo": "docente",
+      "instituicao": "PPG-CLIAMB / INPA-UEA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.57736,
+      "lon": -60.11735
     },
     {
       "id": "doc-eliane-gomes-alves",
@@ -37,8 +67,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.57301,
-      "lon": -59.95531
+      "lat": -2.64269,
+      "lon": -60.29711
     },
     {
       "id": "doc-francis-wagner-silva-correia",
@@ -47,8 +77,28 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.60474,
-      "lon": -60.21702
+      "lat": -2.76547,
+      "lon": -60.44365
+    },
+    {
+      "id": "doc-hella-van-asperen",
+      "nome": "Hella van Asperen",
+      "tipo": "docente",
+      "instituicao": "PPG-CLIAMB / INPA-UEA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.93089,
+      "lon": -60.5393
+    },
+    {
+      "id": "doc-israel-de-jesus-sampaio-filho",
+      "nome": "Israel de Jesus Sampaio Filho",
+      "tipo": "docente",
+      "instituicao": "PPG-CLIAMB / INPA-UEA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -3.119,
+      "lon": -60.57252
     },
     {
       "id": "doc-jaidete-monteiro-de-souza",
@@ -57,8 +107,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.75428,
-      "lon": -60.43399
+      "lat": -3.30711,
+      "lon": -60.5393
     },
     {
       "id": "doc-jair-max-furtado-maia",
@@ -67,18 +117,18 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.98738,
-      "lon": -60.55651
+      "lat": -3.47253,
+      "lon": -60.44365
     },
     {
-      "id": "doc-jose-veiga",
-      "nome": "José Veiga",
+      "id": "doc-jose-augusto-paixao-veiga",
+      "nome": "José Augusto Paixão Veiga",
       "tipo": "docente",
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.25062,
-      "lon": -60.55651
+      "lat": -3.59531,
+      "lon": -60.29711
     },
     {
       "id": "doc-luiz-antonio-candido",
@@ -87,8 +137,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.48372,
-      "lon": -60.43399
+      "lat": -3.66064,
+      "lon": -60.11735
     },
     {
       "id": "doc-naziano-pantoja-filizola-junior",
@@ -97,8 +147,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.63326,
-      "lon": -60.21702
+      "lat": -3.66064,
+      "lon": -59.92605
     },
     {
       "id": "doc-rita-valeria-andreoli-de-souza",
@@ -107,8 +157,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.66499,
-      "lon": -59.95531
+      "lat": -3.59531,
+      "lon": -59.74629
     },
     {
       "id": "doc-rodrigo-augusto-ferreira-de-souza",
@@ -117,8 +167,8 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.57164,
-      "lon": -59.7088
+      "lat": -3.47253,
+      "lon": -59.59975
     },
     {
       "id": "doc-sergio-duvoisin-junior",
@@ -127,11 +177,22 @@
       "instituicao": "PPG-CLIAMB / INPA-UEA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.3746,
-      "lon": -59.53398
+      "lat": -3.30711,
+      "lon": -59.5041
     }
   ],
   "colaboradores": [
+    {
+      "id": "col-scot-t-martin-harvard-university",
+      "nome": "Scot T. Martin",
+      "tipo": "colaborador",
+      "instituicao": "Harvard University",
+      "sigla": "HU",
+      "cidade": "Cambridge",
+      "pais": "Estados Unidos",
+      "lat": 42.3736,
+      "lon": -70.90666
+    },
     {
       "id": "col-ingo-daniel-wahnfried-universidade-federal-do-amazonas",
       "nome": "Ingo Daniel Wahnfried",
@@ -141,7 +202,7 @@
       "cidade": "Manaus",
       "pais": "Brasil",
       "lat": -3.119,
-      "lon": -59.76632
+      "lon": -59.69121
     },
     {
       "id": "col-didier-gastmans-universidade-estadual-paulista-julio-de-mesquita-filho",
@@ -152,7 +213,7 @@
       "cidade": "São Paulo",
       "pais": "Brasil",
       "lat": -23.5505,
-      "lon": -46.43695
+      "lon": -46.40422
     },
     {
       "id": "col-javier-tomasella-instituto-nacional-de-pesquisas-espaciais",
@@ -206,8 +267,8 @@
       "sigla": "IFAM",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.95509,
-      "lon": -59.82607
+      "lat": -2.97582,
+      "lon": -59.72394
     },
     {
       "id": "col-liana-anderson-instituto-nacional-de-pesquisas-espaciais",
@@ -236,11 +297,407 @@
       "nome": "Sarah Sparrow",
       "tipo": "colaborador",
       "instituicao": "University of Oxford",
-      "sigla": null,
+      "sigla": "Oxon",
       "cidade": "Oxford",
       "pais": "Reino Unido",
       "lat": 51.752,
       "lon": -0.99117
+    },
+    {
+      "id": "col-anderson-ruhoff-universidade-federal-do-rio-grande-do-sul",
+      "nome": "Anderson Ruhoff",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Rio Grande do Sul",
+      "sigla": "UFRGS",
+      "cidade": "Porto Alegre",
+      "pais": "Brasil",
+      "lat": -30.0346,
+      "lon": -51.00978
+    },
+    {
+      "id": "col-leonardo-laipelt-universidade-federal-do-rio-grande-do-sul",
+      "nome": "Leonardo Laipelt",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Rio Grande do Sul",
+      "sigla": "UFRGS",
+      "cidade": "Porto Alegre",
+      "pais": "Brasil",
+      "lat": -29.8546,
+      "lon": -51.2177
+    },
+    {
+      "id": "col-walter-collischonn-universidade-federal-do-rio-grande-do-sul",
+      "nome": "Walter Collischonn",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Rio Grande do Sul",
+      "sigla": "UFRGS",
+      "cidade": "Porto Alegre",
+      "pais": "Brasil",
+      "lat": -30.0346,
+      "lon": -51.42562
+    },
+    {
+      "id": "col-rodrigo-paiva-universidade-federal-do-rio-grande-do-sul",
+      "nome": "Rodrigo Paiva",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Rio Grande do Sul",
+      "sigla": "UFRGS",
+      "cidade": "Porto Alegre",
+      "pais": "Brasil",
+      "lat": -30.2146,
+      "lon": -51.2177
+    },
+    {
+      "id": "col-andrea-encalada-universidade-san-francisco-de-quito",
+      "nome": "Andrea Encalada",
+      "tipo": "colaborador",
+      "instituicao": "Universidade San Francisco de Quito",
+      "sigla": "USFQ",
+      "cidade": "Quito",
+      "pais": "Equador",
+      "lat": -0.1807,
+      "lon": -78.4678
+    },
+    {
+      "id": "col-pedro-chaffe-universidade-federal-de-santa-catarina",
+      "nome": "Pedro Chaffe",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal de Santa Catarina",
+      "sigla": "UFSC",
+      "cidade": "Florianópolis",
+      "pais": "Brasil",
+      "lat": -27.6005,
+      "lon": -48.5197
+    },
+    {
+      "id": "col-rogerio-marinho-universidade-federal-do-amazonas",
+      "nome": "Rogério Marinho",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Amazonas",
+      "sigla": "UFAM",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.861,
+      "lon": -59.81564
+    },
+    {
+      "id": "col-paulo-pontes-instituto-tecnologico-vale",
+      "nome": "Paulo Pontes",
+      "tipo": "colaborador",
+      "instituicao": "Instituto Tecnológico Vale",
+      "sigla": "ITV",
+      "cidade": "Belém",
+      "pais": "Brasil",
+      "lat": -1.4558,
+      "lon": -48.29514
+    },
+    {
+      "id": "col-rosane-cavalcante-instituto-tecnologico-vale",
+      "nome": "Rosane Cavalcante",
+      "tipo": "colaborador",
+      "instituicao": "Instituto Tecnológico Vale",
+      "sigla": "ITV",
+      "cidade": "Belém",
+      "pais": "Brasil",
+      "lat": -1.27034,
+      "lon": -48.42992
+    },
+    {
+      "id": "col-alice-fassoni-andrade-universidade-de-brasilia",
+      "nome": "Alice Fassoni-Andrade",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de Brasília",
+      "sigla": "UnB",
+      "cidade": "Brasília",
+      "pais": "Brasil",
+      "lat": -15.7942,
+      "lon": -47.69514
+    },
+    {
+      "id": "col-debora-roberti-universidade-federal-de-santa-maria",
+      "nome": "Debora Roberti",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal de Santa Maria",
+      "sigla": "UFSM",
+      "cidade": "Santa Maria",
+      "pais": "Brasil",
+      "lat": -29.7175,
+      "lon": -53.7149
+    },
+    {
+      "id": "col-rob-jackson-universidade-de-stanford",
+      "nome": "Rob Jackson",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de Stanford",
+      "sigla": "SU",
+      "cidade": "Stanford",
+      "pais": "Estados Unidos",
+      "lat": 37.4275,
+      "lon": -122.1697
+    },
+    {
+      "id": "col-stephen-hamilton-michigan-state-university",
+      "nome": "Stephen Hamilton",
+      "tipo": "colaborador",
+      "instituicao": "Michigan State University",
+      "sigla": "UEM",
+      "cidade": "East Lansing",
+      "pais": "Estados Unidos",
+      "lat": 42.7018,
+      "lon": -84.4822
+    },
+    {
+      "id": "col-john-melack-universidade-de-california-santa-barbara",
+      "nome": "John Melack",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de California Santa Barbara",
+      "sigla": "UCSB",
+      "cidade": "Santa Barbara",
+      "pais": "Estados Unidos",
+      "lat": 34.414,
+      "lon": -119.8489
+    },
+    {
+      "id": "col-iestyn-woolway-bangor-university",
+      "nome": "Iestyn Woolway",
+      "tipo": "colaborador",
+      "instituicao": "Bangor University",
+      "sigla": "BU",
+      "cidade": "Bangor",
+      "pais": "Reino Unido",
+      "lat": 53.228,
+      "lon": -4.1293
+    },
+    {
+      "id": "col-fernando-jaramillo-universidade-de-estocolmo",
+      "nome": "Fernando Jaramillo",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de Estocolmo",
+      "sigla": "SU",
+      "cidade": "Estocolmo",
+      "pais": "Suécia",
+      "lat": 59.3293,
+      "lon": 18.0686
+    },
+    {
+      "id": "col-jochen-schongart-instituto-nacional-de-pesquisas-da-amazonia",
+      "nome": "Jochen Schongart",
+      "tipo": "colaborador",
+      "instituicao": "Instituto Nacional de Pesquisas da Amazônia",
+      "sigla": "INPA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.79727,
+      "lon": -59.94816
+    },
+    {
+      "id": "col-daniel-moreira-servico-geologico-do-brasil",
+      "nome": "Daniel Moreira",
+      "tipo": "colaborador",
+      "instituicao": "Serviço Geológico do Brasil",
+      "sigla": "SGB",
+      "cidade": "Brasília",
+      "pais": "Brasil",
+      "lat": -15.6142,
+      "lon": -47.8822
+    },
+    {
+      "id": "col-reinaldo-peleja-universidade-federal-do-oeste-do-para",
+      "nome": "Reinaldo Peleja",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Oeste do Pará",
+      "sigla": "UFOPA",
+      "cidade": "Santarém",
+      "pais": "Brasil",
+      "lat": -2.4431,
+      "lon": -54.54315
+    },
+    {
+      "id": "col-michel-nasser-correa-lima-chamy-universidade-federal-do-amazonas",
+      "nome": "Michel Nasser Corrêa Lima Chamy",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Amazonas",
+      "sigla": "UFAM",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.79727,
+      "lon": -60.09524
+    },
+    {
+      "id": "col-alex-martins-ramos-universidade-federal-do-amazonas",
+      "nome": "Alex Martins Ramos",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Amazonas",
+      "sigla": "UFAM",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.861,
+      "lon": -60.22776
+    },
+    {
+      "id": "col-eduardo-martins-universidade-do-norte-da-columbia-britanica",
+      "nome": "Eduardo Martins",
+      "tipo": "colaborador",
+      "instituicao": "Universidade do Norte da Colúmbia Britânica",
+      "sigla": "VT",
+      "cidade": "Prince George",
+      "pais": "Canadá",
+      "lat": 53.9171,
+      "lon": -122.7497
+    },
+    {
+      "id": "col-leandro-castello-virginia-tech",
+      "nome": "Leandro Castello",
+      "tipo": "colaborador",
+      "instituicao": "Virginia Tech",
+      "sigla": "VT",
+      "cidade": "Blacksburg",
+      "pais": "Estados Unidos",
+      "lat": 37.2284,
+      "lon": -80.4234
+    },
+    {
+      "id": "col-fabrice-papa-institut-de-recherche-pour-le-developpement",
+      "nome": "Fabrice Papa",
+      "tipo": "colaborador",
+      "instituicao": "Institut de Recherche pour le Développement",
+      "sigla": "IRD",
+      "cidade": "Marseille",
+      "pais": "França",
+      "lat": 43.2965,
+      "lon": 5.5759
+    },
+    {
+      "id": "col-santiago-botia-max-planck-institute-for-biogeochemistry",
+      "nome": "Santiago Botia",
+      "tipo": "colaborador",
+      "instituicao": "Max Planck Institute for Biogeochemistry",
+      "sigla": "MPI",
+      "cidade": "Jena",
+      "pais": "Alemanha",
+      "lat": 50.9278,
+      "lon": 11.85098
+    },
+    {
+      "id": "col-carlos-alberto-quesada-instituto-nacional-de-pesquisas-da-amazonia",
+      "nome": "Carlos Alberto Quesada",
+      "tipo": "colaborador",
+      "instituicao": "Instituto Nacional de Pesquisas da Amazônia",
+      "sigla": "INPA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -2.97582,
+      "lon": -60.31946
+    },
+    {
+      "id": "col-jose-dolores-fuentes-pennsylvania-state-university",
+      "nome": "Jose Dolores Fuentes",
+      "tipo": "colaborador",
+      "instituicao": "Pennsylvania State University",
+      "sigla": "PSU",
+      "cidade": "University Park",
+      "pais": "Estados Unidos",
+      "lat": 40.7982,
+      "lon": -77.8599
+    },
+    {
+      "id": "col-aline-meiguins-universidade-federal-do-para",
+      "nome": "Aline Meiguins",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Pará",
+      "sigla": "UFPA",
+      "cidade": "Belém",
+      "pais": "Brasil",
+      "lat": -1.34118,
+      "lon": -48.64801
+    },
+    {
+      "id": "col-gabriel-de-oliveira-university-of-south-alabama",
+      "nome": "Gabriel de Oliveira",
+      "tipo": "colaborador",
+      "instituicao": "University Of South Alabama",
+      "sigla": null,
+      "cidade": "Mobile",
+      "pais": "Estados Unidos",
+      "lat": 30.6954,
+      "lon": -88.1898
+    },
+    {
+      "id": "col-gilberto-fisch-unitau",
+      "nome": "Gilberto Fisch",
+      "tipo": "colaborador",
+      "instituicao": "UNITAU",
+      "sigla": "UNITAU",
+      "cidade": "Taubaté",
+      "pais": "Brasil",
+      "lat": -23.0206,
+      "lon": -45.5553
+    },
+    {
+      "id": "col-luiz-augusto-toledo-machado-universidade-de-sao-paulo",
+      "nome": "Luiz Augusto Toledo Machado",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de São Paulo",
+      "sigla": "USP",
+      "cidade": "São Paulo",
+      "pais": "Brasil",
+      "lat": -23.36863,
+      "lon": -46.51876
+    },
+    {
+      "id": "col-raoni-aquino-silva-de-santana-universidade-federal-do-oeste-do-para",
+      "nome": "Raoni Aquino Silva de Santana",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Oeste do Pará",
+      "sigla": "UFOPA",
+      "cidade": "Santarém",
+      "pais": "Brasil",
+      "lat": -2.30021,
+      "lon": -54.79088
+    },
+    {
+      "id": "col-julia-cohen-universidade-federal-do-para",
+      "nome": "Julia Cohen",
+      "tipo": "colaborador",
+      "instituicao": "Universidade Federal do Pará",
+      "sigla": "UFPA",
+      "cidade": "Belém",
+      "pais": "Brasil",
+      "lat": -1.57042,
+      "lon": -48.64801
+    },
+    {
+      "id": "col-otavio-costa-acevedo-university-of-oklahoma",
+      "nome": "Otavio Costa Acevedo",
+      "tipo": "colaborador",
+      "instituicao": "University of Oklahoma",
+      "sigla": "OU",
+      "cidade": "Norman",
+      "pais": "Estados Unidos",
+      "lat": 35.2226,
+      "lon": -97.4395
+    },
+    {
+      "id": "col-susan-trumbore-max-planck-institute-for-biogeochemistry",
+      "nome": "Susan Trumbore",
+      "tipo": "colaborador",
+      "instituicao": "Max Planck Institute for Biogeochemistry",
+      "sigla": "MPI",
+      "cidade": "Jena",
+      "pais": "Alemanha",
+      "lat": 51.07069,
+      "lon": 11.45831
+    },
+    {
+      "id": "col-paulo-artaxo-universidade-de-sao-paulo",
+      "nome": "Paulo Artaxo",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de São Paulo",
+      "sigla": "USP",
+      "cidade": "São Paulo",
+      "pais": "Brasil",
+      "lat": -23.36863,
+      "lon": -46.74784
     },
     {
       "id": "col-alex-guenther-universidade-da-california-irvine",
@@ -360,8 +817,8 @@
       "sigla": "INPA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.86787,
-      "lon": -59.97735
+      "lat": -3.119,
+      "lon": -60.35219
     },
     {
       "id": "col-jochen-schongart-instituto-nacional-de-pesquisas-da-amazonia",
@@ -371,8 +828,8 @@
       "sigla": "INPA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -2.89816,
-      "lon": -60.14939
+      "lat": -3.26218,
+      "lon": -60.31946
     },
     {
       "id": "col-juliana-schietti-instituto-nacional-de-pesquisas-da-amazonia",
@@ -382,8 +839,8 @@
       "sigla": "INPA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.03178,
-      "lon": -60.26168
+      "lat": -3.377,
+      "lon": -60.22776
     },
     {
       "id": "col-bruce-nelson-instituto-nacional-de-pesquisas-da-amazonia",
@@ -393,19 +850,8 @@
       "sigla": "INPA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.20622,
-      "lon": -60.26168
-    },
-    {
-      "id": "col-paulo-artaxo-universidade-de-sao-paulo",
-      "nome": "Paulo Artaxo",
-      "tipo": "colaborador",
-      "instituicao": "Universidade de São Paulo",
-      "sigla": "USP",
-      "cidade": "São Paulo",
-      "pais": "Brasil",
-      "lat": -23.3705,
-      "lon": -46.6333
+      "lat": -3.44073,
+      "lon": -60.09524
     },
     {
       "id": "col-luiz-machado-universidade-de-sao-paulo",
@@ -416,7 +862,7 @@
       "cidade": "São Paulo",
       "pais": "Brasil",
       "lat": -23.5505,
-      "lon": -46.82965
+      "lon": -46.86238
     },
     {
       "id": "col-chou-sin-chan-instituto-nacional-de-pesquisas-espaciais",
@@ -441,6 +887,94 @@
       "lon": -46.12149
     },
     {
+      "id": "col-thorsten-warneke-university-of-bremen",
+      "nome": "Thorsten Warneke",
+      "tipo": "colaborador",
+      "instituicao": "University of Bremen",
+      "sigla": "UB-IUP",
+      "cidade": "Bremen",
+      "pais": "Alemanha",
+      "lat": 53.1079,
+      "lon": 8.8517
+    },
+    {
+      "id": "col-luca-mortarini-universita-degli-studi-di-milano",
+      "nome": "Luca Mortarini",
+      "tipo": "colaborador",
+      "instituicao": "Università degli Studi di Milano",
+      "sigla": "USM",
+      "cidade": "Milão",
+      "pais": "Itália",
+      "lat": 45.4642,
+      "lon": 9.19
+    },
+    {
+      "id": "col-joao-alves-oliveira-instituto-nacional-de-pesquisas-da-amazonia",
+      "nome": "Joao Alves Oliveira",
+      "tipo": "colaborador",
+      "instituicao": "Instituto Nacional de Pesquisas da Amazônia",
+      "sigla": "INPA",
+      "cidade": "Manaus",
+      "pais": "Brasil",
+      "lat": -3.44073,
+      "lon": -59.94816
+    },
+    {
+      "id": "col-gerd-gleixner-max-planck-institute-for-biogeochemistry",
+      "nome": "Gerd Gleixner",
+      "tipo": "colaborador",
+      "instituicao": "Max Planck Institute for Biogeochemistry",
+      "sigla": "MPI-BGC",
+      "cidade": "Jena",
+      "pais": "Alemanha",
+      "lat": 50.78491,
+      "lon": 11.45831
+    },
+    {
+      "id": "col-luciana-rizzo-universidade-de-sao-paulo",
+      "nome": "Luciana Rizzo",
+      "tipo": "colaborador",
+      "instituicao": "Universidade de São Paulo",
+      "sigla": "USP",
+      "cidade": "São Paulo",
+      "pais": "Brasil",
+      "lat": -23.73237,
+      "lon": -46.74784
+    },
+    {
+      "id": "col-sylvain-schmitt-cirad-montpellier",
+      "nome": "Sylvain SCHMITT",
+      "tipo": "colaborador",
+      "instituicao": "CIRAD Montpellier",
+      "sigla": "CIRAD",
+      "cidade": "Montpellier",
+      "pais": "França",
+      "lat": 43.6119,
+      "lon": 3.8772
+    },
+    {
+      "id": "col-kolby-jardine-lawrence-berkeley-national-laboratory",
+      "nome": "Kolby Jardine",
+      "tipo": "colaborador",
+      "instituicao": "Lawrence Berkeley National Laboratory",
+      "sigla": "LBNL",
+      "cidade": "Berkeley",
+      "pais": "Estados Unidos",
+      "lat": 37.8768,
+      "lon": -122.25
+    },
+    {
+      "id": "col-jeffrey-chambrs-berkeley-university-of-california",
+      "nome": "Jeffrey Chambrs",
+      "tipo": "colaborador",
+      "instituicao": "Berkeley, University of California",
+      "sigla": "UC, Berkeley",
+      "cidade": "Berkeley",
+      "pais": "Estados Unidos",
+      "lat": 37.8719,
+      "lon": -122.2585
+    },
+    {
       "id": "col-simone-marilene-sievert-da-costa-coelho-instituto-nacional-de-pesquisas-espaciais",
       "nome": "Simone Marilene Sievert da Costa Coelho",
       "tipo": "colaborador",
@@ -459,8 +993,8 @@
       "sigla": "UNIFESP",
       "cidade": "São Paulo",
       "pais": "Brasil",
-      "lat": -23.7305,
-      "lon": -46.6333
+      "lat": -23.73237,
+      "lon": -46.51876
     },
     {
       "id": "col-flavia-schimpl-instituto-nacional-de-pesquisas-da-amazonia",
@@ -470,8 +1004,8 @@
       "sigla": "INPA",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.33984,
-      "lon": -60.14939
+      "lat": -3.377,
+      "lon": -59.81564
     },
     {
       "id": "col-romari-alejandra-martinez-montano-universidade-estadual-santa-cruz",
@@ -548,7 +1082,18 @@
       "cidade": "Manchester",
       "pais": "Reino Unido",
       "lat": 53.4808,
-      "lon": -2.2426
+      "lon": -1.99054
+    },
+    {
+      "id": "col-david-shultz-university-of-manchester",
+      "nome": "David Shultz",
+      "tipo": "colaborador",
+      "instituicao": "University of Manchester",
+      "sigla": "UoM",
+      "cidade": "Manchester",
+      "pais": "Reino Unido",
+      "lat": 53.4808,
+      "lon": -2.49466
     },
     {
       "id": "col-dominick-spracklen-university-of-leeds",
@@ -628,17 +1173,6 @@
       "lon": -45.74825
     },
     {
-      "id": "col-gilberto-fisch-unitau",
-      "nome": "Gilberto Fisch",
-      "tipo": "colaborador",
-      "instituicao": "UNITAU",
-      "sigla": "UNITAU",
-      "cidade": "Taubaté",
-      "pais": "Brasil",
-      "lat": -23.0206,
-      "lon": -45.5553
-    },
-    {
       "id": "col-jean-michel-martinez-institut-de-recherche-pour-le-developpement",
       "nome": "Jean-Michel Martinez",
       "tipo": "colaborador",
@@ -647,7 +1181,7 @@
       "cidade": "Marseille",
       "pais": "França",
       "lat": 43.2965,
-      "lon": 5.3698
+      "lon": 5.1637
     },
     {
       "id": "col-renato-campello-universidade-federal-fluminense",
@@ -668,19 +1202,8 @@
       "sigla": "UFAM",
       "cidade": "Manaus",
       "pais": "Brasil",
-      "lat": -3.37013,
-      "lon": -59.97735
-    },
-    {
-      "id": "col-rogerio-marinho-universidade-federal-do-amazonas",
-      "nome": "Rogério Marinho",
-      "tipo": "colaborador",
-      "instituicao": "Universidade Federal do Amazonas",
-      "sigla": "UFAM",
-      "cidade": "Manaus",
-      "pais": "Brasil",
-      "lat": -3.28291,
-      "lon": -59.82607
+      "lat": -3.26218,
+      "lon": -59.72394
     },
     {
       "id": "col-nabil-mosleh-universite-mohammed-vi-polytechnique",
@@ -723,8 +1246,8 @@
       "sigla": "UFOPA",
       "cidade": "Santarém",
       "pais": "Brasil",
-      "lat": -2.4431,
-      "lon": -54.7083
+      "lat": -2.58599,
+      "lon": -54.79088
     },
     {
       "id": "col-henrique-roig-university-of-texas-at-austin",
@@ -738,17 +1261,6 @@
       "lon": -97.7431
     },
     {
-      "id": "col-ayan-flaischman-instituto-mamiraua",
-      "nome": "Ayan Flaischman",
-      "tipo": "colaborador",
-      "instituicao": "Instituto Mamirauá",
-      "sigla": "IMDS",
-      "cidade": "Tefé",
-      "pais": "Brasil",
-      "lat": -3.3541,
-      "lon": -64.7112
-    },
-    {
       "id": "col-andre-martinelli-real-dos-santos-servico-geologico-do-brasil",
       "nome": "André Martinelli Real dos Santos",
       "tipo": "colaborador",
@@ -757,7 +1269,7 @@
       "cidade": "Brasília",
       "pais": "Brasil",
       "lat": -15.7942,
-      "lon": -47.72631
+      "lon": -48.06926
     },
     {
       "id": "col-iris-bandeira-servico-geologico-do-brasil",
@@ -767,8 +1279,8 @@
       "sigla": "SGB",
       "cidade": "Brasília",
       "pais": "Brasil",
-      "lat": -15.7942,
-      "lon": -48.03809
+      "lat": -15.9742,
+      "lon": -47.8822
     },
     {
       "id": "col-eduardo-martins-fundacao-cearense-de-meteorologia-e-hidrologia",
@@ -859,17 +1371,6 @@
       "lon": -49.2733
     },
     {
-      "id": "col-scot-t-martin-harvard-university",
-      "nome": "Scot T. Martin",
-      "tipo": "colaborador",
-      "instituicao": "Harvard University",
-      "sigla": "HU",
-      "cidade": "Cambridge",
-      "pais": "Estados Unidos",
-      "lat": 42.3736,
-      "lon": -70.90666
-    },
-    {
       "id": "col-elsie-sunderland-harvard-university",
       "nome": "Elsie Sunderland",
       "tipo": "colaborador",
@@ -888,8 +1389,8 @@
       "sigla": "UFPA",
       "cidade": "Belém",
       "pais": "Brasil",
-      "lat": -1.4558,
-      "lon": -48.4902
+      "lat": -1.64126,
+      "lon": -48.42992
     },
     {
       "id": "col-serge-stoll-universidade-de-genebra",
@@ -904,6 +1405,20 @@
     }
   ],
   "colaboracoes": [
+    {
+      "docente_id": "doc-adan-sady-de-medeiros",
+      "colaborador_id": "col-scot-t-martin-harvard-university",
+      "tipo_cooperacao": "Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento Ambiental, Modelagem de Índices de Qualidade Ambiental",
+      "desde": "2014",
+      "producao_conjunta": "sim",
+      "projeto": null,
+      "observacoes": null
+    },
     {
       "docente_id": "doc-alderlene-pimentel-de-brito",
       "colaborador_id": "col-ingo-daniel-wahnfried-universidade-federal-do-amazonas",
@@ -1023,7 +1538,7 @@
     },
     {
       "docente_id": "doc-aurora-miho-yanai",
-      "colaborador_id": "doc-jose-veiga",
+      "colaborador_id": "doc-jose-augusto-paixao-veiga",
       "tipo_cooperacao": "Pesquisa, publicação,  coorientação",
       "tipos": [
         "Pesquisa científica",
@@ -1060,6 +1575,536 @@
       "desde": "2025",
       "producao_conjunta": "Não",
       "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-anderson-ruhoff-universidade-federal-do-rio-grande-do-sul",
+      "tipo_cooperacao": "Pesquisa, publicação,  coorientação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica",
+        "Coorientação"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2016",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA ; Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-leonardo-laipelt-universidade-federal-do-rio-grande-do-sul",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2019",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-walter-collischonn-universidade-federal-do-rio-grande-do-sul",
+      "tipo_cooperacao": "Pesquisa",
+      "tipos": [
+        "Pesquisa científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-rodrigo-paiva-universidade-federal-do-rio-grande-do-sul",
+      "tipo_cooperacao": "Pesquisa",
+      "tipos": [
+        "Pesquisa científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-andrea-encalada-universidade-san-francisco-de-quito",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, socioecologia",
+      "desde": "2025",
+      "producao_conjunta": "Sim",
+      "projeto": "Aliança Águas Amazônicas ; Projeto SAWA",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-pedro-chaffe-universidade-federal-de-santa-catarina",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Coorientação ; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Coorientação",
+        "Publicação científica"
+      ],
+      "area": "Hidrologia",
+      "desde": "2018",
+      "producao_conjunta": "Sim",
+      "projeto": "Cooperação SGB-UFSC",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-rogerio-marinho-universidade-federal-do-amazonas",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, socioecologia",
+      "desde": "2021",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-paulo-pontes-instituto-tecnologico-vale",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2017",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA ; Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-rosane-cavalcante-instituto-tecnologico-vale",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2017",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA ; Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-alice-fassoni-andrade-universidade-de-brasilia",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2017",
+      "producao_conjunta": "Sim",
+      "projeto": "PPG-RHSA ; Projeto Lagos Sentinelas da Amazônia ; INCT Wetscape",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-debora-roberti-universidade-federal-de-santa-maria",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Biogeoquímica",
+      "desde": "2021",
+      "producao_conjunta": "Sim",
+      "projeto": "Fluxnet-CH4",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-rob-jackson-universidade-de-stanford",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Biogeoquímica",
+      "desde": "2021",
+      "producao_conjunta": "Sim",
+      "projeto": "Fluxnet-CH4",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-stephen-hamilton-michigan-state-university",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2020",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-john-melack-universidade-de-california-santa-barbara",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2019",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-iestyn-woolway-bangor-university",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2024",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia ; Royal Society Extremes in Amazon Lakes",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-fernando-jaramillo-universidade-de-estocolmo",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrologia",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "Consórcio DOWES/Water4All",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-jochen-schongart-instituto-nacional-de-pesquisas-da-amazonia",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica"
+      ],
+      "area": "Ecologia aquática, hidrologia",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "INCT Wetscape",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-daniel-moreira-servico-geologico-do-brasil",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2018",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia; Cooperação Mamirauá-SGB",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-reinaldo-peleja-universidade-federal-do-oeste-do-para",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-michel-nasser-correa-lima-chamy-universidade-federal-do-amazonas",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-alex-martins-ramos-universidade-federal-do-amazonas",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica"
+      ],
+      "area": "Monitoramento ambiental, limnologia, hidrologia",
+      "desde": "2024",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-eduardo-martins-universidade-do-norte-da-columbia-britanica",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrologia, socioecologia, Ecologia aquática",
+      "desde": "2020",
+      "producao_conjunta": "Sim",
+      "projeto": "Socioecologia do Pirarucu",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-leandro-castello-virginia-tech",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrologia, socioecologia, Ecologia aquática",
+      "desde": "2020",
+      "producao_conjunta": "Sim",
+      "projeto": "Socioecologia do Pirarucu",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-ayan-santos-fleischmann",
+      "colaborador_id": "col-fabrice-papa-institut-de-recherche-pour-le-developpement",
+      "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Projeto científico",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Hidrometeorologia, Hidrologia, Mudanças Climáticas",
+      "desde": "2019",
+      "producao_conjunta": "Sim",
+      "projeto": "Projeto Lagos Sentinelas da Amazônia ; JEAI/AMAWE ; Consórcio DOWES/Water4All",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-santiago-botia-max-planck-institute-for-biogeochemistry",
+      "tipo_cooperacao": "projeto, pesquisa e publicação",
+      "tipos": [
+        "Projeto",
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Gases de Efeito Estufa",
+      "desde": "2019",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-carlos-alberto-quesada-instituto-nacional-de-pesquisas-da-amazonia",
+      "tipo_cooperacao": "Projetos e publicações",
+      "tipos": [
+        "Projetos",
+        "Publicações"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "Proamazônia e INCT",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-jose-dolores-fuentes-pennsylvania-state-university",
+      "tipo_cooperacao": "Projetos e publicações",
+      "tipos": [
+        "Projetos",
+        "Publicações"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-aline-meiguins-universidade-federal-do-para",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2023",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-gabriel-de-oliveira-university-of-south-alabama",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2023",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-gilberto-fisch-unitau",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2021",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-luiz-augusto-toledo-machado-universidade-de-sao-paulo",
+      "tipo_cooperacao": "Projetos e publicações",
+      "tipos": [
+        "Projetos",
+        "Publicações"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2021",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-raoni-aquino-silva-de-santana-universidade-federal-do-oeste-do-para",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-julia-cohen-universidade-federal-do-para",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-otavio-costa-acevedo-university-of-oklahoma",
+      "tipo_cooperacao": "Projetos, Orientações e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Orientações",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2015",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-susan-trumbore-max-planck-institute-for-biogeochemistry",
+      "tipo_cooperacao": "Projetos e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-cleo-quaresma-dias-junior",
+      "colaborador_id": "col-paulo-artaxo-universidade-de-sao-paulo",
+      "tipo_cooperacao": "Projetos e Pesquisa Ciêntífica",
+      "tipos": [
+        "Projetos",
+        "Pesquisa Ciêntífica"
+      ],
+      "area": "Monitoramento da floresta e tocas gasosas",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "CAPASSA - ProAmazonia",
       "observacoes": null
     },
     {
@@ -1315,6 +2360,173 @@
       "observacoes": null
     },
     {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-jochen-schongart-instituto-nacional-de-pesquisas-da-amazonia",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Funcionamento da floresta e química da água e da atmosfera",
+      "desde": "2023",
+      "producao_conjunta": "Sim",
+      "projeto": "ATTO e WETSCAPE",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-thorsten-warneke-university-of-bremen",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química da água e da atmosfera",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-luca-mortarini-universita-degli-studi-di-milano",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "turbulência e química da atmosfera",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-joao-alves-oliveira-instituto-nacional-de-pesquisas-da-amazonia",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Entomologia e química da atmosfera",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "doc-eliane-gomes-alves",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química do solo e da atmosfera",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-gerd-gleixner-max-planck-institute-for-biogeochemistry",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química do solo e da atmosfera",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "doc-sergio-duvoisin-junior",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química da água",
+      "desde": null,
+      "producao_conjunta": null,
+      "projeto": null,
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-luiz-machado-universidade-de-sao-paulo",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química da água e da atmosfera",
+      "desde": "2023",
+      "producao_conjunta": "Sim",
+      "projeto": "ATTO",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-hella-van-asperen",
+      "colaborador_id": "col-luciana-rizzo-universidade-de-sao-paulo",
+      "tipo_cooperacao": "Pesquisa e publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Química da água e da atmosfera",
+      "desde": "2023",
+      "producao_conjunta": "Sim",
+      "projeto": "ATTO",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-israel-de-jesus-sampaio-filho",
+      "colaborador_id": "col-sylvain-schmitt-cirad-montpellier",
+      "tipo_cooperacao": "Captação conjunta de recursos",
+      "tipos": [
+        "Captação conjunta de recursos"
+      ],
+      "area": "Monitoramento e modelagem dinâmica de vegetação",
+      "desde": "2026",
+      "producao_conjunta": "Não",
+      "projeto": "CNPq e ANR Hydroamazonia",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-israel-de-jesus-sampaio-filho",
+      "colaborador_id": "col-kolby-jardine-lawrence-berkeley-national-laboratory",
+      "tipo_cooperacao": "Pesquisa e Publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Ecofisiologia e estresse hídrico",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "NGEE-Tropics",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-israel-de-jesus-sampaio-filho",
+      "colaborador_id": "col-jeffrey-chambrs-berkeley-university-of-california",
+      "tipo_cooperacao": "Pesquisa e Publicação",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Ecofisiologia e estresse hídrico",
+      "desde": "2022",
+      "producao_conjunta": "Sim",
+      "projeto": "NGEE-Tropics",
+      "observacoes": null
+    },
+    {
       "docente_id": "doc-jaidete-monteiro-de-souza",
       "colaborador_id": "col-simone-marilene-sievert-da-costa-coelho-instituto-nacional-de-pesquisas-espaciais",
       "tipo_cooperacao": "Pesquisa, publicação  e coorientação",
@@ -1412,7 +2624,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-neil-hart-university-of-oxford",
       "tipo_cooperacao": "Pesquisa científica",
       "tipos": [
@@ -1425,7 +2637,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-marcia-zilli-university-of-oxford",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica; coorientação",
       "tipos": [
@@ -1440,7 +2652,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-ron-kahana-uk-met-office",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1454,7 +2666,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-poliana-bispo-university-of-manchester",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1468,7 +2680,21 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
+      "colaborador_id": "col-david-shultz-university-of-manchester",
+      "tipo_cooperacao": "Pesquisa científica; Publicação científica",
+      "tipos": [
+        "Pesquisa científica",
+        "Publicação científica"
+      ],
+      "area": "Modelagem climática",
+      "desde": "2024",
+      "producao_conjunta": "Sim",
+      "projeto": "CIDAR-UK",
+      "observacoes": null
+    },
+    {
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-dominick-spracklen-university-of-leeds",
       "tipo_cooperacao": "Publicação científica",
       "tipos": [
@@ -1481,7 +2707,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-jess-backer-university-of-leeds",
       "tipo_cooperacao": "Publicação científica",
       "tipos": [
@@ -1494,7 +2720,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-francina-domingues-university-of-illinois-urbana-champaign",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica; coorientação",
       "tipos": [
@@ -1509,7 +2735,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-rafael-de-abreu-university-of-indianapolis",
       "tipo_cooperacao": "Pesquisa científica; coorientação",
       "tipos": [
@@ -1523,7 +2749,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-andrea-taschetto-university-of-sydney",
       "tipo_cooperacao": "Projeto científico",
       "tipos": [
@@ -1536,7 +2762,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-lincoln-alvez-instituto-nacional-de-pesquisas-espaciais",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1550,7 +2776,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-gilvan-campaio-instituto-nacional-de-pesquisas-espaciais",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1564,7 +2790,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-chou-sin-chan-instituto-nacional-de-pesquisas-espaciais",
       "tipo_cooperacao": "Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1578,7 +2804,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "col-gilberto-fisch-unitau",
       "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
       "tipos": [
@@ -1593,7 +2819,7 @@
       "observacoes": null
     },
     {
-      "docente_id": "doc-jose-veiga",
+      "docente_id": "doc-jose-augusto-paixao-veiga",
       "colaborador_id": "doc-aurora-miho-yanai",
       "tipo_cooperacao": "Pesquisa científica; coorientação",
       "tipos": [
@@ -1801,7 +3027,7 @@
     },
     {
       "docente_id": "doc-naziano-pantoja-filizola-junior",
-      "colaborador_id": "col-ayan-flaischman-instituto-mamiraua",
+      "colaborador_id": "doc-ayan-santos-fleischmann",
       "tipo_cooperacao": "Projeto científico; Pesquisa científica; Publicação científica",
       "tipos": [
         "Projeto científico",
@@ -2074,21 +3300,27 @@
   ],
   "meta": {
     "fonte": "Planilha_Rede_Cooperacao_PPG_CLIAMB.xlsx",
-    "total_docentes": 13,
-    "total_colaboradores": 70,
-    "total_colaboracoes": 82,
+    "total_docentes": 18,
+    "total_colaboradores": 111,
+    "total_colaboracoes": 132,
     "tipos_cooperacao": [
+      "Captação conjunta de recursos",
       "Coorientação",
       "Disciplina",
       "Mobilidade estudantil",
       "Orientação conjunta",
+      "Orientações",
+      "Pesquisa Ciêntífica",
       "Pesquisa científica",
+      "Projeto",
       "Projeto científico",
-      "Publicação científica"
+      "Projetos",
+      "Publicação científica",
+      "Publicações"
     ],
     "avisos": [
-      "Linha da planilha com Instituição 'Universidade de Brasília' e Sigla 'UT-Austin' foi resolvida como University of Texas at Austin (com base no País='Estados Unidos' da própria linha) -- pendente de confirmação final.",
-      "INPE, UNESP, IFAM, IRD e Serviço Geológico do Brasil são multi-campus/multi-sede: a cidade usada é a da sede/campus principal, não necessariamente a unidade exata da parceria."
+      "INPE, UNESP, IFAM, IRD e Serviço Geológico do Brasil são multi-campus/multi-sede: a cidade usada é a da sede/campus principal, não necessariamente a unidade exata da parceria.",
+      "Instituto Tecnológico Vale tem unidades em Belém (PA) e Ouro Preto (MG); usamos Belém por ser a unidade com foco amazônico, não necessariamente a unidade exata da parceria."
     ]
   }
 }

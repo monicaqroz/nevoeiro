@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-10-12T18:24:41.235Z",
-  "totalVisitantes": 617,
+  "atualizadoEm": "2026-10-13T16:36:58.576Z",
+  "totalVisitantes": 621,
   "porDia": [
-    {
-      "dia": "2026-08-14",
-      "visitantes": 30
-    },
     {
       "dia": "2026-08-15",
       "visitantes": 17
@@ -240,6 +236,10 @@
     },
     {
       "dia": "2026-10-12",
+      "visitantes": 4
+    },
+    {
+      "dia": "2026-10-13",
       "visitantes": 0
     }
   ],
@@ -247,22 +247,22 @@
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 79
+      "visitantes": 80
     },
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 79
+      "visitantes": 80
+    },
+    {
+      "caminho": "/projetos/manaus-tempo.html",
+      "titulo": "Clima em Manaus — Nevoeiro",
+      "visitantes": 70
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
       "visitantes": 70
-    },
-    {
-      "caminho": "/projetos/manaus-tempo.html",
-      "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 69
     },
     {
       "caminho": "/",
@@ -290,8 +290,8 @@
       "visitantes": 19
     },
     {
-      "caminho": "/estatisticas.html",
-      "titulo": "Estatísticas — Nevoeiro",
+      "caminho": "/projetos/pelotas-estacao.html",
+      "titulo": "Clima em Pelotas — Estação — Nevoeiro",
       "visitantes": 18
     }
   ],
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 608
+      "visitantes": 616
     },
     {
       "nome": "United States",
@@ -354,7 +354,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 171
+      "visitantes": 172
     }
   ]
 }

@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-10-16T13:39:10.766Z",
-  "totalVisitantes": 624,
+  "atualizadoEm": "2026-10-17T12:36:16.255Z",
+  "totalVisitantes": 634,
   "porDia": [
-    {
-      "dia": "2026-08-18",
-      "visitantes": 6
-    },
     {
       "dia": "2026-08-19",
       "visitantes": 26
@@ -240,29 +236,33 @@
     },
     {
       "dia": "2026-10-16",
-      "visitantes": 0
+      "visitantes": 5
+    },
+    {
+      "dia": "2026-10-17",
+      "visitantes": 5
     }
   ],
   "paginasMaisVistas": [
     {
-      "caminho": "/projetos/manaus-estacao.html",
-      "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 81
-    },
-    {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 81
+      "visitantes": 84
+    },
+    {
+      "caminho": "/projetos/manaus-estacao.html",
+      "titulo": "Clima em Manaus — Estação — Nevoeiro",
+      "visitantes": 83
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 71
+      "visitantes": 74
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 70
+      "visitantes": 71
     },
     {
       "caminho": "/",
@@ -285,14 +285,14 @@
       "visitantes": 20
     },
     {
-      "caminho": "/projetos/manaus-conforto.html",
-      "titulo": "Conforto Térmico de Manaus — Nevoeiro",
+      "caminho": "/projetos/pelotas-estacao.html",
+      "titulo": "Clima em Pelotas — Estação — Nevoeiro",
       "visitantes": 19
     },
     {
-      "caminho": "/projetos/pelotas-estacao.html",
-      "titulo": "Clima em Pelotas — Estação — Nevoeiro",
-      "visitantes": 18
+      "caminho": "/projetos/manaus-conforto.html",
+      "titulo": "Conforto Térmico de Manaus — Nevoeiro",
+      "visitantes": 19
     }
   ],
   "cliquesMaisFrequentes": [
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 619
+      "visitantes": 629
     },
     {
       "nome": "United States",
@@ -354,7 +354,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 173
+      "visitantes": 176
     }
   ]
 }

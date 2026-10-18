@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-18T04:46:56.910Z",
+  "atualizadoEm": "2026-10-18T11:23:38.822Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,23 +9,23 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-18T00:00:00Z",
-    "tempC": 13,
-    "orvalhoC": 11,
-    "umidade": 88,
-    "ventoGraus": 240,
-    "ventoKmh": 26,
+    "hora": "2026-10-18T11:00:00Z",
+    "tempC": 12,
+    "orvalhoC": 9,
+    "umidade": 82,
+    "ventoGraus": 270,
+    "ventoKmh": 24,
     "pressaoHpa": 1016,
     "visibilidadeKm": 9.7,
     "cobertura": "BKN",
-    "tetoM": 1219,
-    "categoriaVoo": "VFR",
+    "tetoM": 914,
+    "categoriaVoo": "MVFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 180000Z 24014KT 9999 BKN040 13/11 Q1016"
+    "raw": "METAR SBPK 181100Z 27013KT 9999 FEW010 BKN030 12/09 Q1016"
   },
-  "diasSemChuva": 0,
+  "diasSemChuva": 1,
   "historico": [
     {
       "hora": "2026-09-20T18:00:00Z",
@@ -7118,6 +7118,40 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 180000Z 24014KT 9999 BKN040 13/11 Q1016"
+    },
+    {
+      "hora": "2026-10-18T10:00:00Z",
+      "tempC": 10,
+      "orvalhoC": 8,
+      "umidade": 87,
+      "ventoGraus": 270,
+      "ventoKmh": 19,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "BKN",
+      "tetoM": 914,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 181000Z 27010KT 9999 FEW010 BKN030 10/08 Q1016"
+    },
+    {
+      "hora": "2026-10-18T11:00:00Z",
+      "tempC": 12,
+      "orvalhoC": 9,
+      "umidade": 82,
+      "ventoGraus": 270,
+      "ventoKmh": 24,
+      "pressaoHpa": 1016,
+      "visibilidadeKm": 9.7,
+      "cobertura": "BKN",
+      "tetoM": 914,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 181100Z 27013KT 9999 FEW010 BKN030 12/09 Q1016"
     }
   ]
 }

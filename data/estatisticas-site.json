@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-17T12:36:16.255Z",
+  "atualizadoEm": "2026-10-18T12:53:47.679Z",
   "totalVisitantes": 634,
   "porDia": [
     {
@@ -247,7 +247,7 @@
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 84
+      "visitantes": 85
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 629
+      "visitantes": 630
     },
     {
       "nome": "United States",

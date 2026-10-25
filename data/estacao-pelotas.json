@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-24T23:24:03.755Z",
+  "atualizadoEm": "2026-10-25T04:56:43.335Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,12 +9,12 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-24T23:00:00Z",
-    "tempC": 15,
+    "hora": "2026-10-25T00:00:00Z",
+    "tempC": 16,
     "orvalhoC": 13,
-    "umidade": 88,
-    "ventoGraus": 200,
-    "ventoKmh": 28,
+    "umidade": 82,
+    "ventoGraus": 210,
+    "ventoKmh": 26,
     "pressaoHpa": 1010,
     "visibilidadeKm": 9.7,
     "cobertura": "OVC",
@@ -23,27 +23,10 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 242300Z 20015KT 9999 OVC018 15/13 Q1010"
+    "raw": "METAR SBPK 250000Z 21014KT 9999 OVC018 16/13 Q1010"
   },
   "diasSemChuva": 0,
   "historico": [
-    {
-      "hora": "2026-09-24T23:00:00Z",
-      "tempC": 14,
-      "orvalhoC": 12,
-      "umidade": 88,
-      "ventoGraus": 30,
-      "ventoKmh": 11,
-      "pressaoHpa": 1013,
-      "visibilidadeKm": 9.7,
-      "cobertura": "CAVOK",
-      "tetoM": null,
-      "categoriaVoo": "VFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 242300Z 03006KT CAVOK 14/12 Q1013"
-    },
     {
       "hora": "2026-09-25T00:00:00Z",
       "tempC": 14,
@@ -7798,6 +7781,23 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 242300Z 20015KT 9999 OVC018 15/13 Q1010"
+    },
+    {
+      "hora": "2026-10-25T00:00:00Z",
+      "tempC": 16,
+      "orvalhoC": 13,
+      "umidade": 82,
+      "ventoGraus": 210,
+      "ventoKmh": 26,
+      "pressaoHpa": 1010,
+      "visibilidadeKm": 9.7,
+      "cobertura": "OVC",
+      "tetoM": 549,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 250000Z 21014KT 9999 OVC018 16/13 Q1010"
     }
   ]
 }

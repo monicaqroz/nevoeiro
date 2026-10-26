@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-25T23:21:12.310Z",
+  "atualizadoEm": "2026-10-26T05:00:04.893Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,41 +9,24 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-25T23:00:00Z",
+    "hora": "2026-10-26T00:00:00Z",
     "tempC": 12,
     "orvalhoC": 11,
     "umidade": 94,
     "ventoGraus": 230,
-    "ventoKmh": 13,
-    "pressaoHpa": 1018,
+    "ventoKmh": 11,
+    "pressaoHpa": 1019,
     "visibilidadeKm": 9.7,
-    "cobertura": "BKN",
-    "tetoM": 3048,
+    "cobertura": "CAVOK",
+    "tetoM": null,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 252300Z 23007KT 9999 FEW017 BKN100 12/11 Q1018"
+    "raw": "METAR SBPK 260000Z 23006KT CAVOK 12/11 Q1019"
   },
   "diasSemChuva": 0,
   "historico": [
-    {
-      "hora": "2026-09-25T23:00:00Z",
-      "tempC": 21,
-      "orvalhoC": 19,
-      "umidade": 88,
-      "ventoGraus": 160,
-      "ventoKmh": 7,
-      "pressaoHpa": 1011,
-      "visibilidadeKm": 9.7,
-      "cobertura": "BKN",
-      "tetoM": 1707,
-      "categoriaVoo": "VFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 252300Z 16004KT 9999 FEW020 BKN056 21/19 Q1011"
-    },
     {
       "hora": "2026-09-26T00:00:00Z",
       "tempC": 20,
@@ -7798,6 +7781,23 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 252300Z 23007KT 9999 FEW017 BKN100 12/11 Q1018"
+    },
+    {
+      "hora": "2026-10-26T00:00:00Z",
+      "tempC": 12,
+      "orvalhoC": 11,
+      "umidade": 94,
+      "ventoGraus": 230,
+      "ventoKmh": 11,
+      "pressaoHpa": 1019,
+      "visibilidadeKm": 9.7,
+      "cobertura": "CAVOK",
+      "tetoM": null,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 260000Z 23006KT CAVOK 12/11 Q1019"
     }
   ]
 }

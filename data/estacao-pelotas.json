@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-30T01:09:14.075Z",
+  "atualizadoEm": "2026-10-30T10:14:11.942Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,41 +9,24 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-10-30T00:00:00Z",
-    "tempC": 16,
+    "hora": "2026-10-30T10:00:00Z",
+    "tempC": 15,
     "orvalhoC": 14,
-    "umidade": 88,
-    "ventoGraus": 140,
-    "ventoKmh": 6,
-    "pressaoHpa": 1019,
+    "umidade": 94,
+    "ventoGraus": 280,
+    "ventoKmh": 4,
+    "pressaoHpa": 1018,
     "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
+    "cobertura": "SCT",
+    "tetoM": 762,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 300000Z 14003KT CAVOK 16/14 Q1019"
+    "raw": "METAR SBPK 301000Z 28002KT 9999 SCT025 15/14 Q1018"
   },
-  "diasSemChuva": 4,
+  "diasSemChuva": 5,
   "historico": [
-    {
-      "hora": "2026-09-30T00:00:00Z",
-      "tempC": 20,
-      "orvalhoC": 18,
-      "umidade": 88,
-      "ventoGraus": 330,
-      "ventoKmh": 9,
-      "pressaoHpa": 1006,
-      "visibilidadeKm": 8,
-      "cobertura": "SCT",
-      "tetoM": 3048,
-      "categoriaVoo": "MVFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 300000Z 33005KT 8000 SCT035 SCT100 20/18 Q1006"
-    },
     {
       "hora": "2026-09-30T10:00:00Z",
       "tempC": 15,
@@ -7764,6 +7747,23 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 300000Z 14003KT CAVOK 16/14 Q1019"
+    },
+    {
+      "hora": "2026-10-30T10:00:00Z",
+      "tempC": 15,
+      "orvalhoC": 14,
+      "umidade": 94,
+      "ventoGraus": 280,
+      "ventoKmh": 4,
+      "pressaoHpa": 1018,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 762,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 301000Z 28002KT 9999 SCT025 15/14 Q1018"
     }
   ]
 }

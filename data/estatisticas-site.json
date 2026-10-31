@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-30T15:26:56.526Z",
+  "atualizadoEm": "2026-10-31T14:55:08.749Z",
   "totalVisitantes": 665,
   "porDia": [
     {
@@ -247,22 +247,22 @@
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
-      "visitantes": 89
+      "visitantes": 90
     },
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 88
+      "visitantes": 89
     },
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 77
+      "visitantes": 78
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 74
+      "visitantes": 75
     },
     {
       "caminho": "/",
@@ -277,7 +277,7 @@
     {
       "caminho": "/projetos/pelotas-estacao.html",
       "titulo": "Clima em Pelotas — Estação — Nevoeiro",
-      "visitantes": 24
+      "visitantes": 25
     },
     {
       "caminho": "/projetos/sismos-america-sul.html",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 660
+      "visitantes": 665
     },
     {
       "nome": "United States",
@@ -354,7 +354,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 182
+      "visitantes": 183
     }
   ]
 }

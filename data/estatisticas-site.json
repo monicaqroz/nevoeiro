@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-11-05T16:58:49.200Z",
+  "atualizadoEm": "2026-11-06T16:30:27.655Z",
   "totalVisitantes": 675,
   "porDia": [
-    {
-      "dia": "2026-09-07",
-      "visitantes": 15
-    },
     {
       "dia": "2026-09-08",
       "visitantes": 5
@@ -240,6 +236,10 @@
     },
     {
       "dia": "2026-11-05",
+      "visitantes": 0
+    },
+    {
+      "dia": "2026-11-06",
       "visitantes": 0
     }
   ],

@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-11-12T17:15:28.309Z",
-  "totalVisitantes": 708,
+  "atualizadoEm": "2026-11-13T16:51:48.011Z",
+  "totalVisitantes": 711,
   "porDia": [
-    {
-      "dia": "2026-09-14",
-      "visitantes": 0
-    },
     {
       "dia": "2026-09-15",
       "visitantes": 6
@@ -240,24 +236,28 @@
     },
     {
       "dia": "2026-11-12",
+      "visitantes": 3
+    },
+    {
+      "dia": "2026-11-13",
       "visitantes": 0
     }
   ],
   "paginasMaisVistas": [
+    {
+      "caminho": "/projetos/manaus-estacao.html",
+      "titulo": "Clima em Manaus — Estação — Nevoeiro",
+      "visitantes": 93
+    },
     {
       "caminho": "/index.html",
       "titulo": "Nevoeiro",
       "visitantes": 93
     },
     {
-      "caminho": "/projetos/manaus-estacao.html",
-      "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 92
-    },
-    {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 81
+      "visitantes": 82
     },
     {
       "caminho": "/projetos.html",
@@ -267,7 +267,7 @@
     {
       "caminho": "/",
       "titulo": "Nevoeiro",
-      "visitantes": 32
+      "visitantes": 33
     },
     {
       "caminho": "/projetos/manaus-rio.html",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 691
+      "visitantes": 706
     },
     {
       "nome": "United States",
@@ -354,7 +354,7 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 191
+      "visitantes": 192
     }
   ]
 }

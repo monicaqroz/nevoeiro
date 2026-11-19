@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-19T02:39:47.865Z",
+  "atualizadoEm": "2026-11-19T11:53:37.919Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,58 +9,24 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-11-19T00:00:00Z",
-    "tempC": 23,
+    "hora": "2026-11-19T11:00:00Z",
+    "tempC": 24,
     "orvalhoC": 19,
-    "umidade": 78,
-    "ventoGraus": 150,
-    "ventoKmh": 4,
-    "pressaoHpa": 1008,
+    "umidade": 74,
+    "ventoGraus": 230,
+    "ventoKmh": 19,
+    "pressaoHpa": 1009,
     "visibilidadeKm": 9.7,
-    "cobertura": "CAVOK",
-    "tetoM": null,
+    "cobertura": "FEW",
+    "tetoM": 1372,
     "categoriaVoo": "VFR",
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 190000Z 15002KT CAVOK 23/19 Q1008"
+    "raw": "METAR SBPK 191100Z 23010KT 9999 FEW045 24/19 Q1009"
   },
-  "diasSemChuva": 11,
+  "diasSemChuva": 12,
   "historico": [
-    {
-      "hora": "2026-10-20T00:00:00Z",
-      "tempC": 11,
-      "orvalhoC": 10,
-      "umidade": 94,
-      "ventoGraus": 0,
-      "ventoKmh": 0,
-      "pressaoHpa": 1022,
-      "visibilidadeKm": 9.7,
-      "cobertura": "CAVOK",
-      "tetoM": null,
-      "categoriaVoo": "VFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 200000Z 00000KT CAVOK 11/10 Q1022"
-    },
-    {
-      "hora": "2026-10-20T10:00:00Z",
-      "tempC": 10,
-      "orvalhoC": 10,
-      "umidade": 100,
-      "ventoGraus": 280,
-      "ventoKmh": 6,
-      "pressaoHpa": 1022,
-      "visibilidadeKm": 9.7,
-      "cobertura": "CAVOK",
-      "tetoM": null,
-      "categoriaVoo": "VFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 201000Z 28003KT CAVOK 10/10 Q1022"
-    },
     {
       "hora": "2026-10-20T11:00:00Z",
       "tempC": 12,
@@ -7914,6 +7880,40 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 190000Z 15002KT CAVOK 23/19 Q1008"
+    },
+    {
+      "hora": "2026-11-19T10:00:00Z",
+      "tempC": 23,
+      "orvalhoC": 19,
+      "umidade": 78,
+      "ventoGraus": 260,
+      "ventoKmh": 6,
+      "pressaoHpa": 1009,
+      "visibilidadeKm": 9.7,
+      "cobertura": "SCT",
+      "tetoM": 1372,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 191000Z 26003KT 9999 SCT045 23/19 Q1009"
+    },
+    {
+      "hora": "2026-11-19T11:00:00Z",
+      "tempC": 24,
+      "orvalhoC": 19,
+      "umidade": 74,
+      "ventoGraus": 230,
+      "ventoKmh": 19,
+      "pressaoHpa": 1009,
+      "visibilidadeKm": 9.7,
+      "cobertura": "FEW",
+      "tetoM": 1372,
+      "categoriaVoo": "VFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 191100Z 23010KT 9999 FEW045 24/19 Q1009"
     }
   ]
 }

@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-11-24T19:49:32.595Z",
-  "totalVisitantes": 743,
+  "atualizadoEm": "2026-11-25T18:54:51.146Z",
+  "totalVisitantes": 749,
   "porDia": [
-    {
-      "dia": "2026-09-26",
-      "visitantes": 11
-    },
     {
       "dia": "2026-09-27",
       "visitantes": 6
@@ -241,13 +237,17 @@
     {
       "dia": "2026-11-24",
       "visitantes": 0
+    },
+    {
+      "dia": "2026-11-25",
+      "visitantes": 6
     }
   ],
   "paginasMaisVistas": [
     {
       "caminho": "/projetos/manaus-estacao.html",
       "titulo": "Clima em Manaus — Estação — Nevoeiro",
-      "visitantes": 97
+      "visitantes": 98
     },
     {
       "caminho": "/index.html",
@@ -257,17 +257,22 @@
     {
       "caminho": "/projetos/manaus-tempo.html",
       "titulo": "Clima em Manaus — Nevoeiro",
-      "visitantes": 86
+      "visitantes": 87
     },
     {
       "caminho": "/projetos.html",
       "titulo": "Projetos — Nevoeiro",
-      "visitantes": 81
+      "visitantes": 82
     },
     {
       "caminho": "/",
       "titulo": "Nevoeiro",
-      "visitantes": 37
+      "visitantes": 38
+    },
+    {
+      "caminho": "/projetos/manaus-rio.html",
+      "titulo": "Nível do Rio Negro — Nevoeiro",
+      "visitantes": 32
     },
     {
       "caminho": "/projetos/sismos-america-sul.html",
@@ -277,11 +282,6 @@
     {
       "caminho": "/projetos/pelotas-estacao.html",
       "titulo": "Clima em Pelotas — Estação — Nevoeiro",
-      "visitantes": 31
-    },
-    {
-      "caminho": "/projetos/manaus-rio.html",
-      "titulo": "Nível do Rio Negro — Nevoeiro",
       "visitantes": 31
     },
     {
@@ -310,7 +310,7 @@
     },
     {
       "nome": "Card: Nível do Rio Negro",
-      "visitantes": 10
+      "visitantes": 11
     },
     {
       "nome": "Card: Conforto Térmico",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 738
+      "visitantes": 744
     },
     {
       "nome": "United States",

@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-24T23:57:14.188Z",
+  "atualizadoEm": "2026-11-25T08:51:43.456Z",
   "fonte": "https://aviationweather.gov/data/metar",
   "estacao": {
     "icao": "SBPK",
@@ -9,13 +9,13 @@
     "elevacaoM": 17
   },
   "atual": {
-    "hora": "2026-11-24T23:00:00Z",
-    "tempC": 23,
-    "orvalhoC": 21,
-    "umidade": 89,
-    "ventoGraus": 100,
-    "ventoKmh": 9,
-    "pressaoHpa": 1008,
+    "hora": "2026-11-25T00:00:00Z",
+    "tempC": 22,
+    "orvalhoC": 20,
+    "umidade": 88,
+    "ventoGraus": 110,
+    "ventoKmh": 6,
+    "pressaoHpa": 1009,
     "visibilidadeKm": 8,
     "cobertura": "CLR",
     "tetoM": null,
@@ -23,27 +23,10 @@
     "chovendo": false,
     "chuvaNaEstacao": false,
     "condicao": null,
-    "raw": "METAR SBPK 242300Z 10005KT 8000 NSC 23/21 Q1008"
+    "raw": "METAR SBPK 250000Z 11003KT 8000 NSC 22/20 Q1009"
   },
   "diasSemChuva": 17,
   "historico": [
-    {
-      "hora": "2026-10-25T23:00:00Z",
-      "tempC": 12,
-      "orvalhoC": 11,
-      "umidade": 94,
-      "ventoGraus": 230,
-      "ventoKmh": 13,
-      "pressaoHpa": 1018,
-      "visibilidadeKm": 9.7,
-      "cobertura": "BKN",
-      "tetoM": 3048,
-      "categoriaVoo": "VFR",
-      "chovendo": false,
-      "chuvaNaEstacao": false,
-      "condicao": null,
-      "raw": "METAR SBPK 252300Z 23007KT 9999 FEW017 BKN100 12/11 Q1018"
-    },
     {
       "hora": "2026-10-26T00:00:00Z",
       "tempC": 12,
@@ -7897,6 +7880,23 @@
       "chuvaNaEstacao": false,
       "condicao": null,
       "raw": "METAR SBPK 242300Z 10005KT 8000 NSC 23/21 Q1008"
+    },
+    {
+      "hora": "2026-11-25T00:00:00Z",
+      "tempC": 22,
+      "orvalhoC": 20,
+      "umidade": 88,
+      "ventoGraus": 110,
+      "ventoKmh": 6,
+      "pressaoHpa": 1009,
+      "visibilidadeKm": 8,
+      "cobertura": "CLR",
+      "tetoM": null,
+      "categoriaVoo": "MVFR",
+      "chovendo": false,
+      "chuvaNaEstacao": false,
+      "condicao": null,
+      "raw": "METAR SBPK 250000Z 11003KT 8000 NSC 22/20 Q1009"
     }
   ]
 }

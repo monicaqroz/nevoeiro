@@ -1,11 +1,7 @@
 {
-  "atualizadoEm": "2026-11-25T18:54:51.146Z",
-  "totalVisitantes": 749,
+  "atualizadoEm": "2026-11-26T18:44:09.216Z",
+  "totalVisitantes": 750,
   "porDia": [
-    {
-      "dia": "2026-09-27",
-      "visitantes": 6
-    },
     {
       "dia": "2026-09-28",
       "visitantes": 16
@@ -241,6 +237,10 @@
     {
       "dia": "2026-11-25",
       "visitantes": 6
+    },
+    {
+      "dia": "2026-11-26",
+      "visitantes": 1
     }
   ],
   "paginasMaisVistas": [
@@ -272,7 +272,7 @@
     {
       "caminho": "/projetos/manaus-rio.html",
       "titulo": "Nível do Rio Negro — Nevoeiro",
-      "visitantes": 32
+      "visitantes": 33
     },
     {
       "caminho": "/projetos/sismos-america-sul.html",
@@ -340,7 +340,7 @@
   "paises": [
     {
       "nome": "Brazil",
-      "visitantes": 744
+      "visitantes": 745
     },
     {
       "nome": "United States",
@@ -354,11 +354,11 @@
   "referencias": [
     {
       "nome": "Acesso direto",
-      "visitantes": 200
+      "visitantes": 202
     },
     {
       "nome": "Google",
-      "visitantes": 1
+      "visitantes": 2
     }
   ]
 }
